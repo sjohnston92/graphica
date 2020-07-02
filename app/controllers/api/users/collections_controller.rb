@@ -11,7 +11,8 @@ class Api::Users::CollectionsController < ApplicationController
     if collection.save 
       render json: collection
     else 
-      render json { errors: collection.errors }, status: :unprocessable_entity 
+      render json: { errors: collection.errors }, status: :unprocessable_entity 
+    end
   end
 
   def update
@@ -20,7 +21,8 @@ class Api::Users::CollectionsController < ApplicationController
       collection.update(complete: !collection.complete)
       render json: collection
     else 
-      render json { errors: collection.errors }, status: :unprocessable_entity 
+      render json: { errors: collection.errors }, status: :unprocessable_entity 
+    end
   end
 
   def destroy

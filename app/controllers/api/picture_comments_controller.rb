@@ -8,16 +8,17 @@ class Api::PictureCommentsController < ApplicationController
     if picture_comment.save 
       render json: picture_comment
     else 
-      render json { errors: picture_comment.errors }, status: :unprocessable_entity 
+      render json: { errors: picture_comment.errors }, status: :unprocessable_entity 
+    end
   end
 
   def update
     picture_comment = PictureComment.find(params[:id])
-    if picture_comment.save
-      picture_comment.update(complete: !picture_comment.complete)
+    if picture_comment.update(picture_comment_params)
       render json: picture_comment
     else 
-      render json { errors: picture_comment.errors }, status: :unprocessable_entity 
+      render json: { errors: picture_comment.errors }, status: :unprocessable_entity 
+    end
   end
 
   def destroy

@@ -14,8 +14,11 @@ class Api::Users::PicturesController < ApplicationController
 
   def update
     picture = Picture.find(params[:id])
-    item.update(complete: !picture.complete)
-    render json: picture
+    if picture.update(picture_params)
+      render json: picture
+    else 
+      render json: { errors: picture.errors }, status: :unprocessable_entity 
+    end
   end
 
   def destroy

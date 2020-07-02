@@ -15,16 +15,17 @@ class Api::CollectionPicturesController < ApplicationController
       if collection_picture.save 
         render json: CollectionPicture
       else 
-        render json { errors: user.errors }, status: :unprocessable_entity 
+        render json: { errors: user.errors }, status: :unprocessable_entity 
+      end
     end
   
     def update
       collection_picture = CollectionPicture.find(params[:id])
-      if collection_picture.save
-        collection_picture.update(complete: !collection_picture.complete)
-        render json: collection_picture
+      if collection_picture.update(cp_params)
+        render json: user
       else 
-        render json { errors: collection_picture.errors }, status: :unprocessable_entity 
+        render json: { errors: collection_picture.errors }, status: :unprocessable_entity 
+      end
     end
   
     def destroy

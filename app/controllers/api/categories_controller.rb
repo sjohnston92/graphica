@@ -13,7 +13,8 @@ class Api::CategoriesController < ApplicationController
     if category.save 
       render json: category
     else 
-      render json { errors: category.errors }, status: :unprocessable_entity 
+      render json: { errors: category.errors }, status: :unprocessable_entity 
+    end
   end
 
   def update
@@ -22,7 +23,8 @@ class Api::CategoriesController < ApplicationController
       category.update(complete: !category.complete)
       render json: category
     else 
-      render json { errors: category.errors }, status: :unprocessable_entity 
+      render json: { errors: category.errors }, status: :unprocessable_entity 
+    end
   end
 
   def destroy

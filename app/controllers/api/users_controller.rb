@@ -16,16 +16,17 @@ class Api::UsersController < ApplicationController
     if user.save 
       render json: user
     else 
-      render json { errors: user.errors }, status: :unprocessable_entity 
+      render json: { errors: user.errors }, status: :unprocessable_entity 
+    end
   end
 
   def update
     user = User.find(params[:id])
-    if user.save
-      user.update(complete: !user.complete)
+    if user.update(user_params)
       render json: user
     else 
-      render json { errors: user.errors }, status: :unprocessable_entity 
+      render json: { errors: user.errors }, status: :unprocessable_entity 
+    end
   end
 
   def destroy
