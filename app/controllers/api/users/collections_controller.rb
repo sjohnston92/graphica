@@ -17,8 +17,7 @@ class Api::Users::CollectionsController < ApplicationController
 
   def update
     collection = Collection.find(params[:id])
-    if collection.save
-      collection.update(complete: !collection.complete)
+    if collection.update(collection_params)
       render json: collection
     else 
       render json: { errors: collection.errors }, status: :unprocessable_entity 

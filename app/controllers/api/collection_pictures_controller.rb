@@ -9,20 +9,20 @@ class Api::CollectionPicturesController < ApplicationController
     def new
       collection_picture = CollectionPicture.new
     end
-  
+   
     def create
       collection_picture = CollectionPicture.new(cp_params)
       if collection_picture.save 
-        render json: CollectionPicture
+        render json: collection_picture
       else 
-        render json: { errors: user.errors }, status: :unprocessable_entity 
+        render json: { errors: collection_picture.errors }, status: :unprocessable_entity 
       end
     end
   
     def update
       collection_picture = CollectionPicture.find(params[:id])
       if collection_picture.update(cp_params)
-        render json: user
+        render json: collection_picture
       else 
         render json: { errors: collection_picture.errors }, status: :unprocessable_entity 
       end
@@ -38,4 +38,5 @@ class Api::CollectionPicturesController < ApplicationController
     def cp_params
       params.require(:collection_picture).permit(:picture_id, :collection_id)
     end  
+
 end
