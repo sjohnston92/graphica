@@ -11,7 +11,6 @@ import Dash from './components/shared/Dash';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 
-
 const App = () => (
   <>
     <Navbar />
