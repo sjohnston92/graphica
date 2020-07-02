@@ -1,21 +1,20 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
 require Rails.root.join("data", "urls.rb")
 
 
-7.times do
-  User.create(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
-  # User.create(email: "sarah@gmail.com", password: 'password', password_confirmation: 'password')
-  # User.create(email: "lee@gmail.com", password: 'password', password_confirmation: 'password')
-  # User.create(email: "pat@gmail.com", password: 'password', password_confirmation: 'password')
-  # User.create(email: "sally@gmail.com", password: 'password', password_confirmation: 'password')
-  # User.create(email: "bill@gmail.com", password: 'password', password_confirmation: 'password')
-end
+# 7.times do
+  # User.create(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
+# end
+
+User.create(email: "alex@gmail.com", password: 'password', password_confirmation: 'password')
+User.create(email: "bob@gmail.com", password: 'password', password_confirmation: 'password')
+User.create(email: "chris@gmail.com", password: 'password', password_confirmation: 'password')
+User.create(email: "sam@gmail.com", password: 'password', password_confirmation: 'password')
+User.create(email: "bill@gmail.com", password: 'password', password_confirmation: 'password')
+User.create(email: "matt@gmail.com", password: 'password', password_confirmation: 'password')
+User.create(email: "juan@gmail.com", password: 'password', password_confirmation: 'password')
+
+
 7.times do
   Collection.create(user_id: (rand(6)+1), title: Faker::Movies::HarryPotter.location)
 end
@@ -51,5 +50,5 @@ end
     PictureComment.create(user_id: (rand(6)+1), picture_id: (rand(26)+1), body: Faker::TvShows::DumbAndDumber.quote)
     # puts Faker::TvShows::DumbAndDumber.quote
   end
-  
-  puts 'data seeded!'
+  puts "Data Seeded.."
+  puts "Emails: alex@gmail.com, bob@gmail.com, chris@gmail.com, sam@gmail.com, bill@gmail.com, matt@gmail.com, juan@gmail.com password: 'password' "
