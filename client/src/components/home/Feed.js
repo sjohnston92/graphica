@@ -1,31 +1,50 @@
 import React from 'react';
 import styled from 'styled-components';
-import img from '../../img/whitemtn.jpg';
+const Feed = () => (
+  <Wrapper>
+    <FeedCardOne>
 
+    </FeedCardOne>
+    <FeedCardTwo>
 
-  const Feed = () => (
-    <>
-   
-     WHERe IS THIS TEXT?? 
-    <StyledImage src={img} />
-    {/* <img src={"https://res.cloudinary.com/graphica/image/upload/v1593188743/white-mountain_eschby.jpg"}
-/> */}
-    </>
+    </FeedCardTwo>
+    <FeedCardThree>
+
+    </FeedCardThree>
   
-  )
+  </Wrapper>
+)
 
-  const FeedStyle = styled.div`
-    
+const Wrapper = styled.div`
 
-  `
-
-const StyledImage = styled.img`
- 
-  border-radius: 25%;
-  height: 200px;
-  width: 500px;
-  border: 1px solid #ccc;
-  padding: 5px;
 
 `
+const FeedCardOne = styled.div`
+background: url('https://res.cloudinary.com/graphica/image/upload/v1593188740/space-station_zzsqub');
+width: 30%;
+float: left;
+margin: 1.66%;
+height: 400px !important;
+object-fit: cover;
+`
+
+const FeedCardTwo = styled.div`
+background: url('https://res.cloudinary.com/graphica/image/upload/v1593188739/camera_s9aj6g.jpg');
+width: 30%;
+float: left;
+margin: 1.66%;
+height: 400px !important;
+object-fit: cover;
+`
+
+const FeedCardThree = styled.div`
+background: url('https://res.cloudinary.com/graphica/image/upload/v1593472350/mountains2_erpk3m.jpg');
+width: 30%;
+float: left;
+margin: 1.66%;
+height: 400px !important;
+object-fit: cover;
+
+`
+
 export default Feed
