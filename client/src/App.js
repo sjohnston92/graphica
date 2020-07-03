@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Container } from 'semantic-ui-react';
 import Home from './components/shared/Home';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
@@ -17,17 +16,15 @@ const App = () => (
   <>
     <Navbar />
     <FetchUser>
-      <Container>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <ProtectedRoute exact path='/profile' component={Profile} />
-          <ProtectedRoute exact path='/dash' component={Dash} />
-          <ProtectedRoute exact path='/collection' component={Collection} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/register' component={Register} />
-          <Route component={NoMatch} />
-        </Switch>
-      </Container>
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <ProtectedRoute exact path='/profile' component={Profile} />
+        <ProtectedRoute exact path='/dash' component={Dash} />
+        <ProtectedRoute exact path='/collection' component={Collection} />
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/register' component={Register} />
+        <Route component={NoMatch} />
+      </Switch>
     </FetchUser>
   </>
 )
