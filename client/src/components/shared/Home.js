@@ -1,8 +1,12 @@
 import React from 'react';
 import { Header, } from 'semantic-ui-react';
+import '../../index.css'
 
 const Home = () => (
-  <Header as="h3" textAlign="center">Graphica</Header>
-)
+
+
+  < />
+  <Home 
+  )
 
 export default Home;
