@@ -4,6 +4,7 @@ import img from '../../img/whitemtn.jpg';
 import logo from '../../img/GraphicaLogo.png';
 import SearchBar from './SearchBar'
 import Feed from './Feed'
+import Feed2 from './Feed2'
 const Home = () => (
 
   <Wrapper>
@@ -21,7 +22,7 @@ const Home = () => (
     </Hero>
 
     <FeedDiv>
-    <Feed />
+    <Feed2 />
     
     </FeedDiv>
   </Wrapper>
