@@ -5,8 +5,8 @@ import '../../index.css'
 const Home = () => (
 
 
-  < />
-  <Home 
-  )
+  
+  <Hero />
+  <HomeFeed />
 
 export default Home;
