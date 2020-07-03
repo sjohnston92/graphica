@@ -1,9 +1,6 @@
 class Api::PicturesController < ApplicationController
 
   def index
-    render json: Picture.all
-    @posts = Post
-    .where('title ILIKE :q', q: "%#{params[:search]}%")
-    .page(params[:page]).per(18)
+    render json: Picture.search(params[:search], params[:page])
   end
 end
