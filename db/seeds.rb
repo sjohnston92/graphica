@@ -30,7 +30,9 @@ require Rails.root.join("data", "urls.rb")
       category_id: (rand(6)+1), 
       user_id: (rand(6)+1), 
       title: Faker::Movies::StarWars.planet, 
-      url: url
+      url: url,
+      description: Faker::Lorem.sentence(word_count: 3, supplemental: true),
+      views: 0
     )
   }
 
