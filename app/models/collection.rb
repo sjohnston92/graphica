@@ -3,4 +3,8 @@ class Collection < ApplicationRecord
   has_many :pictures, through: :collection_pictures
   validates :title, presence: true
   
+  def self.search(search, page)
+    Collection.where('title ILIKE :q', q: "%#{search}%")
+    .page(page).per(18)
+  end
 end
