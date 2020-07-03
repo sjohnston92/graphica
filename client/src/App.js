@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
-import Home from './components/shared/Home';
+import Home from './components/home/Home';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Navbar from './components/shared/Navbar';
