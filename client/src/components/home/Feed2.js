@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { PictureConsumer } from '../../providers/PictureProvider';
 import axios from 'axios';
+import Card from './Card'
 
 const Feed2 = () => {
 
@@ -25,31 +26,27 @@ const Feed2 = () => {
       })
   }, [])
 
+  
+
   return(
+    
    <ColumnContainer>
       {pictures.map((picture, index) => (
-        <div>
-          {users.map((user, index) => {
-            if(user.id === picture.user_id) {
-              return(
-                <>
-                <StyledImage src={picture.url} />
-                {user.uid}
-                </>
-              )
-            }
-          })}
-        </div>
+        <>
+        <Card key={picture.id} {...picture}/>
+ {/* <p>Hello ;alkjldjflskdjf lks lsd jlfskdj lskdj flsdjf lsdjk flskdj fsld fkjslkd fjsldf jsldkf jslkdf </p> */}
+ </>
       ))}
     </ColumnContainer>
   )
 }
 
 const ColumnContainer = styled.div`
-  column-count: 3; 
+  column-count: 3;
 `
 const StyledImage = styled.img`
   width: 100%
 `
+
 
 export default Feed2

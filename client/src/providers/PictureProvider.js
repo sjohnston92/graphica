@@ -1,44 +1,32 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const PictureContext = React.createContext();
 
 export const PictureConsumer = PictureContext.Consumer;
 
-class PictureProvider extends Component {
+const PictureProvider = () => {
+  
+  const [pictures, setPictures] = useState([]);
+console.log(pictures)
+  useEffect(() => {
+    axios.get("/api/pictures")
+      .then( res => {
+        setPictures(res.data)
+      })
+      .catch( err => {
+        console.log(err)
+      })
+    
+  }, [])
 
-    state = { pictures: [] }
-
-
-    componentDidMount() {
-      //ask rails for all pictures
-      axios.get("/api/pictures")
-        .then( res => {
-          this.setState({ pictures: res.data})
-          
-        })
-        .catch( err => {
-          console.log(err)
-        })
-    }
-
-    render() {
-      return(
-          <PictureContext.Provider value={{
-              ...this.state, 
-          }} >
-              
-              { this.props.children }</PictureContext.Provider>
-
-
-          
-      )
-  }
-
-
-
-
-
+  
+  return(
+    <PictureContext.Provider value={{...pictures}}> 
+      { this.props.children }
+    </PictureContext.Provider>     
+  )
+  
 }
 
 export default PictureProvider
