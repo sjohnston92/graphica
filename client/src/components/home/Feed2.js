@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { PictureConsumer } from '../../providers/PictureProvider';
 import axios from 'axios';
-import Card from './Card'
+import Card from './Card';
+import { Grid, Image } from 'semantic-ui-react'
 
 const Feed2 = () => {
 
@@ -29,12 +30,25 @@ const Feed2 = () => {
   
 
   return(
+  //   <Grid columns={3}>
+  //   <Grid.Row>
+
+  //     {pictures.map((picture, index) => (
+  //     <Grid.Column>
+
+        
+  //       <Card key={picture.id} {...picture}/>
+
+  //     </Grid.Column>
+  //     ))}
+
+  //   </Grid.Row>
+  // </Grid>
     
    <ColumnContainer>
       {pictures.map((picture, index) => (
         <>
         <Card key={picture.id} {...picture}/>
- {/* <p>Hello ;alkjldjflskdjf lks lsd jlfskdj lskdj flsdjf lsdjk flskdj fsld fkjslkd fjsldf jsldkf jslkdf </p> */}
  </>
       ))}
     </ColumnContainer>
@@ -42,7 +56,7 @@ const Feed2 = () => {
 }
 
 const ColumnContainer = styled.div`
-  column-count: 3;
+  column-count: 3; 
 `
 const StyledImage = styled.img`
   width: 100%
