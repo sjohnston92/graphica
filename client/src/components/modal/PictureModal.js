@@ -1,42 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from 'styled-components'
 
 
-const PictureModal = (props) => {
-
-
-  
- 
-  const show = props.show
- 
-
-
-  return (
-    <>
-
-{show ? <Modal>Hello</Modal> : ""}
-    
-  
-     
-    </>
-    
-    )
-}
+const PictureModal = (props) => (
+  <>
+    { props.show ? 
+        <Modal>
+          Hello Modal
+          <button onClick={props.clickMe}>
+            exit
+          </button>
+        </Modal>
+      : <OffModal>Hello</OffModal>
+    }
+  </>
+)
 
 export default PictureModal
 
-const StyledDiv = styled.div `
-    html, body {
-      height: 100%;
-    }
-    body {
-      background: #eee;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
 
-    `
+
 const Modal = styled.div `
 
   width: 500px;
@@ -49,15 +32,17 @@ const Modal = styled.div `
   transform: scale(1);  
   opacity: 1;
   visibility: visible;
-  &.off {
+`
+  
+const OffModal = styled.div`
     opacity: 0;
     visibility: hidden;
     filter: blur(8px);
     transform: scale(0.33);
     box-shadow: 1rem 0 0 rgba(black, 0.2);
-  }
+  
 
-  `
+`
   // h2 {
   //   border-bottom: 1px solid #ccc;
   //   padding: 1rem;

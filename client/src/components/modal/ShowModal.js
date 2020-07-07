@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import PictureModal from './PictureModal'
 
 const ShowModal = () => {
@@ -7,9 +7,7 @@ const ShowModal = () => {
   
   const handleClick = (e) => {
     e.preventDefault()
-    //add toggle here
-    setShow(true )
-    // console.log(show)
+    setShow(!show) 
   }
 
 
@@ -19,7 +17,7 @@ const ShowModal = () => {
   return (
     <>
     <button onClick={handleClick}>Click to add Pic</button>
-    <PictureModal show = {show} />
+    <PictureModal show={show} clickMe={handleClick}/>
     </>
   )
 }
