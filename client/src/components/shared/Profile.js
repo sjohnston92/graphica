@@ -3,15 +3,19 @@ import { Button } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 const Profile = () => (
-  <div>
+  <Wrapper>
+
     <BannerImage>
       <UserAvatar />
     </BannerImage>
+
+
     <ProfileNavbar />
     <Line />
     <CollectionGrid />
+  </Wrapper>
 
-  </div>
+
 )
 
 
@@ -23,32 +27,9 @@ const ProfileNavbar = () => (
   </div>
 )
 
+const Wrapper = styled.div`
 
-//second navbar below the banner image and user avatar
-
-
-// Grid of different collections
-
-
-
-const CollectionGrid = styled.div`
-height: 100px;
-width: 100px;
-border: 1px black;
-`;
-
-// line underneath
-const Line = styled.div`
-width: 80%;
-height: .25vh;
-display: flex
-align: center;
-
-
-
-border: 1px solid rgba(39, 39, 53, 0.75);
-border-width: cover;
-`;
+`
 
 // styled components
 const BannerImage = styled.div`
@@ -76,6 +57,33 @@ const UserAvatar = styled.div`
   background-repeat: no-repeat;
   background-image: url(https://s3-alpha-sig.figma.com/img/ec66/6407/9e9f7a7ff4ae4cd1ece6422aab9a5377?Expires=1594598400&Signature=V-PNeXDpn62x6xlJcsTX1hYnIEbnfWD8Y1lApqwAb0SKUUE6eAmUjEW8QPrI7cRZJ10N8LJYtw-01vD~fIgPyEKMoigjrliLDsTEour3oA6oJRay0OvT00r3ez9m5s2ka1GgwOKdBcIe5qBHzPHkiJ1NzF~p262Tfzn4OZFSHXyMxvebTyJRXHsQhM2LiFTTrDCPttv8SROOKmKDkz7Yth05vYAE9NaUUqdHJydk9p1NDXLSaBA0dnqQDrsuETVzqFf0~4LSjV5xme4TbYbwpOfEtNtcPWdY7pov6ww1pZ7gZyGk0xWIXEhcXjS0kcfhpzD-jXIFHt3hgF5RMrMojA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
 `;
+
+//second navbar below the banner image and user avatar
+
+
+// Grid of different collections
+
+
+
+const CollectionGrid = styled.div`
+height: 100px;
+width: 100px;
+border: 1px black;
+`;
+
+// line underneath
+const Line = styled.div`
+width: 80%;
+height: .25vh;
+display: flex
+align: center;
+
+
+
+border: 1px solid rgba(39, 39, 53, 0.75);
+border-width: cover;
+`;
+
 
 
 export default Profile;
