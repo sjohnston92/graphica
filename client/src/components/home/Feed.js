@@ -1,53 +1,66 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-const Feed = () => (
+import { PictureConsumer } from '../../providers/PictureProvider';
+import axios from 'axios';
+import Card from './Card';
+import { Grid, Image } from 'semantic-ui-react'
+
+const Feed2 = () => {
+
+  const [pictures, setPictures] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios.get("/api/pictures")
+      .then( res => {
+        setPictures(res.data)
+      })
+      .catch( err => {
+        console.log(err)
+      })
+    axios.get("/api/users")
+      .then( res => {
+        setUsers(res.data)
+      })  
+      .catch( err => {
+        console.log(err)
+      })
+  }, [])
+
   
-  
-  
-  <Wrapper>
-    <FeedCardOne>
 
-    </FeedCardOne>
-    <FeedCardTwo>
+  return(
+  //   <Grid columns={3}>
+  //   <Grid.Row>
 
-    </FeedCardTwo>
-    <FeedCardThree>
+  //     {pictures.map((picture, index) => (
+  //     <Grid.Column>
 
-    </FeedCardThree>
-  
-  </Wrapper>
-)
+        
+  //       <Card key={picture.id} {...picture}/>
 
-const Wrapper = styled.div`
+  //     </Grid.Column>
+  //     ))}
 
+  //   </Grid.Row>
+  // </Grid>
+    
+   <ColumnContainer>
+      {pictures.map((picture, index) => (
+        <>
+        <Card key={picture.id} {...picture}/>
+ </>
+      ))}
+    </ColumnContainer>
+  )
+}
 
+const ColumnContainer = styled.div`
+  column-count: 3; 
 `
-const FeedCardOne = styled.div`
-background: url('https://res.cloudinary.com/graphica/image/upload/v1593188740/space-station_zzsqub');
-width: 30%;
-float: left;
-margin: 1.66%;
-height: 400px !important;
-object-fit: cover;
-`
-
-const FeedCardTwo = styled.div`
-background: url('https://res.cloudinary.com/graphica/image/upload/v1593188739/camera_s9aj6g.jpg');
-width: 30%;
-float: left;
-margin: 1.66%;
-height: 400px !important;
-object-fit: cover;
+const StyledImage = styled.img`
+  width: 100%
 `
 
-const FeedCardThree = styled.div`
-background: url('https://res.cloudinary.com/graphica/image/upload/v1593472350/mountains2_erpk3m.jpg');
-width: 30%;
-float: left;
-margin: 1.66%;
-height: 400px !important;
-object-fit: cover;
 
-`
-
-export default Feed
+export default Feed2

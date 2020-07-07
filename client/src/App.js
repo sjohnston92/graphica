@@ -9,7 +9,7 @@ import NoMatch from './components/shared/NoMatch';
 import FetchUser from './components/auth/FetchUser';
 import Dash from './components/shared/Dash';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import Feed2 from './components/home/Feed2'
+import Feed from './components/home/Feed'
 
 const App = () => (
   <>
@@ -18,7 +18,7 @@ const App = () => (
       <Container>
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/Feed2' component={Feed2} />
+          <Route exact path='/Feed' component={Feed} />
           <ProtectedRoute exact path='/dash' component={Dash} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />

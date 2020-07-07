@@ -4,7 +4,7 @@ import img from '../../img/whitemtn.jpg';
 import logo from '../../img/GraphicaLogo.png';
 import SearchBar from './SearchBar'
 import Feed from './Feed'
-import Feed2 from './Feed2'
+import Feed2 from './Feed'
 const Home = () => (
 
   <Wrapper>
