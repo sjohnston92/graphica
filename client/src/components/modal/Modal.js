@@ -1,40 +1,29 @@
 import React, { useEffect } from "react";
-import { createPortal } from "react-dom";
+import ReactDOM from "react-dom";
 import styled from "styled-components";
-import PropTypes from "prop-types"; 
-const Portal = ({ children }) => {  
- const modalRoot = document.getElementById("modal");
- const el = document.createElement("div");
+ 
+const Modal = ({children, onClose, open }) =>
+  open
+   ? ReactDOM.createPortal(
+        <div className='modal'>
+          <ModalWrapper>       
+            <ModalCard>          
+              <CloseButton onClick={onClose}>            
+              <img src="https:icon.now.sh/x/ff0000" alt="close" />
+            </CloseButton>
+            {children}
+            </ModalCard>
+            <Background onClick={onClose} />      
+          </ModalWrapper>   
+          <div className='modal_close' onClick={onClose}>&times;</div>
+          {children}
+        </div>,
+        document.body
+      )
+   : null
   
- useEffect(() => {    
-  modalRoot.appendChild(el);  
- }, []);   
- useEffect(() => {    
-  return () => modalRoot.removeChild(el); 
- });   
-return createPortal(children, el);
-};
-const Modal = ({ children, toggle, open }) => (  
- <Portal>    
-  {open && (      
-   <ModalWrapper>       
-    <ModalCard>          
-     <CloseButton onClick={toggle}>            
-      <img src="https:icon.now.sh/x/ff0000" alt="close" />
-     </CloseButton>
-      {children}
-    </ModalCard>
-    <Background onClick={toggle} />      
-   </ModalWrapper>    
-  )}  
- </Portal>
-); 
 export default Modal; 
-Modal.propTypes = {  
- children: PropTypes.arrayOf(PropTypes.object).isRequired,
- toggle: PropTypes.func.isRequired,
- open: PropTypes.bool.isRequired
-}; 
+
 const ModalWrapper = styled.div`
   position: fixed;  top: 50%;
   left: 50%;

@@ -5,7 +5,6 @@ import logo from '../../img/GraphicaLogo.png';
 import SearchBar from './SearchBar'
 import Feed from './Feed'
 import ShowModal from '../modal/ShowModal'
-import Modal from '../modal/Modal'
 const Home = () => (
 
   <Wrapper>
