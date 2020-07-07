@@ -2,13 +2,13 @@
 require Rails.root.join("data", "urls.rb")
 
 #USERS (7)
-  User.create(email: "alex@gmail.com", password: 'password', password_confirmation: 'password')
-  User.create(email: "bob@gmail.com", password: 'password', password_confirmation: 'password')
-  User.create(email: "chris@gmail.com", password: 'password', password_confirmation: 'password')
-  User.create(email: "sam@gmail.com", password: 'password', password_confirmation: 'password')
-  User.create(email: "bill@gmail.com", password: 'password', password_confirmation: 'password')
-  User.create(email: "matt@gmail.com", password: 'password', password_confirmation: 'password')
-  User.create(email: "juan@gmail.com", password: 'password', password_confirmation: 'password')
+  User.create(email: "alex@gmail.com", first_name: "alex", last_name: "smith", password: 'password', password_confirmation: 'password')
+  User.create(email: "bob@gmail.com", first_name: "bob",last_name: "jimmy", password: 'password', password_confirmation: 'password')
+  User.create(email: "chris@gmail.com", first_name: "chris",last_name: "lawsh", password: 'password', password_confirmation: 'password')
+  User.create(email: "sam@gmail.com", first_name: "sam",last_name: "carslon", password: 'password', password_confirmation: 'password')
+  User.create(email: "bill@gmail.com", first_name: "bill",last_name: "smith", password: 'password', password_confirmation: 'password')
+  User.create(email: "matt@gmail.com", first_name: "matt",last_name: "miller", password: 'password', password_confirmation: 'password')
+  User.create(email: "juan@gmail.com", first_name: "juan",last_name: "collins", password: 'password', password_confirmation: 'password')
 
 #COLLECTIONS (7)
   7.times do
@@ -32,7 +32,7 @@ require Rails.root.join("data", "urls.rb")
       title: Faker::Movies::StarWars.planet, 
       url: url,
       description: Faker::Lorem.sentence(word_count: 3, supplemental: true),
-      views: 0
+      views: rand(700)
     )
   }
 
