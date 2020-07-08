@@ -29,7 +29,7 @@ class Register extends React.Component {
         <Header as='h1' textAlign='center'>Register</Header>
         <Form onSubmit={this.handleSubmit}>
         <Form.Input
-            label="Last Name"
+            label="First Name"
             required
             name='first_name'
             value={first_name}
