@@ -1,41 +1,38 @@
 
-// const useModal = () => {
-
-//   const [open, setOpen] = useState(false)
-
-//   const toggle = () => setOpen(!open)
-
-//   return ({open, {toggle}})
-// }
 import React, { useState } from 'react';
 import Modal from '../components/modal/Modal'
+import Test from "../components/modal/Test"
+//import all component names here
+
+//By the time I have a button run a toggle which setsOpen, I've created the
+   //same component twice!!
 
  
-const useModal = (isOpen) => {
+const UseModal = ({isOpen, component}) => {
+
+  const RenderComp = Test //set conditional to make 
+  // props.component = RenderComp
+  
 
   const [open, setOpen] = useState(isOpen)
-  // const setOpen(isOpen)
-  // const toggle = () => {console.log(data)}
-  // console.log("using Modal")
-  // toggle()
-  // const [test, setTest] = useState('test value')
+
 
   const toggle = () => setOpen(!open)
 
 
   return (
 
-<>
-    <div> Hello </div>
+  
+    
   <Modal onClose={toggle} open={open}>     
-      "this is the HELLO MODAL"     
+      {<RenderComp />} 
   </Modal> 
-  </>
+  
   )
 
 }
 
-export default useModal
+export default UseModal
 
 
   

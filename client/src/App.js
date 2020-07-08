@@ -11,12 +11,14 @@ import Dash from './components/shared/Dash';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Feed from './components/home/Feed'
 
+
 const App = () => (
   <>
     <Navbar />
     <FetchUser>
       <Container>
         <Switch>
+          
           <Route exact path='/' component={Home} />
           <Route exact path='/Feed' component={Feed} />
           <ProtectedRoute exact path='/dash' component={Dash} />
