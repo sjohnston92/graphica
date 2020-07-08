@@ -10,7 +10,9 @@ const Collection = () => (
 
     <Title>
     </Title>
-    <Card />
+    <FeedDiv>
+      <Feed />
+    </FeedDiv>
   </Wrapper>
 )
 // styled components
@@ -26,6 +28,10 @@ const Title = styled.div`
 `;
 
 const Wrapper = styled.div`
+`
+const FeedDiv = styled.div`
+padding-top: 5%
+  
 `
 
 export default Collection;

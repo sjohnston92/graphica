@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { PictureConsumer } from '../../providers/PictureProvider';
 import axios from 'axios';
 import Card from './Card';
-import { Grid, Image } from 'semantic-ui-react'
+
 
 const Feed2 = () => {
 

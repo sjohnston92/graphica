@@ -1,8 +1,6 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
 import styled from 'styled-components';
 import ProfileNavbar from './ProfileNavbar';
-import Card from '../home/Card';
 import Feed from '../home/Feed';
 import AboutMe from './AboutMe';
 
@@ -17,7 +15,7 @@ const Profile = () => (
     <Line />
   
     <FeedDiv>
-      <Card />
+      <Feed />
     </FeedDiv>
   </Wrapper>
 )
@@ -50,18 +48,13 @@ const UserAvatar = styled.div`
   background-image: url(https://s3-alpha-sig.figma.com/img/ec66/6407/9e9f7a7ff4ae4cd1ece6422aab9a5377?Expires=1594598400&Signature=V-PNeXDpn62x6xlJcsTX1hYnIEbnfWD8Y1lApqwAb0SKUUE6eAmUjEW8QPrI7cRZJ10N8LJYtw-01vD~fIgPyEKMoigjrliLDsTEour3oA6oJRay0OvT00r3ez9m5s2ka1GgwOKdBcIe5qBHzPHkiJ1NzF~p262Tfzn4OZFSHXyMxvebTyJRXHsQhM2LiFTTrDCPttv8SROOKmKDkz7Yth05vYAE9NaUUqdHJydk9p1NDXLSaBA0dnqQDrsuETVzqFf0~4LSjV5xme4TbYbwpOfEtNtcPWdY7pov6ww1pZ7gZyGk0xWIXEhcXjS0kcfhpzD-jXIFHt3hgF5RMrMojA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
 `;
 
-
-//second navbar below the banner image and user avatar
-
-
-
 // line underneath
 const Line = styled.div`
 border: 1px solid rgba(39, 39, 53, 0.75);
 `;
 
 const FeedDiv = styled.div`
-padding-top: 30%
+padding-top: 5%
   
 `
 export default Profile;

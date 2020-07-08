@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Feed2 from '../home/Feed';
 
 const UserInfo = () => (
   <AboutMe 
@@ -16,4 +17,4 @@ const AboutMe = styled.textarea`
   box-sizing: border-box;
 `
 
-export default UserInfo;
+export default AboutMe;
