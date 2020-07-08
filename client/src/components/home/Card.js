@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import Modal from '../modal/Modal'
+import PictureShow from '../picture/PictureShow'
 
 
 const Card = ({ id, url, user_id, views}) => {
   
   const [userId, setUserId] = useState("");
-  const [show, setShow] = useState(false);
   
-  const toggle = () => { setShow(!show) }
-  const open = true
+  const [open, setOpen] = useState(false)
+  const toggle = () => setOpen(!open)
 
   useEffect(() => {
     axios.get(`/api/users/${user_id}`)
@@ -18,6 +19,9 @@ const Card = ({ id, url, user_id, views}) => {
 
   return (
     <CardBoarder>
+      <Modal onClose={toggle} open={open}>     
+    <PictureShow user_id={user_id}id={id} url={url}/>     
+        </Modal>       
       <CardDiv>
         
         <StyledImage src={url} onClick={toggle} />

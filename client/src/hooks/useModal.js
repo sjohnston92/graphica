@@ -8,11 +8,7 @@ import Test from "../components/modal/Test"
    //same component twice!!
 
  
-const UseModal = ({isOpen, component}) => {
-
-  const RenderComp = Test //set conditional to make 
-  // props.component = RenderComp
-  
+const UseModal = (isOpen) => {
 
   const [open, setOpen] = useState(isOpen)
 
@@ -20,16 +16,8 @@ const UseModal = ({isOpen, component}) => {
   const toggle = () => setOpen(!open)
 
 
-  return (
-
-  
-    
-  <Modal onClose={toggle} open={open}>     
-      {<RenderComp />} 
-  </Modal> 
-  
-  )
-
+  return 
+}
 }
 
 export default UseModal
