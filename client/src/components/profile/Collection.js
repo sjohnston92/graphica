@@ -2,7 +2,8 @@ import React from 'react';
 // import { Header } from 'semantic-ui-react';
 import styled from 'styled-components';
 import Card from '../home/Card';
-import Feed from '../home/Feed';
+// import Feed from '../home/Feed';
+import Feed2 from '../home/Feed';
 
 
 const Collection = () => (
@@ -10,7 +11,9 @@ const Collection = () => (
 
     <Title>
     </Title>
-    <Card />
+    <FeedDiv>
+      <Feed2 />
+    </FeedDiv>
   </Wrapper>
 )
 // styled components
@@ -26,6 +29,10 @@ const Title = styled.div`
 `;
 
 const Wrapper = styled.div`
+`
+const FeedDiv = styled.div`
+padding-top: 5%
+  
 `
 
 export default Collection;

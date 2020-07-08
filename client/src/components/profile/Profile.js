@@ -1,10 +1,9 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
 import styled from 'styled-components';
 import ProfileNavbar from './ProfileNavbar';
-import Card from '../home/Card';
-import Feed from '../home/Feed';
 import AboutMe from './AboutMe';
+import Feed2 from '../home/Feed';
+
 
 const Profile = () => (
   <Wrapper>
@@ -12,12 +11,12 @@ const Profile = () => (
     <BannerImage>
       <UserAvatar />
       <AboutMe />
+      {/* <Name /> */}
     </BannerImage>
     <ProfileNavbar />
     <Line />
-  
     <FeedDiv>
-      <Card />
+      <Feed2 />
     </FeedDiv>
   </Wrapper>
 )
@@ -43,7 +42,8 @@ const UserAvatar = styled.div`
   width: 186px;
   height: 186px;
   border-radius: 100%;
-  margin-left: 10rem;
+  margin-left: 5rem;
+  margin-top: -10rem;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -61,7 +61,7 @@ border: 1px solid rgba(39, 39, 53, 0.75);
 `;
 
 const FeedDiv = styled.div`
-padding-top: 30%
+padding-top: 5%
   
 `
 export default Profile;
