@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Card from '../home/Card';
 // import Feed from '../home/Feed';
-import Feed2 from '../home/Feed';
+import Feed from '../home/Feed';
 
 
 const Collection = () => (

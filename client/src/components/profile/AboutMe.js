@@ -10,14 +10,6 @@ const UserInfo = () => (
   />
 )
 
-const UserName = () => (
-  <Name
-    type="textfield"
-    name="personName"
-    placeholder="YOUR NAME HERE"
-  />
-)
-
   // about me under profile picture
 const AboutMe = styled.textarea`
   border: black;
