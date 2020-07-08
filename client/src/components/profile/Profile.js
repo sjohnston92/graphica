@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import ProfileNavbar from './ProfileNavbar';
 import Feed from '../home/Feed';
 import AboutMe from './AboutMe';
+import Feed2 from '../home/Feed';
+
 
 const Profile = () => (
   <Wrapper>
@@ -10,10 +12,10 @@ const Profile = () => (
     <BannerImage>
       <UserAvatar />
       <AboutMe />
+      {/* <Name /> */}
     </BannerImage>
     <ProfileNavbar />
     <Line />
-  
     <FeedDiv>
       <Feed />
     </FeedDiv>
@@ -41,7 +43,8 @@ const UserAvatar = styled.div`
   width: 186px;
   height: 186px;
   border-radius: 100%;
-  margin-left: 10rem;
+  margin-left: 5rem;
+  margin-top: -10rem;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

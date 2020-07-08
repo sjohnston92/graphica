@@ -4,17 +4,29 @@ import styled from 'styled-components';
 
 const UserInfo = () => (
   <AboutMe 
-    type="textfield" 
+    type="box" 
     name="bioName" 
-    placeholder="YOUR INFO HERE, HELLO From ABOUTME.JS"
+    placeholder="Bio Here."
   />
 )
+
+const UserName = () => (
+  <Name
+    type="textfield"
+    name="personName"
+    placeholder="YOUR NAME HERE"
+  />
+)
+
   // about me under profile picture
 const AboutMe = styled.textarea`
   border: black;
-  height: 15vh;
-  width: 525px;
+  height: 72px;
+  width: 441px;
   box-sizing: border-box;
+  margin-left: -15rem;
+  margin-top: 17rem;
+  box-sizing: content-box;
 `
 
 export default AboutMe;

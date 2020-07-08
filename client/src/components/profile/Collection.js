@@ -2,7 +2,8 @@ import React from 'react';
 // import { Header } from 'semantic-ui-react';
 import styled from 'styled-components';
 import Card from '../home/Card';
-import Feed from '../home/Feed';
+// import Feed from '../home/Feed';
+import Feed2 from '../home/Feed';
 
 
 const Collection = () => (
