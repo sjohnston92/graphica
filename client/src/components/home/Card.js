@@ -14,7 +14,7 @@ const Card = ({ id, url, user_id, views}) => {
   }, [])
 
   return (
-    <CardBoarder>
+    <CardBorder>
       <Modal onClose={toggle} open={open}>     
         <PictureShow user_id={user_id}id={id} url={url}/>     
       </Modal>       
@@ -29,7 +29,7 @@ const Card = ({ id, url, user_id, views}) => {
           {views} views
         </CardFooterRight>
       </PointerOff>
-    </CardBoarder>
+    </CardBorder>
   )
 }
 
@@ -37,19 +37,19 @@ const StyledImage = styled.img`
   width: 100%
 `
 const CardDiv = styled.div`
-  cursor: pointer;
+  cursor: zoom-in;
 `
 const PointerOff = styled.div`
   width: 100%
-  cursor: crosshair;
+  cursor: default;
 `
-const CardBoarder = styled.div`
+const CardBorder = styled.div`
    margin-bottom: 10px
 `
 const CardFooterLeft = styled.div`
   float: left;
   margin-bottom: 15px;
-  cursor: crosshair;
+  cursor: zoom-in;
 `
 const CardFooterRight = styled.div`
   float: right;
