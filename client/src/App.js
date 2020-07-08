@@ -13,12 +13,14 @@ import Feed from './components/home/Feed'
 import Profile from './components/profile/Profile';
 import Collection from './components/profile/Collection';
 
+
 const App = () => (
   <>
     <Navbar />
     <FetchUser>
       <Container>
         <Switch>
+          
           <Route exact path='/' component={Home} />
           <Route exact path='/Feed' component={Feed} />
           <ProtectedRoute exact path='/profile' component={Profile} />

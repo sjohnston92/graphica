@@ -4,11 +4,13 @@ import img from '../../img/whitemtn.jpg';
 import logo from '../../img/GraphicaLogo.png';
 import SearchBar from './SearchBar'
 import Feed from './Feed'
-import Feed2 from './Feed'
+import ShowModal from '../modal/ShowModal'
 const Home = () => (
 
   <Wrapper>
     <Hero>
+      
+      
    
       <GraphicaLogoImage src={logo} />
    
@@ -18,11 +20,11 @@ const Home = () => (
       <HeroSubText>
         Discover a world you never knew existed
       </HeroSubText>
-
+      <ShowModal />
     </Hero>
 
     <FeedDiv>
-    <Feed2 />
+    <Feed />
     
     </FeedDiv>
   </Wrapper>

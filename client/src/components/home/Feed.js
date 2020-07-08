@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { PictureConsumer } from '../../providers/PictureProvider';
 import axios from 'axios';
-import Card from './Card';
-import { Grid, Image } from 'semantic-ui-react'
+import Card from './Card'
 
-const Feed2 = () => {
-
+const Feed = () => {
   const [pictures, setPictures] = useState([]);
   const [users, setUsers] = useState([]);
-
+  
   useEffect(() => {
     axios.get("/api/pictures")
       .then( res => {
@@ -18,40 +15,18 @@ const Feed2 = () => {
       .catch( err => {
         console.log(err)
       })
-    axios.get("/api/users")
-      .then( res => {
-        setUsers(res.data)
-      })  
-      .catch( err => {
-        console.log(err)
-      })
   }, [])
 
-  
-
   return(
-  //   <Grid columns={3}>
-  //   <Grid.Row>
-
-  //     {pictures.map((picture, index) => (
-  //     <Grid.Column>
-
-        
-  //       <Card key={picture.id} {...picture}/>
-
-  //     </Grid.Column>
-  //     ))}
-
-  //   </Grid.Row>
-  // </Grid>
-    
-   <ColumnContainer>
+   <>
+    <ColumnContainer>
       {pictures.map((picture, index) => (
-        <>
+       <>
         <Card key={picture.id} {...picture}/>
- </>
+       </>
       ))}
     </ColumnContainer>
+   </>
   )
 }
 
@@ -62,5 +37,4 @@ const StyledImage = styled.img`
   width: 100%
 `
 
-
-export default Feed2
+export default Feed
