@@ -1,22 +1,19 @@
 import React, { useState } from 'react'
 import Modal from './Modal'
 import Test from './Test'
+import useModal from "../../hooks/useModal";
 
 const ShowModal = () => {
-  const [open, setOpen] = useState(false)
-  const toggle = () => setOpen(!open)
-
+  const { open, toggle } = useModal();
 
   return (
    <>
     <button onClick={ toggle }>Click to add Pic</button>
-    <Modal onClose={toggle} open={open}>     
-      <Test />      
-    </Modal>       
+    <Modal onClose={toggle} open={open}>
+      <Test />
+    </Modal>
    </>
-
-   
   )
 }
 
-export default ShowModal
+export default ShowModal;

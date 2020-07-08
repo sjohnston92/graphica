@@ -8,7 +8,7 @@ import Test from "../components/modal/Test"
    //same component twice!!
 
  
-const UseModal = (isOpen) => {
+const useModal = (isOpen = false) => {
 
   const [open, setOpen] = useState(isOpen)
 
@@ -16,11 +16,13 @@ const UseModal = (isOpen) => {
   const toggle = () => setOpen(!open)
 
 
-  return 
-}
+  return { open, toggle };
 }
 
-export default UseModal
+
+export default useModal;
+
+
 
 
   
