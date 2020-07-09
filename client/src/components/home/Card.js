@@ -11,6 +11,7 @@ const Card = ({ category_id, title, id, url, user_id, views, description}) => {
   useEffect(() => {
     axios.get(`/api/users/${user_id}`)
       .then( res => { setUser(res.data) })
+      .catch(console.log)
   }, [])
 
   return (

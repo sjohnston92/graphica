@@ -10,34 +10,21 @@ const PictureShow = (props) => {
   const description = props.description;
   const title = props.title;
   const catId = props.category_id
-
   const [catName, setCatName] = useState("Loading Category Name..");
   const [comments, setComments] = useState([]);
-
-
-  // const [collectionPictures, setCollectionPictures] = useState([]);
   
   useEffect(() => {
-    // axios.get(`/api/collections/${id}/collection_pictures`)
-    //   .then(res => {
-    //     setCollectionPictures(res.data)
-    //   })
-    //   .catch(console.log)
     axios.get(`/api/categories/${catId}`)
       .then(res => {
         setCatName(res.data.title)
       })
       .catch(console.log)
     axios.get(`/api/pictures/${id}/picture_comments`)
-      .then(res => {
-        console.log(res.data[1])
-        setComments(res.data)
-        
-
-      })
+      .then(res => { setComments(res.data) })
       .catch(console.log)      
       
   }, [])
+
   return (
    <>
       <UserInfoDiv>
@@ -71,7 +58,7 @@ const UserInfoDiv = styled.div`
 
 `
 const PictureDiv = styled.div`
-
+  font-weight: bold;
 `
 const StyledImg = styled.img`
   height: 300px;
