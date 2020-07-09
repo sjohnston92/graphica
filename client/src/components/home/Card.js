@@ -10,7 +10,7 @@ const Card = ({ category_id, title, id, url, user_id, views, description}) => {
   const { open, toggle } = useModal();
   useEffect(() => {
     axios.get(`/api/users/${user_id}`)
-      .then( res => { setUser(res.data) })
+      .then( res => { setUser(res.data) }) //this could be refactored into a Provider
       .catch(console.log)
   }, [])
 

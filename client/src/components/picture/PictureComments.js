@@ -7,7 +7,7 @@ const PictureComments = (props) => {
   const [userName, setUserName] = useState()
   axios.get(`/api/users/${userId}`)
     .then(res => {
-      setUserName(res.data.first_name)
+      setUserName(res.data.first_name) //this could be refactored into a Provider
     })
     .catch(console.log)
   return (
