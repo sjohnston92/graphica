@@ -1,46 +1,63 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import PictureComments from './PictureComments'
 
 const PictureShow = (props) => {
   const id = props.id;
   const url = props.url;
-  const user = props.user
-  const description = props.description
+  const user = props.user;
+  const description = props.description;
+  const title = props.title;
+  const catId = props.category_id
 
-  const [collectionPictures, setCollectionPictures] = useState([]);
+  const [catName, setCatName] = useState("Loading Category Name..")
+  const [commentsState, setCommentsState] = useState([])
+
+
+  // const [collectionPictures, setCollectionPictures] = useState([]);
   
   useEffect(() => {
-    axios.get(`/api/collections/${id}/collection_pictures`)
+    // axios.get(`/api/collections/${id}/collection_pictures`)
+    //   .then(res => {
+    //     setCollectionPictures(res.data)
+    //   })
+    //   .catch(console.log)
+    axios.get(`/api/categories/${catId}`)
       .then(res => {
-        setCollectionPictures(res.data)
-        console.log(collectionPictures)
+        setCatName(res.data.title)
       })
-      .catch(err => {
-        console.log(err)
+      .catch(console.log)
+    axios.get(`/api/pictures/${id}/picture_comments`)
+      .then(res => {
+        console.log(res.data[1])
+        setCommentsState(res.data)
+        
+
       })
+      .catch(console.log)      
+      
   }, [])
   return (
    <>
       <UserInfoDiv>
-       
         {`User: ${user.first_name}`}
       </UserInfoDiv>
       <PictureDiv>
-        
         <StyledImg src={url} />
       </PictureDiv>
       <PictureInfoDiv>
-        Description of picture {description}
+        Title of Picture: {title}
       </PictureInfoDiv>
       <PictureCollectionDiv>
         Hello Picture Collection 
       </PictureCollectionDiv>
       <PictureDescriptionDiv>
-        Hello Picture Description
+        Description of picture {description}
+        This picture is in category #{catId} {catName}
       </PictureDescriptionDiv>
       <CommentsDiv>
-        Hello Comments
+        <PictureComments commentsState={commentsState}/>
       </CommentsDiv>
    </>
   )

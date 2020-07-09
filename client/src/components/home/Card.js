@@ -5,7 +5,7 @@ import Modal from '../modal/Modal';
 import useModal from '../../hooks/useModal';
 import PictureShow from '../picture/PictureShow';
 
-const Card = ({ id, url, user_id, views, description, category_id}) => {
+const Card = ({ category_id, title, id, url, user_id, views, description}) => {
   const [user, setUser] = useState("");
   const { open, toggle } = useModal();
   useEffect(() => {
@@ -16,7 +16,7 @@ const Card = ({ id, url, user_id, views, description, category_id}) => {
   return (
     <CardBorder>
       <Modal onClose={toggle} open={open}>     
-        <PictureShow user={user} id={id} url={url} description={description} />     
+        <PictureShow user={user} category_id={category_id}title={title} id={id} url={url} description={description} />     
       </Modal>       
       <CardDiv>
         <StyledImage src={url} onClick={toggle} />
