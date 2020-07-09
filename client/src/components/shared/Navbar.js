@@ -39,6 +39,13 @@ class Navbar extends React.Component {
               active={location.pathname === '/register'}
             />
           </Link>
+          <Link to='../auth/newpicture2'>
+            <Menu.Item
+              id='newpicture2'
+              name='Add Picture'
+              active={location.pathname === '/newpicture2'}
+            />
+          </Link>
           
         </Menu.Menu>
       )
