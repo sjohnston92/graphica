@@ -30,6 +30,11 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def upload_image
+
+  end
+  
+
   def destroy
     User.find(params[:id]).destroy
     render json: {message: 'Delete Successful' }
