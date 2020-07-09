@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-  const PictureComments = (props) => {
-      const comments = props.commentsState
-      console.log(comments)
-    return (
-      <>
-       {comments.map((c, index) => (
-          <li key={index}>{c.body}</li>
-        )) }
-      </>
-    )
-
-  }
+const PictureComments = (props) => {
+  const userId = props.user_id
+  const body = props.body
+  const [userName, setUserName] = useState()
+  axios.get(`/api/users/${userId}`)
+    .then(res => {
+      setUserName(res.data.first_name)
+    })
+    .catch(console.log)
+  return (
+    <>
+    {body} -- {userName}
+    </>
+  )
+}
 export default PictureComments;

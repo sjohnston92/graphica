@@ -11,8 +11,8 @@ const PictureShow = (props) => {
   const title = props.title;
   const catId = props.category_id
 
-  const [catName, setCatName] = useState("Loading Category Name..")
-  const [commentsState, setCommentsState] = useState([])
+  const [catName, setCatName] = useState("Loading Category Name..");
+  const [comments, setComments] = useState([]);
 
 
   // const [collectionPictures, setCollectionPictures] = useState([]);
@@ -31,7 +31,7 @@ const PictureShow = (props) => {
     axios.get(`/api/pictures/${id}/picture_comments`)
       .then(res => {
         console.log(res.data[1])
-        setCommentsState(res.data)
+        setComments(res.data)
         
 
       })
@@ -57,7 +57,11 @@ const PictureShow = (props) => {
         This picture is in category #{catId} {catName}
       </PictureDescriptionDiv>
       <CommentsDiv>
-        <PictureComments commentsState={commentsState}/>
+        {comments.map((comment, index) => (
+          <li>
+            <PictureComments key={comment.id} {...comment}/>
+          </li>
+        ))}
       </CommentsDiv>
    </>
   )
