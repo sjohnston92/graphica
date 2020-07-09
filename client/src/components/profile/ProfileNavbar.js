@@ -1,8 +1,19 @@
 import React from 'react';
 
-const ProfileNavbar = () => (
+const ProfileNavbar = ({ changeTab }) => (
   <div>
-  <a href="/">recent</a> <a href="/collection">collection</a> <a href="/">favorites</a> <a href="/">settings</a>
+    <button onClick={() => changeTab("recent")}>
+      recent
+    </button>
+    <button onClick={() => changeTab("collections")}>
+      collection
+    </button>
+    <button onClick={() => changeTab("favorites")}>
+      favorites
+    </button> 
+    <button onClick={() => changeTab("settings")}>
+      settings
+    </button>
   </div>
 )
 
