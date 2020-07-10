@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import PictureComments from './PictureComments'
 import CommentBar from './CommentBar';
+import InfiniteScroll from 'react-infinite-scroller';
 
 const PictureShow = (props) => {
   const id = props.id;
@@ -27,6 +28,10 @@ const PictureShow = (props) => {
 
   const setStatePictureShow = (newComment) => {
     setComments([ newComment, ...comments  ])
+  }
+
+  const handleLoadMore = (page) => {
+    return "Hello More ITEMS"
   }
 
   return (
@@ -60,7 +65,6 @@ const PictureShow = (props) => {
         </InfoRight>
       </PictureDescriptionDiv>
       <Description> {description} </Description>
-      <CommentsDiv>
         <InfoLeft>
           Feedback
         </InfoLeft>
@@ -71,19 +75,30 @@ const PictureShow = (props) => {
         <Rectangle>
           <CommentBar id={id} setStatePictureShow={setStatePictureShow}/>
         </Rectangle>
+      <CommentsDiv>
+
+        <InfiniteScroll
+          dataLength={comments.length}
+          next={handleLoadMore}
+          hasMore={true || false}
+          loader={<div className="loader" key={0}>Loading ...</div>}
+        >
         {comments.map((comment, index) => (
           <>
             <PictureComments key={comment.id} {...comment}/>
           </>
         ))}
+        
+        </InfiniteScroll>
+
       </CommentsDiv>
    </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
-  max-height: 80%;
-  max-width: 80%;
+  height: 700px;
+  max-width: 100%;
 `
 const NameDiv = styled.div`
   font-size: 18px;
@@ -126,11 +141,11 @@ const Description = styled.div`
 `
 const CommentsDiv = styled.div`
   width: 80%;
+  overflow-y: auto;
+  height: 150px;
 `
 const Rectangle = styled.div`
-  position: relative;
-  left: 18.42%;
-  top: 50%;
+
   width: 708px;
   height: 35.24px;
   background-color: white;
