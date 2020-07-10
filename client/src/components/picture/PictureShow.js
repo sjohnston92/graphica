@@ -82,6 +82,8 @@ const PictureShow = (props) => {
 }
 
 const Wrapper = styled.div`
+  max-height: 80%;
+  max-width: 80%;
 `
 const NameDiv = styled.div`
   font-size: 18px;
@@ -97,7 +99,7 @@ const PictureDiv = styled.div`
   width: 50%;
 `
 const StyledImg = styled.img`
-  height: 400px;
+  height: 200px;
 `
 const PictureInfoDiv = styled.div`
   height: 30px;

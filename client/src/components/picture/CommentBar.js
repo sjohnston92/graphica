@@ -5,7 +5,9 @@ import { AuthConsumer } from '../../providers/AuthProvider'
 
 const CommentBar = (props) => {
   const id = props.id
-  const userId = props.auth.user.id //Check to see if user is logged in to set userId
+  const [userId, setUserId] = useState("1") //set default user id to 1??
+  const auth = props.auth.authenticated
+  // const userId = props.auth.user.id //Check to see if user is logged in to set userId
   const [comment, setComment] = useState("")
   
   const addComment = () => {
@@ -16,6 +18,10 @@ const CommentBar = (props) => {
       })
       .catch(console.log)
   }
+
+  const loginRequired = () => {
+    console.log("You must be logged in to leave a comment!")
+  }
   const handleChange = (event) => {
     setComment( event.target.value );
   }
@@ -23,11 +29,15 @@ const CommentBar = (props) => {
     e.preventDefault()
     addComment()
   }
-  
+  // setUserId(props.auth.user.id) : loginRequired()}
   return(
+    <>
+    { auth != false ? "Logged in" : "Logged Out" }
+
     <form onSubmit={handleSubmit}>
     <StyledInput type="text" name="body" value={comment} onChange={handleChange} placeholder="have something to say..."/>
     </form>
+    </>
     //String interpolate user name in placeholder?
   )
 }
