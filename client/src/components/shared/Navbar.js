@@ -2,9 +2,12 @@ import React from 'react'
 import { AuthConsumer, } from "../../providers/AuthProvider";
 import { Menu, } from 'semantic-ui-react'
 import { Link, withRouter, } from 'react-router-dom'
-import ShowModal from '../modal/ShowModal'
+import NewPictureModal from "../modal/NewPictureModal";
 
 class Navbar extends React.Component {
+  state = { open: false }
+
+  toggle = () => this.setState({ open: !this.state.open });
   
   rightNavItems = () => {
     const { auth: { user, handleLogout, }, location, } = this.props;
@@ -16,10 +19,11 @@ class Navbar extends React.Component {
             name='logout'
             onClick={ () => handleLogout(this.props.history) }
           />
-          <Menu.Item>
-            <ShowModal />
-          </Menu.Item>
-            
+          <Menu.Item
+            id='newpicture'
+            name='Add Picture'
+            onClick={this.toggle}
+          />
         </Menu.Menu>
       )
     } else {
@@ -39,14 +43,11 @@ class Navbar extends React.Component {
               active={location.pathname === '/register'}
             />
           </Link>
-          <Link to='/Newpicture'>
-            <Menu.Item
-              id='newpicture'
-              name='Add Picture'
-              active={location.pathname === '/newpicture'}
-            />
-          </Link>
-          
+          <Menu.Item
+            id='newpicture'
+            name='Add Picture'
+            onClick={this.toggle}
+          />
         </Menu.Menu>
       )
     }
@@ -79,8 +80,7 @@ class Navbar extends React.Component {
           </Link>
             { this.rightNavItems() }
         </Menu>
-
-
+        <NewPictureModal open={this.state.open} toggle={this.toggle}/>
       </div>
     )
   }

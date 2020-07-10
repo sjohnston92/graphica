@@ -4,37 +4,26 @@ import img from '../../img/whitemtn.jpg';
 import logo from '../../img/GraphicaLogo.png';
 import SearchBar from './SearchBar'
 import Feed from './Feed'
-import ShowModal from '../modal/ShowModal'
-const Home = () => (
 
+const Home = () => (
   <Wrapper>
     <Hero>
-      
-      
-   
       <GraphicaLogoImage src={logo} />
-   
       <Rectangle>
         <SearchBar />
       </Rectangle>
       <HeroSubText>
         Discover a world you never knew existed
       </HeroSubText>
-      <ShowModal />
     </Hero>
-
     <FeedDiv>
-    <Feed />
-    
+      <Feed />
     </FeedDiv>
   </Wrapper>
-
 )
 
-const Wrapper = styled.div`
+const Wrapper = styled.div``
 
-
-`
 const Hero = styled.div`
   width: 100%;
   height: 40%;

@@ -11,7 +11,6 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import Feed from './components/home/Feed'
 import Profile from './components/profile/Profile';
 import Collection from './components/profile/Collection';
-import Newpicture from './components/shared/NewPicture';
 
 const App = () => (
   <>
@@ -25,7 +24,6 @@ const App = () => (
         <ProtectedRoute exact path='/dash' component={Dash} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={Register} />
-        <Route exact path='/Newpicture' component={Newpicture} />
         <Route component={NoMatch} />
       </Switch>
     </FetchUser>

@@ -1,15 +1,38 @@
 class Api::Users::PicturesController < ApplicationController
+  before_action :set_user
+
   def index
     render json: Picture.all
   end
 
   def create
-    picture = Picture.new(picture_params)
-    if picture.save
-      render json: picture
-    else
-      render json: { errors: picture.errors }, status: :unprocessable_entity
+    binding.pry
+    picture = @user.pictures.new
+    file = params[:file]
+
+    if file
+      begin
+        image_name = "file"
+
+        ext = File.extname(file.tempfile)
+        cloud_image = Cloudinary::Uploader.upload(image_name, public_id: file.original_filename, secure: true)
+        picture.image = cloud_image['secure_url']
+
+        if picture.save
+          render json: picture
+        else
+          render json: { errors: picture.errors }, status: 422
+        end
+      rescue => e
+        render json: { errors: e }, status: 422
+      end
     end
+    # picture = Picture.new(picture_params)
+    # if picture.save
+    #   render json: picture
+    # else
+    #   render json: { errors: picture.errors }, status: :unprocessable_entity
+    # end
   end
 
   def update
@@ -30,5 +53,9 @@ class Api::Users::PicturesController < ApplicationController
 
   def picture_params
     params.require(:picture).permit(:url, :views, :title, :description, :user_id, :category_id)
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 end
