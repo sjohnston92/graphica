@@ -2,7 +2,9 @@ class Api::Pictures::PictureCommentsController < ApplicationController
   before_action :set_picture
   
   def index
-    render json: @picture.picture_comments.all
+    array = @picture.picture_comments.all
+    array_rev = array.reverse
+    render json: array_rev
   end
 
   private

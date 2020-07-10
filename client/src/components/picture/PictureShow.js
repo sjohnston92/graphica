@@ -14,7 +14,6 @@ const PictureShow = (props) => {
   const [catName, setCatName] = useState("");
   const [comments, setComments] = useState([]);
 
-  
   useEffect(() => {
     axios.get(`/api/categories/${catId}`)
     .then(res => {
@@ -24,8 +23,11 @@ const PictureShow = (props) => {
     axios.get(`/api/pictures/${id}/picture_comments`)
     .then(res => { setComments(res.data) })
       .catch(console.log)      
-      
   }, [])
+
+  const setStatePictureShow = (newComment) => {
+    setComments([ newComment, ...comments  ])
+  }
 
   return (
    <Wrapper>
@@ -57,8 +59,7 @@ const PictureShow = (props) => {
 
         </InfoRight>
       </PictureDescriptionDiv>
-        <Description>{description} </Description>
-      
+      <Description> {description} </Description>
       <CommentsDiv>
         <InfoLeft>
           Feedback
@@ -66,10 +67,9 @@ const PictureShow = (props) => {
         <InfoRight>
           {comments.length} 
           {comments.length != 1 ? " responses" : " response" }
-          
         </InfoRight>
         <Rectangle>
-          <CommentBar id={id}/>
+          <CommentBar id={id} setStatePictureShow={setStatePictureShow}/>
         </Rectangle>
         {comments.map((comment, index) => (
           <>
@@ -80,12 +80,8 @@ const PictureShow = (props) => {
    </Wrapper>
   )
 }
-//Ready for some styling fail?
 
 const Wrapper = styled.div`
-  
-  
- 
 `
 const NameDiv = styled.div`
   font-size: 18px;
@@ -99,13 +95,11 @@ const UserInfoDiv = styled.div`
 `
 const PictureDiv = styled.div`
   width: 50%;
-  
 `
 const StyledImg = styled.img`
   height: 400px;
 `
 const PictureInfoDiv = styled.div`
-  
   height: 30px;
 `
 const InfoRight = styled.div`
@@ -116,22 +110,18 @@ const InfoRight = styled.div`
 const InfoLeft = styled.div`
   font-weight: bold;
   font-size: 24px;
-
 `
 const PictureCollectionDiv = styled.div`
   position: relative;
   top: 75px;
   left: 100px;
   height: 150px;
-
 `
 const PictureDescriptionDiv = styled.div`
- 
 `
 const Description = styled.div`
   margin: 30px;
 `
-
 const CommentsDiv = styled.div`
   width: 80%;
 `
@@ -143,7 +133,6 @@ const Rectangle = styled.div`
   height: 35.24px;
   background-color: white;
   border-style: solid;
-  
 `
 
 export default PictureShow

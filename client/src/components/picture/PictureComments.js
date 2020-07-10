@@ -14,17 +14,15 @@ const PictureComments = (props) => {
     .catch(console.log)
   return (
     <>
-    <UserDiv>
-      UserPic {userName}
-    </UserDiv>
-    <BodyDiv>
-
-    {body} -- 
-    </BodyDiv>
+      <UserDiv>
+        UserPic {userName}
+      </UserDiv>
+      <BodyDiv>
+        {body}
+      </BodyDiv>
     </>
   )
 }
-
 const UserDiv = styled.div`
   height: 45px;
 `

@@ -4,26 +4,25 @@ import axios from 'axios';
 import { AuthConsumer } from '../../providers/AuthProvider'
 
 const CommentBar = (props) => {
-  //Check to see if user is logged in to set userId
   const id = props.id
-  const userId = props.auth.user.id
+  const userId = props.auth.user.id //Check to see if user is logged in to set userId
   const [comment, setComment] = useState("")
   
   const addComment = () => {
-    axios.post("/api/picture_comments", {body: "Hello New Comment", user_id: userId, picture_id: id })
+    axios.post("/api/picture_comments", {body: comment, user_id: userId, picture_id: id })
       .then( res => {
-        console.log(res.data)
+        setComment("")
+        props.setStatePictureShow(res.data)
       })
       .catch(console.log)
   }
   const handleChange = (event) => {
     setComment( event.target.value );
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => { //can I just have addComment do the handlesubmit stuff?
     e.preventDefault()
     addComment()
   }
-  //can I just have addComment do the handlesubmit stuff?
   
   return(
     <form onSubmit={handleSubmit}>
@@ -42,7 +41,6 @@ export default class ConnectedCommentBar extends React.Component {
     )
   }
 }
-
 
 const StyledInput = styled.input`
   border: none;
