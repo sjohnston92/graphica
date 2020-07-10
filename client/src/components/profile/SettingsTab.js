@@ -20,12 +20,11 @@ class Profile extends React.Component {
     })
   }
   handleChange = (e) => {
-    const { first_name, last_name, value, } = e.target;
+    const { name, value, } = e.target;
     this.setState({
       formValues: {
         ...this.state.formValues,
-        [first_name]: value,
-        [last_name]: value,
+        [name]: value,
       }
     })
   }
@@ -89,14 +88,14 @@ handleSubmit = (e) => {
         <Grid.Column width={8}>
           <Form.Input
             label="First Name"
-            name="first name"
+            name="first_name"
             value={first_name}
             required
             onChange={this.handleChange}
           />
           <Form.Input
             label="Last Name"
-            name="last name"
+            name="last_name"
             value={last_name}
             required
             onChange={this.handleChange}

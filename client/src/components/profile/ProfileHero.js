@@ -1,29 +1,36 @@
 import React from 'react';
 import ContactModal from '../modal/ContactModal';
 import styled from 'styled-components';
+import { AuthConsumer } from '../../providers/AuthProvider';
+
+//bring in authConsumer, 
 
 const ProfileHero = () => (
-  <BannerImage>
-          <BannerLeft>
-            <BannerLeftTop>
-              <UserAvatar />
-              <BannerContents>
-                <UserName>
-                  Anthony Castanza
-                </UserName>
-                <UserEmail>
-                  castanza@gmail.com
-                </UserEmail>
-                <ContactModal>
-                  Contact Info
-                </ContactModal>
-              </BannerContents>
-            </BannerLeftTop>
-            <BioSubText>
-              I’m a kickass part-time nature photographer that frequently takes helicopter flights for work. Check out my Oceanography collection. I’m open to working together. 
-            </BioSubText>
-          </BannerLeft>
-        </BannerImage>
+  <AuthConsumer>
+    { values => (
+    <BannerImage>
+            <BannerLeft>
+              <BannerLeftTop>
+                <UserAvatar />
+                <BannerContents>
+                  <UserName>
+                    {values.user.first_name} {values.user.last_name}
+                  </UserName>
+                  <UserEmail>
+                    {values.user.email}
+                  </UserEmail>
+                  <ContactModal>
+                    Contact Info
+                  </ContactModal>
+                </BannerContents>
+              </BannerLeftTop>
+              <BioSubText>
+                I’m a kickass part-time nature photographer that frequently takes helicopter flights for work. Check out my Oceanography collection. I’m open to working together. 
+              </BioSubText>
+            </BannerLeft>
+          </BannerImage>
+    )}
+  </AuthConsumer>
 ) 
 
 const BannerImage = styled.div`
