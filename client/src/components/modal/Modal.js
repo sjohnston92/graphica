@@ -5,19 +5,17 @@ import styled from "styled-components";
 const Modal = ({children, onClose, open }) =>
   open
    ? ReactDOM.createPortal(
-        <div className='modal'>
-          <ModalWrapper>       
-            <ModalCard>          
-              <CloseButton onClick={onClose}>            
-              <img src="https:icon.now.sh/x/ff0000" alt="close" />
-            </CloseButton>
-            {children}
-            </ModalCard>
-            <Background onClick={onClose} />      
-          </ModalWrapper>   
-          <div className='modal_close' onClick={onClose}>&times;</div>
+      <div className='modal'>
+        <ModalWrapper>       
+          <ModalCard>          
+            <CloseButton onClick={onClose}>            
+            <img src="https:icon.now.sh/x/ff0000" alt="close" />
+          </CloseButton>
           {children}
-        </div>,
+          </ModalCard>
+          <Background onClick={onClose} />      
+        </ModalWrapper>   
+      </div>,
         document.body
       )
    : null
