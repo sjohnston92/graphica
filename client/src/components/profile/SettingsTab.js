@@ -2,7 +2,7 @@ import React, { Fragment, } from 'react';
 import { AuthConsumer, } from "../../providers/AuthProvider";
 import { Form, Grid, Image, Container, Divider, Header, Button, } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone';
-// import AuthProvider from '../../providers/AuthProvider';
+
 
 const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png';
 class Profile extends React.Component {
