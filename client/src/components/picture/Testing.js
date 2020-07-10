@@ -7,7 +7,7 @@ const Feed = () => {
   const [picture, setPicture] = useState([]);
   
   useEffect(() => {
-    axios.get("/api/pictures/5")
+    axios.get("/api/pictures/7")
       .then( res => {
         setPicture(res.data)
       })

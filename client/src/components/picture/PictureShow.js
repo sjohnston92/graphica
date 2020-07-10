@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import PictureComments from './PictureComments'
+import CommentBar from './CommentBar';
 
 const PictureShow = (props) => {
   const id = props.id;
@@ -12,15 +13,16 @@ const PictureShow = (props) => {
   const catId = props.category_id
   const [catName, setCatName] = useState("");
   const [comments, setComments] = useState([]);
+
   
   useEffect(() => {
     axios.get(`/api/categories/${catId}`)
-      .then(res => {
-        setCatName(res.data.title)
-      })
-      .catch(console.log)
+    .then(res => {
+      setCatName(res.data.title)
+    })
+    .catch(console.log)
     axios.get(`/api/pictures/${id}/picture_comments`)
-      .then(res => { setComments(res.data) })
+    .then(res => { setComments(res.data) })
       .catch(console.log)      
       
   }, [])
@@ -28,7 +30,13 @@ const PictureShow = (props) => {
   return (
    <Wrapper>
       <UserInfoDiv>
-        {`User: ${user.first_name}`}
+        UserPic
+        <NameDiv>
+          {user.first_name}
+        </NameDiv>
+        <EmailDiv>
+          {user.email}
+        </EmailDiv>
       </UserInfoDiv>
       <PictureDiv>
         <StyledImg src={url} />
@@ -41,15 +49,32 @@ const PictureShow = (props) => {
         Hello Picture Collection 
       </PictureCollectionDiv>
       <PictureDescriptionDiv>
+        <InfoLeft>
         Description
-        category {catName}
+        </InfoLeft>
+        <InfoRight>
+        in <a href="url">{catName}</a> category
+
+        </InfoRight>
       </PictureDescriptionDiv>
         <Description>{description} </Description>
+      
       <CommentsDiv>
+        <InfoLeft>
+          Feedback
+        </InfoLeft>
+        <InfoRight>
+          {comments.length} 
+          {comments.length != 1 ? " responses" : " response" }
+          
+        </InfoRight>
+        <Rectangle>
+          <CommentBar id={id}/>
+        </Rectangle>
         {comments.map((comment, index) => (
-          <li>
+          <>
             <PictureComments key={comment.id} {...comment}/>
-          </li>
+          </>
         ))}
       </CommentsDiv>
    </Wrapper>
@@ -58,19 +83,29 @@ const PictureShow = (props) => {
 //Ready for some styling fail?
 
 const Wrapper = styled.div`
-  max-height: 500px;
+  
+  
+ 
+`
+const NameDiv = styled.div`
+  font-size: 18px;
+`
+const EmailDiv = styled.div`
+  color: gray;
 `
 const UserInfoDiv = styled.div`
+  position: relative;
+  left: 50px;
 `
 const PictureDiv = styled.div`
   width: 50%;
-  margin: auto;
+  
 `
 const StyledImg = styled.img`
   height: 400px;
 `
 const PictureInfoDiv = styled.div`
-  margin: 10px;
+  
   height: 30px;
 `
 const InfoRight = styled.div`
@@ -84,17 +119,31 @@ const InfoLeft = styled.div`
 
 `
 const PictureCollectionDiv = styled.div`
+  position: relative;
+  top: 75px;
+  left: 100px;
+  height: 150px;
 
 `
 const PictureDescriptionDiv = styled.div`
-  font-weight: bold;
-  font-size: 24px;
+ 
 `
 const Description = styled.div`
-
+  margin: 30px;
 `
+
 const CommentsDiv = styled.div`
-  width: 300px
+  width: 80%;
+`
+const Rectangle = styled.div`
+  position: relative;
+  left: 18.42%;
+  top: 50%;
+  width: 708px;
+  height: 35.24px;
+  background-color: white;
+  border-style: solid;
+  
 `
 
 export default PictureShow
