@@ -6,24 +6,29 @@ class Api::Users::PicturesController < ApplicationController
   end
 
   def create
-    binding.pry
     picture = @user.pictures.new
     file = params[:file]
-
+    
     if file
       begin
         image_name = "file"
-
+        
         ext = File.extname(file.tempfile)
+        binding.pry
         cloud_image = Cloudinary::Uploader.upload(image_name, public_id: file.original_filename, secure: true)
-        picture.image = cloud_image['secure_url']
-
+        binding.pry
+        picture.url = cloud_image['secure_url']
+        binding.pry
+        
         if picture.save
+          binding.pry
           render json: picture
         else
+          binding.pry
           render json: { errors: picture.errors }, status: 422
         end
       rescue => e
+        binding.pry
         render json: { errors: e }, status: 422
       end
     end
