@@ -12,6 +12,8 @@ const PictureShow = (props) => {
   const description = props.description;
   const title = props.title;
   const catId = props.category_id
+  const userId = props.user_id
+  const [views, setViews] = useState(props.views + 1)
   const [catName, setCatName] = useState("");
   const [comments, setComments] = useState([]);
 
@@ -23,8 +25,16 @@ const PictureShow = (props) => {
     .catch(console.log)
     axios.get(`/api/pictures/${id}/picture_comments`)
     .then(res => { setComments(res.data) })
-      .catch(console.log)      
+      .catch(console.log)     
+    updateViews()
+    
   }, [])
+
+  const updateViews = () => {
+    axios.patch(`/api/pictures/${id}`, {views: views, url: url, title: title, description: description, user_id: userId, category_id: catId})
+      .then(res => { console.log("working setViews") }) //Do I need anything here?
+      .catch(console.log)
+  }
 
   const setStatePictureShow = (newComment) => {
     setComments([ newComment, ...comments  ])
@@ -45,6 +55,9 @@ const PictureShow = (props) => {
           {user.email}
         </EmailDiv>
       </UserInfoDiv>
+        <InfoRight>
+          {views} views
+        </InfoRight>
       <PictureDiv>
         <StyledImg src={url} />
       </PictureDiv>
@@ -70,7 +83,7 @@ const PictureShow = (props) => {
         </InfoLeft>
         <InfoRight>
           {comments.length} 
-          {comments.length != 1 ? " responses" : " response" }
+          {comments.length !== 1 ? " responses" : " response" }
         </InfoRight>
         <Rectangle>
           <CommentBar id={id} setStatePictureShow={setStatePictureShow}/>

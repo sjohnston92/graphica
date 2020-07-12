@@ -17,7 +17,7 @@ const Card = ({ category_id, title, id, url, user_id, views, description}) => {
   return (
     <CardBorder>
       <Modal onClose={toggle} open={open}>     
-        <PictureShow user={user} category_id={category_id}title={title} id={id} url={url} description={description} />     
+        <PictureShow user={user} user_id={user_id} category_id={category_id} title={title} id={id} url={url} description={description} views={views}/>     
       </Modal>       
       <CardDiv>
         <StyledImage src={url} onClick={toggle} />
