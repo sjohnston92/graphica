@@ -47,7 +47,7 @@ const PictureShow = (props) => {
   return (
    <Wrapper>
       <UserInfoDiv>
-        UserPic
+         <img src={user.image} height="40" />
         <NameDiv>
           {user.first_name}
         </NameDiv>
@@ -147,7 +147,7 @@ const PictureCollectionDiv = styled.div`
   position: relative;
   top: 75px;
   left: 100px;
-  height: 150px;
+  height: 10px;
 `
 const PictureDescriptionDiv = styled.div`
 `
