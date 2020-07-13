@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from "styled-components";
-import img from '../../img/whitemtn.jpg';
 import logo from '../../img/GraphicaLogo.png';
 import store from '../../img/store.jpg'
 import SearchBar from './SearchBar'
