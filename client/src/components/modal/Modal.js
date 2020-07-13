@@ -24,7 +24,7 @@ export default Modal;
 
 const ModalWrapper = styled.div`
   position: fixed;  
-  top: 0;
+  top: 50px;
   left: 0;
   
   width: 100vw;  
@@ -57,7 +57,7 @@ const Background = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 0;
+  top: -50px;
   left: 0;
   background: black;
   opacity: 0.5;

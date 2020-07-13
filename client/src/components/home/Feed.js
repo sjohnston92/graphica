@@ -32,6 +32,11 @@ const Feed = () => {
 
 const ColumnContainer = styled.div`
   column-count: 3; 
+  @media (max-width: 1100px) {
+    column-count: 2;
+  }
+  @media only screen and (max-width: 800px) {
+    column-count: 1;
 `
 const StyledImage = styled.img`
   width: 100%

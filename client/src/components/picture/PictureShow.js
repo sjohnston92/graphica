@@ -110,8 +110,9 @@ const PictureShow = (props) => {
 }
 
 const Wrapper = styled.div`
-  height: 700px;
+  height: 600px;
   max-width: 100%;
+
 `
 const NameDiv = styled.div`
   font-size: 18px;
@@ -124,10 +125,11 @@ const UserInfoDiv = styled.div`
   left: 50px;
 `
 const PictureDiv = styled.div`
-  width: 50%;
+  text-align: center;
+  
 `
 const StyledImg = styled.img`
-  height: 200px;
+  width: 500px;
 `
 const PictureInfoDiv = styled.div`
   height: 30px;
