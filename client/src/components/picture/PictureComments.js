@@ -17,7 +17,7 @@ const PictureComments = (props) => {
   return (
     <>
       <UserDiv>
-        <StyledUserImage src={userImage} />
+        <StyledUserImage image={userImage} />
         {/* <StyledUserImage src={userImage} /> */}
 
         {userName}
@@ -31,13 +31,19 @@ const PictureComments = (props) => {
 const UserDiv = styled.div`
   height: 45px;
 `
-const StyledUserImage = styled.img `
-  height: 30px;
-  
+const StyledUserImage = styled.div `
+background-image: url(${props => props.image});
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+border-radius: 100%;
+height: 30px;
+width: 30px;  
   
 `
 const BodyDiv = styled.div`
   background: grey;
+  padding-botton: 2rem;
 `
 
 export default PictureComments;

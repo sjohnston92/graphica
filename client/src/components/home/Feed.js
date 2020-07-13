@@ -30,8 +30,10 @@ const Feed = () => {
   )
 }
 
+
 const ColumnContainer = styled.div`
   column-count: 3; 
+  
   @media (max-width: 1100px) {
     column-count: 2;
   }
