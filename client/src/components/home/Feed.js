@@ -18,30 +18,33 @@ const Feed = () => {
   }, [])
 
   return(
-   <>
+   
     <ColumnContainer>
       {pictures.map((picture, index) => (
-       <>
+       <CardGroup>
         <Card key={picture.id} {...picture}/>
-       </>
+       </CardGroup>
       ))}
     </ColumnContainer>
-   </>
+   
   )
 }
 
 
 const ColumnContainer = styled.div`
-  column-count: 3; 
-  
+  column-count: 4;
+  margin: 30px;
+  @media (max-width: 1600px) {column-count: 3};
   @media (max-width: 1100px) {
     column-count: 2;
   }
   @media only screen and (max-width: 800px) {
     column-count: 1;
+  }
+  `
+const CardGroup = styled.div`
+  display: inline-block;
 `
-const StyledImage = styled.img`
-  width: 100%
-`
+
 
 export default Feed

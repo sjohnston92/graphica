@@ -4,7 +4,6 @@ import logoFont from '../../fonts/Elianto-Regular.otf';
 import store from '../../img/store.jpg'
 import SearchBar from './SearchBar'
 import Feed from './Feed'
-import ShowModal from '../modal/ShowModal'
 
 const Home = () => (
   <Wrapper>
@@ -21,10 +20,7 @@ const Home = () => (
         </HeroSubText>
       </HeroArea>
     </Hero>
-    <ShowModal />
-    <FeedDiv>
-      <Feed />  
-    </FeedDiv>
+    <Feed />  
   </Wrapper>
 )
 const Wrapper = styled.div`

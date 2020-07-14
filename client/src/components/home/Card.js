@@ -65,7 +65,10 @@ const PointerOff = styled.div`
   font-family: 'Montserrat', sans-serif;
 `
 const CardBorder = styled.div`
-   margin-bottom: 10px
+
+  margin-bottom: -40px;
+   
+
 `
 const CardFooterLeft = styled.div`
   float: left;
