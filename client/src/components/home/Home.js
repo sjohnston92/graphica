@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import logo from '../../img/GraphicaLogo.png';
+import logoFont from '../../fonts/Elianto-Regular.otf';
 import store from '../../img/store.jpg'
 import SearchBar from './SearchBar'
 import Feed from './Feed'
