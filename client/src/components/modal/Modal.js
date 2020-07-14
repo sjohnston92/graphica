@@ -5,19 +5,17 @@ import styled from "styled-components";
 const Modal = ({children, onClose, open }) =>
   open
    ? ReactDOM.createPortal(
-        <div className='modal'>
-          <ModalWrapper>       
-            <ModalCard>          
-              <CloseButton onClick={onClose}>            
-              <img src="https:icon.now.sh/x/ff0000" alt="close" />
-            </CloseButton>
-            {children}
-            </ModalCard>
-            <Background onClick={onClose} />      
-          </ModalWrapper>   
-          <div className='modal_close' onClick={onClose}>&times;</div>
+      <div className='modal' >
+        <ModalWrapper>       
+          <ModalCard>          
+            <CloseButton onClick={onClose}>            
+            <img src="https:icon.now.sh/x/ff0000" alt="close" />
+          </CloseButton>
           {children}
-        </div>,
+          </ModalCard>
+          <Background onClick={onClose} />      
+        </ModalWrapper>   
+      </div>,
         document.body
       )
    : null
@@ -36,10 +34,9 @@ const ModalWrapper = styled.div`
   align-items: center;
 `;
 const ModalCard = styled.div`
-  position: relative;
+  margin-top: 100px;
   min-width: 320px;
   z-index: 10;
-  margin-bottom: 100px;
   background: white;
   border-radius: 5px;
   padding: 15px;
@@ -47,8 +44,8 @@ const ModalCard = styled.div`
 `; 
 const CloseButton = styled.button`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 2rem;
+  right: 2rem;
   border: none;
   background: transparent;
   padding: 10px;

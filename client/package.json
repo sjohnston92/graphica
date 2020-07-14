@@ -12,6 +12,10 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.0.1",
+<<<<<<< HEAD
+=======
+    "react-infinite-scroller": "^1.2.4",
+>>>>>>> de852b0b51463ae0456be49f8a055a0c2c6b06b5
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "semantic-ui-css": "^2.4.1",
