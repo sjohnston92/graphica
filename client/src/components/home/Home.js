@@ -8,7 +8,7 @@ import Feed from './Feed'
 const Home = () => (
   <Wrapper>
     <Hero>
-      <GraphicaLogoImage src={logo} />
+      <GraphicaLogoImage>Graphica</GraphicaLogoImage>
       <Rectangle>
         <SearchBar />
       </Rectangle>
@@ -26,7 +26,7 @@ const Wrapper = styled.div``
 
 const Hero = styled.div`
   width: 100%;
-  height: 40%;
+  height: 60%;
   left: 0px;
   background: url("https://res.cloudinary.com/graphica/image/upload/v1593462552/103311551_10101392152751811_4545732633030656478_n_yzrabm.jpg");
   background-position: center;
@@ -35,13 +35,14 @@ const Hero = styled.div`
   position: absolute;
 `
 
-const GraphicaLogoImage = styled.img`
+const GraphicaLogoImage = styled.h1`
   position: absolute;
   left: 18.42%;
   right: 30.44%;
   top: 20.59%;
   bottom: 75.61%;
   width: 20%;
+  color: white;
 
 `
 const Rectangle = styled.div`
