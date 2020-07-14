@@ -5,7 +5,7 @@ class Api::CategoriesController < ApplicationController
   end
 
   def show
-    render json: Categories.all
+    render json: Category.find(params[:id])
   end
 
   def create

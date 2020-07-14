@@ -7,12 +7,18 @@ Rails.application.routes.draw do
     resources :categories
     resources :collection_pictures
 
+    resources :pictures do
+      resources :picture_comments, module: :pictures
+    end
+
     resources :users do
       resources :pictures, module: :users
       resources :collections, module: :users
     end
     #These are for searching globally
     resources :pictures, only: [:index]
-    resources :collections, only: [:index]
+    resources :collections, only: [:index] do 
+      resources :pictures, only: [:index], module: :collections
+    end   
   end
 end

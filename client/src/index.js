@@ -13,7 +13,7 @@ ReactDOM.render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </AuthProvider>,
+  </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
