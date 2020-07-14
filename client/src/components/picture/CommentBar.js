@@ -30,7 +30,7 @@ const CommentBar = (props) => {
   }
   const handleChange = (event) => {
     setComment( event.target.value );
-    auth != false ? setUserId(props.auth.user.id) : loginRequired();
+    auth !== false ? setUserId(props.auth.user.id) : loginRequired();
   }
   const handleSubmit = (e) => { //can I just have addComment do the handlesubmit stuff?
     e.preventDefault()

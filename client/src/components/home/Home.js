@@ -1,32 +1,29 @@
 import React from 'react';
 import styled from "styled-components";
-import img from '../../img/whitemtn.jpg';
 import logo from '../../img/GraphicaLogo.png';
+import store from '../../img/store.jpg'
 import SearchBar from './SearchBar'
 import Feed from './Feed'
 import ShowModal from '../modal/ShowModal'
-
 const Home = () => (
 
   <Wrapper>
     <Hero>
-      
-      
-   
-      <GraphicaLogoImage src={logo} />
-   
-      <Rectangle>
-        <SearchBar />
-      </Rectangle>
-      <HeroSubText>
-        Discover a world you never knew existed
-      </HeroSubText>
-      <ShowModal />
+      <HeroArea>
+        <GraphicaLogo>
+          GRAPHICA
+        </GraphicaLogo>
+        <Rectangle>
+          <SearchBar />
+        </Rectangle>
+        <HeroSubText>
+          Discover a world you never knew existed
+        </HeroSubText>
+      </HeroArea>
     </Hero>
-
+    <ShowModal />
     <FeedDiv>
-    <Feed />
-    
+      <Feed />  
     </FeedDiv>
   </Wrapper>
 
@@ -38,41 +35,54 @@ const Wrapper = styled.div`
 `
 const Hero = styled.div`
   width: 100%;
-  height: 40%;
-  left: 0px;
-  background: url("https://res.cloudinary.com/graphica/image/upload/v1593462552/103311551_10101392152751811_4545732633030656478_n_yzrabm.jpg");
+  height: 278px;
+
+  background: url(${store});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  position: absolute;
+`
+const HeroArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+
+  padding: 7rem;
+  margin-left: 1rem;
 `
 
-const GraphicaLogoImage = styled.img`
-  position: absolute;
-  left: 18.42%;
-  right: 30.44%;
-  top: 20.59%;
-  bottom: 75.61%;
-  width: 20%;
-
+const GraphicaLogo = styled.div`
+  
+  display: flex;
+  align-items: center;
+  padding-bottom: 2rem;
+  font-family: 'Elianto-Regular';
+  font-size: 42px;
+  @font-face {
+    font-family: 'Elianto-Regular';
+    src: url(${logoFont}) format("opentype");
+  }
+  color: #FFF
 `
 const Rectangle = styled.div`
-  position: absolute;
-  left: 18.42%;
-  top: 50%;
-  width: 708px;
+  display: flex;
+  align-items: center;
   height: 35.24px;
-  background-color: white;
+  width: 60%;
   
 `
 const HeroSubText = styled.p`
-position: absolute;
-width: 304px;
-height: 16.64px;
-left: 18.42%;
-top: 70%;
 
-font-family: Montserrat;
+padding-top: 1rem;
+display: flex;
+height: 16.64px;
+
+
+
+
+font-family: 'Montserrat', sans-serif;
+
 font-style: normal;
 font-weight: bold;
 font-size: 14px;
@@ -82,7 +92,7 @@ color: #FFF
 `
 
 const FeedDiv = styled.div`
-padding-top: 30%
+margin: 30px;
   
 `
 
