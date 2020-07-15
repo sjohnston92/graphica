@@ -5,8 +5,10 @@ import store from '../../img/store.jpg'
 import SearchBar from './SearchBar'
 import Feed from './Feed'
 
-const Home = () => (
+const Home = (props) => (
+
   <Wrapper>
+  {props.toggleCatbar(true)}
     <Hero>
       <HeroArea>
         <GraphicaLogo>

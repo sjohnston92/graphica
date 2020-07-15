@@ -1,7 +1,7 @@
 class Api::CategoriesController < ApplicationController
 
   def index
-    render json: Categories.all
+    render json: Category.all
   end
 
   def show

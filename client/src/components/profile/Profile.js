@@ -11,6 +11,10 @@ import SettingsTab from './SettingsTab';
 class Profile extends React.Component {
   state = { currentTab: "recent" }
   
+  componentDidMount() {
+    this.props.toggleCatbar(false)
+  }
+
   changeTab = (currentTab) => {
     this.setState({ currentTab });
   }
