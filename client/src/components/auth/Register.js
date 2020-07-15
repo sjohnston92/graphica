@@ -1,9 +1,10 @@
 import React from 'react';
 import { AuthConsumer, } from "../../providers/AuthProvider";
-import { Button, Form, Segment, Header, } from 'semantic-ui-react';
+import { Button, Form, Segment, Header, Grid, } from 'semantic-ui-react';
+import Dropzone from 'react-dropzone';
 
 class Register extends React.Component {
-  state = { email: '', password: '', passwordConfirmation: '', first_name: '', last_name: '', };
+  state = { email: '', password: '', passwordConfirmation: '', first_name: '', last_name: '', tagline: '', image: '' };
   
   handleSubmit = (e) => {
     e.preventDefault();
@@ -22,12 +23,34 @@ class Register extends React.Component {
   }
   
   render() {
-    const { email, password, passwordConfirmation, first_name, last_name } = this.state;
+    const { email, password, passwordConfirmation, first_name, last_name, tagline, file } = this.state;
     
     return (
       <Segment basic>
         <Header as='h1' textAlign='center'>Register</Header>
         <Form onSubmit={this.handleSubmit}>
+        <Grid.Column width={4}>
+          <Dropzone
+            onDrop={this.onDrop}
+            multiple={false}
+          >
+            {({ getRootProps, getInputProps, isDragActive}) => {
+              return (
+                <div
+                  {...getRootProps()}
+                  style={styles.dropzone}
+                >
+                  <input {...getInputProps()} />
+                  {
+                    isDragActive ?
+                      <p>Already loaded</p> :
+                      <p>Your picture here!</p>
+                  }
+                </div>
+              )
+            }}
+          </Dropzone>
+        </Grid.Column>
         <Form.Input
             label="First Name"
             required
@@ -71,6 +94,15 @@ class Register extends React.Component {
             type='password'
             onChange={this.handleChange}
           />
+          <Form.Input
+            label="Bio"
+            required
+            name='tagline'
+            value={tagline}
+            placeholder='Tell us a little about yourself'
+            type='tagline'
+            onChange={this.handleChange}
+          />
           <Segment textAlign='center' basic>
             <Button primary type='submit'>Submit</Button>
           </Segment>
@@ -78,6 +110,18 @@ class Register extends React.Component {
       </Segment>
     )
   }
+}
+const styles = {
+  dropzone: {
+    height: "150px",
+    width: "150px",
+    border: "1px dashed black",
+    borderRadius: "5px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "10px",
+  },
 }
 
 export default class ConnectedRegister extends React.Component {

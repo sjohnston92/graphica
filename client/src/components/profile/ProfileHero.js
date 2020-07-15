@@ -3,32 +3,33 @@ import ContactModal from '../modal/ContactModal';
 import styled from 'styled-components';
 import { AuthConsumer } from '../../providers/AuthProvider';
 
-//bring in authConsumer, 
+// need to link in user's banner image when that gets up and running.
 
 const ProfileHero = () => (
   <AuthConsumer>
     { values => (
     <BannerImage>
-            <BannerLeft>
-              <BannerLeftTop>
-                <UserAvatar />
-                <BannerContents>
-                  <UserName>
-                    {values.user.first_name} {values.user.last_name}
-                  </UserName>
-                  <UserEmail>
-                    {values.user.email}
-                  </UserEmail>
-                  <ContactModal>
-                    Contact Info
-                  </ContactModal>
-                </BannerContents>
-              </BannerLeftTop>
-              <BioSubText>
-                I’m a kickass part-time nature photographer that frequently takes helicopter flights for work. Check out my Oceanography collection. I’m open to working together. 
-              </BioSubText>
-            </BannerLeft>
-          </BannerImage>
+      {values.user.banner_image}
+        <BannerLeft>
+          <BannerLeftTop>
+            <UserAvatar>
+              {values.user.image}
+            </UserAvatar>
+            <BannerContents>
+              <UserName>
+                {values.user.first_name} {values.user.last_name}
+              </UserName>
+              <UserEmail>
+                {values.user.email}
+              </UserEmail>
+              <ContactModal />
+            </BannerContents>
+          </BannerLeftTop>
+        <BioSubText>
+          {values.user.tagline}
+        </BioSubText>
+      </BannerLeft>
+    </BannerImage>
     )}
   </AuthConsumer>
 ) 
