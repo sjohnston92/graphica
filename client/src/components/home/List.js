@@ -49,7 +49,7 @@ const List = (props) => {
     func.apply(this, arguments);
     }, delay);
     }
-    }
+  }
   function getMore() {
     const offset = listItems.length
     axios.get(`/api/pictures/?limit=8&offset=${offset}`)
@@ -60,28 +60,16 @@ const List = (props) => {
       .catch( err => {
         console.log(err)
       })
-    // setNewItems([{id: 99}, {id: 999}, {id: 9999}, {id: 99999}])
   }
   function fetchMoreListItems() {
-    // setTimeout(() => {
-      // setListItems(prevState => ([...prevState, ...Array.from(Array(20).keys(), n => n + prevState.length + 1)]));
-      
       setListItems(prevState => ([...prevState, ...newItems]))
-
       setIsFetching(false);
-    // }, 2000);
   }
 
   return (
     <ColumnContainer>
-    <ul>
-
-      {listItems.map(listItem => <li>
-        {/* {listItem.id} */}
-      <Card {...listItem}/>
-        </li>)}
+      {listItems.map(listItem =><><Card {...listItem}/></>)}
       {isFetching && 'Fetching more list items...'}
-    </ul>
     </ColumnContainer>
   );
 };
