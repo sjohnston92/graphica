@@ -36,9 +36,7 @@ const List = (props) => {
         setListItems(listItems.concat(res.data))
         setIsFetching(false);
       })
-      .catch( err => {
-        console.log(err)
-      })
+      .catch(console.log)
   }
 
   const renderColumns = () => {
@@ -73,7 +71,6 @@ const List = (props) => {
   return renderColumns();
 };
 
-
 const Feed = styled.div`
   display: flex;
   padding-right: 20px;
@@ -82,7 +79,6 @@ const Feed = styled.div`
   margin: auto;
   min-width: 1000px;
 `
-
 const ColumnContainer = styled.div`
   margin-top: 20px;
   margin-left: 20px;
