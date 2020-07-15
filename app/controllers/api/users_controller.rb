@@ -8,10 +8,6 @@ class Api::UsersController < ApplicationController
    render json: User.find(params[:id])
   end
 
-  def new
-    user = User.new
-  end
-
   def create
     user = User.new(user_params)
     if user.save 
@@ -23,6 +19,19 @@ class Api::UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
+
+    # file = params[:file]
+
+    # if file
+    #   begin
+    #     ext = File.extname(file.tempfile)
+    #     cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true)
+    #     user.image = cloud_image['secure_url']
+    #   rescue => e
+    #     render json: { errors: e }, status: 422
+    #   end
+    # end
+
     if user.update(user_params)
       render json: user
     else 
