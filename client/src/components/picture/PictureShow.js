@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import PictureComments from './PictureComments'
 import CommentBar from './CommentBar';
+import Collection from './Collection';
 
 const PictureShow = (props) => {
   const id = props.id;
@@ -15,6 +16,10 @@ const PictureShow = (props) => {
   const [views, setViews] = useState(props.views + 1)
   const [catName, setCatName] = useState("");
   const [comments, setComments] = useState([]);
+  const [collectionPictures, setCollectionPictures ] = useState([]);
+  const [collectionNames, setCollectionNames ] = useState([]);
+  const [collectionIds, setCollectionIds ] = useState([]);
+  
 
   useEffect(() => {
     axios.get(`/api/categories/${catId}`)
@@ -22,9 +27,23 @@ const PictureShow = (props) => {
       .catch(console.log)
     axios.get(`/api/pictures/${id}/picture_comments`)
       .then(res =>  setComments(res.data))
-      .catch(console.log)     
+      .catch(console.log)    
+    axios.get(`/api/pictures/${id}/collection_pictures`) 
+      .then(res => {
+        res.data.map( r => getCollectionName(r.collection_id))
+      })
+      // .then(res => setCollectionPictures(res.data))
+      .catch(console.log)
     updateViews()
   }, [])
+
+  const getCollectionName = (collectionId) => {
+    setCollectionIds(collectionIds.concat(collectionId))
+    axios.get(`/api/users/${userId}/collections/${collectionId}`)
+      .then(res => setCollectionNames(collectionNames.concat([res.data.title])) )
+      .catch(console.log)
+
+  }
 
   const updateViews = () => {
     axios.patch(`/api/pictures/${id}`, {views: views, url: url, title: title, description: description, user_id: userId, category_id: catId})
@@ -58,11 +77,13 @@ const PictureShow = (props) => {
       </PictureDiv>
       <PictureInfoDiv>
         <InfoLeft>{title}</InfoLeft>
-        <InfoRight>part of <a href="url">such and such</a> collection</InfoRight> 
+        <InfoRight>part of <a href="url">{collectionNames[0]}</a> collection</InfoRight> 
       </PictureInfoDiv>
-      {/* <PictureCollectionDiv>
-        Hello Picture Collection 
-      </PictureCollectionDiv> */}
+      <PictureCollectionDiv>
+  { (collectionIds[0]) && <Collection collectionId={collectionIds[0]}/> }
+        {console.log(collectionIds[0])}
+        {/* {collectionPictures.map(collectionPicture => ( <>{collectionPicture.collection_id}{" "}</>))} */}
+      </PictureCollectionDiv>
       <PictureDescriptionDiv>
         <InfoLeft>
           Description
@@ -86,7 +107,7 @@ const PictureShow = (props) => {
       <CommentsDiv>
           {comments.map((comment, index) => (
             <>
-              <PictureComments key={comment.id} {...comment}/>
+              {/* <PictureComments key={comment.id} {...comment}/> */}
             </>
           ))}
       </CommentsDiv>
@@ -168,10 +189,11 @@ const InfoLeft = styled.div`
   font-size: 24px;
 `
 const PictureCollectionDiv = styled.div`
-  position: relative;
-  top: 75px;
-  left: 100px;
-  height: 10px;
+  display: flex
+  justify-content: space-between;
+  
+  height: 100px;
+
 `
 const PictureDescriptionDiv = styled.div`
   display: flex;
