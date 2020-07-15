@@ -18,10 +18,6 @@ const Feed = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
-  useEffect(() => {
-    console.log("items: " + listItems.length)
-  }, [listItems])
 
   useEffect(() => {
     if (!isFetching) return;

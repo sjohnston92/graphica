@@ -12,6 +12,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import Feed from './components/home/Feed'
 import Profile from './components/profile/Profile';
 import Collection from './components/collection/Collection';
+import PictureCollection from './components/picture/PictureCollection'
 
 const App = () => {
   const [showCatbar, setShowCatbar] = useState(false)
@@ -37,7 +38,7 @@ const App = () => {
       <FetchUser>
         <Switch>
           <Route exact path='/' render={LoadHome} />
-          <Route exact path='/Feed' component={Feed} />
+          <Route exact path='/Feed' component={PictureCollection} />
           <Route exact path='/profile' render={LoadProfile} />
           <Route exact path='/collection' component={Collection} />
           <Route exact path='/dash' component={Dash} />

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import PictureComments from './PictureComments'
 import CommentBar from './CommentBar';
-import Collection from './Collection';
+import PictureCollection from './PictureCollection';
 
 const PictureShow = (props) => {
   const id = props.id;
@@ -80,9 +80,7 @@ const PictureShow = (props) => {
         <InfoRight>part of <a href="url">{collectionNames[0]}</a> collection</InfoRight> 
       </PictureInfoDiv>
       <PictureCollectionDiv>
-  { (collectionIds[0]) && <Collection collectionId={collectionIds[0]}/> }
-        {console.log(collectionIds[0])}
-        {/* {collectionPictures.map(collectionPicture => ( <>{collectionPicture.collection_id}{" "}</>))} */}
+        { (collectionIds[0]) && <PictureCollection collectionId={collectionIds[0]}/> }
       </PictureCollectionDiv>
       <PictureDescriptionDiv>
         <InfoLeft>
@@ -107,7 +105,7 @@ const PictureShow = (props) => {
       <CommentsDiv>
           {comments.map((comment, index) => (
             <>
-              {/* <PictureComments key={comment.id} {...comment}/> */}
+              <PictureComments key={comment.id} {...comment}/>
             </>
           ))}
       </CommentsDiv>
@@ -189,11 +187,9 @@ const InfoLeft = styled.div`
   font-size: 24px;
 `
 const PictureCollectionDiv = styled.div`
-  display: flex
+  display: flex;
   justify-content: space-between;
-  
   height: 100px;
-
 `
 const PictureDescriptionDiv = styled.div`
   display: flex;
