@@ -9,30 +9,15 @@ const Feed = () => {
   const [users, setUsers] = useState([]);
   
   useEffect(() => {
-    // axios.get("/api/pictures")
     axios.get("/api/pictures/?limit=9")
-
-      .then( res => {
-        setPictures(res.data)
-      })
-      .catch( err => {
-        console.log(err)
-      })
+      .then( res => setPictures(res.data))
+      .catch(console.log)
   }, [])
 
   return(
-   // these two lines in Feed
-// axios.get("/api/pictures/?limit=3&offset=0")
-<> <List pictures={pictures} /> </>
-
-    // <ColumnContainer>
-    //   {pictures.map((picture, index) => (
-    //    <CardGroup>
-    //     <Card key={picture.id} {...picture}/>
-    //    </CardGroup>
-    //   ))}
-    // </ColumnContainer>
-   
+    <> 
+      { pictures.length > 0 && <List pictures={pictures} /> }
+    </>
   )
 }
 
