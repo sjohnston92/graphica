@@ -2,31 +2,22 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import Card from './Card'
+import List from './List'
 
 const Feed = () => {
   const [pictures, setPictures] = useState([]);
   const [users, setUsers] = useState([]);
   
   useEffect(() => {
-    axios.get("/api/pictures")
-      .then( res => {
-        setPictures(res.data)
-      })
-      .catch( err => {
-        console.log(err)
-      })
+    axios.get("/api/pictures/?limit=9")
+      .then( res => setPictures(res.data))
+      .catch(console.log)
   }, [])
 
   return(
-   
-    <ColumnContainer>
-      {pictures.map((picture, index) => (
-       <CardGroup>
-        <Card key={picture.id} {...picture}/>
-       </CardGroup>
-      ))}
-    </ColumnContainer>
-   
+    <> 
+      { pictures.length > 0 && <List pictures={pictures} /> }
+    </>
   )
 }
 
