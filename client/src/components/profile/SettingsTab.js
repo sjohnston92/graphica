@@ -6,10 +6,10 @@ import Dropzone from 'react-dropzone';
 
 const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png';
 class Profile extends React.Component {
-  state = { editing: false, formValues: { first_name: '', last_name: '', email: '', file: '' }, };
+  state = { editing: false, formValues: { first_name: '', last_name: '', email: '', file: '', tagline: '' }, };
   componentDidMount() {
-    const { auth: { user: { first_name, last_name, email, }, }, } = this.props;
-    this.setState({ formValues: { first_name, last_name, email, }, });
+    const { auth: { user: { first_name, last_name, email, tagline }, }, } = this.props;
+    this.setState({ formValues: { first_name, last_name, email, tagline }, });
   }
   onDrop = (files) => {
     this.setState({ formValue: { ...this.state.formValues, file: files[0] }})
@@ -31,9 +31,9 @@ class Profile extends React.Component {
 
 handleSubmit = (e) => {
   e.preventDefault()
-  const { formValues: { first_name, last_name, email, file }} = this.state
+  const { formValues: { first_name, last_name, email, file, tagline }} = this.state
   const { auth: { user, updateUser }} = this.props
-  updateUser(user.id, { first_name, last_name, email, file })
+  updateUser(user.id, { first_name, last_name, email, file, tagline })
   this.setState({
     editing: false,
     formValues: {
@@ -60,7 +60,7 @@ handleSubmit = (e) => {
   }
   editView = () => {
     const { auth: { user }, } = this.props;
-    const { formValues: { first_name, last_name, email, file } } = this.state;
+    const { formValues: { first_name, last_name, email, file, tagline } } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
         <Grid.Column width={4}>
@@ -104,6 +104,13 @@ handleSubmit = (e) => {
             label="Email"
             name="email"
             value={email}
+            required
+            onChange={this.handleChange}
+          />
+          <Form.Input
+            label="Bio"
+            name="Tagline"
+            value={tagline}
             required
             onChange={this.handleChange}
           />
