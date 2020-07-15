@@ -109,7 +109,7 @@ handleSubmit = (e) => {
           />
           <Form.Input
             label="Bio"
-            name="Tagline"
+            name="tagline"
             value={tagline}
             required
             onChange={this.handleChange}
