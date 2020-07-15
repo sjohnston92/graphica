@@ -2,13 +2,16 @@ import React from 'react';
 import ContactModal from '../modal/ContactModal';
 import styled from 'styled-components';
 import { AuthConsumer } from '../../providers/AuthProvider';
+import { Redirect } from 'react-router-dom';
 
 //bring in authConsumer, 
 
 const ProfileHero = () => (
   <AuthConsumer>
     { values => (
-    <BannerImage>
+      values.authenticated ?
+      
+        <BannerImage>
             <BannerLeft>
               <BannerLeftTop>
                 <UserAvatar />
@@ -28,7 +31,12 @@ const ProfileHero = () => (
                 I’m a kickass part-time nature photographer that frequently takes helicopter flights for work. Check out my Oceanography collection. I’m open to working together. 
               </BioSubText>
             </BannerLeft>
-          </BannerImage>
+        </BannerImage>
+
+      : 
+      <>
+      <Redirect to={{pathname: "/login"}}/>
+      </>
     )}
   </AuthConsumer>
 ) 

@@ -16,20 +16,13 @@ import PictureCollection from './components/picture/PictureCollection'
 
 const App = () => {
   const [showCatbar, setShowCatbar] = useState(false)
-    
   const toggleCatbar = (show) => setShowCatbar(show)
 
-
-  const LoadHome = () => {
-    return(
-      <Home toggleCatbar={toggleCatbar}/>
-    )
-  }
-  const LoadProfile = () => {
-    return(
-      <Profile toggleCatbar={toggleCatbar}/>
-    )
-  }
+  const LoadHome = () => { return <Home toggleCatbar={toggleCatbar}/>}
+  const LoadProfile = () => { return <Profile toggleCatbar={toggleCatbar}/> }
+  const LoadCollection = () => { return <Collection toggleCatbar={toggleCatbar}/> }
+  const LoadLogin = () => { return <Login toggleCatbar={toggleCatbar}/>}
+  const LoadRegister = () => { return <Register toggleCatbar={toggleCatbar}/>}
 
   return(
     <>
@@ -40,10 +33,10 @@ const App = () => {
           <Route exact path='/' render={LoadHome} />
           <Route exact path='/Feed' component={PictureCollection} />
           <Route exact path='/profile' render={LoadProfile} />
-          <Route exact path='/collection' component={Collection} />
+          <Route exact path='/collection' render={LoadCollection} />
           <Route exact path='/dash' component={Dash} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/register' component={Register} />
+          <Route exact path='/login' render={LoadLogin} />
+          <Route exact path='/register' render={LoadRegister} />
           <Route component={NoMatch} />
         </Switch>
       </FetchUser>

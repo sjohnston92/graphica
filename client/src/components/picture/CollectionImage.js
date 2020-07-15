@@ -21,8 +21,8 @@ const StyledImage = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  border-radius: 100%;
-  height: 40px;
-  width: 40px;
+  margin: 1rem;
+  height: 80px;
+  width: 80px;
 `
 
