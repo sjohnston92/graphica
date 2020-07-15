@@ -1,30 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from "styled-components";
 import logoFont from '../../fonts/Elianto-Regular.otf';
 import store from '../../img/store.jpg'
 import SearchBar from './SearchBar'
 import Feed from './Feed'
 
-const Home = (props) => (
+const Home = (props) => {
 
-  <Wrapper>
-  {props.toggleCatbar(true)}
-    <Hero>
-      <HeroArea>
-        <GraphicaLogo>
-          GRAPHICA
-        </GraphicaLogo>
-        <Rectangle>
-          <SearchBar />
-        </Rectangle>
-        <HeroSubText>
-          Discover a world you never knew existed
-        </HeroSubText>
-      </HeroArea>
-    </Hero>
-    <Feed />  
-  </Wrapper>
-)
+  useEffect(() => { props.toggleCatbar(true)}, []);
+  
+  return(
+    <Wrapper>
+      <Hero>
+        <HeroArea>
+          <GraphicaLogo>
+            GRAPHICA
+          </GraphicaLogo>
+          <Rectangle>
+            <SearchBar />
+          </Rectangle>
+          <HeroSubText>
+            Discover a world you never knew existed
+          </HeroSubText>
+        </HeroArea>
+      </Hero>
+      <Feed />  
+    </Wrapper>
+  )
+}
 const Wrapper = styled.div`
 `
 const Hero = styled.div`

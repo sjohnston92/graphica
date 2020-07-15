@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import axios from 'axios';
 import PictureComments from './PictureComments'
 import CommentBar from './CommentBar';
-import InfiniteScroll from 'react-infinite-scroller';
 
 const PictureShow = (props) => {
   const id = props.id;
@@ -16,31 +15,24 @@ const PictureShow = (props) => {
   const [views, setViews] = useState(props.views + 1)
   const [catName, setCatName] = useState("");
   const [comments, setComments] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0)
 
   useEffect(() => {
     axios.get(`/api/categories/${catId}`)
-    .then(res => {
-      setCatName(res.data.title)
-    })
-    .catch(console.log)
+      .then(res => setCatName(res.data.title))
+      .catch(console.log)
     axios.get(`/api/pictures/${id}/picture_comments`)
-    .then(res => { setComments(res.data) })
+      .then(res =>  setComments(res.data))
       .catch(console.log)     
     updateViews()
   }, [])
+
   const updateViews = () => {
     axios.patch(`/api/pictures/${id}`, {views: views, url: url, title: title, description: description, user_id: userId, category_id: catId})
-      .then(res => { console.log("working setViews") }) //Do I need anything here?
       .catch(console.log)
   }
+
   const setStatePictureShow = (newComment) => {
     setComments([ newComment, ...comments  ])
-  }
-  const handleLoadMore = (page) => {
-    console.log(page)
-    // setCurrentPage(page)
-    return "Hello More ITEMS"
   }
 
   return (
@@ -58,7 +50,7 @@ const PictureShow = (props) => {
           </UserLeftContent>
         </UserInfoLeft>
         <UserInfoRight>
-          {views} views
+          {views - 1} views
         </UserInfoRight>
       </UserInfoDiv>
       <PictureDiv>
@@ -92,18 +84,11 @@ const PictureShow = (props) => {
           <CommentBar id={id} setStatePictureShow={setStatePictureShow}/>
         </Rectangle>
       <CommentsDiv>
-        <InfiniteScroll
-          pageStart={0}
-          loadMore={handleLoadMore}
-          hasMore={true} //var to say we only have x amount data left
-          loader={<div className="loader" key={0}>Loading ...</div>}
-        >
           {comments.map((comment, index) => (
             <>
               <PictureComments key={comment.id} {...comment}/>
             </>
           ))}
-        </InfiniteScroll>
       </CommentsDiv>
       </FeedbackDiv>
    </Wrapper>
