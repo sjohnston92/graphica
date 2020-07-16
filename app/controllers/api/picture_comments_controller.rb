@@ -3,6 +3,10 @@ class Api::PictureCommentsController < ApplicationController
     render json: PictureComment.all
   end
 
+  def show
+    render json: PictureComment.find(params[:id])
+   end
+
   def create
     picture_comment = PictureComment.new(picture_comment_params)
     if picture_comment.save 

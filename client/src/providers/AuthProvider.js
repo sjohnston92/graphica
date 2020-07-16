@@ -41,10 +41,25 @@ export class AuthProvider extends React.Component {
   }
 
   updateUser = (id, user) => {
+    axios.put(`/api/users/${id}`, user)
+      .then( res => this.setState({ user: res.data }))
+      .catch(console.log)
+  }
+  
+  updateUserProfileImage = (id, user) => {
     let data = new FormData()
     data.append('file', user.file)
-    axios.put(`/api/users/${id}?first_name=${user.first_name}&last_name${user.last_name}&email=${user.email}`, data)
-    .then( res => this.setState({ user: res.data }))
+    axios.put(`/api/users/${id}/profile_image`, data)
+      .then( res => this.setState({ user: res.data }))
+      .catch(console.log)
+  }
+
+  updateUserBannerImage = (id, user) => {
+    let data = new FormData()
+    data.append('file', user.file)
+    axios.put(`/api/users/${id}/banner_image`, data)
+      .then( res => this.setState({ user: res.data }))
+      .catch(console.log)
   }
   
   render() {
@@ -56,7 +71,9 @@ export class AuthProvider extends React.Component {
         handleLogin: this.handleLogin,
         handleLogout: this.handleLogout,
         setUser: (user) => this.setState({ user, }),
-        updateUser: this.updateUser
+        updateUser: this.updateUser,
+        updateUserProfileImage: this.updateUserProfileImage,
+        updateUserBannerImage: this.updateUserBannerImage,
       }}>
         { this.props.children }
       </AuthContext.Provider>

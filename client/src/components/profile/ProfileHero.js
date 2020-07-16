@@ -2,36 +2,31 @@ import React from 'react';
 import ContactModal from '../modal/ContactModal';
 import styled from 'styled-components';
 import { AuthConsumer } from '../../providers/AuthProvider';
+import { Redirect } from 'react-router-dom';
 
 // need to link in user's banner image when that gets up and running.
-
-const ProfileHero = () => (
-  <AuthConsumer>
-    { values => (
-    <BannerImage>
-      {values.user.banner_image}
-        <BannerLeft>
-          <BannerLeftTop>
-            <UserAvatar>
-              {values.user.image}
-            </UserAvatar>
-            <BannerContents>
-              <UserName>
-                {values.user.first_name} {values.user.last_name}
-              </UserName>
-              <UserEmail>
-                {values.user.email}
-              </UserEmail>
-              <ContactModal />
-            </BannerContents>
-          </BannerLeftTop>
+const ProfileHero = ({ user }) => (
+  <BannerImage>
+      <BannerLeft>
+        <BannerLeftTop>
+          <UserAvatar />
+          <BannerContents>
+            <UserName>
+              {user.first_name} {user.last_name}
+            </UserName>
+            <UserEmail>
+              {user.email}
+            </UserEmail>
+            <ContactModal user={user} >
+              Contact Info
+            </ContactModal>
+          </BannerContents>
+        </BannerLeftTop>
         <BioSubText>
-          {values.user.tagline}
+          {user.tagline}
         </BioSubText>
       </BannerLeft>
-    </BannerImage>
-    )}
-  </AuthConsumer>
+  </BannerImage>
 ) 
 
 const BannerImage = styled.div`

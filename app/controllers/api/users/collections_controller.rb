@@ -1,9 +1,12 @@
 class Api::Users::CollectionsController < ApplicationController
+
   def index
     render json: Collection.all
   end
 
   def show
+    @user = User.find(params[:user_id])
+    render json: @user.collections.find(params[:id])
   end
 
   def create
@@ -34,4 +37,5 @@ class Api::Users::CollectionsController < ApplicationController
   def collection_params
     params.require(:collection).permit(:title, :description, :user_id)
   end
+
 end

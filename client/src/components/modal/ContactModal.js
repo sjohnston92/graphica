@@ -5,14 +5,14 @@ import ContactTest from './ContactTest'
 import { AuthConsumer } from '../../providers/AuthProvider';
 
 
-const ContactModal = () => {
+const ContactModal = ({ user }) => {
   const { open, toggle } = useModal();
 
   return (
       <>
         <button onClick={ toggle }>See Contact</button>
         <Modal onClose={toggle} open={open}>
-          <ContactTest />
+          <ContactTest user={ user } />
         </Modal>
       </>
 

@@ -6,9 +6,7 @@ const SearchBar = () => (
 )
 
 const StyledInput = styled.input`
-  
   font-family: 'Montserrat', sans-serif;
-
   font-style: normal;
   border: none;
   height: 35px;

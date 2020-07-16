@@ -24,11 +24,7 @@ require Rails.root.join("data", "urls.rb")
     image: "https://images.unsplash.com/photo-1525129075020-d43c7ba72ecf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
     first_name: "juan",last_name: "collins", password: 'password', password_confirmation: 'password')
 
-#COLLECTIONS (7)
-  7.times do
-    Collection.create(user_id: (rand(6)+1), title: Faker::Movies::HarryPotter.location)
-  end
-
+    
 #CATEGORIES (7)
   Category.create(title: "Animals") #1
   Category.create(title: "Art") #2
@@ -37,23 +33,37 @@ require Rails.root.join("data", "urls.rb")
   Category.create(title: "Places") #5
   Category.create(title: "People") #6
   Category.create(title: "Technology") #7
+    
 
 #PICTURES (27)
-  IMAGE_URLS.map { |url| 
-    Picture.create(
-      category_id: (rand(6)+1), 
-      user_id: (rand(6)+1), 
-      title: Faker::Movies::StarWars.planet, 
-      url: url,
-      description: Faker::Lorem.sentence(word_count: 3, supplemental: true),
-      views: rand(700)
-    )
-  }
+IMAGE_URLS.map { |url| 
+Picture.create(
+  category_id: (rand(6)+1), 
+  user_id: (rand(6)+1), 
+  title: Faker::Movies::StarWars.planet, 
+  url: url,
+  description: Faker::Lorem.sentence(word_count: 3, supplemental: true),
+  views: rand(700)
+  )
+}
 
-#COLLECTION-PICTURE JUNCTIONS (50)
-  50.times do
-    CollectionPicture.create(collection_id: (rand(6)+1), picture_id: (rand(26)+1))
-  end 
+#The following gives each user a collection and puts all his/her pictures into that collection
+# It would be nice to put only some of the pictures into one or more collections.
+user_picture = []
+picture = Picture.all
+picture.each do |p|
+  user_picture << {user: p.user_id, picture: p.id}
+end
+
+x = 1
+while x < 7 
+  @collection = Collection.create(user_id: x, title: Faker::Movies::HarryPotter.location)
+  user = user_picture.select{|key, value| key[:user] == x }
+  user.map{ |u|
+    CollectionPicture.create(collection_id: @collection.id, picture_id: u[:picture] )  
+  }
+  x += 1 
+end
 
 #PICTURE COMMENTS (50)
   50.times do    

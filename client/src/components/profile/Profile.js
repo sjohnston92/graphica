@@ -5,12 +5,19 @@ import BottomFeed from './BottomFeed';
 import ProfileHero from './ProfileHero';
 import CollectionTab from './CollectionTab';
 import SettingsTab from './SettingsTab';
-
+import axios from "axios";
 
 
 class Profile extends React.Component {
-  state = { currentTab: "recent" }
+  state = { currentTab: "recent", user: null }
   
+  componentDidMount() {
+    this.props.toggleCatbar(false)
+    axios.get(`/api/users/${this.props.match.params.id}`)
+      .then((res) => this.setState({ user: res.data }))
+      .catch(console.log);
+  } 
+
   changeTab = (currentTab) => {
     this.setState({ currentTab });
   }
@@ -18,33 +25,23 @@ class Profile extends React.Component {
   renderBottom = () => {
     switch(this.state.currentTab) {
       case "recent":
-        return (
+        return this.state.user ? <BottomFeed user={this.state.user} /> : null
           // collections modal needs to go next to showModal below (it's the second button)
-          <>
-            <BottomFeed />
-          </>
-        )
       case "collections":
-        return (
-          <CollectionTab />
-        )
+        return this.state.user ? <CollectionTab user={this.state.user} /> : null
       case "favorites":
-        return (
-          <p>Favorites go here</p>
-        )
+        return <p>Favorites go here</p>
       case "settings":
-        return (
-          <SettingsTab />
-        )
+        return this.state.user ? <SettingsTab user={this.state.user} /> : null
       default:
         return null
     }
   }
 
-  render() {
+  render() { 
     return (
       <Wrapper>
-        <ProfileHero />
+        { this.state.user && <ProfileHero user={this.state.user} /> }
         <ProfileNavbar changeTab={this.changeTab} />
         <Line />
         <br></br>

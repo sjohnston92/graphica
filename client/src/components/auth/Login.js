@@ -1,10 +1,13 @@
 import React from 'react';
 import { AuthConsumer, } from "../../providers/AuthProvider";
 import { Button, Form, Segment, Header, } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
 
 class Login extends React.Component {
   state = { email: '', password: '' }
   
+  componentDidMount() { this.props.toggleCatbar(false) }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const { email, password, } = this.state;
@@ -50,7 +53,7 @@ class Login extends React.Component {
   }
 }
 
-export default class ConnectedLogin extends React.Component {
+class ConnectedLogin extends React.Component {
   render() {
     return (
       <AuthConsumer>
@@ -59,3 +62,5 @@ export default class ConnectedLogin extends React.Component {
     )
   }
 }
+
+export default withRouter(ConnectedLogin)

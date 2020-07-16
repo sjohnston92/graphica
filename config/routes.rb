@@ -9,12 +9,21 @@ Rails.application.routes.draw do
 
     resources :pictures do
       resources :picture_comments, module: :pictures
+      resources :collection_pictures, module: :pictures
+    end
+
+    resources :collections do
+      resources :collection_pictures, module: :collections
     end
 
     resources :users do
       resources :pictures, module: :users
       resources :collections, module: :users
     end
+
+    put '/users/:id/profile_image', to:'users#update_profile_image'
+    put '/users/:id/banner_image', to:'users#update_banner_image'
+
     #These are for searching globally
     resources :pictures, only: [:index]
     resources :collections, only: [:index] do 

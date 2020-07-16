@@ -6,6 +6,8 @@ import Dropzone from 'react-dropzone';
 class Register extends React.Component {
   state = { email: '', password: '', passwordConfirmation: '', first_name: '', last_name: '', tagline: '', image: '' };
   
+  componentDidMount() { this.props.toggleCatbar(false) }
+  
   handleSubmit = (e) => {
     e.preventDefault();
     const { email, password, passwordConfirmation } = this.state;

@@ -24,7 +24,6 @@ const Card = ({ category_id, title, id, url, user_id, views, description}) => {
     axios.get(`/api/pictures/${id}/picture_comments`)
       .then( res => {
         if (res) {setComments(res.data.length)} else null
-        
       .catch(console.log)
       })
   }, [])
@@ -65,7 +64,7 @@ const PointerOff = styled.div`
   font-family: 'Montserrat', sans-serif;
 `
 const CardBorder = styled.div`
-   margin-bottom: 10px
+  margin-bottom: -40px;
 `
 const CardFooterLeft = styled.div`
   float: left;
