@@ -2,6 +2,7 @@ import React, { Fragment, } from 'react';
 import { AuthConsumer, } from "../../providers/AuthProvider";
 import { Form, Grid, Image, Container, Divider, Header, Button, } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone';
+import UpdateProfileImage from './UpdateProfileImage';
 
 const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png';
 
@@ -13,9 +14,6 @@ class Profile extends React.Component {
     this.setState({ formValues: { first_name, last_name, email, tagline }, });
   }
   
-  onDrop = (files) => {
-    this.setState({ formValue: { ...this.state.formValues, file: files[0] }})
-  }
   
   toggleEdit = () => {
     this.setState( state => {
@@ -64,64 +62,48 @@ class Profile extends React.Component {
   }
 
   editView = () => {
-    const { auth: { user }, } = this.props;
+    const { auth: { user, updateUserProfileImage }, } = this.props;
     const { formValues: { first_name, last_name, email, file, tagline } } = this.state;
+
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Grid.Column width={4}>
-          <Dropzone
-            onDrop={this.onDrop}
-            multiple={false}
-          >
-            {({ getRootProps, getInputProps, isDragActive}) => {
-              return (
-                <div
-                  {...getRootProps()}
-                  style={styles.dropzone}
-                >
-                  <input {...getInputProps()} />
-                  {
-                    isDragActive ?
-                      <p>Already loaded</p> :
-                      <p>Drop items here</p>
-                  }
-                </div>
-              )
-            }}
-          </Dropzone>
-        </Grid.Column>
-        <Grid.Column width={8}>
-          <Form.Input
-            label="First Name"
-            name="first_name"
-            value={first_name}
-            required
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            label="Last Name"
-            name="last_name"
-            value={last_name}
-            required
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            label="Email"
-            name="email"
-            value={email}
-            required
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            label="Bio"
-            name="tagline"
-            value={tagline}
-            required
-            onChange={this.handleChange}
-          />
-          <Button>Update</Button>
-        </Grid.Column>
-      </Form>
+      <>
+        <UpdateProfileImage updateUserProfileImage={updateUserProfileImage} user={user} />
+        <Form onSubmit={this.handleSubmit}>
+          <Grid.Column width={4}>
+          </Grid.Column>
+          <Grid.Column width={8}>
+            <Form.Input
+              label="First Name"
+              name="first_name"
+              value={first_name}
+              required
+              onChange={this.handleChange}
+              />
+            <Form.Input
+              label="Last Name"
+              name="last_name"
+              value={last_name}
+              required
+              onChange={this.handleChange}
+              />
+            <Form.Input
+              label="Email"
+              name="email"
+              value={email}
+              required
+              onChange={this.handleChange}
+              />
+            <Form.Input
+              label="Bio"
+              name="tagline"
+              value={tagline}
+              required
+              onChange={this.handleChange}
+              />
+            <Button>Update</Button>
+          </Grid.Column>
+        </Form>
+      </>
     )
   }
 
