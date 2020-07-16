@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProfileNavbar from './ProfileNavbar';
-import BottomFeed from './BottomFeed';
+import Feed from '../home/Feed';
 import ProfileHero from './ProfileHero';
 import CollectionTab from './CollectionTab';
 import SettingsTab from './SettingsTab';
@@ -25,7 +25,7 @@ class Profile extends React.Component {
         return (
           // collections modal needs to go next to showModal below (it's the second button)
           <>
-            <BottomFeed />
+            <Feed />
           </>
         )
       case "collections":
@@ -52,6 +52,7 @@ class Profile extends React.Component {
         <ProfileNavbar changeTab={this.changeTab} />
         <Line />
         <br></br>
+        
         <ProfileBottom>
           { this.renderBottom() }
         </ProfileBottom>

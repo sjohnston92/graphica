@@ -105,7 +105,7 @@ const PictureShow = (props) => {
       <CommentsDiv>
           {comments.map((comment, index) => (
             <>
-              <PictureComments key={comment.id} {...comment}/>
+               <PictureComments key={comment.id} {...comment}/>
             </>
           ))}
       </CommentsDiv>
