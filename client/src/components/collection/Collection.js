@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Feed from '../home/Feed';
 
 
-const Collection = () => (
-  <Wrapper>
-    <Title>
-    </Title>
-    <FeedDiv>
-      <Feed />
-    </FeedDiv>
-  </Wrapper>
-)
+const Collection = (props) => {
+
+  useEffect(() => { props.toggleCatbar(true)}, []) ;
+
+  return(
+
+    <Wrapper>
+      <Title>
+      </Title>
+      <FeedDiv>
+        <Feed />
+      </FeedDiv>
+    </Wrapper>
+  )
+}
 // styled components
 const Title = styled.div`
   width: 100%;

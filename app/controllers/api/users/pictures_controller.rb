@@ -16,15 +16,12 @@ class Api::Users::PicturesController < ApplicationController
         picture.url = cloud_image['secure_url']
 
         if picture.save
-          binding.pry
           render json: picture
         else
-          binding.pry
           render json: { errors: picture.errors }, status: 422
         end
 
       rescue => e
-        binding.pry
         render json: { errors: e }, status: 422
       end
     end

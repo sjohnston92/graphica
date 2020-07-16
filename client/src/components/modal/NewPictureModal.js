@@ -4,7 +4,8 @@ import useModal from "../../hooks/useModal";
 import styled from "styled-components";
 import Dropzone from "react-dropzone";
 import axios from "axios";
-import { AuthConsumer, } from "../../providers/AuthProvider"
+import { AuthConsumer, } from "../../providers/AuthProvider";
+import { useHistory } from "react-router-dom";
 
 class NewPictureModal extends React.Component {
 
@@ -36,6 +37,10 @@ class NewPictureModal extends React.Component {
         // do things when picture uploads successfully
         console.log(res); 
         alert("success");
+        let history = useHistory();
+
+        history.push('/Profile');
+        
       })
       .catch(console.log);
   }
