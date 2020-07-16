@@ -7,7 +7,7 @@ class UpdateProfileImage extends React.Component {
   state = { formValues: { file: '' }, };
 
   onDrop = (files) => {
-    this.setState({ formValue: { ...this.state.formValues, file: files[0] }})
+    this.setState({ formValues: { ...this.state.formValues, file: files[0] }})
   }
 
   handleSubmit = (event) => {
