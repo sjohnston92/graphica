@@ -3,22 +3,26 @@ import { AuthConsumer, } from "../../providers/AuthProvider";
 import { Form, Grid, Image, Container, Divider, Header, Button, } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone';
 
-
 const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png';
+
 class Profile extends React.Component {
   state = { editing: false, formValues: { first_name: '', last_name: '', email: '', file: '', tagline: '' }, };
+  
   componentDidMount() {
     const { auth: { user: { first_name, last_name, email, tagline }, }, } = this.props;
     this.setState({ formValues: { first_name, last_name, email, tagline }, });
   }
+  
   onDrop = (files) => {
     this.setState({ formValue: { ...this.state.formValues, file: files[0] }})
   }
+  
   toggleEdit = () => {
     this.setState( state => {
       return { editing: !state.editing, };
     })
   }
+  
   handleChange = (e) => {
     const { name, value, } = e.target;
     this.setState({
@@ -29,19 +33,19 @@ class Profile extends React.Component {
     })
   }
 
-handleSubmit = (e) => {
-  e.preventDefault()
-  const { formValues: { first_name, last_name, email, file, tagline }} = this.state
-  const { auth: { user, updateUser }} = this.props
-  updateUser(user.id, { first_name, last_name, email, file, tagline })
-  this.setState({
-    editing: false,
-    formValues: {
-      ...this.state.formValues,
-      file: ''
-    }
-  })
-}
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const { formValues: { first_name, last_name, email, file, tagline }} = this.state
+    const { auth: { user, updateUser }} = this.props
+    updateUser(user.id, { first_name, last_name, email, file, tagline })
+    this.setState({
+      editing: false,
+      formValues: {
+        ...this.state.formValues,
+        file: ''
+      }
+    })
+  }
 
   profileView = () => {
     const { auth: { user }, } = this.props;
@@ -58,6 +62,7 @@ handleSubmit = (e) => {
       </Fragment>
     )
   }
+
   editView = () => {
     const { auth: { user }, } = this.props;
     const { formValues: { first_name, last_name, email, file, tagline } } = this.state;
@@ -119,6 +124,7 @@ handleSubmit = (e) => {
       </Form>
     )
   }
+
   render() {
     const { editing, } = this.state;
     return (
@@ -136,6 +142,7 @@ handleSubmit = (e) => {
     )
   }
 }
+
 const SettingsTab = (props) => (
   <AuthConsumer>
     { auth => 
@@ -143,6 +150,7 @@ const SettingsTab = (props) => (
     }
   </AuthConsumer>
 )
+
 const styles = {
   dropzone: {
     height: "150px",

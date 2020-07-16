@@ -48,6 +48,8 @@ class Navbar extends React.Component {
   }
   
   render() {
+    const { auth: { user } } = this.props;
+    
     return (
       <div>
         <Menu pointing secondary>
@@ -58,13 +60,15 @@ class Navbar extends React.Component {
               active={this.props.location.pathname === '/'}
             />
           </Link>
-          <Link to='/profile'>
-            <Menu.Item
-              name='profile'
-              id='profile'
-              active={this.props.location.pathname === '/profile'}
-            />
-          </Link>
+          { user && 
+            <Link to={`/profile/${user.id}`}>
+              <Menu.Item
+                name='profile'
+                id='profile'
+                active={this.props.location.pathname === '/profile'}
+              />
+            </Link>
+          }
           <Link to='/collection'>
             <Menu.Item
               name='collection'
