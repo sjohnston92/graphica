@@ -5,9 +5,12 @@ class Api::PicturesController < ApplicationController
     # render json: Picture.limit(10)
     # render json: Picture.order(created_at: :desc)
     render json: Picture.limit(params[:limit]).offset(params[:offset]).order(created_at: :desc)
-
   end
-  
+
+  def search
+    render json: Picture.search(params[:search], params[:page])
+  end
+
   def show
     render json: Picture.find(params[:id])
   end

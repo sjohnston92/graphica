@@ -3,13 +3,17 @@ import axios from 'axios';
 import Card from './Card';
 import styled from 'styled-components';
 
-const Feed = () => {
+const Feed = (props) => {
   const [listItems, setListItems] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [noMorePictures, setNoMorePictures] = useState(false);
   
   useEffect(() => {
     axios.get("/api/pictures/?limit=9")
+    // axios.get("/api/pictures/search/?search=${input}")
+    // axios.get("/api/pictures/search/?search=Favorite")
+
+
       .then( res => setListItems(res.data))
       .catch(console.log)
   }, [])
@@ -53,6 +57,9 @@ const Feed = () => {
 
     return (
       <>
+        <SearchResults>
+          {props.feedPics && props.feedPics.map(pic => <><img src={pic.url} /></>) }
+        </SearchResults>
         <FeedDiv>
           <ColumnContainer>
             {column_arrays[0].map(listItem =><><Card {...listItem}/></>)}
@@ -72,6 +79,10 @@ const Feed = () => {
 
   return renderColumns();
 };
+
+const SearchResults = styled.div`
+
+`
 
 const FeedDiv = styled.div`
   display: flex;

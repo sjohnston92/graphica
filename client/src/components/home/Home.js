@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import logoFont from '../../fonts/Elianto-Regular.otf';
 import store from '../../img/store.jpg'
@@ -6,9 +6,14 @@ import SearchBar from './SearchBar'
 import Feed from './Feed'
 
 const Home = (props) => {
+  const [ feedPics, setFeedPics ] = useState()
 
   useEffect(() => { props.toggleCatbar(true)}, []);
   
+  const searchPics = (results) => {
+    setFeedPics(results)
+  }
+
   return(
     <Wrapper>
       <Hero>
@@ -17,14 +22,14 @@ const Home = (props) => {
             GRAPHICA
           </GraphicaLogo>
           <Rectangle>
-            <SearchBar />
+            <SearchBar searchPics={searchPics}/>
           </Rectangle>
           <HeroSubText>
             Discover a world you never knew existed
           </HeroSubText>
         </HeroArea>
       </Hero>
-      <Feed />  
+      <Feed feedPics={feedPics}/>  
     </Wrapper>
   )
 }
