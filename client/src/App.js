@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './components/home/Home';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Navbar from './components/shared/Navbar';
+import Catbar from './components/shared/Catbar';
 import NoMatch from './components/shared/NoMatch';
 import FetchUser from './components/auth/FetchUser';
 import Dash from './components/shared/Dash';
@@ -11,25 +12,35 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import Feed from './components/home/Feed'
 import Profile from './components/profile/Profile';
 import Collection from './components/collection/Collection';
-import Testing from './components/picture/Testing'
+import PictureCollection from './components/picture/PictureCollection'
 
+const App = () => {
+  const [showCatbar, setShowCatbar] = useState(false)
+  const toggleCatbar = (show) => setShowCatbar(show)
 
-const App = () => (
-  <>
-    <Navbar />
-    <FetchUser>
-      <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/Feed' component={Feed} />
-        <ProtectedRoute exact path='/profile' component={Profile} />
-        <ProtectedRoute exact path='/collection' component={Collection} />
-        <ProtectedRoute exact path='/dash' component={Dash} />
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/register' component={Register} />
-        <Route exact path='/testing' component={Testing} />
-        <Route component={NoMatch} />
-      </Switch>
-    </FetchUser>
-  </>
-)
+  const LoadHome = () => { return <Home toggleCatbar={toggleCatbar}/>}
+  const LoadProfile = () => { return <Profile toggleCatbar={toggleCatbar}/> }
+  const LoadCollection = () => { return <Collection toggleCatbar={toggleCatbar}/> }
+  const LoadLogin = () => { return <Login toggleCatbar={toggleCatbar}/>}
+  const LoadRegister = () => { return <Register toggleCatbar={toggleCatbar}/>}
+
+  return(
+    <>
+      <Navbar />
+      {(showCatbar) ? <Catbar /> : null}
+      <FetchUser>
+        <Switch>
+          <Route exact path='/' render={LoadHome} />
+          <Route exact path='/Feed' component={PictureCollection} />
+          <Route exact path='/profile' render={LoadProfile} />
+          <Route exact path='/collection' render={LoadCollection} />
+          <Route exact path='/dash' component={Dash} />
+          <Route exact path='/login' render={LoadLogin} />
+          <Route exact path='/register' render={LoadRegister} />
+          <Route component={NoMatch} />
+        </Switch>
+      </FetchUser>
+    </>
+  )
+}
 export default App;

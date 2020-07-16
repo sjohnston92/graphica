@@ -1,45 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from "styled-components";
+import logoFont from '../../fonts/Elianto-Regular.otf';
 import store from '../../img/store.jpg'
 import SearchBar from './SearchBar'
 import Feed from './Feed'
-import ShowModal from '../modal/ShowModal'
-import logoFont from '../../fonts/Elianto-Regular.otf';
 
+const Home = (props) => {
 
-
-const Home = () => (
-
-  <Wrapper>
-    <Hero>
-      <HeroArea>
-        <GraphicaLogo>
-          GRAPHICA
-        </GraphicaLogo>
-        <Rectangle>
-          <SearchBar />
-        </Rectangle>
-        <HeroSubText>
-          Discover a world you never knew existed
-        </HeroSubText>
-      </HeroArea>
-    </Hero>
-    <ShowModal />
-    <FeedDiv>
+  useEffect(() => { props.toggleCatbar(true)}, []);
+  
+  return(
+    <Wrapper>
+      <Hero>
+        <HeroArea>
+          <GraphicaLogo>
+            GRAPHICA
+          </GraphicaLogo>
+          <Rectangle>
+            <SearchBar />
+          </Rectangle>
+          <HeroSubText>
+            Discover a world you never knew existed
+          </HeroSubText>
+        </HeroArea>
+      </Hero>
       <Feed />  
-    </FeedDiv>
-  </Wrapper>
-
-)
-
+    </Wrapper>
+  )
+}
 const Wrapper = styled.div`
-
-
 `
 const Hero = styled.div`
   width: 100%;
   height: 278px;
-
   background: url(${store});
   background-position: center;
   background-repeat: no-repeat;
@@ -50,13 +43,10 @@ const HeroArea = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: left;
-
   padding: 7rem;
   margin-left: 1rem;
 `
-
 const GraphicaLogo = styled.div`
-  
   display: flex;
   align-items: center;
   padding-bottom: 2rem;
@@ -73,30 +63,20 @@ const Rectangle = styled.div`
   align-items: center;
   height: 35.24px;
   width: 60%;
-  
 `
 const HeroSubText = styled.p`
-
-padding-top: 1rem;
-display: flex;
-height: 16.64px;
-
-
-
-
-font-family: 'Montserrat', sans-serif;
-
-font-style: normal;
-font-weight: bold;
-font-size: 14px;
-line-height: 17px;
-
-color: #FFF
+  padding-top: 1rem;
+  display: flex;
+  height: 16.64px;
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFF
 `
-
 const FeedDiv = styled.div`
-margin: 30px;
-  
+  margin: 30px;
 `
 
 export default Home

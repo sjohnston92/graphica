@@ -9,6 +9,11 @@ Rails.application.routes.draw do
 
     resources :pictures do
       resources :picture_comments, module: :pictures
+      resources :collection_pictures, module: :pictures
+    end
+
+    resources :collections do
+      resources :collection_pictures, module: :collections
     end
 
     resources :users do
