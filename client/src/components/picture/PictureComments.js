@@ -8,7 +8,6 @@ const PictureComments = (props) => {
   const [userName, setUserName] = useState()
   const [userImage, setUserImage] = useState("https://images.unsplash.com/photo-1588948138600-bc75fd417834?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80")
   const [editing, setEditing] = useState(false)
-  const [comment, setComment] = useState("")
   const [body, setBody] = useState(props.body)
   
   useEffect(() => {
@@ -24,21 +23,27 @@ const PictureComments = (props) => {
     setEditing(!editing)
     // editing ? handleSubmit() : null; ##this doesn't work but I'd like to have the editing button submit the form at some point
   }
+  
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios.patch(
-      `/api/picture_comments/${props.id}`, 
-      {body: body, user_id: userId, picture_id: props.pictureId}
-    )
+    
+    axios.patch(`/api/picture_comments/${props.id}`, { body: body, user_id: userId, picture_id: props.pictureId })
       .then( res => {
         toggleEdit()
         setBody(res.data.body)
-      
       })
+      .catch(console.log)
   }
-      const handleChange = (event) => {
-        setBody(event.target.value)
-      }
+  
+  const handleChange = (event) => {
+    setBody(event.target.value)
+  }
+
+  const deleteComment = () => {
+    axios.delete(`api/picture_comments/${props.id}`)
+      .then( res => props.deleteCommentState(props.id))
+  }
+
   return (
     <>
       <UserDiv>
@@ -60,13 +65,17 @@ const PictureComments = (props) => {
         }
       </BodyDiv>
       <>
-        {props.user.id === userId ? 
+      {props.authenticated ? 
+        <>
+          {props.user.id === userId ? 
             <EditDeleteDiv>
-              <button onClick={toggleEdit}>Edit</button>
-              <button>Delete</button>
-            </EditDeleteDiv>
-          : null
-        }
+                <button onClick={toggleEdit}>Edit</button>
+                <button onClick={deleteComment}>Delete</button>
+              </EditDeleteDiv>
+            : null
+          }
+        </>
+     : null }
       </>
 
     </>

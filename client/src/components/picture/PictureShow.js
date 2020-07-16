@@ -53,7 +53,9 @@ const PictureShow = (props) => {
   const setStatePictureShow = (newComment) => {
     setComments([ newComment, ...comments  ])
   }
-
+  const deleteCommentState = (incomingId) => {
+    setComments( comments.filter( a => a.id !== incomingId ))
+  }
   return (
    <Wrapper>
       <UserInfoDiv>
@@ -105,7 +107,7 @@ const PictureShow = (props) => {
       <CommentsDiv>
           {comments.map((comment, index) => (
             <>
-               <PictureComments key={comment.id} {...comment}/>
+               <PictureComments key={comment.id} {...comment} deleteCommentState={deleteCommentState}/>
             </>
           ))}
       </CommentsDiv>
