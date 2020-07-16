@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from './Card';
 import styled from 'styled-components';
+import { PictureConsumer } from '../../providers/PictureProvider'
+import PictureShow from '../picture/PictureShow';
 
 const Feed = (props) => {
   const [listItems, setListItems] = useState([]);
@@ -13,6 +15,7 @@ const Feed = (props) => {
     // axios.get("/api/pictures/search/?search=${input}")
     // axios.get("/api/pictures/search/?search=Favorite")
 
+    
 
       .then( res => setListItems(res.data))
       .catch(console.log)
@@ -54,9 +57,10 @@ const Feed = (props) => {
       if(iterator == 2) iterator = 0;
       else iterator ++;
     })
-
+    
     return (
       <>
+        {/* <>{props.pictures}</> */}
         <SearchResults>
           {props.feedPics && props.feedPics.map(pic => <><img src={pic.url} /></>) }
         </SearchResults>
@@ -101,4 +105,11 @@ const ColumnContainer = styled.div`
   @media only screen and (max-width: 800px) {}
 `
 
-export default Feed;
+const ConnectedFeed = (props) => (
+  <PictureConsumer>
+    {(value) => <Feed {...props} {...value} />}
+  </PictureConsumer>
+);
+
+export default ConnectedFeed;
+

@@ -5,10 +5,10 @@ const PictureContext = React.createContext();
 
 export const PictureConsumer = PictureContext.Consumer;
 
-const PictureProvider = () => {
+export const PictureProvider = (props) => {
   
-  const [pictures, setPictures] = useState([]);
-console.log(pictures)
+  const [pictures, setPictures] = useState("HELLO PICTURE PROVIDER");
+    // console.log(pictures)
   useEffect(() => {
     axios.get("/api/pictures")
       .then( res => {
@@ -20,13 +20,13 @@ console.log(pictures)
     
   }, [])
 
-  
+  // console.log(pictures)
   return(
-    <PictureContext.Provider value={{...pictures}}> 
-      { this.props.children }
+    <PictureContext.Provider value={{pictures: pictures}}> 
+      { props.children }
     </PictureContext.Provider>     
   )
   
 }
 
-export default PictureProvider
+export default PictureProvider;
