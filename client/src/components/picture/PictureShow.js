@@ -16,7 +16,6 @@ const PictureShow = (props) => {
   const [views, setViews] = useState(props.views + 1)
   const [catName, setCatName] = useState("");
   const [comments, setComments] = useState([]);
-  const [collectionPictures, setCollectionPictures ] = useState([]);
   const [collectionNames, setCollectionNames ] = useState([]);
   const [collectionIds, setCollectionIds ] = useState([]);
   
@@ -28,21 +27,55 @@ const PictureShow = (props) => {
     axios.get(`/api/pictures/${id}/picture_comments`)
       .then(res =>  setComments(res.data))
       .catch(console.log)    
+    
     axios.get(`/api/pictures/${id}/collection_pictures`) 
-      .then(res => {
-        res.data.map( r => getCollectionName(r.collection_id))
+    .then(res => {
+      mapData(res.data) 
+        .then( collectionTitle => {
+          setCollectionNames(collectionNames.concat(...collectionNames, [collectionTitle])) 
+          console.log(collectionNames)
+        })
+    })
+      .catch((err) => {
+        console.log(err)  
       })
-      // .then(res => setCollectionPictures(res.data))
-      .catch(console.log)
+  
     updateViews()
   }, [])
 
-  const getCollectionName = (collectionId) => {
-    setCollectionIds(collectionIds.concat(collectionId))
-    axios.get(`/api/users/${userId}/collections/${collectionId}`)
-      .then(res => setCollectionNames(collectionNames.concat([res.data.title])) )
-      .catch(console.log)
+  const mapData = (junctions) => {
+    return new Promise((resolve, reject) => {
 
+      junctions.map( junction => {
+        // console.log("junction", junction)
+        getCollectionName(junction.collection_id)
+        .then( (collectionTitle) => {
+          // console.log("Collection Title:", collectionTitle)
+          // setCollectionNames(collectionNames.concat([collectionTitle])) 
+          resolve(collectionTitle)
+          // console.log("Collection Names:", collectionNames)
+          
+        })
+        .catch((err) => {
+          console.log(err)
+          reject(err)
+        })
+      })
+    })
+  }
+
+  const getCollectionName = (collectionId) => {
+    return new Promise((resolve, reject) => {
+      setCollectionIds(collectionIds.concat([collectionId]))
+      axios.get(`/api/users/${userId}/collections/${collectionId}`)
+        .then(res => {
+          resolve(res.data.title)
+        })
+        .catch((err) => {
+          console.log(err)
+          reject(err)
+        })
+    })
   }
 
   const updateViews = () => {
@@ -79,10 +112,16 @@ const PictureShow = (props) => {
       </PictureDiv>
       <PictureInfoDiv>
         <InfoLeft>{title}</InfoLeft>
-        <InfoRight>part of <a href="url">{collectionNames[0]}</a> collection</InfoRight> 
+        <InfoRight>
+          {collectionNames && <>
+            part of <a href="url">{collectionNames[0]}</a> collection 
+            {collectionNames.length > 1 ? `and the ${collectionNames[1]} collection` : null} 
+          </> }
+        </InfoRight> 
       </PictureInfoDiv>
       <PictureCollectionDiv>
         { (collectionIds[0]) && <PictureCollection collectionId={collectionIds[0]}/> }
+        { (collectionIds[1]) && <PictureCollection collectionId={collectionIds[1]}/> }
       </PictureCollectionDiv>
       <PictureDescriptionDiv>
         <InfoLeft>

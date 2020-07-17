@@ -15,9 +15,9 @@ export const PictureProvider = (props) => {
   const searchPictures = () => {
     return new Promise((resolve, reject) => {
       setSearching(true)
-      console.log("FIRED")
-      console.log(pictures.length)
-      console.log("query", query)
+      // console.log("FIRED")
+      // console.log(pictures.length)
+      // console.log("query", query)
       axios.get(`/api/pictures/?search=${query}&limit=11&offset=${pictures.length}&category_id=${categoryId}`)
         .then(res => {
           setPictures(pictures.concat(res.data));
