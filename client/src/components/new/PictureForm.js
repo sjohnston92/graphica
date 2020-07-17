@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import Modal from "./Modal";
-import useModal from "../../hooks/useModal";
 import styled from "styled-components";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 import { AuthConsumer, } from "../../providers/AuthProvider";
+import AddCollectionToPicture from "./AddCollectionToPicture"
 
-class NewPictureModal extends React.Component {
+class PictureForm extends React.Component {
 
   state = { 
     formValues: {  file: "", title: "", description: "",  category: "" },
@@ -29,12 +28,13 @@ class NewPictureModal extends React.Component {
         description: this.state.formValues.description,
         category_id: this.state.formValues.category,
       } 
+
     }
 
     axios.post(`/api/users/${this.props.auth.user.id}/pictures`, data, options)
       .then(res => {
         // do things when picture uploads successfully
-        this.props.toggle()
+        this.props.toggleModal()
         this.props.history.push('/profile');
         
       })
@@ -55,8 +55,8 @@ class NewPictureModal extends React.Component {
   render() {
     const { toggle, open } = this.props;
     return (
-      <Modal onClose={toggle} open={open}>
-        <PictureForm onSubmit={this.handleSubmit} >
+      
+        <PictureFormDiv onSubmit={this.handleSubmit} >
           <Dropzone
             onDrop={this.onDrop}
             multiple={false}
@@ -77,53 +77,53 @@ class NewPictureModal extends React.Component {
               )
             }}
           </Dropzone>
-          <label>
-            Title: 
-            <input
+            <label>
+              Title: 
+              <input
+                type="text"
+                name="title"
+                value={this.state.formValues.title}
+                placeholder="Picture Title"
+                required
+                onChange={this.handleChange}
+              />
+            </label>
+            <lable>
+              Description: 
+            <input 
               type="text"
-              name="title"
-              value={this.state.formValues.title}
-              placeholder="Picture Title"
-              required
+              name="description"
+              value={this.state.formValues.description}
+              placeholder="Description..."
               onChange={this.handleChange}
             />
-          </label>
-          <lable>
-            Description: 
-          <input 
-            type="text"
-            name="description"
-            value={this.state.formValues.description}
-            placeholder="Description..."
-            onChange={this.handleChange}
-          />
-          </lable>
+            </lable>
 
-          <lable>
-            Category: 
-          <select
-            type="select"
-            name="category"
-            value={this.state.formValues.category}
-            onChange={this.handleChange}
-            required
-          >
-            { this.state.categories.map((category) => {
-              return (
-              <option value={category.id} >{category.title}</option>
-              )
-            }) }
-          </select>
-          </lable>
-          
+            <lable>
+              Category: 
+            <select
+              type="select"
+              name="category"
+              value={this.state.formValues.category}
+              onChange={this.handleChange}
+              required
+            >
+              { this.state.categories.map((category) => {
+                return (
+                <option value={category.id} >{category.title}</option>
+                )
+              }) }
+            </select>
+            </lable>
+           <AddCollectionToPicture />
+            
           <SubmitButton>Submit</SubmitButton>
-        </PictureForm>
-      </Modal>
+        </PictureFormDiv>
     )
   }
 }
 
-const PictureForm = styled.form`
+const PictureFormDiv = styled.form`
   display: flex;
   flex-direction: column;
 `
@@ -141,10 +141,10 @@ const styles = {
   },
 }
 
-const ConnectedNewPictureModal = (props) => (
+const ConnectedPictureForm = (props) => (
   <AuthConsumer> 
     { auth => 
-      <NewPictureModal { ...props } auth={auth} />
+      <PictureForm { ...props } auth={auth} />
     }
   </AuthConsumer>
 )
@@ -158,4 +158,4 @@ const ConnectedNewPictureModal = (props) => (
 //     </div>
 //   )
 // }
-export default ConnectedNewPictureModal;
+export default ConnectedPictureForm;

@@ -74,7 +74,11 @@ class Navbar extends React.Component {
           </Link>
             { this.rightNavItems() }
         </Menu>
-        <NewPictureModal open={this.state.open} toggle={this.toggle} />
+        <NewPictureModal 
+          history={this.props.history} 
+          open={this.state.open} 
+          toggle={this.toggle} 
+        />
       </div>
     )
   }
