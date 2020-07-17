@@ -49,20 +49,29 @@ Picture.create(
 
 #The following gives each user a collection and puts all his/her pictures into that collection
 # It would be nice to put only some of the pictures into one or more collections.
-user_picture = []
-picture = Picture.all
-picture.each do |p|
-  user_picture << {user: p.user_id, picture: p.id}
-end
+# user_picture = []
+# picture = Picture.all
+# picture.each do |p|
+#   user_picture << {user: p.user_id, picture: p.id}
+# end
 
-x = 1
-while x < 7 
-  @collection = Collection.create(user_id: x, title: Faker::Movies::HarryPotter.location)
-  user = user_picture.select{|key, value| key[:user] == x }
-  user.map{ |u|
-    CollectionPicture.create(collection_id: @collection.id, picture_id: u[:picture] )  
-  }
-  x += 1 
+# for i in (1..8)
+#   @collection = Collection.create(user_id: i, title: Faker::Movies::HarryPotter.location)
+#   user = user_picture.select{|key, value| key[:user] == i }
+#   user.map{ |u|
+#     CollectionPicture.create(collection_id: @collection.id, picture_id: u[:picture] )  
+#   }
+# end
+
+
+User.all.each do |user|
+  1.times do
+    collection = Collection.create(user_id: user.id, title: Faker::Movies::HarryPotter.location)
+    
+    user.pictures.each do |picture|
+      CollectionPicture.create(collection_id: collection.id, picture_id: picture.id )
+    end
+  end
 end
 
 #PICTURE COMMENTS (50)

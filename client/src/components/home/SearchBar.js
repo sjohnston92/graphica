@@ -2,25 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { Form } from 'semantic-ui-react';
 import styled from 'styled-components';
 import axios from 'axios';
-
+import { PictureConsumer } from '../../providers/PictureProvider'
+import useTrigger from '../../hooks/useTrigger'
 
 const SearchBar = (props) => {
-
-  const [query, setQuery ] = useState("")
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    axios.get(`/api/pictures/search/?search=${query}`)
-      .then(res => props.searchPics(res.data))
-      .catch(console.log)
-  }
-
-  const handleChange = (event) => { setQuery(event.target.value) } 
+  
+  useTrigger(props.query, 500, () => {
+    props.resetAndSearchPictures();
+  });
 
   return (
-    <form onSubmit={handleSubmit}>
-    <StyledInput onChange={handleChange} type="text" name="formName" value={query} placeholder="Find something new..."/>
-    </form>
+    <StyledInput
+      type="text"
+      name="formName"
+      value={props.query}
+      placeholder="Find something new..."
+      onChange={(e) => props.setQuery(e.target.value)}
+    />
   )
 }
 
@@ -33,4 +31,10 @@ width: 525px;
 box-sizing: border-box;
 outline: none
 `
-export default SearchBar
+const ConnectedSearchBar = (props) => (
+  <PictureConsumer>
+    {(value) => <SearchBar {...props} {...value} />}
+  </PictureConsumer>
+);
+
+export default ConnectedSearchBar;

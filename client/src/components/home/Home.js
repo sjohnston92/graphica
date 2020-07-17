@@ -6,14 +6,9 @@ import SearchBar from './SearchBar'
 import Feed from './Feed'
 
 const Home = (props) => {
-  const [ feedPics, setFeedPics ] = useState()
-
+  
   useEffect(() => { props.toggleCatbar(true)}, []);
   
-  const searchPics = (results) => {
-    setFeedPics(results)
-  }
-
   return(
     <Wrapper>
       <Hero>
@@ -22,14 +17,14 @@ const Home = (props) => {
             GRAPHICA
           </GraphicaLogo>
           <Rectangle>
-            <SearchBar searchPics={searchPics}/>
+            <SearchBar />
           </Rectangle>
           <HeroSubText>
             Discover a world you never knew existed
           </HeroSubText>
         </HeroArea>
       </Hero>
-      <Feed feedPics={feedPics}/>  
+      <Feed/>  
     </Wrapper>
   )
 }

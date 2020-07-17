@@ -11,15 +11,20 @@ const Feed = (props) => {
   const [noMorePictures, setNoMorePictures] = useState(false);
   
   useEffect(() => {
-    axios.get("/api/pictures/?limit=9")
-    // axios.get("/api/pictures/search/?search=${input}")
-    // axios.get("/api/pictures/search/?search=Favorite")
-
-    
-
-      .then( res => setListItems(res.data))
-      .catch(console.log)
+    props.searchPictures();
+    //   .then((pictures) => setListItems(pictures))
+    //   .catch(console.log)
+    // axios.get("/api/pictures/?limit=9")
+    //   .then( res => setListItems(res.data))
+    //   .catch(console.log)
   }, [])
+
+  // useEffect(() => {
+  //   if (props.searching) {
+  //     setListItems(props.pictures)
+  //     setNoMorePictures(true)
+  //   } 
+  // })
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -39,31 +44,33 @@ const Feed = (props) => {
 
   function getMore() {
     if(noMorePictures) return;
-    axios.get(`/api/pictures/?limit=6&offset=${listItems.length}`)
-      .then( res => {
-        if(res.data.length < 6) setNoMorePictures(true);
-        setListItems(listItems.concat(res.data))
+    props.searchPictures()
+      .then((pictures) => {
+        if(pictures.length < 6) setNoMorePictures(true);
         setIsFetching(false);
       })
       .catch(console.log)
+    // axios.get(`/api/pictures/?limit=6&offset=${listItems.length}`)
+    //   .then( res => {
+    //     setListItems(listItems.concat(res.data))
+    //   })
+    //   .catch(console.log)
   }
 
   const renderColumns = () => {
     const column_arrays = [[], [], []];
     let iterator = 0;
 
-    listItems.forEach((listItem) => {
+    props.pictures.forEach((listItem) => {
       column_arrays[iterator].push(listItem);
       if(iterator == 2) iterator = 0;
       else iterator ++;
     })
-    
+  
     return (
       <>
-        {/* <>{props.pictures}</> */}
-        <SearchResults>
-          {props.feedPics && props.feedPics.map(pic => <><img src={pic.url} /></>) }
-        </SearchResults>
+        { props.searching ? "Searching" : "Not Searching" }
+ 
         <FeedDiv>
           <ColumnContainer>
             {column_arrays[0].map(listItem =><><Card {...listItem}/></>)}
