@@ -4,6 +4,7 @@ import App from './App';
 import { BrowserRouter, } from 'react-router-dom';
 import { AuthProvider, } from "./providers/AuthProvider";
 import { PictureProvider, } from "./providers/PictureProvider";
+import { ImageProvider } from './providers/ImageProvider'
 
 import 'semantic-ui-css/semantic.min.css';
 import { initMiddleware } from 'devise-axios';
@@ -14,9 +15,11 @@ ReactDOM.render(
   <React.StrictMode>
    <AuthProvider>
      <PictureProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+        <ImageProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+       </ImageProvider>
      </PictureProvider>
   </AuthProvider>
   </React.StrictMode>,

@@ -7,31 +7,73 @@ import PictureShow from '../picture/PictureShow';
 import defaultUserImage from '../../img/defaultUserImage.png'
 import commentsImage from '../../img/comments.png'
 import viewsImage from '../../img/views.png'
+import { ImageConsumer } from '../../providers/ImageProvider'
 
-const Card = ({ category_id, title, id, url, user_id, views, description}) => {
-  const [user, setUser] = useState("");
+// const Card = ( { category_id, title, id, url, user_id, views, description, fetchUser, user, userImage }, ) => {
+const Card = (props) => {
+
   const { open, toggle } = useModal();
-  const [userImage, setUserImage] = useState(defaultUserImage);
-  const [comments, setComments] = useState(0)
+  // const [commentsLength, setComments] = useState(0)
+  const [firstPic, setFirstPic] = useState(true)
+  const [nextPic, setNextPic ] = useState([])
+  const id = props.image.id
+  // const user = props.user
+  const user_id = props.image.user_id
+  const category_id = props.image.category_id
+  const title = props.image.title
+  const url = props.image.url
+  const description = props.image.description
+  const views = props.image.views
+  // const userImage = props.userImage
+  // const commentsLength = props.commentsLength
+
+  const [user, setUser] = useState("");
+  const [userImage, setUserImage] = useState();
+  const [comments, setComments] = useState([]);
+  
 
   useEffect(() => {
-    axios.get(`/api/users/${user_id}`)
-      .then( res => { 
-          setUser(res.data)
-          setUserImage(res.data.image)
-        }) //this could be refactored into a Provider
-      .catch(console.log)
-    axios.get(`/api/pictures/${id}/picture_comments`)
-      .then( res => {
-        if (res) {setComments(res.data.length)} else null
-      .catch(console.log)
+    props.fetchUser(user_id)
+      .then (res => {
+        setUser(res.data)
+        setUserImage(res.data.image)
       })
+      .catch(console.log)
+
+    props.fetchComments(id)
+      .then(res => {
+        setComments(res.data)
+      })
+      .catch(console.log)
+
   }, [])
 
+
+  // const switchPicture = (incomingPic, incomingComments) => {
+  //   setFirstPic(false)
+  //   setNextPic(incomingPic)
+    // props.fetchUser(incomingPic.user_id)
+        
+      
+  
+ //Change back to first pic on close
   return (
     <CardBorder>
       <Modal onClose={toggle} open={open}>     
-        <PictureShow user={user} user_id={user_id} category_id={category_id} title={title} id={id} url={url} description={description} views={views}/>     
+        
+          <PictureShow 
+            toggle={toggle}
+            user={user}
+            user_id={user_id} 
+            category_id={category_id} 
+            title={title} 
+            id={id} 
+            url={url} 
+            description={description} 
+            views={views}
+            // comments={comments}
+          />    
+        
       </Modal>       
       <CardDiv>
         <StyledImage src={url} onClick={toggle} />
@@ -39,11 +81,11 @@ const Card = ({ category_id, title, id, url, user_id, views, description}) => {
       <PointerOff>
         <CardFooterLeft>
           <SmallImage image={userImage}/>
-          {user.first_name}
+          {user.first_name} 
         </CardFooterLeft>
         <CardFooterRight>
           <SmallImage image={commentsImage} />
-          {comments}
+          {comments.length}
           <SmallImage image={viewsImage} />
           {views} 
         </CardFooterRight>
@@ -90,4 +132,10 @@ const CardFooterRight = styled.div`
   color: #96969C
 `
 
-export default Card
+const ConnectedCard = (props) => (
+  <ImageConsumer>
+    {(value) => <Card {...props} {...value} />}
+  </ImageConsumer>
+);
+
+export default ConnectedCard;

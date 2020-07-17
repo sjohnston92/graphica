@@ -4,84 +4,120 @@ import axios from 'axios';
 import PictureComments from './PictureComments'
 import CommentBar from './CommentBar';
 import PictureCollection from './PictureCollection';
+import { ImageConsumer } from '../../providers/ImageProvider'
 
 const PictureShow = (props) => {
   const id = props.id;
-  const url = props.url;
-  const user = props.user;
-  const description = props.description;
-  const title = props.title;
-  const catId = props.category_id
-  const userId = props.user_id
-  const [views, setViews] = useState(props.views + 1)
+  // const url = image.url;
+  // const user = props.user;
+  // const description = image.description;
+  // const title = image.title;
+  // const catId = image.category_id
+  // const userId = image.user_id
+  // const [views, setViews] = useState(image.views + 1)
+  const [user, setUser ] = useState([]) //maybe add props.user for initial state
   const [catName, setCatName] = useState("");
   const [comments, setComments] = useState([]);
-  const [collectionNames, setCollectionNames ] = useState([]);
-  const [collectionIds, setCollectionIds ] = useState([]);
-  
+  const [collectionName, setCollectionName ] = useState([]);
+  const [collectionId, setCollectionId ] = useState();
+  const [image, setImage] = useState([])
+  const [junctionList, setJunctionList ] = useState("HELLO LIST!!!!!")
 
   useEffect(() => {
-    axios.get(`/api/categories/${catId}`)
-      .then(res => setCatName(res.data.title))
-      .catch(console.log)
-    axios.get(`/api/pictures/${id}/picture_comments`)
-      .then(res =>  setComments(res.data))
-      .catch(console.log)    
     
-    axios.get(`/api/pictures/${id}/collection_pictures`) 
-    .then(res => {
-      mapData(res.data) 
-        .then( collectionTitle => {
-          setCollectionNames(collectionNames.concat(...collectionNames, [collectionTitle])) 
-          console.log(collectionNames)
-        })
-    })
-      .catch((err) => {
-        console.log(err)  
+    setJunctionList(id)
+    props.fetchImage(id)
+      .then(res => {
+        setImage(res.data)
+        props.fetchCategoryName(res.data.category_id)  
+          .then(res => {
+            setCatName(res.data.title)
+          })
+          .catch(console.log)  
+        props.fetchUser(res.data.user_id)
+          .then (res => {
+            setUser(res.data)
+          })
+          .catch(console.log)
+        props.fetchJunction(id) //Doing with just one
+          .then (jcts => { 
+            console.log(jcts.data)
+            jcts.data.map( jct => {
+              props.fetchCollection(jct.collection_id, res.data.user_id)
+                .then( res => {
+                  setCollectionId(jct.collection_id)
+                  setCollectionName(res.data.title)   
+                })
+                .catch(console.log)
+            })
+          })
+          .catch(console.log)
       })
-  
-    updateViews()
+      .catch(console.log)
+      
+    props.fetchComments(id)
+      .then(res => {
+        setComments(res.data)
+      })
+      .catch(console.log)   
+        
+    
+        
+        // updateViews()
   }, [])
 
-  const mapData = (junctions) => {
-    return new Promise((resolve, reject) => {
 
-      junctions.map( junction => {
-        // console.log("junction", junction)
-        getCollectionName(junction.collection_id)
-        .then( (collectionTitle) => {
-          // console.log("Collection Title:", collectionTitle)
-          // setCollectionNames(collectionNames.concat([collectionTitle])) 
-          resolve(collectionTitle)
-          // console.log("Collection Names:", collectionNames)
+  //     axios.get(`/api/pictures/${id}/collection_pictures`) 
+  //       .then(res => {
+  //           mapData(res.data) 
+  //             .then( collectionTitle => {
+  //               setCollectionNames(collectionNames.concat(...collectionNames, [collectionTitle])) 
+  //               console.log(collectionNames)
+  //             })
+  //         })
+  //       .catch((err) => {
+  //         console.log(err)  
+  //       })
+      
+  //     const mapData = (junctions) => {
+  //       return new Promise((resolve, reject) => {
+
+  //     junctions.map( junction => {
+  //       // console.log("junction", junction)
+  //       getCollectionName(junction.collection_id)
+  //       .then( (collectionTitle) => {
+  //         // console.log("Collection Title:", collectionTitle)
+  //         // setCollectionNames(collectionNames.concat([collectionTitle])) 
+  //         resolve(collectionTitle)
+  //         // console.log("Collection Names:", collectionNames)
           
-        })
-        .catch((err) => {
-          console.log(err)
-          reject(err)
-        })
-      })
-    })
-  }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //         reject(err)
+  //       })
+  //     })
+  //   })
+  // }
 
-  const getCollectionName = (collectionId) => {
-    return new Promise((resolve, reject) => {
-      setCollectionIds(collectionIds.concat([collectionId]))
-      axios.get(`/api/users/${userId}/collections/${collectionId}`)
-        .then(res => {
-          resolve(res.data.title)
-        })
-        .catch((err) => {
-          console.log(err)
-          reject(err)
-        })
-    })
-  }
+  // const getCollectionName = (collectionId) => {
+  //   return new Promise((resolve, reject) => {
+  //     setCollectionIds(collectionIds.concat([collectionId]))
+  //     axios.get(`/api/users/${image.userId}/collections/${collectionId}`)
+  //       .then(res => {
+  //         resolve(res.data.title)
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //         reject(err)
+  //       })
+  //   })
+  // }
 
-  const updateViews = () => {
-    axios.patch(`/api/pictures/${id}`, {views: views, url: url, title: title, description: description, user_id: userId, category_id: catId})
-      .catch(console.log)
-  }
+  // const updateViews = () => {
+  //   axios.patch(`/api/pictures/${id}`, {views: views, url: url, title: title, description: description, user_id: userId, category_id: catId})
+  //     .catch(console.log)
+  // }
 
   const setStatePictureShow = (newComment) => {
     setComments([ newComment, ...comments  ])
@@ -104,24 +140,24 @@ const PictureShow = (props) => {
           </UserLeftContent>
         </UserInfoLeft>
         <UserInfoRight>
-          {views - 1} views
+          {image.views - 1} views
         </UserInfoRight>
       </UserInfoDiv>
       <PictureDiv>
-        <StyledImg src={url} />
+        <StyledImg src={image.url} />
       </PictureDiv>
       <PictureInfoDiv>
-        <InfoLeft>{title}</InfoLeft>
+        <InfoLeft>{image.title}</InfoLeft>
         <InfoRight>
-          {collectionNames && <>
-            part of <a href="url">{collectionNames[0]}</a> collection 
-            {collectionNames.length > 1 ? `and the ${collectionNames[1]} collection` : null} 
+          {collectionName && <>
+            part of <a href="url">{collectionName}</a> collection 
+            {/* {collectionNames.length > 1 ? `and the ${collectionNames[1]} collection` : null}  */}
           </> }
         </InfoRight> 
       </PictureInfoDiv>
       <PictureCollectionDiv>
-        { (collectionIds[0]) && <PictureCollection collectionId={collectionIds[0]}/> }
-        { (collectionIds[1]) && <PictureCollection collectionId={collectionIds[1]}/> }
+          {collectionId && <PictureCollection toggle={props.toggle} collectionId={collectionId}/> }
+        {/* { (collectionIds[1]) && <PictureCollection collectionId={collectionIds[1]}/> } */}
       </PictureCollectionDiv>
       <PictureDescriptionDiv>
         <InfoLeft>
@@ -131,14 +167,14 @@ const PictureShow = (props) => {
         in <a href="url">{catName}</a> category
         </InfoRight>
       </PictureDescriptionDiv>
-      <Description> {description} </Description>
+      <Description> {image.first_namedescription} </Description>
       <FeedbackDiv>
         <InfoLeft>
           Feedback
         </InfoLeft>
         <InfoRight>
-          {comments.length} 
-          {comments.length !== 1 ? " responses" : " response" }
+          {/* {comments.length} 
+          {comments.length !== 1 ? " responses" : " response" } */}
         </InfoRight>
         <Rectangle>
           <CommentBar id={id} setStatePictureShow={setStatePictureShow}/>
@@ -254,11 +290,13 @@ const Rectangle = styled.div`
   border-style: solid;
 `
 
-export default PictureShow
+const ConnectedPictureShow = (props) => (
+  <ImageConsumer>
+    {(value) => <PictureShow {...props} {...value} />}
+  </ImageConsumer>
+);
 
-
-
-
+export default ConnectedPictureShow;
 
 
 

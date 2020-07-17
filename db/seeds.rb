@@ -87,8 +87,8 @@ User.all.each do |user|
 end
 
 #PICTURE COMMENTS (50)
-  50.times do    
-    PictureComment.create(user_id: (rand(6)+1), picture_id: (rand(26)+1), body: Faker::TvShows::DumbAndDumber.quote)
+  100.times do    
+    PictureComment.create(user_id: (rand(4)+1), picture_id: (rand(27)+1), body: Faker::TvShows::DumbAndDumber.quote)
   end
 
 puts "Data Seeded.."

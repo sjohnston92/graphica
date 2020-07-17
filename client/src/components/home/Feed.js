@@ -73,13 +73,13 @@ const Feed = (props) => {
  
         <FeedDiv>
           <ColumnContainer>
-            {column_arrays[0].map(listItem =><><Card {...listItem}/></>)}
+            {column_arrays[0].map(listItem =><><Card image={listItem}/></>)}
           </ColumnContainer>
           <ColumnContainer>
-            {column_arrays[1].map(listItem =><><Card {...listItem}/></>)}
+            {column_arrays[1].map(listItem =><><Card image={listItem}/></>)}
           </ColumnContainer>
           <ColumnContainer>
-            {column_arrays[2].map(listItem =><><Card {...listItem}/></>)}
+            {column_arrays[2].map(listItem =><><Card image={listItem}/></>)}
           </ColumnContainer>
         </FeedDiv>
         {noMorePictures && 'No more pictures'}

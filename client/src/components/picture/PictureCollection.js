@@ -6,6 +6,7 @@ const PictureCollection = (props) => {
   const id = props.collectionId
   const [ picIds, setPicIds ] = useState([])
   
+  console.log(id)
   useEffect(() => {
     axios.get(`/api/collections/${id}/collection_pictures`)
       .then(res => {
@@ -18,7 +19,7 @@ const PictureCollection = (props) => {
     <>
       {picIds.map(pic => (
         <>
-          <CollectionImage picId={pic.picture_id}/> 
+          <CollectionImage toggle={props.toggle} picId={pic.picture_id}/> 
         </> 
       ))}
     </>
