@@ -20,7 +20,7 @@ class BottomFeed extends React.Component {
   render() {
     return (
       <>
-        <ShowModal /> 
+        <ShowModal isCurrentUser={ this.props.isCurrentUser } /> 
         <FeedDiv>
           { this.renderPictures() }
         </FeedDiv> 

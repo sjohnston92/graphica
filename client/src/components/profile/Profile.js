@@ -34,7 +34,7 @@ class Profile extends React.Component {
   renderBottom = () => {
     switch(this.state.currentTab) {
       case "recent":
-        return this.state.user ? <BottomFeed user={this.state.user} /> : null
+        return this.state.user ? <BottomFeed user={this.state.user} isCurrentUser={this.state.isCurrentUser} /> : null
           // collections modal needs to go next to showModal below (it's the second button)
       case "collections":
         return this.state.user ? <CollectionTab user={this.state.user} /> : null
