@@ -2,7 +2,7 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 
 
-class UpdateProfileImage extends React.Component {
+class UpdateBannerImage extends React.Component {
 
   state = { formValues: { file: '' }, };
 
@@ -13,7 +13,7 @@ class UpdateProfileImage extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log('formsubmit')
-    this.props.updateUserProfileImage(this.props.user.id, this.state.formValues)
+    this.props.updateUserBannerImage(this.props.user.id, this.state.formValues)
       .then((user) => this.props.setUser(user))
       .catch(console.log)
   }
@@ -35,7 +35,7 @@ class UpdateProfileImage extends React.Component {
             )
           }}
         </Dropzone>
-        <button type="submit" >Update Profile Image</button>
+        <button type="submit" >Update Banner Image</button>
       </form>
     )
   }
@@ -54,4 +54,4 @@ const styles = {
   },
 }
 
-export default UpdateProfileImage;
+export default UpdateBannerImage;

@@ -40,27 +40,47 @@ export class AuthProvider extends React.Component {
       })
   }
 
-  updateUser = (id, user) => {
+  updateUser = (id, user) => new Promise((resolve, reject) => {
     axios.put(`/api/users/${id}`, user)
-      .then( res => this.setState({ user: res.data }))
-      .catch(console.log)
-  }
+      .then( res => {
+        this.setState({ user: res.data });
+        resolve(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        reject(err);
+      })
+  });
   
   updateUserProfileImage = (id, user) => {
-    let data = new FormData()
-    data.append('file', user.file)
-    axios.put(`/api/users/${id}/profile_image`, data)
-      .then( res => this.setState({ user: res.data }))
-      .catch(console.log)
+    return new Promise((resolve, reject) => {
+      let data = new FormData()
+      data.append('file', user.file)
+      axios.put(`/api/users/${id}/profile_image`, data)
+        .then( res => {
+          this.setState({ user: res.data });
+          resolve(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        })
+    })
   }
 
-  updateUserBannerImage = (id, user) => {
+  updateUserBannerImage = (id, user) => new Promise((resolve, reject) => {
     let data = new FormData()
     data.append('file', user.file)
     axios.put(`/api/users/${id}/banner_image`, data)
-      .then( res => this.setState({ user: res.data }))
-      .catch(console.log)
-  }
+      .then( res => {
+        this.setState({ user: res.data });
+        resolve(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        reject(err);
+      })
+  })
   
   render() {
     return (

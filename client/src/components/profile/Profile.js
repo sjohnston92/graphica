@@ -6,17 +6,26 @@ import ProfileHero from './ProfileHero';
 import CollectionTab from './CollectionTab';
 import SettingsTab from './SettingsTab';
 import axios from "axios";
+import { AuthConsumer } from "../../providers/AuthProvider";
 
 
 class Profile extends React.Component {
-  state = { currentTab: "recent", user: null }
+  state = { currentTab: "recent", user: null, isCurrentUser: false }
   
   componentDidMount() {
     this.props.toggleCatbar(false)
     axios.get(`/api/users/${this.props.match.params.id}`)
-      .then((res) => this.setState({ user: res.data }))
+      .then((res) => {
+        const { user: { id } } = this.props.auth;
+        const isCurrentUser = res.data.id === id;
+        this.setState({ user: res.data, isCurrentUser });
+      })
       .catch(console.log);
   } 
+
+  setUser = (user) => {
+    this.setState({ user });
+  }
 
   changeTab = (currentTab) => {
     this.setState({ currentTab });
@@ -32,7 +41,7 @@ class Profile extends React.Component {
       case "favorites":
         return <p>Favorites go here</p>
       case "settings":
-        return this.state.user ? <SettingsTab user={this.state.user} /> : null
+        return this.state.user ? <SettingsTab setUser={this.setUser} user={this.state.user} /> : null
       default:
         return null
     }
@@ -42,7 +51,7 @@ class Profile extends React.Component {
     return (
       <Wrapper>
         { this.state.user && <ProfileHero user={this.state.user} /> }
-        <ProfileNavbar changeTab={this.changeTab} />
+        <ProfileNavbar changeTab={this.changeTab} isCurrentUser={this.state.isCurrentUser}/>
         <Line />
         <br></br>
         <ProfileBottom>
@@ -66,4 +75,10 @@ const ProfileBottom = styled.div`
   width: 100%;
 `
 
-export default Profile;
+const ConnectedProfile = (props) => (
+  <AuthConsumer>
+    { (auth) => <Profile {...props} auth={auth} /> }
+  </AuthConsumer>
+)
+
+export default ConnectedProfile;

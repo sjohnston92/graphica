@@ -3,6 +3,7 @@ import { AuthConsumer, } from "../../providers/AuthProvider";
 import { Form, Grid, Image, Container, Divider, Header, Button, } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone';
 import UpdateProfileImage from './UpdateProfileImage';
+import UpdateBannerImage from './UpdateBannerImage';
 
 const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png';
 
@@ -36,6 +37,9 @@ class Profile extends React.Component {
     const { formValues: { first_name, last_name, email, file, tagline }} = this.state
     const { auth: { user, updateUser }} = this.props
     updateUser(user.id, { first_name, last_name, email, file, tagline })
+      .then((user) => this.props.setUser(user))
+      .catch(console.log)
+      
     this.setState({
       editing: false,
       formValues: {
@@ -62,12 +66,14 @@ class Profile extends React.Component {
   }
 
   editView = () => {
-    const { auth: { user, updateUserProfileImage }, } = this.props;
+    const { auth: { user, updateUserProfileImage, updateUserBannerImage }, } = this.props;
     const { formValues: { first_name, last_name, email, file, tagline } } = this.state;
 
     return (
+      
       <>
-        <UpdateProfileImage updateUserProfileImage={updateUserProfileImage} user={user} />
+        <UpdateProfileImage updateUserProfileImage={updateUserProfileImage} user={user} setUser={this.props.setUser} />
+        <UpdateBannerImage updateUserBannerImage={updateUserBannerImage} user={user} setUser={this.props.setUser} />
         <Form onSubmit={this.handleSubmit}>
           <Grid.Column width={4}>
           </Grid.Column>
