@@ -32,7 +32,9 @@ const Card = (props) => {
 
   }, [])
 
-  const updateViewsState = () => setViews(views + 1)
+  const updateViewsState = (incomingId) => {
+    if (id === incomingId) {setViews(views + 1)}
+    }
 
   const toggleAndSetId = () => {
     props.setImageId(id)
@@ -41,7 +43,7 @@ const Card = (props) => {
   return (
     <CardBorder>
       <Modal onClose={toggle} open={open}>     
-          <PictureShow updateViews={updateViewsState} />   
+          <PictureShow updateViewsState={updateViewsState} />   
       </Modal>       
       <CardDiv>
         <StyledImage src={url} onClick={toggleAndSetId} />

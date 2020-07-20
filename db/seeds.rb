@@ -78,10 +78,13 @@ User.all.each do |user|
       for index in  (1..half_amount)
         CollectionPicture.create(collection_id: collection_1.id, picture_id: user.pictures[index].id)
       end
-      for index in (half_amount..(pic_amount - 1)) #puts one picture in both collections
+      for index in ((half_amount+1)..(pic_amount - 1)) 
+      # for index in (half_amount..(pic_amount -r 1)) #puts one picture in both collections
         CollectionPicture.create(collection_id: collection_2.id, picture_id: user.pictures[index].id)
       end
     end
+
+    
     
   end
 end

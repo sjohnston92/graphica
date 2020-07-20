@@ -53,10 +53,6 @@ export const ImageProvider = (props) => {
 
   const updateViews = (image) => {
     axios.patch(`/api/pictures/${image.id}`, {views: image.views+1, url: image.url, title: image.title, description: image.description, user_id: image.user_id, category_id: image.category_id})
-      .then(res => {
-        console.log("new image with views +1:", res.data)
-      })
-      .catch(console.log)
   }
   const fetchCategoryName = (catId) => {
     return new Promise((resolve, reject) => {

@@ -24,7 +24,7 @@ const Home = (props) => {
           </HeroSubText>
         </HeroArea>
       </Hero>
-      <Feed/>  
+      <Feed />  
     </Wrapper>
   )
 }
