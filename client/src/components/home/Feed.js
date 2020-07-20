@@ -34,10 +34,9 @@ const Feed = (props) => {
     // console.log("getMOREfired")
     if(noMorePictures) return;
     props.searchPictures()
-    .then((pictures) => {
-      if(pictures.length < 6) setNoMorePictures(true);
-      setIsFetching(false);
-      // console.log("No more pictures?", noMorePictures)
+      .then((pictures) => {
+        if(pictures.length < 11) setNoMorePictures(true);
+        setIsFetching(false);
       })
       .catch(console.log)
   }

@@ -10,7 +10,6 @@ export const ImageProvider = (props) => {
   const [user, setUser] = useState("");
   const [userImage, setUserImage] = useState();
   
-
   const fetchUser = (userId) => {
     return new Promise((resolve, reject) => {
       axios.get(`/api/users/${userId}`)
@@ -83,7 +82,7 @@ export const ImageProvider = (props) => {
 
   const fetchCollection = (collectionId, userId) => {
     return new Promise((resolve, reject) => {
-      axios.get(`/api/users/${userId}/collections/${collectionId}`)     
+      axios.get(`/api/collections/${collectionId}`)     
         .then( res => {
         resolve(res)
       })

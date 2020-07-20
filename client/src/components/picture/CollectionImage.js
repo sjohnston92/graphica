@@ -15,7 +15,7 @@ const CollectionImage = (props) => {
   
   const setImageId = () => {
     props.setImageId(id)
-    props.runFetch(id)
+    // props.runFetch(id)
   }
   return  (
     <>

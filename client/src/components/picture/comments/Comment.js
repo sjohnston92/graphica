@@ -107,7 +107,7 @@ background-image: url(${props => props.image});
   border-radius: 100%;
   height: 30px;
   width: 30px;  
-  cursor: pointer
+  cursor: pointer;
 `
 const DeleteButton = styled.div `
 background-image: url(${props => props.image});
@@ -117,7 +117,7 @@ background-image: url(${props => props.image});
   border-radius: 100%;
   height: 30px;
   width: 30px;  
-  cursor: pointer
+  cursor: pointer;
 `
 const StyledUserImage = styled.div `
   background-image: url(${props => props.image});

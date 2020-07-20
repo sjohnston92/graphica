@@ -34,7 +34,7 @@ require Rails.root.join("data", "urls.rb")
   Category.create(title: "Technology") #7
     
 colors = []
-6.times do
+2.times do
   color = Faker::Color.color_name
   colors << color
 end
@@ -44,7 +44,7 @@ IMAGE_URLS.map { |url|
   Picture.create(
     category_id: (rand(7)+1), 
     user_id: (rand(4)+1), 
-    title: "#{colors[rand(6)]}  #{Faker::Dessert.variety}".titleize,
+    title: "#{colors[rand(2)]}  #{Faker::Dessert.variety}".titleize,
     url: url,
     description: Faker::Lorem.sentence(word_count: 3, supplemental: true),
     views: rand(700)
@@ -62,10 +62,12 @@ User.all.each do |user|
     collection_2 = Collection.create(user_id: user.id, title: Faker::Movies::HarryPotter.location)
     
     if pic_amount > 0
-      for index in  (0..half_amount)
+      # for index in  (0..half_amount)
+      for index in (0..pic_amount-1)
         CollectionPicture.create(collection_id: collection_1.id, picture_id: user.pictures[index].id)
       end
-      for index in ((half_amount+1)..(pic_amount - 1)) 
+      # for index in ((half_amount+1)..(pic_amount - 1)) 
+      for index in (0..pic_amount-1)
         CollectionPicture.create(collection_id: collection_2.id, picture_id: user.pictures[index].id)
       end
     end
