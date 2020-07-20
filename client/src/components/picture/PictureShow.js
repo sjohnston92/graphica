@@ -12,11 +12,16 @@ const PictureShow = (props) => {
   const [image, setImage] = useState([])
   const [junctionList, setJunctionList ] = useState(null)
   const [showAllCollections, setShowAllCollections ] = useState(false)
-  const [junctionSlice, setJunctionSlice ] = useState(null)
 
   useEffect(() => runFetch(props.imageId), [props.imageId])
 
+  useEffect(() => reloadCollections(), [junctionList])
+
+  const reloadCollections = () => {
+    console.log('juntion list changed')
+  }
   const runFetch = (id) => {
+    setJunctionList(null) //START HERE, try to get it so it doesn't reload everytime
     props.fetchImage(id)
       .then(res => {
         setImage(res.data)
@@ -32,7 +37,6 @@ const PictureShow = (props) => {
 
         props.fetchJunction(id)
           .then(res => {
-              // setJunctionSlice(res.data.slice(1, res.data.length) )
               setJunctionList(res.data)
             })
           .catch(console.log)
@@ -52,88 +56,40 @@ const PictureShow = (props) => {
     setComments( comments.filter( a => a.id !== incomingId ))
   }
 
-console.log(junctionSlice)
-  const checkJunctionList = () => {
-
-    if (junctionList) {
-      if (showAllCollections == false ){
-        return renderPictureCollection()
-      } else if (showAllCollections == true){
-        return renderPictureCollections()
-      }
-    }
-    // if (junctionList) {
-    //   if (junctionList.length > 1) {
-    //     return renderPictureCollection() 
-    //     } else return renderPictureCollections()    
-    // }
-  }
-  const renderPictureCollections = () => (
-    <>
-    <LinkDiv onClick={()=>setShowAllCollections(false)}> Show Less </LinkDiv>
-    {junctionList.map(jct => (
-      
-        <PictureCollection 
-          toggle={props.toggle} 
-          pictureCollection={jct}
-          runFetch={runFetch} 
-          fetchCollection={props.fetchCollection}
-          user={props.user}
-        />
-      
-    ))}
-    </>
-    
-  )
-
   const renderCollections = () => (
     <>
       {junctionList && 
         <>
-          { (showAllCollections)
-            ? 
+          { junctionList.length > 1 &&
+            <>
+              { (showAllCollections == false) 
+                ? <LinkDiv onClick={()=>setShowAllCollections(true)}> See All Collections </LinkDiv>
+                : <LinkDiv onClick={()=>setShowAllCollections(false)}> Show Less </LinkDiv>
+              }
+            </>
+          }
+          { showAllCollections 
+            ?
               <>
-              <LinkDiv onClick={()=>setShowAllCollections(false)}> Show Less </LinkDiv>
-                {/* {junctionSlice.map(jct => ( */}
-                 {junctionList.map(jct => (
-                    <PictureCollection 
-                      toggle={props.toggle} 
-                      pictureCollection={jct}
-                      runFetch={runFetch} 
-                      fetchCollection={props.fetchCollection}
-                      user={props.user}
-                    />
+                {junctionList.map(jct => (
+                  <PictureCollection 
+                    pictureCollection={jct}
+                    runFetch={runFetch} 
+                    fetchCollection={props.fetchCollection}
+                  />
                 ))}
               </> 
             :
               <>
-                  { junctionList.length > 1 &&
-                    <LinkDiv onClick={()=>setShowAllCollections(true)}> See All Collections </LinkDiv>
-                  }
                 <PictureCollection 
-                  toggle={props.toggle}
                   pictureCollection={junctionList[0]}
                   runFetch={runFetch} 
                   fetchCollection={props.fetchCollection}
-                  user={props.user}
                 /> 
               </>
           }
         </>
       }
-    </>
-  )
-
-  const renderPictureCollection = () => (
-    <>
-        <PictureCollection 
-        toggle={props.toggle}
-        pictureCollection={junctionList[0]}
-        runFetch={runFetch} 
-        fetchCollection={props.fetchCollection}
-        user={props.user}
-        /> 
-        { junctionList.length > 1 && <LinkDiv onClick={()=>setShowAllCollections(true)}> ...Show More Collections </LinkDiv>}
     </>
   )
 
@@ -162,7 +118,6 @@ console.log(junctionSlice)
         <InfoLeft>{image.title}</InfoLeft>
       </PictureInfoDiv>
       <PictureCollectionDiv>
-          {/* { checkJunctionList() } */}
           {renderCollections()}
       </PictureCollectionDiv>
       <PictureDescriptionDiv>
