@@ -46,6 +46,7 @@ const Card = (props) => {
           <PictureShow updateViewsState={updateViewsState} />   
       </Modal>       
       <CardDiv>
+        <StyledText>{props.image.title}</StyledText>
         <StyledImage src={url} onClick={toggleAndSetId} />
       </CardDiv>
       <PointerOff>
@@ -67,8 +68,31 @@ const Card = (props) => {
 const StyledImage = styled.img`
   width: 100%
 `
+const StyledText = styled.div`
+  position: absolute;
+  z-index: 999;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 1rem; 
+  text-align: left;
+  width: 90%;
+  opacity: 0;
+  
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+
+`
 const CardDiv = styled.div`
   cursor: zoom-in;
+  position: relative;
+  display: inline-block;
+    &:hover ${StyledText} {
+        opacity: 1.0;
+  }
 `
 const PointerOff = styled.div`
   width: 100%

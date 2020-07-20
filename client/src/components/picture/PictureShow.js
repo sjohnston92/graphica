@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
-import PictureComments from './PictureComments'
-import CommentBar from './CommentBar';
+import Comments from './comments/Comments'
+
 import PictureCollection from './PictureCollection';
 import { ImageConsumer } from '../../providers/ImageProvider'
 
@@ -78,7 +77,7 @@ const PictureShow = (props) => {
           </UserLeftContent>
         </UserInfoLeft>
         <UserInfoRight>
-          {image.views + 1} views
+          {image.views && <>{image.views + 1} views </>}
         </UserInfoRight>
       </UserInfoDiv>
       <PictureDiv>
@@ -104,25 +103,7 @@ const PictureShow = (props) => {
         </InfoRight>
       </PictureDescriptionDiv>
       <Description> {image.first_namedescription} </Description>
-      <FeedbackDiv>
-        <InfoLeft>
-          Feedback
-        </InfoLeft>
-        <InfoRight>
-          {comments.length} 
-          {comments.length !== 1 ? " responses" : " response" }
-        </InfoRight>
-        <Rectangle>
-          <CommentBar id={pictureId} setStatePictureShow={setStatePictureShow}/>
-        </Rectangle>
-      <CommentsDiv>
-          {comments.map((comment, index) => (
-            <>
-               <PictureComments key={comment.id} {...comment} deleteCommentState={deleteCommentState}/>
-            </>
-          ))}
-      </CommentsDiv>
-      </FeedbackDiv>
+      <Comments comments={comments} pictureId={pictureId} setStatePictureShow={setStatePictureShow} deleteCommentState={deleteCommentState}/>
    </Wrapper>
   )
 }
@@ -214,17 +195,7 @@ const Description = styled.div`
   width: 100%;
   margin-top: 1rem;
 `
-const CommentsDiv = styled.div`
-  width: 100%;
-  margin-top: 1rem;
-  padding-bottom: 10rem;
-`
-const Rectangle = styled.div`
-  width: 708px;
-  height: 35.24px;
-  background-color: white;
-  border-style: solid;
-`
+
 
 const ConnectedPictureShow = (props) => (
   <ImageConsumer>

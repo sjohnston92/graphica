@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { AuthConsumer } from '../../providers/AuthProvider';
+import { AuthConsumer } from '../../../providers/AuthProvider';
 
-const PictureComments = (props) => {
+const Comment = (props) => {
   const userId = props.user_id
   const [userName, setUserName] = useState()
   const [userImage, setUserImage] = useState("https://images.unsplash.com/photo-1588948138600-bc75fd417834?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80")
@@ -99,14 +99,16 @@ const StyledUserImage = styled.div `
   width: 30px;  
 `
 const BodyDiv = styled.div`
-  background: grey;
+  background: #F4F4F4;
   padding-botton: 2rem;
+  display: flex;
+  width: 40rem;
 `
 
-const ConnectedPictureComments = (props) => (
+const ConnectedComment = (props) => (
   <AuthConsumer>
-    {(value) => <PictureComments {...props} {...value} />}
+    {(value) => <Comment {...props} {...value} />}
   </AuthConsumer>
 );
 
-export default ConnectedPictureComments;
+export default ConnectedComment;
