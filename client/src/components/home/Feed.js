@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Card from './Card';
 import styled from 'styled-components';
 import { FeedConsumer } from '../../providers/FeedProvider'
-import PictureShow from '../picture/PictureShow';
 
 const Feed = (props) => {
   const [listItems, setListItems] = useState([]);
@@ -27,15 +25,19 @@ const Feed = (props) => {
   function handleScroll() {
     if ((window.innerHeight + window.pageYOffset) >= document.body.scrollHeight - 1000) {
       setIsFetching(true);
+      // console.log(isFetching)
+      
     }
   }
-
+  
   function getMore() {
+    // console.log("getMOREfired")
     if(noMorePictures) return;
     props.searchPictures()
-      .then((pictures) => {
-        if(pictures.length < 6) setNoMorePictures(true);
-        setIsFetching(false);
+    .then((pictures) => {
+      if(pictures.length < 6) setNoMorePictures(true);
+      setIsFetching(false);
+      // console.log("No more pictures?", noMorePictures)
       })
       .catch(console.log)
   }

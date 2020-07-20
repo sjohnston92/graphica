@@ -12,23 +12,27 @@ export const FeedProvider = (props) => {
   const [categoryId, setCategoryId] = useState(null);
   const [searching, setSearching ] = useState(false);
 
-  const categorySearch = () => {
+  const categorySearch = (catId) => {
     setSearching(true)
-    setPictures([])
-    axios.get(`/api/pictures/?search=${query}&limit=11&offset=${0}&category_id=${categoryId}`)
+    console.log("Category Id:", categoryId)
+    console.log("CATEGORY SEARCH FIRED")
+    console.log("pictures.length",pictures.length)
+    console.log("query", query)
+    axios.get(`/api/pictures/?search=${query}&limit=11&offset=${0}&category_id=${catId}`)
       .then(res => {
-        setPictures(pictures.concat(res.data));
+        setPictures(res.data);
         setSearching(false);
-        setCategoryId(null)
+        // setCategoryId(null)
       })
       .catch(console.log)
   }
 
   const searchPictures = () => {
     return new Promise((resolve, reject) => {
+      setCategoryId(null)
       setSearching(true)
-      console.log("FIRED")
-      console.log(pictures.length)
+      console.log(" REGULAR SEARCH FIRED")
+      console.log("pictures.length",pictures.length)
       console.log("query", query)
       axios.get(`/api/pictures/?search=${query}&limit=11&offset=${pictures.length}&category_id=${categoryId}`)
         .then(res => {
@@ -46,10 +50,11 @@ export const FeedProvider = (props) => {
 
   const resetAndSearchPictures = () => {
     return new Promise((resolve, reject) => {
+      setCategoryId(null)
       setSearching(true)
-      // console.log("FIRED")
-      // console.log(pictures.length)
-      // console.log("query", query)
+      console.log("RESET SEARCH FIRED")
+      console.log(pictures.length)
+      console.log("query", query)
       axios.get(`/api/pictures/?search=${query}&limit=11&offset=${0}&category_id=${categoryId}`)
         .then(res => {
           setPictures(res.data);
