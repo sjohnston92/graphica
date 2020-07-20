@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter, } from 'react-router-dom';
 import { AuthProvider, } from "./providers/AuthProvider";
-import { PictureProvider, } from "./providers/PictureProvider";
+import { FeedProvider, } from "./providers/FeedProvider";
 import { ImageProvider } from './providers/ImageProvider'
 
 import 'semantic-ui-css/semantic.min.css';
@@ -14,13 +14,13 @@ initMiddleware()
 ReactDOM.render(
   <React.StrictMode>
    <AuthProvider>
-     <PictureProvider>
+     <FeedProvider>
         <ImageProvider>
           <BrowserRouter>
             <App />
           </BrowserRouter>
        </ImageProvider>
-     </PictureProvider>
+     </FeedProvider>
   </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')

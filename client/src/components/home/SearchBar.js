@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form } from 'semantic-ui-react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { PictureConsumer } from '../../providers/PictureProvider'
+import { FeedConsumer } from '../../providers/FeedProvider'
 import useTrigger from '../../hooks/useTrigger'
 
 const SearchBar = (props) => {
@@ -32,9 +32,9 @@ box-sizing: border-box;
 outline: none
 `
 const ConnectedSearchBar = (props) => (
-  <PictureConsumer>
+  <FeedConsumer>
     {(value) => <SearchBar {...props} {...value} />}
-  </PictureConsumer>
+  </FeedConsumer>
 );
 
 export default ConnectedSearchBar;

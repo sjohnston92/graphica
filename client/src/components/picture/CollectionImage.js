@@ -6,12 +6,10 @@ import Modal from '../modal/Modal';
 import { ImageConsumer } from '../../providers/ImageProvider'
 import PictureShow from '../picture/PictureShow'
 
-
 const CollectionImage = (props) => {
   const [ picture, setPicture ] = useState()
   const { open, toggle } = useModal();
   const id = props.picId
-
 
   useEffect (() => {
     axios.get(`/api/pictures/${props.picId}`)
@@ -19,7 +17,6 @@ const CollectionImage = (props) => {
       .catch(console.log)
   }, [] )
   
-
   const setImageId = () => {
     props.setImageId(id)
     props.runFetch(id)

@@ -13,15 +13,14 @@ const PictureComments = (props) => {
   useEffect(() => {
     axios.get(`/api/users/${userId}`)
       .then(res => {
-        setUserName(res.data.first_name)//this could be refactored into a Provider
-        setUserImage(res.data.image) 
+          setUserName(res.data.first_name)
+          setUserImage(res.data.image) 
       })
       .catch(console.log)
   }, [])
 
   const toggleEdit = () => {
     setEditing(!editing)
-    // editing ? handleSubmit() : null; ##this doesn't work but I'd like to have the editing button submit the form at some point
   }
   
   const handleSubmit = (e) => {
@@ -60,7 +59,7 @@ const PictureComments = (props) => {
           </>
         :
           <>
-          {body}
+            {body}
           </>
         }
       </BodyDiv>
@@ -75,9 +74,8 @@ const PictureComments = (props) => {
             : null
           }
         </>
-     : null }
+      : null }
       </>
-
     </>
   )
 }

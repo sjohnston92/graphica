@@ -6,7 +6,6 @@ const PictureCollection = (props) => {
   const id = props.collectionId
   const [ picIds, setPicIds ] = useState([])
   
-  // console.log(id)
   useEffect(() => {
     axios.get(`/api/collections/${id}/collection_pictures`)
       .then(res => {

@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
 const ImageContext = React.createContext();
 
 export const ImageConsumer = ImageContext.Consumer;
 
 export const ImageProvider = (props) => {
-  
   const [imageId, setImageId] = useState();
   const [user, setUser] = useState("");
   const [userImage, setUserImage] = useState();
-
+  
 
   const fetchUser = (userId) => {
     return new Promise((resolve, reject) => {
@@ -43,6 +41,7 @@ export const ImageProvider = (props) => {
     return new Promise((resolve, reject) => {
       axios.get(`/api/pictures/${id}`)
       .then( res => {
+        updateViews(res.data)
         resolve(res)
       })
       .catch((err) => {
@@ -52,6 +51,13 @@ export const ImageProvider = (props) => {
     })
   }
 
+  const updateViews = (image) => {
+    axios.patch(`/api/pictures/${image.id}`, {views: image.views+1, url: image.url, title: image.title, description: image.description, user_id: image.user_id, category_id: image.category_id})
+      .then(res => {
+        console.log("new image with views +1:", res.data)
+      })
+      .catch(console.log)
+  }
   const fetchCategoryName = (catId) => {
     return new Promise((resolve, reject) => {
       axios.get(`/api/categories/${catId}`)
@@ -94,7 +100,6 @@ export const ImageProvider = (props) => {
 
   return(
     <ImageContext.Provider value={{
-      // imageUser,
       fetchUser,
       user,
       userImage,
@@ -105,15 +110,6 @@ export const ImageProvider = (props) => {
       fetchCollection,
       imageId,
       setImageId,
-      // commentsLength,
-      // pictures,
-      // searching,
-      // resetPictures,
-      // resetAndSearchPictures,
-      // setQuery,
-      // query,
-      // searchPictures,
-      // offset: pictures.length,
     }}> 
       { props.children }
     </ImageContext.Provider>     

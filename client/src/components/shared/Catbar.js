@@ -3,7 +3,7 @@ import { Menu, Button} from 'semantic-ui-react'
 import { Link, withRouter, } from 'react-router-dom'
 import axios from 'axios';
 import styled from 'styled-components'
-import { PictureConsumer } from '../../providers/PictureProvider'
+import { FeedConsumer } from '../../providers/FeedProvider'
 
 
 const Catbar = (props) => {
@@ -52,9 +52,9 @@ const Catbar = (props) => {
   )  
 }
 const ConnectedCatbar = (props) => (
-  <PictureConsumer>
+  <FeedConsumer>
     {(value) => <Catbar {...props} {...value} />}
-  </PictureConsumer>
+  </FeedConsumer>
 );
 
 export default ConnectedCatbar;

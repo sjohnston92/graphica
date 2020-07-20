@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from './Card';
 import styled from 'styled-components';
-import { PictureConsumer } from '../../providers/PictureProvider'
+import { FeedConsumer } from '../../providers/FeedProvider'
 import PictureShow from '../picture/PictureShow';
 
 const Feed = (props) => {
@@ -96,9 +96,9 @@ const ColumnContainer = styled.div`
 `
 
 const ConnectedFeed = (props) => (
-  <PictureConsumer>
+  <FeedConsumer>
     {(value) => <Feed {...props} {...value} />}
-  </PictureConsumer>
+  </FeedConsumer>
 );
 
 export default ConnectedFeed;
