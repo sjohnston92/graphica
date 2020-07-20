@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { AuthConsumer } from '../../../providers/AuthProvider';
+import deleteImg from '../../../img/delete.png';
+import editImg from '../../../img/edit.jpg';
 
 const Comment = (props) => {
   const userId = props.user_id
@@ -39,15 +41,33 @@ const Comment = (props) => {
   }
 
   const deleteComment = () => {
-    axios.delete(`api/picture_comments/${props.id}`)
+    const result = window.confirm("Delete Comment?")
+    if (result) {
+      axios.delete(`api/picture_comments/${props.id}`)
       .then( res => props.deleteCommentState(props.id))
+    }
   }
 
   return (
     <>
       <UserDiv>
-        <StyledUserImage image={userImage} />
-        {userName}
+        <Left>
+          <StyledUserImage image={userImage} />
+          {userName}
+        </Left>
+        <Right>
+          {props.authenticated ? 
+            <>
+              {props.user.id === userId ? 
+                  <>
+                    <EditButton onClick={toggleEdit} image={editImg}/>
+                    <DeleteButton onClick={deleteComment} image={deleteImg} />
+                  </>
+                : null
+              }
+            </>
+          : null }
+        </Right>
       </UserDiv>
       <BodyDiv>
         {editing ?
@@ -63,24 +83,22 @@ const Comment = (props) => {
           </>
         }
       </BodyDiv>
-      <>
-      {props.authenticated ? 
-        <>
-          {props.user.id === userId ? 
-            <EditDeleteDiv>
-                <button onClick={toggleEdit}>Edit</button>
-                <button onClick={deleteComment}>Delete</button>
-              </EditDeleteDiv>
-            : null
-          }
-        </>
-      : null }
-      </>
     </>
   )
 }
 const UserDiv = styled.div`
+  display: flex;
   height: 45px;
+  justify-content: space-between;
+`
+const Left = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const Right = styled.div`
+  display: flex;
+  justify-content: right;
 `
 const EditDeleteDiv = styled.div`
   display: flex;
@@ -88,6 +106,24 @@ const EditDeleteDiv = styled.div`
   justify-content: space-between;
   width: 20rem;
   
+`
+const EditButton = styled.div `
+background-image: url(${props => props.image});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 100%;
+  height: 30px;
+  width: 30px;  
+`
+const DeleteButton = styled.div `
+background-image: url(${props => props.image});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 100%;
+  height: 30px;
+  width: 30px;  
 `
 const StyledUserImage = styled.div `
   background-image: url(${props => props.image});
