@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Menu, } from 'semantic-ui-react'
+import { Menu, Button} from 'semantic-ui-react'
 import { Link, withRouter, } from 'react-router-dom'
 import axios from 'axios';
 import styled from 'styled-components'
+import { PictureConsumer } from '../../providers/PictureProvider'
 
-const Catbar = () => {
+
+const Catbar = (props) => {
   const [cats, setCats] = useState([])
 
   useEffect(() => {
@@ -13,21 +15,46 @@ const Catbar = () => {
       .catch(console.log)
   }, [])
   
+
+
+  const handleClick1 = () => {  
+    props.setQuery("")
+    props.setCategoryId(1)
+    props.resetPictures()
+    props.categorySearch()
+    
+    // props.resetAndSearchPictures()
+  }
+  const handleClick2 = () => {  
+    props.setQuery("")
+    props.setCategoryId(2)
+    props.resetPictures()
+    props.categorySearch()
+    
+    // props.resetAndSearchPictures()
+  }
   return (
-    <div>
-        <Menu pointing secondary>
-      {cats.map((cat, index) => (
-          <Link to='/'>
-            <Menu.Item
-              name={cat.title}
-              id={cat.title}
-              // active={this.props.location.pathname === '/'} //START WORKING HERE
-            />
-          </Link>
-      ))}
-        </Menu>
-    </div>
+  <>
+      {/* {cats.map(cat => (
+      <> */}
+      <button onClick={handleClick1}>Animals</button>
+      <button onClick={handleClick2}>Art</button>
+
+      {/* <input value={cat.title} type="button"/> */}
+      {/* </>
+
+        )
+      )} */}
+   </>        
+      
+        
+    
   )  
 }
+const ConnectedCatbar = (props) => (
+  <PictureConsumer>
+    {(value) => <Catbar {...props} {...value} />}
+  </PictureConsumer>
+);
 
-export default Catbar
+export default ConnectedCatbar;

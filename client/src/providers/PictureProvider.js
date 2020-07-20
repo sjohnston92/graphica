@@ -12,12 +12,24 @@ export const PictureProvider = (props) => {
   const [categoryId, setCategoryId] = useState(null);
   const [searching, setSearching ] = useState(false);
 
+  const categorySearch = () => {
+    setSearching(true)
+    setPictures([])
+    axios.get(`/api/pictures/?search=${query}&limit=11&offset=${0}&category_id=${categoryId}`)
+      .then(res => {
+        setPictures(pictures.concat(res.data));
+        setSearching(false);
+        setCategoryId(null)
+      })
+      .catch(console.log)
+  }
+
   const searchPictures = () => {
     return new Promise((resolve, reject) => {
       setSearching(true)
-      // console.log("FIRED")
-      // console.log(pictures.length)
-      // console.log("query", query)
+      console.log("FIRED")
+      console.log(pictures.length)
+      console.log("query", query)
       axios.get(`/api/pictures/?search=${query}&limit=11&offset=${pictures.length}&category_id=${categoryId}`)
         .then(res => {
           setPictures(pictures.concat(res.data));
@@ -30,13 +42,14 @@ export const PictureProvider = (props) => {
         })
     })
   }
+  console.log("category Id", categoryId)
 
   const resetAndSearchPictures = () => {
     return new Promise((resolve, reject) => {
       setSearching(true)
-      console.log("FIRED")
-      console.log(pictures.length)
-      console.log("query", query)
+      // console.log("FIRED")
+      // console.log(pictures.length)
+      // console.log("query", query)
       axios.get(`/api/pictures/?search=${query}&limit=11&offset=${0}&category_id=${categoryId}`)
         .then(res => {
           setPictures(res.data);
@@ -59,6 +72,8 @@ export const PictureProvider = (props) => {
       resetPictures,
       resetAndSearchPictures,
       setQuery,
+      setCategoryId,
+      categorySearch,
       query,
       searchPictures,
       offset: pictures.length,

@@ -57,6 +57,11 @@ const Card = (props) => {
       
   
  //Change back to first pic on close
+
+  const toggleAndSetId = () => {
+    props.setImageId(id)
+    toggle()
+  }
   return (
     <CardBorder>
       <Modal onClose={toggle} open={open}>     
@@ -67,7 +72,7 @@ const Card = (props) => {
             user_id={user_id} 
             category_id={category_id} 
             title={title} 
-            id={id} 
+            // id={id} 
             url={url} 
             description={description} 
             views={views}
@@ -76,7 +81,7 @@ const Card = (props) => {
         
       </Modal>       
       <CardDiv>
-        <StyledImage src={url} onClick={toggle} />
+        <StyledImage src={url} onClick={toggleAndSetId} />
       </CardDiv>
       <PointerOff>
         <CardFooterLeft>

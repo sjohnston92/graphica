@@ -8,7 +8,7 @@ export const ImageConsumer = ImageContext.Consumer;
 
 export const ImageProvider = (props) => {
   
-  const [image, setImage] = useState([]);
+  const [imageId, setImageId] = useState();
   const [user, setUser] = useState("");
   const [userImage, setUserImage] = useState();
 
@@ -103,6 +103,8 @@ export const ImageProvider = (props) => {
       fetchCategoryName,
       fetchJunction,
       fetchCollection,
+      imageId,
+      setImageId,
       // commentsLength,
       // pictures,
       // searching,

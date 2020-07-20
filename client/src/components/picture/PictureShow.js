@@ -7,7 +7,9 @@ import PictureCollection from './PictureCollection';
 import { ImageConsumer } from '../../providers/ImageProvider'
 
 const PictureShow = (props) => {
-  const id = props.id;
+  // const id = props.id;
+  const pictureId = props.imageId
+
   // const url = image.url;
   // const user = props.user;
   // const description = image.description;
@@ -23,8 +25,19 @@ const PictureShow = (props) => {
   const [image, setImage] = useState([])
   const [junctionList, setJunctionList ] = useState("HELLO LIST!!!!!")
 
+  useEffect(()=> {
+
+    console.log("Component has been updated")
+  })
+
   useEffect(() => {
     
+    runFetch(pictureId)
+
+  }, [])
+
+
+  const runFetch = (id) => {
     setJunctionList(id)
     props.fetchImage(id)
       .then(res => {
@@ -64,9 +77,13 @@ const PictureShow = (props) => {
     
         
         // updateViews()
-  }, [])
 
+  }
+    const setImagePictureShow = () => {
 
+      runFetch()
+
+    }
   //     axios.get(`/api/pictures/${id}/collection_pictures`) 
   //       .then(res => {
   //           mapData(res.data) 
@@ -156,7 +173,7 @@ const PictureShow = (props) => {
         </InfoRight> 
       </PictureInfoDiv>
       <PictureCollectionDiv>
-          {collectionId && <PictureCollection toggle={props.toggle} collectionId={collectionId}/> }
+          {collectionId && <PictureCollection toggle={props.toggle} collectionId={collectionId} runFetch={runFetch} /> }
         {/* { (collectionIds[1]) && <PictureCollection collectionId={collectionIds[1]}/> } */}
       </PictureCollectionDiv>
       <PictureDescriptionDiv>
@@ -177,7 +194,7 @@ const PictureShow = (props) => {
           {comments.length !== 1 ? " responses" : " response" } */}
         </InfoRight>
         <Rectangle>
-          <CommentBar id={id} setStatePictureShow={setStatePictureShow}/>
+          <CommentBar id={pictureId} setStatePictureShow={setStatePictureShow}/>
         </Rectangle>
       <CommentsDiv>
           {comments.map((comment, index) => (

@@ -19,13 +19,14 @@ const CollectionImage = (props) => {
       .catch(console.log)
   }, [] )
   
-  const handleClick = () => {
-    toggle()
+
+  const setImageId = () => {
+    props.setImageId(id)
+    props.runFetch(id)
   }
-  
   return  (
     <>
-    {picture && <StyledImage image={picture.url} onClick={toggle}/> } 
+    {picture && <StyledImage image={picture.url} onClick={setImageId}/> } 
     <Modal onClose={toggle} open={open}>     
         <PictureShow 
           id={id}

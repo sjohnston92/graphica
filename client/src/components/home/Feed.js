@@ -12,19 +12,7 @@ const Feed = (props) => {
   
   useEffect(() => {
     props.searchPictures();
-    //   .then((pictures) => setListItems(pictures))
-    //   .catch(console.log)
-    // axios.get("/api/pictures/?limit=9")
-    //   .then( res => setListItems(res.data))
-    //   .catch(console.log)
   }, [])
-
-  // useEffect(() => {
-  //   if (props.searching) {
-  //     setListItems(props.pictures)
-  //     setNoMorePictures(true)
-  //   } 
-  // })
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -50,11 +38,6 @@ const Feed = (props) => {
         setIsFetching(false);
       })
       .catch(console.log)
-    // axios.get(`/api/pictures/?limit=6&offset=${listItems.length}`)
-    //   .then( res => {
-    //     setListItems(listItems.concat(res.data))
-    //   })
-    //   .catch(console.log)
   }
 
   const renderColumns = () => {
