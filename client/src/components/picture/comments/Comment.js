@@ -95,17 +95,9 @@ const Left = styled.div`
   display: flex;
   flex-direction: column;
 `
-
 const Right = styled.div`
   display: flex;
   justify-content: right;
-`
-const EditDeleteDiv = styled.div`
-  display: flex;
-  align-items: right;
-  justify-content: space-between;
-  width: 20rem;
-  
 `
 const EditButton = styled.div `
 background-image: url(${props => props.image});
@@ -115,6 +107,7 @@ background-image: url(${props => props.image});
   border-radius: 100%;
   height: 30px;
   width: 30px;  
+  cursor: pointer
 `
 const DeleteButton = styled.div `
 background-image: url(${props => props.image});
@@ -124,6 +117,7 @@ background-image: url(${props => props.image});
   border-radius: 100%;
   height: 30px;
   width: 30px;  
+  cursor: pointer
 `
 const StyledUserImage = styled.div `
   background-image: url(${props => props.image});

@@ -77,7 +77,7 @@ const StyledText = styled.div`
   top: 1rem; 
   text-align: left;
   width: 90%;
-  opacity: 0;
+  visibility: hidden;
   
   font-family: Montserrat;
   font-style: normal;
@@ -91,7 +91,7 @@ const CardDiv = styled.div`
   position: relative;
   display: inline-block;
     &:hover ${StyledText} {
-        opacity: 1.0;
+        visibility: visible;
   }
 `
 const PointerOff = styled.div`

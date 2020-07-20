@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios'
-import useModal from '../../hooks/useModal';
-import Modal from '../modal/Modal';
 import { ImageConsumer } from '../../providers/ImageProvider'
-import PictureShow from '../picture/PictureShow'
 
 const CollectionImage = (props) => {
   const [ picture, setPicture ] = useState()
-  const { open, toggle } = useModal();
   const id = props.picId
 
   useEffect (() => {
@@ -24,15 +20,9 @@ const CollectionImage = (props) => {
   return  (
     <>
     {picture && <StyledImage image={picture.url} onClick={setImageId}/> } 
-    <Modal onClose={toggle} open={open}>     
-        <PictureShow 
-          id={id}
-        />
-      </Modal>
     </>
   ) 
 }
-
 
 const StyledImage = styled.div`
   background-image: url(${props => props.image});
@@ -42,8 +32,8 @@ const StyledImage = styled.div`
   margin: 1rem;
   height: 80px;
   width: 80px;
+  cursor: zoom-in;
 `
-
 
 const ConnectedCollectionImage = (props) => (
   <ImageConsumer>
