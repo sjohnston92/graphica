@@ -3,7 +3,7 @@ import BottomFeed from './BottomFeed';
 
 const CollectionTab = () => (
   <>
-    <BottomFeed />
+    {/* <BottomFeed /> */}
   </>
 )
 

@@ -18,11 +18,11 @@ const App = () => {
   const [showCatbar, setShowCatbar] = useState(false)
   const toggleCatbar = (show) => setShowCatbar(show)
 
-  const LoadHome = () => { return <Home toggleCatbar={toggleCatbar}/>}
-  const LoadProfile = () => { return <Profile toggleCatbar={toggleCatbar}/> }
-  const LoadCollection = () => { return <Collection toggleCatbar={toggleCatbar}/> }
-  const LoadLogin = () => { return <Login toggleCatbar={toggleCatbar}/>}
-  const LoadRegister = () => { return <Register toggleCatbar={toggleCatbar}/>}
+  const LoadHome = (props) => { return <Home {...props} toggleCatbar={toggleCatbar}/>}
+  const LoadProfile = (props) => { return <Profile {...props} toggleCatbar={toggleCatbar}/> }
+  const LoadCollection = (props) => { return <Collection {...props} toggleCatbar={toggleCatbar}/> }
+  const LoadLogin = (props) => { return <Login {...props} toggleCatbar={toggleCatbar}/>}
+  const LoadRegister = (props) => { return <Register {...props} toggleCatbar={toggleCatbar}/>}
 
   return(
     <>
@@ -32,7 +32,7 @@ const App = () => {
         <Switch>
           <Route exact path='/' render={LoadHome} />
           <Route exact path='/Feed' component={PictureCollection} />
-          <Route exact path='/profile' render={LoadProfile} />
+          <Route exact path='/profile/:id' render={LoadProfile} />
           <Route exact path='/collection' render={LoadCollection} />
           <Route exact path='/dash' component={Dash} />
           <Route exact path='/login' render={LoadLogin} />

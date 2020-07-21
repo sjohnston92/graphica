@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProfileNavbar = ({ changeTab }) => (
+const ProfileNavbar = ({ changeTab, isCurrentUser }) => (
   <div>
     <button onClick={() => changeTab("recent")}>
       recent
@@ -8,12 +8,14 @@ const ProfileNavbar = ({ changeTab }) => (
     <button onClick={() => changeTab("collections")}>
       collection
     </button>
-    <button onClick={() => changeTab("favorites")}>
+    {/* <button onClick={() => changeTab("favorites")}>
       favorites
-    </button> 
-    <button onClick={() => changeTab("settings")}>
-      settings
-    </button>
+    </button>  */}
+    { isCurrentUser &&
+      <button onClick={() => changeTab("settings")}> 
+        settings
+      </button>
+    }
   </div>
 )
 
