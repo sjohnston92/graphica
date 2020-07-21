@@ -29,6 +29,7 @@ const Home = (props) => {
   )
 }
 const Wrapper = styled.div`
+  
 `
 const Hero = styled.div`
   width: 100%;

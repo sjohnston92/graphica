@@ -26,7 +26,7 @@ const AddCollectionButton = (props) => {
           { 
             (props.user.id === props.userId) &&
             <>
-                <button onClick={handleClick}>{ toggleForm ? <> Close </> : <> Add collection </> }</button>
+                <button onClick={handleClick}>{ toggleForm ? <> Close </> : <> Add to a collection </> }</button>
                 { toggleForm && 
                   <>
                     { !toggleNew &&  <AddCollectionToPicture handleCollectionId={handleCollectionId}/> }  

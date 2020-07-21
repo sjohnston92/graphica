@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Comments from './comments/Comments'
+import { Redirect, Link, NavLink } from 'react-router-dom';
 
 import PictureCollection from './PictureCollection';
 import { ImageConsumer } from '../../providers/ImageProvider'
 import EditPicture from './EditPicture'
 import AddCollectionButton from './AddCollectionButton';
+import RemoveImage from './RemoveImage';
 
 const PictureShow = (props) => {
   const [user, setUser ] = useState([]) 
@@ -65,8 +67,12 @@ const PictureShow = (props) => {
     //delete junctions.. maybe no need..
   }
 
-  const refreshCollectionState = (incomingJunctionId) => {
+  const refreshCollectionState = (incomingJunctionId) => { //RENAME
     setJunctionList(junctionList.concat(incomingJunctionId))
+  }
+
+  const refreshJunctionState = (incomingJunctionId) => {
+    setJunctionList(junctionList.filter(a => a.id !== incomingJunctionId))
   }
  
   const renderCollections = () => (
@@ -83,20 +89,25 @@ const PictureShow = (props) => {
         ?
           <>
             {junctionList.map(jct => (
-              <PictureCollection 
-                pictureCollection={jct}
-                runFetch={runFetch} 
-                fetchCollection={props.fetchCollection}
-              />
+              <>
+                <RemoveImage pictureCollection={jct} image={image} refreshJunctionState={refreshJunctionState}/>
+                <PictureCollection 
+                  pictureCollection={jct}
+                  runFetch={runFetch} 
+                  fetchCollection={props.fetchCollection}
+                />
+              </>
             ))}
           </> 
         :
           <>
+            <RemoveImage pictureCollection={junctionList[0]} image={image} refreshJunctionState={refreshJunctionState}/>
             <PictureCollection 
               pictureCollection={junctionList[0]}
               runFetch={runFetch} 
               fetchCollection={props.fetchCollection}
             /> 
+
           </>
       }
     </>
@@ -115,10 +126,12 @@ const PictureShow = (props) => {
         }
       <UserInfoDiv>
         <UserInfoLeft>
-          <UserImage image={user.image} />
+          <a href={`/Profile/${user.id}`}>
+            <UserImage image={user.image} />  
+          </a>
           <UserLeftContent>
             <NameDiv>
-              {user.first_name}
+              {user.first_name} {user.last_name}
             </NameDiv>
             <EmailDiv>
               {user.email}

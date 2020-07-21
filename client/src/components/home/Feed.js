@@ -56,7 +56,7 @@ const Feed = (props) => {
   }
     return (
       <>
-        { props.searching ? "Searching" : "Not Searching" }
+        {/* { props.searching ? "Searching" : "Not Searching" } */}
  
         <FeedDiv>
           <ColumnContainer>

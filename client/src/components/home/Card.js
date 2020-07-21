@@ -44,14 +44,18 @@ const Card = (props) => {
       <Modal onClose={toggle} open={open}>     
           <PictureShow updateViewsState={updateViewsState} toggleAndDelete={toggleAndDelete}/>   
       </Modal>       
-      <CardDiv>
+      <CardDiv onClick={toggleAndSetId} >
         <StyledText>{props.image.title}</StyledText>
-        <StyledImage src={url} onClick={toggleAndSetId} />
+        <StyledImage src={url}  />
       </CardDiv>
       <PointerOff>
         <CardFooterLeft>
-          <SmallImage image={user.image}/>
-          {user.first_name} 
+          <a href={`/Profile/${user.id}`}>
+            <SmallImage image={user.image}/>
+          </a>
+          <a href={`/Profile/${user.id}`}>
+            {user.first_name} {user.last_name}
+          </a>
         </CardFooterLeft>
         <CardFooterRight>
           <SmallImage image={commentsImage} />
@@ -107,6 +111,18 @@ const CardFooterLeft = styled.div`
   cursor: default;
   display: flex;
   align-items: center;
+  a:link {
+    color: black;
+  }
+  a:visited {
+    color: black;
+  }
+  a:hover {
+    color: black;
+  }
+  a:active {
+    color: black;
+  }
 `
 const SmallImage = styled.div`
   background-image: url(${props => props.image});
