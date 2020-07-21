@@ -65,6 +65,7 @@ const PictureShow = (props) => {
 
   const deleteImageState = () => {
     alert("image has been deleted")
+    props.toggleAndDelete(image.id)
     //ADD MUCH MORE TO DO
     //delete from state here & toggle modal
     //delete from feed state

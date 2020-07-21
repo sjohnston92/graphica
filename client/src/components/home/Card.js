@@ -40,10 +40,15 @@ const Card = (props) => {
     props.setImageId(id)
     toggle()
   }
+
+  const toggleAndDelete = (incomingId) => {
+    toggle()
+    props.updateFeedState(incomingId)
+  }
   return (
     <CardBorder>
       <Modal onClose={toggle} open={open}>     
-          <PictureShow updateViewsState={updateViewsState} />   
+          <PictureShow updateViewsState={updateViewsState} toggleAndDelete={toggleAndDelete}/>   
       </Modal>       
       <CardDiv>
         <StyledText>{props.image.title}</StyledText>
