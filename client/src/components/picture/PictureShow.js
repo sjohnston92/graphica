@@ -18,7 +18,7 @@ const PictureShow = (props) => {
   useEffect(() => reloadCollections(), [junctionList])
 
   const reloadCollections = () => {
-    console.log('juntion list changed')
+    // console.log('juntion list changed')
   }
   const runFetch = (id) => {
     setJunctionList(null) //START HERE, try to get it so it doesn't reload everytime
