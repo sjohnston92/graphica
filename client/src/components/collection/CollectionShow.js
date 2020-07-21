@@ -2,21 +2,28 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Navbar from '../shared/Navbar';
 import CollectionHeader from './CollectionHeader';
-import CollectionFeed from './CollectionFeed'
-
-
+import CollectionFeed from './CollectionFeed';
+import axios from 'axios';
 
 const CollectionShow = (props) => {
+  const [collection, setCollection ] = useState(null);
 
-  const description = props.description;
-  const title = props.title;
+  useEffect(() => {
+    console.log(props)
+    axios.get(`/api/collections/${props.match.params.id}`)
+    .then( res => setCollection(res.data))
+    .catch(console.log)
+  }, [])
 
   return(
     
       <Wrapper>
-        <Navbar />
-        <CollectionHeader />
-        <CollectionFeed />
+        {collection && 
+          <>
+            <CollectionHeader collection={collection}/>
+            {/* <CollectionFeed /> */}
+          </>
+        }
       </Wrapper>
   )
 }

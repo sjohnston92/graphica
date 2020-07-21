@@ -11,7 +11,7 @@ import Dash from './components/shared/Dash';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Feed from './components/home/Feed'
 import Profile from './components/profile/Profile';
-import Collection from './components/collection/Collection';
+import Collection from './components/collection/CollectionShow';
 import PictureCollection from './components/picture/PictureCollection'
 
 const App = () => {
@@ -33,7 +33,7 @@ const App = () => {
           <Route exact path='/' render={LoadHome} />
           <Route exact path='/Feed' component={PictureCollection} />
           <Route exact path='/profile/:id' render={LoadProfile} />
-          <Route exact path='/collection' render={LoadCollection} />
+          <Route exact path='/collections/:id' render={LoadCollection} />
           <Route exact path='/dash' component={Dash} />
           <Route exact path='/login' render={LoadLogin} />
           <Route exact path='/register' render={LoadRegister} />
