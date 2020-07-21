@@ -1,49 +1,62 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import styled from 'styled-components';
 import Modal from '../modal/Modal';
 import useModal from '../../hooks/useModal';
 import PictureShow from '../picture/PictureShow';
-import defaultUserImage from '../../img/defaultUserImage.png'
 import commentsImage from '../../img/comments.png'
 import viewsImage from '../../img/views.png'
+import { ImageConsumer } from '../../providers/ImageProvider'
 
-const Card = ({ category_id, title, id, url, user_id, views, description}) => {
-  const [user, setUser] = useState("");
+const Card = (props) => {
   const { open, toggle } = useModal();
-  const [userImage, setUserImage] = useState(defaultUserImage);
-  const [comments, setComments] = useState(0)
+  const id = props.image.id
+  const user_id = props.image.user_id
+  const [views, setViews] = useState(props.image.views)
+  const url = props.image.url
 
+  const [user, setUser] = useState("");
+  const [comments, setComments] = useState([]);
+  
   useEffect(() => {
-    axios.get(`/api/users/${user_id}`)
-      .then( res => { 
-          setUser(res.data)
-          setUserImage(res.data.image)
-        }) //this could be refactored into a Provider
-      .catch(console.log)
-    axios.get(`/api/pictures/${id}/picture_comments`)
-      .then( res => {
-        if (res) {setComments(res.data.length)} else null
-      .catch(console.log)
+    props.fetchUser(user_id)
+      .then (res => {
+        setUser(res.data)
       })
+      .catch(console.log)
+
+    props.fetchComments(id)
+      .then(res => {
+        setComments(res.data)
+      })
+      .catch(console.log)
+
   }, [])
 
+  const updateViewsState = (incomingId) => {
+    if (id === incomingId) {setViews(views + 1)}
+    }
+
+  const toggleAndSetId = () => {
+    props.setImageId(id)
+    toggle()
+  }
   return (
     <CardBorder>
       <Modal onClose={toggle} open={open}>     
-        <PictureShow user={user} user_id={user_id} category_id={category_id} title={title} id={id} url={url} description={description} views={views}/>     
+          <PictureShow updateViewsState={updateViewsState} />   
       </Modal>       
       <CardDiv>
-        <StyledImage src={url} onClick={toggle} />
+        <StyledText>{props.image.title}</StyledText>
+        <StyledImage src={url} onClick={toggleAndSetId} />
       </CardDiv>
       <PointerOff>
         <CardFooterLeft>
-          <SmallImage image={userImage}/>
-          {user.first_name}
+          <SmallImage image={user.image}/>
+          {user.first_name} 
         </CardFooterLeft>
         <CardFooterRight>
           <SmallImage image={commentsImage} />
-          {comments}
+          {comments.length}
           <SmallImage image={viewsImage} />
           {views} 
         </CardFooterRight>
@@ -55,8 +68,31 @@ const Card = ({ category_id, title, id, url, user_id, views, description}) => {
 const StyledImage = styled.img`
   width: 100%
 `
+const StyledText = styled.div`
+  position: absolute;
+  z-index: 999;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 1rem; 
+  text-align: left;
+  width: 90%;
+  visibility: hidden;
+  
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+
+`
 const CardDiv = styled.div`
   cursor: zoom-in;
+  position: relative;
+  display: inline-block;
+    &:hover ${StyledText} {
+        visibility: visible;
+  }
 `
 const PointerOff = styled.div`
   width: 100%
@@ -90,4 +126,10 @@ const CardFooterRight = styled.div`
   color: #96969C
 `
 
-export default Card
+const ConnectedCard = (props) => (
+  <ImageConsumer>
+    {(value) => <Card {...props} {...value} />}
+  </ImageConsumer>
+);
+
+export default ConnectedCard;

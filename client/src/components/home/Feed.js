@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Card from './Card';
 import styled from 'styled-components';
+import { FeedConsumer } from '../../providers/FeedProvider'
 
-const Feed = () => {
+const Feed = (props) => {
   const [listItems, setListItems] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [noMorePictures, setNoMorePictures] = useState(false);
   
   useEffect(() => {
-    axios.get("/api/pictures/?limit=9")
-      .then( res => setListItems(res.data))
-      .catch(console.log)
+    props.searchPictures();
   }, [])
 
   useEffect(() => {
@@ -27,15 +25,17 @@ const Feed = () => {
   function handleScroll() {
     if ((window.innerHeight + window.pageYOffset) >= document.body.scrollHeight - 1000) {
       setIsFetching(true);
+      // console.log(isFetching)
+      
     }
   }
-
+  
   function getMore() {
+    // console.log("getMOREfired")
     if(noMorePictures) return;
-    axios.get(`/api/pictures/?limit=6&offset=${listItems.length}`)
-      .then( res => {
-        if(res.data.length < 6) setNoMorePictures(true);
-        setListItems(listItems.concat(res.data))
+    props.searchPictures()
+      .then((pictures) => {
+        if(pictures.length < 11) setNoMorePictures(true);
         setIsFetching(false);
       })
       .catch(console.log)
@@ -45,23 +45,25 @@ const Feed = () => {
     const column_arrays = [[], [], []];
     let iterator = 0;
 
-    listItems.forEach((listItem) => {
+    props.pictures.forEach((listItem) => {
       column_arrays[iterator].push(listItem);
       if(iterator == 2) iterator = 0;
       else iterator ++;
     })
-
+  
     return (
       <>
+        { props.searching ? "Searching" : "Not Searching" }
+ 
         <FeedDiv>
           <ColumnContainer>
-            {column_arrays[0].map(listItem =><><Card {...listItem}/></>)}
+            {column_arrays[0].map(listItem =><><Card image={listItem}/></>)}
           </ColumnContainer>
           <ColumnContainer>
-            {column_arrays[1].map(listItem =><><Card {...listItem}/></>)}
+            {column_arrays[1].map(listItem =><><Card image={listItem}/></>)}
           </ColumnContainer>
           <ColumnContainer>
-            {column_arrays[2].map(listItem =><><Card {...listItem}/></>)}
+            {column_arrays[2].map(listItem =><><Card image={listItem}/></>)}
           </ColumnContainer>
         </FeedDiv>
         {noMorePictures && 'No more pictures'}
@@ -72,6 +74,10 @@ const Feed = () => {
 
   return renderColumns();
 };
+
+const SearchResults = styled.div`
+
+`
 
 const FeedDiv = styled.div`
   display: flex;
@@ -90,4 +96,11 @@ const ColumnContainer = styled.div`
   @media only screen and (max-width: 800px) {}
 `
 
-export default Feed;
+const ConnectedFeed = (props) => (
+  <FeedConsumer>
+    {(value) => <Feed {...props} {...value} />}
+  </FeedConsumer>
+);
+
+export default ConnectedFeed;
+

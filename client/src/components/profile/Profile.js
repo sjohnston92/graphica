@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProfileNavbar from './ProfileNavbar';
-import BottomFeed from './BottomFeed';
+import Feed from '../home/Feed';
 import ProfileHero from './ProfileHero';
 import CollectionTab from './CollectionTab';
 import SettingsTab from './SettingsTab';
 import axios from "axios";
 import { AuthConsumer } from "../../providers/AuthProvider";
+import BottomFeed from './BottomFeed';
 
 
 class Profile extends React.Component {
@@ -54,6 +55,7 @@ class Profile extends React.Component {
         <ProfileNavbar changeTab={this.changeTab} isCurrentUser={this.state.isCurrentUser}/>
         <Line />
         <br></br>
+        
         <ProfileBottom>
           { this.renderBottom() }
         </ProfileBottom>

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Feed from '../home/Feed';
 import CollectionDescription from './CollectionDescription';
+import CollectionFeed from './CollectionFeed';
 
 
 const Collection = (props) => {
@@ -11,11 +12,10 @@ const Collection = (props) => {
   return(
 
     <Wrapper>
-      <CollectionDescription>
-      </CollectionDescription>
-      <FeedDiv>
-        <Feed />
-      </FeedDiv>
+      <Title>
+      </Title>
+      <CollectionFeed />
+      
     </Wrapper>
   )
 }
@@ -24,9 +24,8 @@ const Collection = (props) => {
 
 const Wrapper = styled.div`
 `
-const FeedDiv = styled.div`
-padding-top: 5%
-  
+const Title = styled.div`
 `
+
 
 export default Collection;

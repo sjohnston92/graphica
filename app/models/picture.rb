@@ -10,8 +10,10 @@ class Picture < ApplicationRecord
   validates :url, presence: true
   validates :title, presence: true
 
-  def self.search(search, page)
-    Picture.where('title ILIKE :q', q: "%#{search}%")
-    .page(page).per(18)
+  def self.search(search, limit=11, offset=0, category_id)
+    pictures = Picture.where('title ILIKE ?', "%#{search}%")
+    pictures = where(category_id: category_id) if category_id != "null"
+    pictures = pictures.limit(limit).offset(offset).order(created_at: :desc)
+    pictures
   end
 end
