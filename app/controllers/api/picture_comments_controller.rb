@@ -26,7 +26,7 @@ class Api::PictureCommentsController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    PictureComment.find(params[:id]).destroy
     render json: {message: 'Delete Successful' }
   end
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { AuthConsumer } from '../../providers/AuthProvider'
+import { AuthConsumer } from '../../../providers/AuthProvider'
 
 const CommentBar = (props) => {
   const id = props.id
@@ -30,7 +30,7 @@ const CommentBar = (props) => {
   return(
     <>
       <form onSubmit={handleSubmit}>
-        <StyledInput type="text" name="body" value={comment} onChange={handleChange} placeholder="have something to say..."/>
+        <StyledInput type="text" name="body" value={comment} onChange={handleChange} placeholder="Have something to say...?"/>
       </form>
     </>
   )
@@ -46,7 +46,7 @@ export default class ConnectedCommentBar extends React.Component {
   }
 }
 const StyledInput = styled.input`
-  border: none;
+  border: 1px solid black;
   height: 35px;
   width: 525px;
   box-sizing: border-box;
