@@ -5,31 +5,25 @@ import editImg from '../../img/edit.jpg';
 import axios from 'axios';
 import styled from 'styled-components';
 
-
-
 const EditPicture = (props) => {
+  const [ title, setTitle ] = useState(props.image.title)
+  const [ description, setDescription ] = useState(props.image.description)
+  const [ category, setCategory ] = useState(props.category)
+  const [ categories, setCategories ] = useState([])
+  const [ editing, setEditing ] = useState(false)
+  const [ categoryId, setCategoryId ] = useState(props.category.id)
   
-    const [ title, setTitle ] = useState(props.image.title)
-    const [ description, setDescription ] = useState(props.image.description)
-    const [ category, setCategory ] = useState(props.category)
-    const [ categories, setCategories ] = useState([])
-    const [ editing, setEditing ] = useState(false)
-    const [ categoryId, setCategoryId ] = useState(props.category.id)
-    useEffect(() => { 
-      axios.get("/api/categories")
-      .then(res => setCategories(res.data))
-      .catch(console.log)
-
-    }, [])
-
-
-
+  useEffect(() => { 
+    axios.get("/api/categories")
+    .then(res => setCategories(res.data))
+    .catch(console.log)
+  }, [])
 
   const toggleEdit = () => {
     setEditing(!editing)
   }
 
-  const deleteComment = () => {
+  const deleteImage = () => {
     const result = window.confirm("Delete Image!?")
     if (result) {
       axios.delete(`api/pictures/${props.image.id}`)
@@ -39,15 +33,13 @@ const EditPicture = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("form submitted")
     axios.patch(
       `/api/pictures/${props.image.id}`, 
-      { url: props.image.url, title: title, description: description, category_id: categoryId }
+      { title: title, description: description, category_id: categoryId }
     )
       .then( res => {
         toggleEdit()
         props.refreshImageState(res.data, categories[categoryId-1])
-        // setImageId(res.data.body) // SET IMAGE ID FROM PROVIDER
       })
       .catch(console.log)
   }
@@ -62,68 +54,40 @@ const EditPicture = (props) => {
 
   const handleChangeCategory = (event) => {
     setCategoryId(event.target.value)
-    console.log()
   }
 
   const RenderEditPicture = () => (
     <Wrapper>
       <EditButton onClick={toggleEdit} image={editImg}/>
-      <DeleteButton onClick={deleteComment} image={deleteImg} />
-
+      <DeleteButton onClick={deleteImage} image={deleteImg} />
       {editing &&
         <>
           <form onSubmit={handleSubmit}>
-          <label>
-            Title: 
-            <input
-              type="text"
-              name="title"
-              value={title}
-              required
-              onChange={handleChangeTitle}
-            />
-          </label>
-          <label>
-            Description: 
-          <input 
-            type="text"
-            name="description"
-            value={description}
-            
-            onChange={handleChangeDescription}
-          />
-          </label>
-
-          <label>
-            Category: 
-          <select
-            type="select"
-            name="category"
-            // value={catName}
-            onChange={handleChangeCategory}
-            required
-          >
-
-            {/* TODO Splice Item out of array for category that it is.. */}
-            <option value={category.id} >{category.title}</option>
-            { categories.map((cat) => {
-              return (
-              <option value={cat.id} >{cat.title}</option>
-              )
-            }) }
-          </select>
-          </label>
-          <button>Submit</button>
+            <label>
+              Title: 
+              <input type="text" name="title" value={title} required onChange={handleChangeTitle}/>
+            </label>
+            <label>
+              Description: 
+              <input type="text" name="description" value={description} onChange={handleChangeDescription}/>
+            </label>
+            <label>
+              Category: 
+              <select type="select" name="category" onChange={handleChangeCategory} required>
+                {/* how do I remove duplicate title? */}
+                <option value={category.id}>{category.title}</option> 
+                  { categories.map(cat => (
+                      <option value={cat.id}>{cat.title}</option>
+                    )) 
+                  }
+              </select>
+            </label>
+            <button>Submit</button>
           </form>
         </>
- 
       }
     </Wrapper>
   )
-
-
-
-
 
   return (
     <>
@@ -144,7 +108,6 @@ const EditPicture = (props) => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-
 `
 const EditButton = styled.div `
 background-image: url(${props => props.image});

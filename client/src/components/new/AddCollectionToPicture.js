@@ -12,6 +12,7 @@ const AddCollectionToPicture = (props) => {
     axios.get(`/api/collections`)
       // .then( res => (console.log(res.data)))
       .then( res => (setCollections(res.data)))
+        
 
       .catch(console.log)
       

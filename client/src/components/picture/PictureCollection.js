@@ -26,6 +26,7 @@ const PictureCollection = (props) => {
             <a href="url">{" " + collection.title + " "}</a> 
             collection 
           </CollectionText>
+          
         }
       </div> 
       <PictureContainer>
@@ -56,7 +57,6 @@ const PictureContainer = styled.div`
 const CollectionText = styled.span`
   align-self: flex-end;
 `
-
 
 export default PictureCollection;
 

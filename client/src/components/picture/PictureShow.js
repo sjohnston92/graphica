@@ -5,6 +5,7 @@ import Comments from './comments/Comments'
 import PictureCollection from './PictureCollection';
 import { ImageConsumer } from '../../providers/ImageProvider'
 import EditPicture from './EditPicture'
+import AddCollectionButton from './AddCollectionButton';
 
 const PictureShow = (props) => {
   const [user, setUser ] = useState([]) 
@@ -16,11 +17,6 @@ const PictureShow = (props) => {
 
   useEffect(() => runFetch(props.imageId), [props.imageId])
 
-  useEffect(() => reloadCollections(), [junctionList])
-
-  const reloadCollections = () => {
-    // console.log('juntion list changed')
-  }
   const runFetch = (id) => {
     setJunctionList(null) //START HERE, try to get it so it doesn't reload everytime
     props.fetchImage(id)
@@ -28,7 +24,7 @@ const PictureShow = (props) => {
         setImage(res.data)
         props.updateViewsState(id)
 
-        props.fetchCategoryName(res.data.category_id)  //NOT NAME ANYMORE
+        props.fetchCategory(res.data.category_id)  //NOT NAME ANYMORE
           .then(res => setCategory(res.data))
           .catch(console.log)
 
@@ -66,46 +62,42 @@ const PictureShow = (props) => {
   const deleteImageState = () => {
     alert("image has been deleted")
     props.toggleAndDelete(image.id)
-    //ADD MUCH MORE TO DO
-    //delete from state here & toggle modal
-    //delete from feed state
-    //delete comments
     //delete junctions.. maybe no need..
+  }
+
+  const refreshCollectionState = (incomingJunctionId) => {
+    setJunctionList(junctionList.concat(incomingJunctionId))
   }
  
   const renderCollections = () => (
     <>
-      {junctionList && 
+      { junctionList.length > 1 &&
         <>
-          { junctionList.length > 1 &&
-            <>
-              { (showAllCollections == false) 
-                ? <LinkDiv onClick={()=>setShowAllCollections(true)}> See All Collections </LinkDiv>
-                : <LinkDiv onClick={()=>setShowAllCollections(false)}> Show Less </LinkDiv>
-              }
-            </>
-          }
-          { showAllCollections 
-            ?
-              <>
-                {junctionList.map(jct => (
-                  <PictureCollection 
-                    pictureCollection={jct}
-                    runFetch={runFetch} 
-                    fetchCollection={props.fetchCollection}
-                  />
-                ))}
-              </> 
-            :
-              <>
-                <PictureCollection 
-                  pictureCollection={junctionList[0]}
-                  runFetch={runFetch} 
-                  fetchCollection={props.fetchCollection}
-                /> 
-              </>
+          { (showAllCollections == false) 
+            ? <LinkDiv onClick={()=>setShowAllCollections(true)}> See All Collections </LinkDiv>
+            : <LinkDiv onClick={()=>setShowAllCollections(false)}> Show Less </LinkDiv>
           }
         </>
+      }
+      { showAllCollections 
+        ?
+          <>
+            {junctionList.map(jct => (
+              <PictureCollection 
+                pictureCollection={jct}
+                runFetch={runFetch} 
+                fetchCollection={props.fetchCollection}
+              />
+            ))}
+          </> 
+        :
+          <>
+            <PictureCollection 
+              pictureCollection={junctionList[0]}
+              runFetch={runFetch} 
+              fetchCollection={props.fetchCollection}
+            /> 
+          </>
       }
     </>
   )
@@ -145,6 +137,7 @@ const PictureShow = (props) => {
       </PictureInfoDiv>
       <PictureCollectionDiv>
           { junctionList && (junctionList.length > 0) ? <> {renderCollections()} </> : null }
+          <AddCollectionButton refreshCollectionState={refreshCollectionState} userId={user.id} image={image}/>
       </PictureCollectionDiv>
       <PictureDescriptionDiv>
         <InfoLeft>

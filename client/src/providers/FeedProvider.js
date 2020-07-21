@@ -72,7 +72,6 @@ export const FeedProvider = (props) => {
 
   const deletePicture = (incomingId) => setPictures( pictures.filter(a => a.id !== incomingId ))
 
-  // setComments( comments.filter( a => a.id !== incomingId ))
   return(
     <FeedContext.Provider value={{
       pictures,

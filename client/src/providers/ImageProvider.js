@@ -53,7 +53,7 @@ export const ImageProvider = (props) => {
   const updateViews = (image) => {
     axios.patch(`/api/pictures/${image.id}`, {views: image.views+1, url: image.url, title: image.title, description: image.description, user_id: image.user_id, category_id: image.category_id})
   }
-  const fetchCategoryName = (catId) => {
+  const fetchCategory = (catId) => {
     return new Promise((resolve, reject) => {
       axios.get(`/api/categories/${catId}`)
       .then( res => {
@@ -79,7 +79,6 @@ export const ImageProvider = (props) => {
     })
   }
 
-
   const fetchCollection = (collectionId, userId) => {
     return new Promise((resolve, reject) => {
       axios.get(`/api/collections/${collectionId}`)     
@@ -100,7 +99,7 @@ export const ImageProvider = (props) => {
       userImage,
       fetchComments,
       fetchImage,
-      fetchCategoryName,
+      fetchCategory,
       fetchJunction,
       fetchCollection,
       imageId,

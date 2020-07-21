@@ -8,28 +8,21 @@ import viewsImage from '../../img/views.png'
 import { ImageConsumer } from '../../providers/ImageProvider'
 
 const Card = (props) => {
-  const { open, toggle } = useModal();
   const id = props.image.id
   const user_id = props.image.user_id
-  const [views, setViews] = useState(props.image.views)
   const url = props.image.url
-
+  const { open, toggle } = useModal();
+  const [views, setViews] = useState(props.image.views)
   const [user, setUser] = useState("");
   const [comments, setComments] = useState([]);
   
   useEffect(() => {
     props.fetchUser(user_id)
-      .then (res => {
-        setUser(res.data)
-      })
+      .then (res => setUser(res.data))
       .catch(console.log)
-
     props.fetchComments(id)
-      .then(res => {
-        setComments(res.data)
-      })
+      .then(res => setComments(res.data))
       .catch(console.log)
-
   }, [])
 
   const updateViewsState = (incomingId) => {
@@ -45,6 +38,7 @@ const Card = (props) => {
     toggle()
     props.updateFeedState(incomingId)
   }
+
   return (
     <CardBorder>
       <Modal onClose={toggle} open={open}>     
@@ -63,7 +57,7 @@ const Card = (props) => {
           <SmallImage image={commentsImage} />
           {comments.length}
           <SmallImage image={viewsImage} />
-          {views} 
+          {views ? <>{views}</> : 0} 
         </CardFooterRight>
       </PointerOff>
     </CardBorder>
