@@ -1,26 +1,32 @@
-
 require Rails.root.join("data", "urls.rb")
 
 # USERS (7)
   User.create(email: "alex@gmail.com", 
+    banner_image: IMAGE_URLS.sample,
     image: "https://images.unsplash.com/photo-1588948138600-bc75fd417834?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80",
     first_name: "alex", last_name: "smith", password: 'password', password_confirmation: 'password')
   User.create(email: "bob@gmail.com", 
+    banner_image: IMAGE_URLS.sample,
     image: "https://images.unsplash.com/photo-1568967729548-e3dbad3d37e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80",
     first_name: "bob",last_name: "jimmy", password: 'password', password_confirmation: 'password')
   User.create(email: "chris@gmail.com",
+    banner_image: IMAGE_URLS.sample,
     image: "https://images.unsplash.com/photo-1593839686924-4b344fac3f8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
     first_name: "chris",last_name: "lawsh", password: 'password', password_confirmation: 'password')
   User.create(email: "sam@gmail.com", 
+    banner_image: IMAGE_URLS.sample,
     image: "https://images.unsplash.com/photo-1593771009063-e2a5fc81be47?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=646&q=80",
     first_name: "sam",last_name: "carslon", password: 'password', password_confirmation: 'password')
   User.create(email: "bill@gmail.com", 
+    banner_image: IMAGE_URLS.sample,
     image: "https://images.unsplash.com/photo-1593591182784-05bba029a8cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=652&q=80",
     first_name: "bill",last_name: "smith", password: 'password', password_confirmation: 'password')
   User.create(email: "matt@gmail.com", 
+    banner_image: IMAGE_URLS.sample,
     image: "https://images.unsplash.com/photo-1593793602373-ca02114d4a3f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
     first_name: "matt",last_name: "miller", password: 'password', password_confirmation: 'password')
   User.create(email: "juan@gmail.com", 
+    banner_image: IMAGE_URLS.sample,
     image: "https://images.unsplash.com/photo-1525129075020-d43c7ba72ecf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
     first_name: "juan",last_name: "collins", password: 'password', password_confirmation: 'password')
 
@@ -40,6 +46,8 @@ colors = []
 end
 
 #PICTURES (27)
+users = User.all
+categories = Category.all
 IMAGE_URLS.map { |url| 
   Picture.create(
     category_id: (rand(7)+1), 

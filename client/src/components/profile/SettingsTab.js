@@ -2,23 +2,26 @@ import React, { Fragment, } from 'react';
 import { AuthConsumer, } from "../../providers/AuthProvider";
 import { Form, Grid, Image, Container, Divider, Header, Button, } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone';
-
+import UpdateProfileImage from './UpdateProfileImage';
+import UpdateBannerImage from './UpdateBannerImage';
 
 const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png';
+
 class Profile extends React.Component {
-  state = { editing: false, formValues: { first_name: '', last_name: '', email: '', file: '' }, };
+  state = { editing: false, formValues: { first_name: '', last_name: '', email: '', file: '', tagline: '' }, };
+  
   componentDidMount() {
-    const { auth: { user: { first_name, last_name, email, }, }, } = this.props;
-    this.setState({ formValues: { first_name, last_name, email, }, });
+    const { auth: { user: { first_name, last_name, email, tagline }, }, } = this.props;
+    this.setState({ formValues: { first_name, last_name, email, tagline }, });
   }
-  onDrop = (files) => {
-    this.setState({ formValue: { ...this.state.formValues, file: files[0] }})
-  }
+  
+  
   toggleEdit = () => {
     this.setState( state => {
       return { editing: !state.editing, };
     })
   }
+  
   handleChange = (e) => {
     const { name, value, } = e.target;
     this.setState({
@@ -29,19 +32,22 @@ class Profile extends React.Component {
     })
   }
 
-handleSubmit = (e) => {
-  e.preventDefault()
-  const { formValues: { first_name, last_name, email, file }} = this.state
-  const { auth: { user, updateUser }} = this.props
-  updateUser(user.id, { first_name, last_name, email, file })
-  this.setState({
-    editing: false,
-    formValues: {
-      ...this.state.formValues,
-      file: ''
-    }
-  })
-}
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const { formValues: { first_name, last_name, email, file, tagline }} = this.state
+    const { auth: { user, updateUser }} = this.props
+    updateUser(user.id, { first_name, last_name, email, file, tagline })
+      .then((user) => this.props.setUser(user))
+      .catch(console.log)
+      
+    this.setState({
+      editing: false,
+      formValues: {
+        ...this.state.formValues,
+        file: ''
+      }
+    })
+  }
 
   profileView = () => {
     const { auth: { user }, } = this.props;
@@ -58,60 +64,55 @@ handleSubmit = (e) => {
       </Fragment>
     )
   }
+
   editView = () => {
-    const { auth: { user }, } = this.props;
-    const { formValues: { first_name, last_name, email, file } } = this.state;
+    const { auth: { user, updateUserProfileImage, updateUserBannerImage }, } = this.props;
+    const { formValues: { first_name, last_name, email, file, tagline } } = this.state;
+
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Grid.Column width={4}>
-          <Dropzone
-            onDrop={this.onDrop}
-            multiple={false}
-          >
-            {({ getRootProps, getInputProps, isDragActive}) => {
-              return (
-                <div
-                  {...getRootProps()}
-                  style={styles.dropzone}
-                >
-                  <input {...getInputProps()} />
-                  {
-                    isDragActive ?
-                      <p>Already loaded</p> :
-                      <p>Drop items here</p>
-                  }
-                </div>
-              )
-            }}
-          </Dropzone>
-        </Grid.Column>
-        <Grid.Column width={8}>
-          <Form.Input
-            label="First Name"
-            name="first_name"
-            value={first_name}
-            required
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            label="Last Name"
-            name="last_name"
-            value={last_name}
-            required
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            label="Email"
-            name="email"
-            value={email}
-            required
-            onChange={this.handleChange}
-          />
-          <Button>Update</Button>
-        </Grid.Column>
-      </Form>
+      
+      <>
+        <UpdateProfileImage updateUserProfileImage={updateUserProfileImage} user={user} setUser={this.props.setUser} />
+        <UpdateBannerImage updateUserBannerImage={updateUserBannerImage} user={user} setUser={this.props.setUser} />
+        <Form onSubmit={this.handleSubmit}>
+          <Grid.Column width={4}>
+          </Grid.Column>
+          <Grid.Column width={8}>
+            <Form.Input
+              label="First Name"
+              name="first_name"
+              value={first_name}
+              required
+              onChange={this.handleChange}
+              />
+            <Form.Input
+              label="Last Name"
+              name="last_name"
+              value={last_name}
+              required
+              onChange={this.handleChange}
+              />
+            <Form.Input
+              label="Email"
+              name="email"
+              value={email}
+              required
+              onChange={this.handleChange}
+              />
+            <Form.Input
+              label="Bio"
+              name="tagline"
+              value={tagline}
+              required
+              onChange={this.handleChange}
+              />
+            <Button>Update</Button>
+          </Grid.Column>
+        </Form>
+      </>
     )
   }
+
   render() {
     const { editing, } = this.state;
     return (
@@ -129,6 +130,7 @@ handleSubmit = (e) => {
     )
   }
 }
+
 const SettingsTab = (props) => (
   <AuthConsumer>
     { auth => 
@@ -136,6 +138,7 @@ const SettingsTab = (props) => (
     }
   </AuthConsumer>
 )
+
 const styles = {
   dropzone: {
     height: "150px",

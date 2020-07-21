@@ -40,12 +40,47 @@ export class AuthProvider extends React.Component {
       })
   }
 
-  updateUser = (id, user) => {
+  updateUser = (id, user) => new Promise((resolve, reject) => {
+    axios.put(`/api/users/${id}`, user)
+      .then( res => {
+        this.setState({ user: res.data });
+        resolve(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        reject(err);
+      })
+  });
+  
+  updateUserProfileImage = (id, user) => {
+    return new Promise((resolve, reject) => {
+      let data = new FormData()
+      data.append('file', user.file)
+      axios.put(`/api/users/${id}/profile_image`, data)
+        .then( res => {
+          this.setState({ user: res.data });
+          resolve(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        })
+    })
+  }
+
+  updateUserBannerImage = (id, user) => new Promise((resolve, reject) => {
     let data = new FormData()
     data.append('file', user.file)
-    axios.put(`/api/users/${id}?first_name=${user.first_name}&last_name${user.last_name}&email=${user.email}`, data)
-    .then( res => this.setState({ user: res.data }))
-  }
+    axios.put(`/api/users/${id}/banner_image`, data)
+      .then( res => {
+        this.setState({ user: res.data });
+        resolve(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        reject(err);
+      })
+  })
   
   render() {
     return (
@@ -56,7 +91,9 @@ export class AuthProvider extends React.Component {
         handleLogin: this.handleLogin,
         handleLogout: this.handleLogout,
         setUser: (user) => this.setState({ user, }),
-        updateUser: this.updateUser
+        updateUser: this.updateUser,
+        updateUserProfileImage: this.updateUserProfileImage,
+        updateUserBannerImage: this.updateUserBannerImage,
       }}>
         { this.props.children }
       </AuthContext.Provider>

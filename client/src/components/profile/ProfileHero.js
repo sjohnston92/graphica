@@ -4,41 +4,29 @@ import styled from 'styled-components';
 import { AuthConsumer } from '../../providers/AuthProvider';
 import { Redirect } from 'react-router-dom';
 
-//bring in authConsumer, 
-
-const ProfileHero = () => (
-  <AuthConsumer>
-    { values => (
-      values.authenticated ?
-      
-        <BannerImage>
-            <BannerLeft>
-              <BannerLeftTop>
-                <UserAvatar />
-                <BannerContents>
-                  <UserName>
-                    {values.user.first_name} {values.user.last_name}
-                  </UserName>
-                  <UserEmail>
-                    {values.user.email}
-                  </UserEmail>
-                  <ContactModal>
-                    Contact Info
-                  </ContactModal>
-                </BannerContents>
-              </BannerLeftTop>
-              <BioSubText>
-                I’m a kickass part-time nature photographer that frequently takes helicopter flights for work. Check out my Oceanography collection. I’m open to working together. 
-              </BioSubText>
-            </BannerLeft>
-        </BannerImage>
-
-      : 
-      <>
-      <Redirect to={{pathname: "/login"}}/>
-      </>
-    )}
-  </AuthConsumer>
+// need to link in user's banner image when that gets up and running.
+const ProfileHero = ({ user }) => (
+  <BannerImage url={user.banner_image}>
+      <BannerLeft>
+        <BannerLeftTop>
+          <UserAvatar url={user.image}/>
+          <BannerContents>
+            <UserName>
+              {user.first_name} {user.last_name}
+            </UserName>
+            <UserEmail>
+              {user.email}
+            </UserEmail>
+            <ContactModal user={user} >
+              Contact Info
+            </ContactModal>
+          </BannerContents>
+        </BannerLeftTop>
+        <BioSubText>
+          {user.tagline}
+        </BioSubText>
+      </BannerLeft>
+  </BannerImage>
 ) 
 
 const BannerImage = styled.div`
@@ -51,7 +39,7 @@ const BannerImage = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: linear-gradient(89.41deg, #FFFFFF 37.43%, rgba(255, 255, 255, 0) 90.74%), url(https://s3-alpha-sig.figma.com/img/34a0/e334/638e4dd54c4306833b2b8b556c87c435?Expires=1594598400&Signature=NWt0gd0ujbEZ~O~hQENKmxhGqCrj4auB857xLffYzx2rWILJHWZ2dVTLJjOJbdF-~EvYn2YQTkzo--a3MQB19P5T3DA-aPWjK1E6CgbY-mi8vTN840PrAvKFdIVw1vDn~I3CI8iK99Ky9OFzP~Eq7tsxPhneZEN0TGyUp9pVwobW42i6AGfSq6JQZOTGsLdGxhfBimq7AjQ9XIX0LCOF3C3MkHNUPs9qbk6bk1NEc1gAy~Yxr0laWRDsnqfXjYQxB7PiR4q5PDIJdJCpJnLSg9adBrF-CLj6XylWV8iHJvT1wQLjaG~4QUMEOkCVRLfplSkXtSMiPJwPkC5fdUTNmA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
+  background-image: linear-gradient(89.41deg, #FFFFFF 37.43%, rgba(255, 255, 255, 0) 90.74%), url(${props => props.url});
 `;
 
 const BannerLeft = styled.div`
@@ -82,7 +70,7 @@ const UserAvatar = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(https://s3-alpha-sig.figma.com/img/ec66/6407/9e9f7a7ff4ae4cd1ece6422aab9a5377?Expires=1594598400&Signature=V-PNeXDpn62x6xlJcsTX1hYnIEbnfWD8Y1lApqwAb0SKUUE6eAmUjEW8QPrI7cRZJ10N8LJYtw-01vD~fIgPyEKMoigjrliLDsTEour3oA6oJRay0OvT00r3ez9m5s2ka1GgwOKdBcIe5qBHzPHkiJ1NzF~p262Tfzn4OZFSHXyMxvebTyJRXHsQhM2LiFTTrDCPttv8SROOKmKDkz7Yth05vYAE9NaUUqdHJydk9p1NDXLSaBA0dnqQDrsuETVzqFf0~4LSjV5xme4TbYbwpOfEtNtcPWdY7pov6ww1pZ7gZyGk0xWIXEhcXjS0kcfhpzD-jXIFHt3hgF5RMrMojA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
+  background-image: url(${props => props.url});
 `;
 
 const UserName = styled.p`
