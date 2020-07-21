@@ -8,6 +8,10 @@ import SettingsTab from './SettingsTab';
 import axios from "axios";
 import { AuthConsumer } from "../../providers/AuthProvider";
 import BottomFeed from './BottomFeed';
+import NewCollection from '../new/NewCollection';
+import NewPictureModal from '../modal/NewPictureModal';
+import NewPictureButton from '../new/NewPictureButton';
+
 
 
 class Profile extends React.Component {
@@ -55,7 +59,9 @@ class Profile extends React.Component {
         <ProfileNavbar changeTab={this.changeTab} isCurrentUser={this.state.isCurrentUser}/>
         <Line />
         <br></br>
-        
+        <NewPictureButton />
+        <NewPictureModal />
+        <NewCollection />
         <ProfileBottom>
           { this.renderBottom() }
         </ProfileBottom>

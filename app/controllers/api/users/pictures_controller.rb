@@ -27,6 +27,8 @@ class Api::Users::PicturesController < ApplicationController
     end
   end
 
+  
+
   def update
     picture = Picture.find(params[:id])
 
@@ -53,6 +55,6 @@ class Api::Users::PicturesController < ApplicationController
   end
 
   def picture_query_params
-    params.permit(:title, :description, :category_id)
+    params.permit(:title, :description, :category_id, :user_id)
   end
 end

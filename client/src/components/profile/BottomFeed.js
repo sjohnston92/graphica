@@ -1,9 +1,9 @@
 import React from 'react';
 import Feed from '../home/Feed';
-import ShowModal from '../modal/ShowModal';
 import styled from 'styled-components';
 import axios from "axios";
 import PictureCollection from '../picture/PictureCollection';
+
 
 class BottomFeed extends React.Component {
   state = { pictures: [] }
@@ -21,7 +21,6 @@ class BottomFeed extends React.Component {
   render() {
     return (
       <>
-        <ShowModal isCurrentUser={ this.props.isCurrentUser } /> 
         <FeedDiv>
           { this.renderPictures() }
         </FeedDiv> 
