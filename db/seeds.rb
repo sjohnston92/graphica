@@ -70,7 +70,7 @@ User.all.each do |user|
     collection_2 = Collection.create(user_id: user.id, title: Faker::Movies::HarryPotter.location)
     
     if pic_amount > 0
-      for index in  (0..half_amount) 
+      for index in  (1..half_amount) 
       # for index in (0..pic_amount-1)
         CollectionPicture.create(collection_id: collection_1.id, picture_id: user.pictures[index].id)
       end
