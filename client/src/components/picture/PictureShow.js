@@ -4,10 +4,11 @@ import Comments from './comments/Comments'
 
 import PictureCollection from './PictureCollection';
 import { ImageConsumer } from '../../providers/ImageProvider'
+import EditPicture from './EditPicture'
 
 const PictureShow = (props) => {
   const [user, setUser ] = useState([]) 
-  const [catName, setCatName] = useState("");
+  const [category, setCategory] = useState("");
   const [comments, setComments] = useState([]);
   const [image, setImage] = useState([])
   const [junctionList, setJunctionList ] = useState(null)
@@ -27,8 +28,8 @@ const PictureShow = (props) => {
         setImage(res.data)
         props.updateViewsState(id)
 
-        props.fetchCategoryName(res.data.category_id)  
-          .then(res => setCatName(res.data.title))
+        props.fetchCategoryName(res.data.category_id)  //NOT NAME ANYMORE
+          .then(res => setCategory(res.data))
           .catch(console.log)
 
         props.fetchUser(res.data.user_id)
@@ -45,17 +46,32 @@ const PictureShow = (props) => {
       
     props.fetchComments(id)
       .then(res => setComments(res.data))
-      .catch(console.log)   
+      .catch(console.log)  
+      console.log("user ID", user.id)
+      console.log("logged in user", props.user.id)
   }
 
   const setStatePictureShow = (newComment) => {
     setComments([ newComment, ...comments  ])
   }
 
+  const refreshImageState = (incomingImage, incomingCategory) => {
+    setImage(incomingImage) 
+    setCategory(incomingCategory)
+  }
   const deleteCommentState = (incomingId) => {
     setComments( comments.filter( a => a.id !== incomingId ))
   }
 
+  const deleteImageState = () => {
+    alert("image has been deleted")
+    //ADD MUCH MORE TO DO
+    //delete from state here & toggle modal
+    //delete from feed state
+    //delete comments
+    //delete junctions.. maybe no need..
+  }
+ 
   const renderCollections = () => (
     <>
       {junctionList && 
@@ -95,6 +111,15 @@ const PictureShow = (props) => {
 
   return (
    <Wrapper>
+        { category && 
+          <EditPicture 
+          userId={user.id} 
+          image={image} 
+          category={category} 
+          deleteImageState={deleteImageState}
+          refreshImageState={refreshImageState}
+          />
+        }
       <UserInfoDiv>
         <UserInfoLeft>
           <UserImage image={user.image} />
@@ -125,10 +150,10 @@ const PictureShow = (props) => {
           Description
         </InfoLeft>
         <InfoRight>
-        in <a href="url">{catName}</a> category
+        in <a href="url">{category.title}</a> category
         </InfoRight>
       </PictureDescriptionDiv>
-      <Description> {image.first_namedescription} </Description>
+      <Description> {image.description} </Description>
       <Comments comments={comments} pictureId={props.imageId} setStatePictureShow={setStatePictureShow} deleteCommentState={deleteCommentState}/>
    </Wrapper>
   )
@@ -234,6 +259,7 @@ const ConnectedPictureShow = (props) => (
     {(value) => <PictureShow {...props} {...value} />}
   </ImageConsumer>
 );
+
 
 export default ConnectedPictureShow;
 
