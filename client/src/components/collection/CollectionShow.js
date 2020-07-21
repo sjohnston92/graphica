@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Navbar from '../shared/Navbar';
 import CollectionHeader from './CollectionHeader';
+import CollectionFeed from './CollectionFeed'
 
 
 
@@ -15,6 +16,7 @@ const CollectionShow = (props) => {
       <Wrapper>
         <Navbar />
         <CollectionHeader />
+        <CollectionFeed />
       </Wrapper>
   )
 }

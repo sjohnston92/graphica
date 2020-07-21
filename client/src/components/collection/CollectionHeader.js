@@ -10,7 +10,7 @@ const CollectionHeader = (props) => {
   const [ collections, setCollections ] = useState([])
 
   useEffect(() => {
-    axios.get("/api/collections/${id}")
+    axios.get(`api/collections/${props.id}/collection_pictures`)
     .then( res => (setCollections(res.data)))
     .catch(console.log)
   }, [])
@@ -18,11 +18,7 @@ const CollectionHeader = (props) => {
   return(
     
     <Wrapper>
-      { collections.map((collection) => {
-                return (
-                <h1 value={collection.id} >{collection.title}</h1>
-                )
-              }) }
+      {props.collection.title}
     </Wrapper>
 )
   }
