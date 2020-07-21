@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import logoFont from '../../fonts/Elianto-Regular.otf';
 import store from '../../img/store.jpg'
@@ -6,7 +6,7 @@ import SearchBar from './SearchBar'
 import Feed from './Feed'
 
 const Home = (props) => {
-
+  
   useEffect(() => { props.toggleCatbar(true)}, []);
   
   return(

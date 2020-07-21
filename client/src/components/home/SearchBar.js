@@ -1,17 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Form } from 'semantic-ui-react';
 import styled from 'styled-components';
+import axios from 'axios';
+import { FeedConsumer } from '../../providers/FeedProvider'
+import useTrigger from '../../hooks/useTrigger'
 
-const SearchBar = () => (
-  <StyledInput type="text" name="formName" placeholder="Find something new..."/>
-)
+const SearchBar = (props) => {
+  
+  useTrigger(props.query, 500, () => {
+    props.setCategoryId(null)
+    props.resetAndSearchPictures();
+  });
+
+  return (
+    <StyledInput
+      type="text"
+      name="formName"
+      value={props.query}
+      placeholder="Find something new..."
+      onChange={(e) => props.setQuery(e.target.value)}
+    />
+  )
+}
 
 const StyledInput = styled.input`
-  font-family: 'Montserrat', sans-serif;
-  font-style: normal;
-  border: none;
-  height: 35px;
-  width: 100%;
-  box-sizing: border-box;
-  outline: none
+border: none;
+
+height: 35px;
+
+width: 525px;
+box-sizing: border-box;
+outline: none
 `
-export default SearchBar
+const ConnectedSearchBar = (props) => (
+  <FeedConsumer>
+    {(value) => <SearchBar {...props} {...value} />}
+  </FeedConsumer>
+);
+
+export default ConnectedSearchBar;
