@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
     resources :collections do
       resources :collection_pictures, module: :collections
+      resources :pictures, only: [:index], module: :collections
     end
 
     resources :users do

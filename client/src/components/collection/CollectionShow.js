@@ -6,22 +6,37 @@ import CollectionFeed from './CollectionFeed';
 import axios from 'axios';
 
 const CollectionShow = (props) => {
-  const [collection, setCollection ] = useState(null);
+  const [collection, setCollection] = useState(null);
+  const [user, setUser] = useState(null);
+  const [pictures, setPictures] = useState([]);
 
+  console.log(pictures)
+
+  // get collection and user of collection
   useEffect(() => {
-    console.log(props)
     axios.get(`/api/collections/${props.match.params.id}`)
-    .then( res => setCollection(res.data))
-    .catch(console.log)
+      .then( res => {
+        setCollection(res.data);
+        return axios.get(`/api/users/${res.data.user_id}`);
+      })
+      .then((res) => setUser(res.data))
+      .catch(console.log);
+    }, []);
+
+  // get pictures by collection
+  useEffect(() => {
+    axios.get(`/api/collections/${props.match.params.id}/pictures`)
+      .then((res) => setPictures(res.data))
+      .catch(console.log);
   }, [])
+  
 
   return(
     
       <Wrapper>
-        {collection && 
+        {collection && user &&
           <>
-            <CollectionHeader collection={collection}/>
-            {/* <CollectionFeed /> */}
+            <CollectionHeader collection={collection} user={user}/>
           </>
         }
       </Wrapper>
