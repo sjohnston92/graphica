@@ -90,22 +90,28 @@ const PictureShow = (props) => {
           <>
             {junctionList.map(jct => (
               <>
-                <RemoveImage pictureCollection={jct} image={image} refreshJunctionState={refreshJunctionState}/>
+                {/* <RemoveImage pictureCollection={jct} image={image} refreshJunctionState={refreshJunctionState}/> */}
                 <PictureCollection 
                   pictureCollection={jct}
                   runFetch={runFetch} 
                   fetchCollection={props.fetchCollection}
+                  refreshJunctionState={refreshJunctionState}
+                  image={image}
+                  userId={user.id}
                 />
               </>
             ))}
           </> 
         :
           <>
-            <RemoveImage pictureCollection={junctionList[0]} image={image} refreshJunctionState={refreshJunctionState}/>
+            {/* <RemoveImage pictureCollection={junctionList[0]} image={image} refreshJunctionState={refreshJunctionState}/> */}
             <PictureCollection 
               pictureCollection={junctionList[0]}
               runFetch={runFetch} 
               fetchCollection={props.fetchCollection}
+                refreshJunctionState={refreshJunctionState}
+                image={image}
+                userId={user.id}
             /> 
 
           </>

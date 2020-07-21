@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CollectionImage from './CollectionImage'
 import styled from "styled-components";
+import RemoveImage from './RemoveImage';
 
 const PictureCollection = (props) => {
   const [ pics, setPics ] = useState([]);
@@ -16,17 +17,24 @@ const PictureCollection = (props) => {
       .then((res) => setPics(res.data))
       .catch(console.log)
   }, [])
-
+ 
   return (
     <Container>
       <div>
         { collection && 
-          <CollectionText> 
-            part of 
-            <a href="url">{" " + collection.title + " "}</a> 
-            collection 
-          </CollectionText>
-          
+          <RowDiv>
+            <CollectionText> 
+              part of 
+              <a href="url">{" " + collection.title + " "}</a> 
+              collection 
+            </CollectionText>
+            <RemoveImage 
+              refreshJunctionState={props.refreshJunctionState}
+              image={props.image}
+              userId={props.userId}
+              pictureCollection={props.pictureCollection}
+            />
+          </RowDiv>
         }
       </div> 
       <PictureContainer>
@@ -44,6 +52,10 @@ const PictureCollection = (props) => {
   )
 }
 
+const RowDiv = styled.div`
+  display: flex;
+  align-items: center;
+`
 const Container = styled.div`
   display: flex;
   flex-direction: column;

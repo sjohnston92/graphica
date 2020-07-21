@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { AuthConsumer } from '../../providers/AuthProvider';
 import CollectionForm from '../new/CollectionForm'
 import AddCollectionToPicture from '../new/AddCollectionToPicture';
-import axios from 'axios'
+import axios from 'axios';
+import addImg from '../../img/add.png';
+import styled from 'styled-components';
 const AddCollectionButton = (props) => {
   const [ toggleForm, setToggleForm ] = useState(false)
   const [ toggleNew, setToggleNew ] = useState(false)
@@ -25,8 +27,12 @@ const AddCollectionButton = (props) => {
         <> 
           { 
             (props.user.id === props.userId) &&
-            <>
-                <button onClick={handleClick}>{ toggleForm ? <> Close </> : <> Add to a collection </> }</button>
+              <Wrapper>
+                <AddToCollection onClick={handleClick} >
+                  <AddDiv image={addImg} />
+                  { toggleForm ? <> Close </> : <> Add to a collection </> }
+                </AddToCollection>
+
                 { toggleForm && 
                   <>
                     { !toggleNew &&  <AddCollectionToPicture handleCollectionId={handleCollectionId}/> }  
@@ -36,13 +42,40 @@ const AddCollectionButton = (props) => {
                     { toggleNew && <CollectionForm /> }
                   </>
                 }
-            </>
+              </Wrapper>
           }
         </>
       }
     </>
   )
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+
+const AddToCollection = styled.div`
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+`
+
+const AddDiv = styled.div`
+
+  background-image: url(${props => props.image});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 100%;
+  height: 30px;
+  width: 30px;  
+  cursor: pointer;
+
+
+`
 
 const ConnectedAddCollectionButton = (props) => (
   <AuthConsumer>
