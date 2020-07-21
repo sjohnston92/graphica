@@ -12,7 +12,6 @@ class Api::Users::CollectionsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     collection = @user.collections.new(collection_params)
-    binding.pry
     if collection.save 
       render json: collection
     else 

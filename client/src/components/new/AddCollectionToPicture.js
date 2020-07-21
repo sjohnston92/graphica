@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import styled from "styled-components";
 
-const AddCollectionToPicture = () => {
+const AddCollectionToPicture = (props) => {
 
   const [ collections, setCollections ] = useState([])
-  const [ collection, setCollection ] = useState({})
+  const [ collectionId, setCollectionId ] = useState({})
   
   useEffect(() => {
 
@@ -19,18 +19,21 @@ const AddCollectionToPicture = () => {
 
   
     const handleChange = (event) => {
-      setCollection(event.target.value)
+      setCollectionId(event.target.value)
+      props.handleCollectionId(collectionId)
+      console.log(collectionId)
     }
+
     
 
   return (
-    <PictureCollectionForm>
+    <PictureCollectionForm >
       <lable>
               Collection: 
             <select
               type="select"
               name="collection"
-              value={collection}
+              value={collectionId}
               onChange={handleChange}
               required
             >

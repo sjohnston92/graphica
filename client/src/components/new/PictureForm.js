@@ -10,12 +10,23 @@ class PictureForm extends React.Component {
   state = { 
     formValues: {  file: "", title: "", description: "",  category: "" },
     categories: [],
+    collectionId: ""
   };
   
   componentDidMount() {
     axios.get("/api/categories")
     .then((res) => this.setState({ categories: res.data }))
     .catch(console.log)
+  }
+
+  newCollectionPicture = (incomingPictureId) => {
+    axios.post(`/api/collection_pictures`, {picture_id: incomingPictureId, collection_id: this.state.collectionId} )
+    .then(res => {
+      (alert("collection picture MADE!!"))
+      this.props.toggleModal()
+      this.props.history.push('/profile');
+    })
+      .catch(console.log)
   }
 
   handleSubmit = (e) => {
@@ -34,8 +45,9 @@ class PictureForm extends React.Component {
     axios.post(`/api/users/${this.props.auth.user.id}/pictures`, data, options)
       .then(res => {
         // do things when picture uploads successfully
-        this.props.toggleModal()
-        this.props.history.push('/profile');
+        // this.props.toggleModal()
+        // this.props.history.push('/profile');
+        this.newCollectionPicture(res.data.id)
         
       })
       .catch(console.log);
@@ -52,10 +64,18 @@ class PictureForm extends React.Component {
     }
   });
   
+  handleCollectionId = (incomingCollectionId) => { 
+
+     this.setState({
+       collectionId: incomingCollectionId
+     })
+    }
+
   render() {
-    const { toggle, open } = this.props;
+      const { toggle, open } = this.props;
+      console.log(this.state.collectionId)
     return (
-      
+      <>
         <PictureFormDiv onSubmit={this.handleSubmit} >
           <Dropzone
             onDrop={this.onDrop}
@@ -115,10 +135,11 @@ class PictureForm extends React.Component {
               }) }
             </select>
             </lable>
-           <AddCollectionToPicture />
             
           <SubmitButton>Submit</SubmitButton>
         </PictureFormDiv>
+        <AddCollectionToPicture handleCollectionId={this.handleCollectionId}/>
+      </>
     )
   }
 }
