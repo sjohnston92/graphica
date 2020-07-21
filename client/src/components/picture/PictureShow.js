@@ -118,7 +118,7 @@ const PictureShow = (props) => {
         <InfoLeft>{image.title}</InfoLeft>
       </PictureInfoDiv>
       <PictureCollectionDiv>
-          {renderCollections()}
+      { junctionList && (junctionList.length > 0) ? <> {renderCollections()} </> : null }
       </PictureCollectionDiv>
       <PictureDescriptionDiv>
         <InfoLeft>
