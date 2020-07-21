@@ -76,8 +76,5 @@ const HeroSubText = styled.p`
   line-height: 17px;
   color: #FFF
 `
-const FeedDiv = styled.div`
-  margin: 30px;
-`
 
 export default Home

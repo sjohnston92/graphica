@@ -23,6 +23,7 @@ const Comment = (props) => {
 
   const toggleEdit = () => {
     setEditing(!editing)
+    if (editing) { handleSubmit(event) }
   }
   
   const handleSubmit = (e) => {
@@ -93,11 +94,13 @@ const Comment = (props) => {
 }
 const Wrapper = styled.div`
   padding-top: 2rem;
+  font-size: 12px;
 `
 const UserDiv = styled.div`
   display: flex;
   height: 45px;
   justify-content: space-between;
+  font-size: 14px;
   
 `
 const Left = styled.div`
@@ -156,6 +159,7 @@ const BodyDiv = styled.div`
   width: 40rem;
   padding: 8px;
   margin: -8px;
+  font-size: 12px;
 
 `
 

@@ -174,6 +174,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  font-family: Montserrat;
+  
+  
+  
 `
 const UserInfoDiv = styled.div`
   display: flex;
@@ -187,6 +191,11 @@ const UserInfoRight = styled.div`
 const UserInfoLeft = styled.div`
   display: flex;
   align-items: center;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
 `
 const UserImage = styled.div`
   background-image: url(${props => props.image});
@@ -211,6 +220,7 @@ const NameDiv = styled.div`
 `
 const EmailDiv = styled.div`
   color: gray;
+  font-size: 12px;
 `
 const PictureDiv = styled.div`
   text-align: center;
@@ -252,6 +262,8 @@ const PictureDescriptionDiv = styled.div`
 const Description = styled.div`
   width: 100%;
   margin-top: 1rem;
+  font-weight: normal;
+  font-size: 12px;
 `
 const LinkDiv = styled.div`
   color: #81adda;

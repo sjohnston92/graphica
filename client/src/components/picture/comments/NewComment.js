@@ -50,5 +50,8 @@ const StyledInput = styled.input`
   height: 35px;
   width: 525px;
   box-sizing: border-box;
-  outline: none
+  outline: none;
+  ::placeholder {
+    font-family: Montserrat;
+  }
 `

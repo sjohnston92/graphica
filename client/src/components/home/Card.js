@@ -100,7 +100,7 @@ const CardDiv = styled.div`
 const PointerOff = styled.div`
   width: 100%
   cursor: default;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat';
 `
 const CardBorder = styled.div`
   margin-bottom: -40px;
@@ -138,7 +138,7 @@ const CardFooterRight = styled.div`
   float: right;
   margin-bottom: 15px;
   cursor: default;
-  color: #96969C
+  color: #96969C;
 `
 
 const ConnectedCard = (props) => (
