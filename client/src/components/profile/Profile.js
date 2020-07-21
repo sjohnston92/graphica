@@ -5,6 +5,9 @@ import Feed from '../home/Feed';
 import ProfileHero from './ProfileHero';
 import CollectionTab from './CollectionTab';
 import SettingsTab from './SettingsTab';
+import NewCollection from '../new/NewCollection';
+import NewPictureModal from '../modal/NewPictureModal';
+import NewPictureButton from '../new/NewPictureButton';
 
 
 
@@ -52,7 +55,9 @@ class Profile extends React.Component {
         <ProfileNavbar changeTab={this.changeTab} />
         <Line />
         <br></br>
-        
+        <NewPictureButton />
+        <NewPictureModal />
+        <NewCollection />
         <ProfileBottom>
           { this.renderBottom() }
         </ProfileBottom>

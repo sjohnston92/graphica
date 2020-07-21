@@ -3,6 +3,7 @@ import { AuthConsumer, } from "../../providers/AuthProvider";
 import { Menu, } from 'semantic-ui-react'
 import { Link, withRouter, } from 'react-router-dom'
 import NewPictureModal from '../modal/NewPictureModal'
+import CollectionShow from '../collection/CollectionShow';
 
 class Navbar extends React.Component {
   state = { open: false }
@@ -74,7 +75,11 @@ class Navbar extends React.Component {
           </Link>
             { this.rightNavItems() }
         </Menu>
-        <NewPictureModal open={this.state.open} toggle={this.toggle} />
+        <NewPictureModal 
+          history={this.props.history} 
+          open={this.state.open} 
+          toggle={this.toggle} 
+        />
       </div>
     )
   }
