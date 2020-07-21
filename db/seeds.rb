@@ -49,16 +49,6 @@ end
 users = User.all
 categories = Category.all
 IMAGE_URLS.map { |url| 
-<<<<<<< HEAD
-Picture.create(
-  category_id: categories.sample.id, 
-  user_id: users.sample.id, 
-  title: Faker::Movies::StarWars.planet, 
-  url: url,
-  description: Faker::Lorem.sentence(word_count: 3, supplemental: true),
-  views: rand(700)
-  )
-=======
   Picture.create(
     category_id: (rand(7)+1), 
     user_id: (rand(4)+1), 
@@ -67,7 +57,6 @@ Picture.create(
     description: Faker::Lorem.sentence(word_count: 3, supplemental: true),
     views: rand(700)
     )
->>>>>>> 485376160ce4985765ab2315b924bf854feca1e9
 }
 
 User.all.each do |user|
