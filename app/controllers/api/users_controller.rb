@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, only: [:show]
   before_action :set_user, only: [:update_profile_image, :update_banner_image]
 
   def index

@@ -8,11 +8,9 @@ import Catbar from './components/shared/Catbar';
 import NoMatch from './components/shared/NoMatch';
 import FetchUser from './components/auth/FetchUser';
 import Dash from './components/shared/Dash';
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import Feed from './components/home/Feed'
 import Profile from './components/profile/Profile';
 import Collection from './components/collection/CollectionShow';
-import PictureCollection from './components/picture/PictureCollection'
+import PictureCollection from './components/picture/PictureCollection';
 
 const App = () => {
   const [showCatbar, setShowCatbar] = useState(false)
