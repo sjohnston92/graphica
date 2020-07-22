@@ -25,6 +25,11 @@ class Api::PicturesController < ApplicationController
     end  
   end
 
+  def destroy
+    Picture.find(params[:id]).destroy
+    render json: {message: 'Delete Successful' }
+  end
+
   private
 
   def picture_params

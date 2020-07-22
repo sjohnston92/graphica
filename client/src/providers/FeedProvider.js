@@ -70,6 +70,8 @@ export const FeedProvider = (props) => {
 
   const resetPictures = () => setPictures([]);
 
+  const deletePicture = (incomingId) => setPictures( pictures.filter(a => a.id !== incomingId ))
+
   return(
     <FeedContext.Provider value={{
       pictures,
@@ -82,6 +84,7 @@ export const FeedProvider = (props) => {
       query,
       searchPictures,
       offset: pictures.length,
+      deletePicture,
     }}> 
       { props.children }
     </FeedContext.Provider>     

@@ -4,8 +4,8 @@ import axios from 'axios'
 import { ImageConsumer } from '../../providers/ImageProvider'
 
 const CollectionImage = (props) => {
-  const [ picture, setPicture ] = useState()
   const id = props.picId
+  const [ picture, setPicture ] = useState()
 
   useEffect (() => {
     axios.get(`/api/pictures/${props.picId}`)
@@ -13,15 +13,10 @@ const CollectionImage = (props) => {
       .catch(console.log)
   }, [] )
   
-  const setImageId = () => {
-    props.setImageId(id)
-    // props.runFetch(id)
-  }
-  return  (
-    <>
-    {picture && <StyledImage image={picture.url} onClick={setImageId}/> } 
-    </>
-  ) 
+  const updateImageId = () => props.setImageId(id)
+  
+  return <> {picture && <StyledImage image={picture.url} onClick={updateImageId}/> } </>
+  
 }
 
 const StyledImage = styled.div`
