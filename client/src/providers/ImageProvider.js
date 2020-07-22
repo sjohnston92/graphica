@@ -10,6 +10,8 @@ export const ImageProvider = (props) => {
   const [user, setUser] = useState("");
   const [userImage, setUserImage] = useState();
   const [ pictureJunctions, setPictureJunctions ] = useState(null);
+  const [ userCollections, setUserCollections ] = useState([{title: 'there are none'}])
+
   
   const fetchUser = (userId) => {
     return new Promise((resolve, reject) => {
@@ -113,6 +115,14 @@ export const ImageProvider = (props) => {
       .catch(console.log)
   }
 
+
+  const fetchCollections = (userId) => {
+    axios.get(`/api/users/${userId}/collections`)
+    .then( res => (setUserCollections(res.data)) )
+    .catch(console.log)
+
+  }
+
   return(
     <ImageContext.Provider value={{
       fetchUser,
@@ -128,6 +138,9 @@ export const ImageProvider = (props) => {
       pictureJunctions,
       removeImageFromCollection,
       addImageToCollection,
+      fetchCollections,
+      userCollections,
+      
     }}> 
       { props.children }
     </ImageContext.Provider>     

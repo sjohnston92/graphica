@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { AuthConsumer } from "../../providers/AuthProvider";
 import styled  from 'styled-components';
-import { CollectionConsumer } from '../../providers/CollectionProvider';
 
 
 const CollectionForm = (props) => {

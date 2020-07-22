@@ -18,8 +18,7 @@ const PictureShow = (props) => {
   const [showAllCollections, setShowAllCollections ] = useState(false)
 
   useEffect(() => runFetch(props.imageId), [props.imageId])
-  // useEffect(() => setJunctionList(props.pictureJuntions))
-  // useEffect(() => updateJunctionList(props.extPictureCollections, [props.extPictureCollections]))
+  
 
   const runFetch = (id) => {
     setJunctionList(null) //START HERE, try to get it so it doesn't reload everytime
@@ -35,12 +34,7 @@ const PictureShow = (props) => {
         props.fetchUser(res.data.user_id)
           .then(res => setUser(res.data))
           .catch(console.log)
-
         props.fetchJunction(id)
-          // .then(res => {
-          //     setJunctionList(res.data)
-          //   })
-          // .catch(console.log)
       })
       .catch(console.log)
       
@@ -68,14 +62,6 @@ const PictureShow = (props) => {
     props.toggleAndDelete(image.id)
     //delete junctions.. maybe no need..
   }
-
-  const refreshCollectionState = (incomingJunctionId) => { //RENAME
-    setJunctionList(junctionList.concat(incomingJunctionId))
-  }
-
-
-  // const updateJunctionList = () =>
-  console.log("picture junctions 0:", props.pictureJunctions)
 
   const renderCollections = () => (
     <>
@@ -154,7 +140,7 @@ const PictureShow = (props) => {
       </PictureInfoDiv>
       <PictureCollectionDiv>
           { props.pictureJunctions && (props.pictureJunctions.length > 0) ? <> {renderCollections()} </> : null }
-          <AddCollectionButton refreshCollectionState={refreshCollectionState} userId={user.id} image={image}/>
+          <AddCollectionButton userId={user.id} image={image}/>
       </PictureCollectionDiv>
       <PictureDescriptionDiv>
         <InfoLeft>

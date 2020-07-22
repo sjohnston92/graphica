@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { CollectionConsumer } from '../../providers/CollectionProvider';
 import { AuthConsumer } from '../../providers/AuthProvider';
 import { ImageConsumer } from '../../providers/ImageProvider';
 
@@ -25,16 +24,8 @@ const [ collectionId, setCollectionId ] = useState()
     <form onSubmit={handleSubmit} >
       <label>
         Collection: 
-        <select
-          type="select"
-          name="collection"
-          value={collectionId}
-          onChange={handleChange}
-          required
-          
-        >
+        <select type="select" name="collection" value={collectionId} onChange={handleChange} required>
           <option value="" disabled selected>Select your option</option>
-          {/* <option value={HelloValue}>--Please Select--</option> */}
           { props.userCollections.map((collection) => (
             <option value={collection.id} >{collection.title}</option> 
           ))}
@@ -43,28 +34,18 @@ const [ collectionId, setCollectionId ] = useState()
       <button>Add</button>
     </form>
   )
-
 }
 
-
-
 const ConnectedAddToExisting = (props) => (
-  <CollectionConsumer>
-    {(value) => <AddToExisting {...props} {...value} />}
-  </CollectionConsumer>
-);
-
-const AuthConnectedAddToExisting = (props) => (
   <AuthConsumer>
-    {(value) => <ConnectedAddToExisting {...props} {...value} />}
+    {(value) => <AddToExisting {...props} {...value} />}
   </AuthConsumer>
 );
 
-const ImageAuthConnectedAddToExisting = (props) => (
+const AuthConnectedAddToExisting = (props) => (
   <ImageConsumer>
-    {(value) => <AuthConnectedAddToExisting {...props} {...value} />}
+    {(value) => <ConnectedAddToExisting {...props} {...value} />}
   </ImageConsumer>
 );
 
-
-export default ImageAuthConnectedAddToExisting
+export default AuthConnectedAddToExisting

@@ -11,15 +11,7 @@ import useModal from '../../hooks/useModal';
 
 const AddCollectionButton = (props) => {
   const { open, toggle } = useModal();
-
-  const handleCollectionId = (incomingId) => {
-    axios.post(`/api/collection_pictures`, {picture_id: props.image.id, collection_id: incomingId})
-    .then(res => {
-      props.refreshCollectionState(res.data)
-    })
-    .catch(console.log)
-  }
-
+  
   return (
     <>  
       { props.authenticated && 
