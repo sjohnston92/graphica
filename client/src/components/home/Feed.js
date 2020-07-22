@@ -51,19 +51,22 @@ const Feed = (props) => {
       else iterator ++;
     })
   
+  const updateFeedState = (incomingId) => {
+    props.deletePicture(incomingId)
+  }
     return (
       <>
-        { props.searching ? "Searching" : "Not Searching" }
+        {/* { props.searching ? "Searching" : "Not Searching" } */}
  
         <FeedDiv>
           <ColumnContainer>
-            {column_arrays[0].map(listItem =><><Card image={listItem}/></>)}
+            {column_arrays[0].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={updateFeedState}/></>)}
           </ColumnContainer>
           <ColumnContainer>
-            {column_arrays[1].map(listItem =><><Card image={listItem}/></>)}
+            {column_arrays[1].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={updateFeedState}/></>)}
           </ColumnContainer>
           <ColumnContainer>
-            {column_arrays[2].map(listItem =><><Card image={listItem}/></>)}
+            {column_arrays[2].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={updateFeedState}/></>)}
           </ColumnContainer>
         </FeedDiv>
         {noMorePictures && 'No more pictures'}

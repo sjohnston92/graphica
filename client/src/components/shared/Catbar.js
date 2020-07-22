@@ -44,15 +44,16 @@ const Catbar = (props) => {
   }
 
   return (
-  <>
-      <button onClick={handleClick1}>Animals</button>
-      <button onClick={handleClick2}>Art</button>
-      <button onClick={handleClick3}>Other</button>
-      <button onClick={handleClick4}>Nature</button>
-      <button onClick={handleClick5}>Places</button>
-      <button onClick={handleClick6}>People</button>
-      <button onClick={handleClick7}>Technology</button>
-   </>           
+  <Wrapper>
+      <Spacer></Spacer>
+      <LinkDiv onClick={handleClick1}>animals</LinkDiv><Spacer></Spacer>
+      <LinkDiv onClick={handleClick2}>art</LinkDiv><Spacer></Spacer>
+      <LinkDiv onClick={handleClick3}>other</LinkDiv><Spacer></Spacer>
+      <LinkDiv onClick={handleClick4}>nature</LinkDiv><Spacer></Spacer>
+      <LinkDiv onClick={handleClick5}>places</LinkDiv><Spacer></Spacer>
+      <LinkDiv onClick={handleClick6}>people</LinkDiv><Spacer></Spacer>
+      <LinkDiv onClick={handleClick7}>technology</LinkDiv>
+   </Wrapper>           
   )  
 }
 const ConnectedCatbar = (props) => (
@@ -61,4 +62,26 @@ const ConnectedCatbar = (props) => (
   </FeedConsumer>
 );
 
+const Wrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: grey;
+  width: 100%;
+  padding: 1rem;
+  opacity: 0.9;
+  
+`
+
+const Spacer = styled.div`
+  width: 40px;
+`
+const LinkDiv = styled.div`
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  color: white;
+  cursor: pointer;
+`
 export default ConnectedCatbar;

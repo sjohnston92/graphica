@@ -16,5 +16,5 @@ class User < ActiveRecord::Base
 
   #Devise handles validations here well enough?
 
-
+  
 end

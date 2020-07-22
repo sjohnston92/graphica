@@ -2,7 +2,7 @@ class Picture < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
-  has_many :picture_comments
+  has_many :picture_comments, dependent: :destroy
   # has_many :picture_comments, through: :users, dependent: :destroy
   has_many :collections, through: :collection_pictures
   has_many :collection_pictures
