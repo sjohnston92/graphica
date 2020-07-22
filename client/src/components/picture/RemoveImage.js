@@ -1,18 +1,17 @@
 import React from 'react';
 import { AuthConsumer } from '../../providers/AuthProvider';
+import { ImageConsumer } from '../../providers/ImageProvider';
 import axios from 'axios';
 import deleteImg from '../../img/delete.png';
 import styled from 'styled-components';
 const RemoveImage = (props) => {
 
-  const removeImage = (incomingId) => {
+  const removeImage = () => {
     const result = window.confirm("Remove Image from Collection?")
     if (result) {
-      axios.delete(`api/collection_pictures/${props.pictureCollection.id}`)
-      .then( res => props.refreshJunctionState(incomingId) )
+      props.removeImageFromCollection(props.pictureCollection.id)
     }
   }
-
 
   return (
     <>  
@@ -20,7 +19,7 @@ const RemoveImage = (props) => {
         <> 
            {
               (props.user.id === props.userId) &&
-                <RemoveFromCollection onClick={() => removeImage(props.pictureCollection.id)}>
+                <RemoveFromCollection onClick={removeImage}>
                   <RemoveDiv image={deleteImg} />
                     Remove
                 </RemoveFromCollection>
@@ -57,4 +56,10 @@ const ConnectedRemoveImage = (props) => (
   </AuthConsumer>
 );
 
-export default ConnectedRemoveImage;
+const ImageConnectedRemoveImage = (props) => (
+  <ImageConsumer>
+    {(value) => <ConnectedRemoveImage {...props} {...value} />}
+  </ImageConsumer>
+);
+
+export default ImageConnectedRemoveImage;

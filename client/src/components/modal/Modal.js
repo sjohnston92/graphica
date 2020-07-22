@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
+import closeImg from "../../img/redclose.jpg"
  
 const Modal = ({children, onClose, open }) =>
   open
@@ -9,7 +10,7 @@ const Modal = ({children, onClose, open }) =>
         <ModalWrapper>       
           <ModalCard>          
             <CloseButton onClick={onClose}>            
-            <img src="https:icon.now.sh/x/ff0000" alt="close" />
+            <img src={closeImg} height="40px" width="40px" alt="close" />
           </CloseButton>
           {children}
           </ModalCard>
