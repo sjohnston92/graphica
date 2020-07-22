@@ -32,7 +32,6 @@ const CollectionShow = (props) => {
   
 
   return(
-    
       <Wrapper>
         {collection && user &&
           <>
