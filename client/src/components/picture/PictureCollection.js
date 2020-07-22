@@ -25,7 +25,7 @@ const PictureCollection = (props) => {
           <RowDiv>
             <CollectionText> 
               part of 
-              <a href="url">{" " + collection.title + " "}</a> 
+              <a href={`/collections/${props.pictureCollection.collection_id}`}>{" " + collection.title + " "}</a> 
               collection 
             </CollectionText>
             <RemoveImage 

@@ -25,8 +25,8 @@ const PictureShow = (props) => {
     props.fetchImage(id)
       .then(res => {
         setImage(res.data)
-        props.updateViewsState(id)
-
+        props.updateViewState && props.updateViewsState(id)
+          // props.updateViewsState(id)
         props.fetchCategory(res.data.category_id)  //NOT NAME ANYMORE
           .then(res => setCategory(res.data))
           .catch(console.log)

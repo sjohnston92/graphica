@@ -64,12 +64,7 @@ class PictureForm extends React.Component {
     }
   });
   
-  handleCollectionId = (incomingCollectionId) => { 
 
-     this.setState({
-       collectionId: incomingCollectionId
-     })
-    }
 
   render() {
       const { toggle, open } = this.props;
@@ -138,7 +133,6 @@ class PictureForm extends React.Component {
             
           <SubmitButton>Submit</SubmitButton>
         </PictureFormDiv>
-        <AddCollectionToPicture handleCollectionId={this.handleCollectionId}/>
       </>
     )
   }

@@ -42,7 +42,7 @@ const Card = (props) => {
   return (
     <CardBorder>
       <Modal onClose={toggle} open={open}>     
-          <PictureShow updateViewsState={updateViewsState} toggleAndDelete={toggleAndDelete}/>   
+        <PictureShow updateViewsState={updateViewsState} toggleAndDelete={toggleAndDelete}/>   
       </Modal>       
       <CardDiv onClick={toggleAndSetId} >
         <StyledText>{props.image.title}</StyledText>
