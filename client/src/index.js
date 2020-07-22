@@ -8,19 +8,22 @@ import { ImageProvider } from './providers/ImageProvider'
 
 import 'semantic-ui-css/semantic.min.css';
 import { initMiddleware } from 'devise-axios';
+import { CollectionProvider } from './providers/CollectionProvider';
 
 
 initMiddleware()
 ReactDOM.render(
   <React.StrictMode>
    <AuthProvider>
-     <FeedProvider>
-        <ImageProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-       </ImageProvider>
-     </FeedProvider>
+    <CollectionProvider>
+      <FeedProvider>
+          <ImageProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+        </ImageProvider>
+      </FeedProvider>
+    </CollectionProvider>
   </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')

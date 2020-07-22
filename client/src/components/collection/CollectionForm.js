@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { AuthConsumer } from "../../providers/AuthProvider";
 import styled  from 'styled-components';
+import { CollectionConsumer } from '../../providers/CollectionProvider';
 
 
 const CollectionForm = (props) => {
-
-  //USE OTHER ONE IN COLLECTION/COLLECTIONFORM
 
   const [ title, setTitle ] = useState("")
   const [ description, setDescription ] = useState("")
@@ -76,9 +75,17 @@ const CollectionStyleForm = styled.form`
 `
 
 const ConnectedCollectionForm = (props) => (
+  <CollectionConsumer>
+      {(value) => <CollectionForm {...props} {...value} />}
+  </CollectionConsumer>
+)
+
+const AuthConnectedCollectionForm = (props) => (
   <AuthConsumer>
-    {(value) => <CollectionForm {...props} {...value} />}
+    {(value) => <ConnectedCollectionForm {...props} {...value} />}
   </AuthConsumer>
 );
 
-export default ConnectedCollectionForm;
+
+
+export default AuthConnectedCollectionForm;

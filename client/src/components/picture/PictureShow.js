@@ -18,6 +18,8 @@ const PictureShow = (props) => {
   const [showAllCollections, setShowAllCollections ] = useState(false)
 
   useEffect(() => runFetch(props.imageId), [props.imageId])
+  // useEffect(() => setJunctionList(props.pictureJuntions))
+  // useEffect(() => updateJunctionList(props.extPictureCollections, [props.extPictureCollections]))
 
   const runFetch = (id) => {
     setJunctionList(null) //START HERE, try to get it so it doesn't reload everytime
@@ -35,10 +37,10 @@ const PictureShow = (props) => {
           .catch(console.log)
 
         props.fetchJunction(id)
-          .then(res => {
-              setJunctionList(res.data)
-            })
-          .catch(console.log)
+          // .then(res => {
+          //     setJunctionList(res.data)
+          //   })
+          // .catch(console.log)
       })
       .catch(console.log)
       
@@ -71,13 +73,13 @@ const PictureShow = (props) => {
     setJunctionList(junctionList.concat(incomingJunctionId))
   }
 
-  const refreshJunctionState = (incomingJunctionId) => {
-    setJunctionList(junctionList.filter(a => a.id !== incomingJunctionId))
-  }
- 
+
+  // const updateJunctionList = () =>
+  console.log("picture junctions 0:", props.pictureJunctions)
+
   const renderCollections = () => (
     <>
-      { junctionList.length > 1 &&
+      { props.pictureJunctions.length > 1 &&
         <>
           { (showAllCollections == false) 
             ? <LinkDiv onClick={()=>setShowAllCollections(true)}> See All Collections </LinkDiv>
@@ -88,14 +90,12 @@ const PictureShow = (props) => {
       { showAllCollections 
         ?
           <>
-            {junctionList.map(jct => (
+            {props.pictureJunctions.map(jct => (
               <>
-                {/* <RemoveImage pictureCollection={jct} image={image} refreshJunctionState={refreshJunctionState}/> */}
                 <PictureCollection 
                   pictureCollection={jct}
                   runFetch={runFetch} 
                   fetchCollection={props.fetchCollection}
-                  refreshJunctionState={refreshJunctionState}
                   image={image}
                   userId={user.id}
                 />
@@ -104,12 +104,10 @@ const PictureShow = (props) => {
           </> 
         :
           <>
-            {/* <RemoveImage pictureCollection={junctionList[0]} image={image} refreshJunctionState={refreshJunctionState}/> */}
             <PictureCollection 
-              pictureCollection={junctionList[0]}
+              pictureCollection={props.pictureJunctions[0]}
               runFetch={runFetch} 
               fetchCollection={props.fetchCollection}
-                refreshJunctionState={refreshJunctionState}
                 image={image}
                 userId={user.id}
             /> 
@@ -155,7 +153,7 @@ const PictureShow = (props) => {
         <InfoLeft>{image.title}</InfoLeft>
       </PictureInfoDiv>
       <PictureCollectionDiv>
-          { junctionList && (junctionList.length > 0) ? <> {renderCollections()} </> : null }
+          { props.pictureJunctions && (props.pictureJunctions.length > 0) ? <> {renderCollections()} </> : null }
           <AddCollectionButton refreshCollectionState={refreshCollectionState} userId={user.id} image={image}/>
       </PictureCollectionDiv>
       <PictureDescriptionDiv>

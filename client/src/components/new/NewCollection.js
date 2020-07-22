@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../modal/Modal';
 import useModal from "../../hooks/useModal";
-import CollectionForm from "./CollectionForm"
+import CollectionForm2 from "./CollectionForm2"
 
 
 const NewPictureCollectionModal = () => {
@@ -13,7 +13,7 @@ const NewPictureCollectionModal = () => {
     <button onClick={ toggle }>New Collection</button>
 
     <Modal onClose={toggle} open={open}>
-     <CollectionForm />
+     <CollectionForm2 />
     </Modal>
    </>
   )

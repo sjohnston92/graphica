@@ -5,13 +5,12 @@ import AddCollectionToPicture from '../new/AddCollectionToPicture';
 import axios from 'axios';
 import addImg from '../../img/add.png';
 import styled from 'styled-components';
-const AddCollectionButton = (props) => {
-  const [ toggleForm, setToggleForm ] = useState(false)
-  const [ toggleNew, setToggleNew ] = useState(false)
+import AddOrCreateCollection from './AddOrCreateCollection';
+import Modal from '../modal/Modal';
+import useModal from '../../hooks/useModal';
 
-  const handleClick = () => {
-    setToggleForm(!toggleForm)
-  }
+const AddCollectionButton = (props) => {
+  const { open, toggle } = useModal();
 
   const handleCollectionId = (incomingId) => {
     axios.post(`/api/collection_pictures`, {picture_id: props.image.id, collection_id: incomingId})
@@ -28,20 +27,13 @@ const AddCollectionButton = (props) => {
           { 
             (props.user.id === props.userId) &&
               <Wrapper>
-                <AddToCollection onClick={handleClick} >
+                <AddToCollection onClick={()=>toggle()} >
                   <AddDiv image={addImg} />
-                  { toggleForm ? <> Close </> : <> Add to a collection </> }
+                  Add to a collection 
                 </AddToCollection>
-
-                { toggleForm && 
-                  <>
-                    { !toggleNew &&  <AddCollectionToPicture handleCollectionId={handleCollectionId}/> }  
-                    <button onClick={()=>setToggleNew(!toggleNew)}>
-                      { toggleNew ? <> Choose Existing </> : <> Create New </>}                    
-                    </button>
-                    { toggleNew && <CollectionForm /> }
-                  </>
-                }
+                <Modal onClose={toggle} open={open}>               
+                  <AddOrCreateCollection toggleModal={toggle}/>
+                </Modal>
               </Wrapper>
           }
         </>

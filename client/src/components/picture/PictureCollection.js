@@ -16,7 +16,7 @@ const PictureCollection = (props) => {
       })
       .then((res) => setPics(res.data))
       .catch(console.log)
-  }, [])
+  }, [props.pictureCollection])
  
   return (
     <Container>
