@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import ProfileCollection from './ProfileCollection';
 
 
 class ProfileCollectionFeed extends React.Component {
@@ -12,8 +13,8 @@ class ProfileCollectionFeed extends React.Component {
       .catch(console)
   }
 
-  renderCollections = () => this.state.collections.map((pic) => (
-    <ProfileCard />
+  renderCollections = () => this.state.collections.map((collection) => (
+    <ProfileCollection key={collection.id} collection={collection} />
   ))
 
   render() {
@@ -27,16 +28,16 @@ class ProfileCollectionFeed extends React.Component {
   }
 }
 
-const ProfileCard = styled.div`
-  width: 30rem;
-  height: 30rem;
-  flex-shrink: 0;
-  margin: 20px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: url(https://res.cloudinary.com/graphica/image/upload/v1594948579/ian-keefe-OgcJIKRnRC8-unsplash.jpg.jpg);
-`;
+// const ProfileCard = styled.div`
+//   width: 30rem;
+//   height: 30rem;
+//   flex-shrink: 0;
+//   margin: 20px;
+//   background-size: cover;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-image: url(https://res.cloudinary.com/graphica/image/upload/v1594948579/ian-keefe-OgcJIKRnRC8-unsplash.jpg.jpg);
+// `;
 
 const FeedDiv = styled.div`
   width: 75%;

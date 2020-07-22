@@ -59,9 +59,13 @@ class Profile extends React.Component {
         <ProfileNavbar changeTab={this.changeTab} isCurrentUser={this.state.isCurrentUser}/>
         <Line />
         <br></br>
-        <NewPictureButton /> 
-        <NewPictureModal />
-        <NewCollection />
+        { this.state.isCurrentUser &&
+          <>
+            <NewPictureButton /> 
+            <NewPictureModal />
+            <NewCollection />
+          </>
+        }
         <ProfileBottom>
           { this.renderBottom() }
         </ProfileBottom>
