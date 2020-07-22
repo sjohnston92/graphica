@@ -33,7 +33,6 @@ const CollectionCard = (props) => {
   return (
     <CardBorder>
       <Modal onClose={toggle} open={open}> 
-      HELLO MODAL    
           <PictureShow updateViewsState={updateViewsState} toggleAndDelete={toggleAndDelete}/>   
       </Modal>       
       <CardDiv onClick={toggleAndSetId} >
