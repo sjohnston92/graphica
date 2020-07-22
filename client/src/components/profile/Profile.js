@@ -21,9 +21,12 @@ class Profile extends React.Component {
     this.props.toggleCatbar(false)
     axios.get(`/api/users/${this.props.match.params.id}`)
       .then((res) => {
-        const { user: { id } } = this.props.auth;
+        const id = this.props.auth.user ? this.props.auth.user.id : null;
+        // const { user: { id } } = this.props.auth;
         const isCurrentUser = res.data.id === id;
         this.setState({ user: res.data, isCurrentUser });
+        // this.setState({user: res.data})
+        
       })
       .catch(console.log);
   } 
@@ -56,6 +59,8 @@ class Profile extends React.Component {
     return (
       <Wrapper>
         { this.state.user && <ProfileHero user={this.state.user} /> }
+        {/* <ProfileHero user={this.state.user} />  */}
+
         <ProfileNavbar changeTab={this.changeTab} isCurrentUser={this.state.isCurrentUser}/>
         <Line />
         <br></br>
