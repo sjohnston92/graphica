@@ -60,13 +60,13 @@ const Feed = (props) => {
  
         <FeedDiv>
           <ColumnContainer>
-            {column_arrays[0].map(listItem =><><Card image={listItem} updateFeedState={updateFeedState}/></>)}
+            {column_arrays[0].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={updateFeedState}/></>)}
           </ColumnContainer>
           <ColumnContainer>
-            {column_arrays[1].map(listItem =><><Card image={listItem} updateFeedState={updateFeedState}/></>)}
+            {column_arrays[1].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={updateFeedState}/></>)}
           </ColumnContainer>
           <ColumnContainer>
-            {column_arrays[2].map(listItem =><><Card image={listItem} updateFeedState={updateFeedState}/></>)}
+            {column_arrays[2].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={updateFeedState}/></>)}
           </ColumnContainer>
         </FeedDiv>
         {noMorePictures && 'No more pictures'}

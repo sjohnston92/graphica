@@ -41,6 +41,7 @@ const PictureCollection = (props) => {
         {pics.map(pic => (
           <>
             <CollectionImage 
+              key={pic.id}
               toggle={props.toggle} 
               picId={pic.picture_id} 
               runFetch={props.runFetch} 
