@@ -7,28 +7,32 @@ import axios from "axios";
 //get collection / user id / user tagline 
 
 const CollectionHeader = (props) => {
-  const [ collections, setCollections ] = useState([])
 
-  useEffect(() => {
-    axios.get("/api/collections/${id}")
-    .then( res => (setCollections(res.data)))
-    .catch(console.log)
-  }, [])
+  console.log(props.user)
 
   return(
-    
     <Wrapper>
-      { collections.map((collection) => {
-                return (
-                <h1 value={collection.id} >{collection.title}</h1>
-                )
-              }) }
+      <p>{props.collection.title}</p>
+      <p>{props.collection.description}</p>
+      <p>{props.user.first_name + " " + props.user.last_name}</p>
+      <UserImage user={props.user} />
     </Wrapper>
-)
-  }
+  )
+}
 
 const Wrapper = styled.div`
   width: 100%;
+  border: solid black 3px;
+`
+
+const UserImage = styled.div`
+  background-image: url(${props => props.user.image});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20rem;
+  height: 20rem;
+  border-radius: 100%;
 `
 
 export default CollectionHeader;

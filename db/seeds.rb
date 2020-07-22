@@ -66,8 +66,18 @@ User.all.each do |user|
   puts half_amount
   1.times do
     i = 0
-    collection_1 = Collection.create(user_id: user.id, title: "#{Faker::Appliance.equipment}".titleize)
-    collection_2 = Collection.create(user_id: user.id, title: Faker::Movies::HarryPotter.location)
+
+    collection_1 = Collection.create(
+      user_id: user.id,
+      title: "#{Faker::Appliance.equipment}".titleize,
+      description: "The theretical description of a collection goes here.",
+    )
+    
+    collection_2 = Collection.create(
+      user_id: user.id, 
+      title: Faker::Movies::HarryPotter.location,
+      description: "The theretical description of a collection goes here.",
+    )
     
     if pic_amount > 0
       for index in  (1..half_amount) 
