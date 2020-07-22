@@ -1,8 +1,13 @@
 class Api::Users::CollectionsController < ApplicationController
 
   def index
+<<<<<<< HEAD
     user = User.find(params[:user_id])  
     render json: user.collections
+=======
+    @user = User.find(params[:user_id])
+    render json: @user.collections
+>>>>>>> 529788edc92ca483616cb26405dd3a9d2e6f00fb
   end
   
   def show
