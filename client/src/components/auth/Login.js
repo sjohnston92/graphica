@@ -1,10 +1,11 @@
 import React from 'react';
 import { AuthConsumer, } from "../../providers/AuthProvider";
 import { Button, Form, Segment, Header, } from 'semantic-ui-react';
-import { withRouter } from 'react-router-dom';
+import {Link, withRouter } from 'react-router-dom';
 import logoFont from '../../fonts/Elianto-Regular.otf';
 import store from '../../img/login_page.jpg'
 import styled from "styled-components";
+//import Register from '/Register';
 
 
 
@@ -23,17 +24,15 @@ class Login extends React.Component {
     const { name, value, } = e.target;
     this.setState({ [name]: value, });
   }
-
+  
   render() {
     const { email, password, } = this.state;
-  
+    
     return (
-    <Wrapper>
+      <Wrapper>
     <Row>
     <PictureGroup>
       <LoginImage>
-        <ImageLeft>
-          <ImageLeftTop>
             <ImageContents>
               <h2>Free Forever</h2>
               <p>
@@ -47,8 +46,6 @@ class Login extends React.Component {
               </p>
               <br></br>
             </ImageContents>
-          </ImageLeftTop>
-        </ImageLeft>
       </LoginImage>
     </PictureGroup>
     <LoginGroup>
@@ -56,11 +53,14 @@ class Login extends React.Component {
         GRAPHICA
       </GraphicaLogo>
       <GraphicaParagraph>
-        Graphica is a novel photo-sharing app that allows users to share their collections. 
+        Graphica is a novel photo-sharing app that allows users to share their collections. Create an account to start sharing and connect with other photographers!
       </GraphicaParagraph>
       <SegmentWrapper>
       <Segment basic>
-        <Header as='h1' textAlign='right'>Login</Header>
+        <Header as='h1'>Login  <Link to ='Register'>or Sign Up</Link>
+
+        </Header>
+        
         <Form onSubmit={this.handleSubmit}>
           <Form.Input
             label="Email"
@@ -70,7 +70,7 @@ class Login extends React.Component {
             value={email}
             placeholder='Email'
             onChange={this.handleChange}
-          />
+            />
           <Form.Input
             label="Password"
             required
@@ -79,8 +79,8 @@ class Login extends React.Component {
             placeholder='Password'
             type='password'
             onChange={this.handleChange}
-          />
-          <Segment textAlign='right' basic>
+            />
+          <Segment basic>
             <Button primary type='submit'>Submit</Button>
           </Segment>
             </Form>
@@ -105,11 +105,19 @@ class ConnectedLogin extends React.Component {
 
 const Wrapper = styled.div`
 `
+
 const LoginGroup = styled.div`
-  display: flex;
+display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: left;
+  align-items: flex-start;
+  margin-top: 3rem;
+  margin-left: 10rem;
   flex: 1;
+
+  @media (max-width: 812px;) {
+    max-width: 400px;
+  }
 `
 const Row = styled.div`
   display: flex;
@@ -119,16 +127,22 @@ const Row = styled.div`
 `
 
 const PictureGroup = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+
+  @media (max-width: 812px;) {
+    max-width: 400px;
+  }
 `
 
 const GraphicaParagraph = styled.div`
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: left;
+  padding-left: 1rem;
+  padding-bottom: 5rem;
   margin-right: 50px;
 `
 
@@ -141,11 +155,8 @@ const SegmentWrapper = styled.div`
 
 const GraphicaLogo = styled.div`
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  padding-right: 2rem;
+  padding-left: 1rem;
+  padding-bottom: 4rem;
   font-family: 'Elianto-Regular';
   font-size: 42px;
   @font-face {
@@ -157,30 +168,25 @@ const GraphicaLogo = styled.div`
 
 const LoginImage = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
   display: flex;
   justify-content: flex-start;
   align-items: left;
-  min-height: 950px;
+  min-height: 900px;
   background-size: cover;
   background-position: left;
   background-repeat: no-repeat;
   background-image: url(https://res.cloudinary.com/graphica/image/upload/v1593188743/white-mountain_eschby.jpg);
-`
 
-const ImageLeft = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  margin-left: 5rem;
-`
-
-const ImageLeftTop = styled.div`
-  display: flex;
+  @media (max-width: 812px;) {
+    max-width: 400px;
+  }
 `
 
 const ImageContents = styled.div`
+  font-family: Montserrat;
   padding-top: 2rem;
+  padding-left: -35rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
