@@ -22,11 +22,8 @@ class Profile extends React.Component {
     axios.get(`/api/users/${this.props.match.params.id}`)
       .then((res) => {
         const id = this.props.auth.user ? this.props.auth.user.id : null;
-        // const { user: { id } } = this.props.auth;
         const isCurrentUser = res.data.id === id;
         this.setState({ user: res.data, isCurrentUser });
-        // this.setState({user: res.data})
-        
       })
       .catch(console.log);
   } 
@@ -43,7 +40,6 @@ class Profile extends React.Component {
     switch(this.state.currentTab) {
       case "recent":
         return this.state.user ? <BottomFeed user={this.state.user} isCurrentUser={this.state.isCurrentUser} /> : null
-          // collections modal needs to go next to showModal below (it's the second button)
       case "collections":
         return this.state.user ? <CollectionTab user={this.state.user} /> : null
       case "favorites":
@@ -59,9 +55,10 @@ class Profile extends React.Component {
     return (
       <Wrapper>
         { this.state.user && <ProfileHero user={this.state.user} /> }
-        {/* <ProfileHero user={this.state.user} />  */}
-
-        <ProfileNavbar changeTab={this.changeTab} isCurrentUser={this.state.isCurrentUser}/>
+        <ProfileNavbar 
+          changeTab={this.changeTab} 
+          isCurrentUser={this.state.isCurrentUser}
+        />
         <Line />
         <br></br>
         { this.state.isCurrentUser &&
@@ -79,9 +76,7 @@ class Profile extends React.Component {
   }
 }
 
-const Wrapper = styled.div`
-`
-// styled components
+const Wrapper = styled.div``
 
 // line underneath
 const Line = styled.div`

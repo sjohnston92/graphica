@@ -1,8 +1,5 @@
 import React from 'react';
 import ProfileCollectionFeed from './ProfileCollectionFeed';
-import { AuthConsumer } from '../../providers/AuthProvider';
-
-
 
 const CollectionTab = ({user}) => (
   <>
@@ -10,15 +7,4 @@ const CollectionTab = ({user}) => (
   </>
 )
 
-const ConnectedCollectionTab = (props) => (
-  <AuthConsumer>
-    {
-      values => <CollectionTab {...props} {...values} />
-    }
-  </AuthConsumer>
-  
-)
-
-
-
-export default ConnectedCollectionTab;
+export default CollectionTab;
