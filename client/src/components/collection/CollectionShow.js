@@ -33,9 +33,10 @@ const CollectionShow = (props) => {
 
   return(
       <Wrapper>
-        {collection && user &&
+        {collection && user && pictures &&
           <>
             <CollectionHeader collection={collection} user={user}/>
+            <CollectionFeed  pictures={pictures}/>
           </>
         }
       </Wrapper>

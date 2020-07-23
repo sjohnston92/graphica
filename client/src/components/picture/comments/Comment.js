@@ -21,7 +21,7 @@ const Comment = (props) => {
       .catch(console.log)
   }, [])
 
-  const toggleEdit = () => {
+  const toggleEdit = (event) => {
     setEditing(!editing)
     if (editing) { handleSubmit(event) }
   }
