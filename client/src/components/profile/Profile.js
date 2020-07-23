@@ -13,20 +13,31 @@ import NewPictureModal from '../modal/NewPictureModal';
 import NewPictureButton from '../new/NewPictureButton';
 
 
-
 class Profile extends React.Component {
   state = { currentTab: "recent", user: null, isCurrentUser: false }
   
   componentDidMount() {
-    this.props.toggleCatbar(false)
+    this.props.toggleCatbar(false);
+    this.getUser();
+  }
+  
+  componentDidUpdate(prevProps) {
+    const prevId = prevProps.match.params.id;
+    const currentId = this.props.match.params.id;
+    if(prevId !== currentId) {
+      this.getUser();
+    }
+  }
+
+  getUser = () => {
     axios.get(`/api/users/${this.props.match.params.id}`)
-      .then((res) => {
-        const id = this.props.auth.user ? this.props.auth.user.id : null;
-        const isCurrentUser = res.data.id === id;
-        this.setState({ user: res.data, isCurrentUser });
-      })
-      .catch(console.log);
-  } 
+    .then((res) => {
+      const id = this.props.auth.user ? this.props.auth.user.id : null;
+      const isCurrentUser = res.data.id === id;
+      this.setState({ user: res.data, isCurrentUser });
+    })
+    .catch(console.log);
+  }
 
   setUser = (user) => {
     this.setState({ user });
@@ -92,5 +103,6 @@ const ConnectedProfile = (props) => (
     { (auth) => <Profile {...props} auth={auth} /> }
   </AuthConsumer>
 )
+
 
 export default ConnectedProfile;
