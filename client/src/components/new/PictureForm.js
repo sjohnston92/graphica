@@ -84,7 +84,7 @@ class PictureForm extends React.Component {
                   style={styles.dropzone}
                 >
                   <input {...getInputProps()} />
-                {/* <img src={this.state.url ? this.state.url : this.props.user.image} style={{width: "100%"}}/> */}
+                <img src={this.state.url} style={{width: "100%"}}/>
                   {
                     isDragActive ?
                       <p>Drop files here...</p> :
