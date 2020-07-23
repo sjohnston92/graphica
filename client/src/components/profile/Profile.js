@@ -19,6 +19,7 @@ class Profile extends React.Component {
   componentDidMount() {
     this.props.toggleCatbar(false);
     this.getUser();
+    if (this.props.location.search === "?collections") { this.setState({ currentTab: "collections" }) }
   }
   
   componentDidUpdate(prevProps) {
@@ -75,7 +76,6 @@ class Profile extends React.Component {
         { this.state.isCurrentUser &&
           <>
             <NewPictureButton /> 
-            <NewPictureModal />
             <NewCollection />
           </>
         }

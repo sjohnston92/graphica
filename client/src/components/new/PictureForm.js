@@ -3,30 +3,21 @@ import styled from "styled-components";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 import { AuthConsumer, } from "../../providers/AuthProvider";
-import AddCollectionToPicture from "./AddCollectionToPicture"
-
+import { Redirect } from 'react-router-dom';
+ 
 class PictureForm extends React.Component {
 
   state = { 
     formValues: {  file: "", title: "", description: "",  category: "" },
     categories: [],
-    collectionId: ""
+    collectionId: "",
+    redirect: null,
   };
   
   componentDidMount() {
     axios.get("/api/categories")
     .then((res) => this.setState({ categories: res.data }))
     .catch(console.log)
-  }
-
-  newCollectionPicture = (incomingPictureId) => {
-    axios.post(`/api/collection_pictures`, {picture_id: incomingPictureId, collection_id: this.state.collectionId} )
-    .then(res => {
-      (alert("collection picture MADE!!"))
-      this.props.toggleModal()
-      this.props.history.push('/profile');
-    })
-      .catch(console.log)
   }
 
   handleSubmit = (e) => {
@@ -39,16 +30,12 @@ class PictureForm extends React.Component {
         description: this.state.formValues.description,
         category_id: this.state.formValues.category,
       } 
-
     }
 
     axios.post(`/api/users/${this.props.auth.user.id}/pictures`, data, options)
       .then(res => {
-        // do things when picture uploads successfully
-        // this.props.toggleModal()
-        // this.props.history.push('/profile');
-        this.newCollectionPicture(res.data.id)
-        
+        // this.props.toggle() //CANT DO BOTH ON SEPARATE PictureForm Instances.
+        this.setState({redirect: "/"})           
       })
       .catch(console.log);
   }
@@ -64,13 +51,11 @@ class PictureForm extends React.Component {
     }
   });
   
-
-
   render() {
-      const { toggle, open } = this.props;
-      console.log(this.state.collectionId)
+    const redirect = this.state.redirect
     return (
       <>
+        {redirect && <Redirect to={redirect}/>}
         <PictureFormDiv onSubmit={this.handleSubmit} >
           <Dropzone
             onDrop={this.onDrop}
@@ -103,7 +88,7 @@ class PictureForm extends React.Component {
                 onChange={this.handleChange}
               />
             </label>
-            <lable>
+            <label>
               Description: 
             <input 
               type="text"
@@ -112,9 +97,8 @@ class PictureForm extends React.Component {
               placeholder="Description..."
               onChange={this.handleChange}
             />
-            </lable>
-
-            <lable>
+            </label>
+            <label>
               Category: 
             <select
               type="select"
@@ -129,8 +113,7 @@ class PictureForm extends React.Component {
                 )
               }) }
             </select>
-            </lable>
-            
+            </label>
           <SubmitButton>Submit</SubmitButton>
         </PictureFormDiv>
       </>
@@ -155,22 +138,10 @@ const styles = {
     padding: "10px",
   },
 }
-
 const ConnectedPictureForm = (props) => (
   <AuthConsumer> 
-    { auth => 
-      <PictureForm { ...props } auth={auth} />
-    }
+    { auth => <PictureForm { ...props } auth={auth} />}
   </AuthConsumer>
 )
 
-// function MyDropzone() {
-//   const {getRootProps, getInputProps} = useDropzone()
-//   return (
-//     <div {...getRootProps()}>
-//       <input {...getInputProps()} />
-//       <p>Drag and drop picture image, or click to select files</p>
-//     </div>
-//   )
-// }
 export default ConnectedPictureForm;

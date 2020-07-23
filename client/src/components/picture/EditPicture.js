@@ -26,8 +26,9 @@ const EditPicture = (props) => {
   const deleteImage = () => {
     const result = window.confirm("Delete Image!?")
     if (result) {
-      axios.delete(`api/pictures/${props.image.id}`)
-      .then( res => props.deleteImageState(props.id))
+      axios.delete(`/api/pictures/${props.image.id}`)
+      .then( res => props.deleteImageState(props.image.id)) 
+      .catch(console.log)
     }
   }
 

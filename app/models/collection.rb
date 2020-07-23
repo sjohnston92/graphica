@@ -1,6 +1,6 @@
 class Collection < ApplicationRecord
   belongs_to :user
-  has_many :collection_pictures
+  has_many :collection_pictures, dependent: :destroy
   has_many :pictures, through: :collection_pictures
   validates :title, presence: true
   

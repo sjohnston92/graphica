@@ -2,7 +2,7 @@ class Api::Users::PicturesController < ApplicationController
   before_action :set_user
 
   def index
-    render json: Picture.all
+    render json: @user.pictures
   end
 
   def create

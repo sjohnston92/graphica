@@ -1,15 +1,11 @@
 import React, { useState, useEffect} from 'react';
-import axios from 'axios'
 import CollectionCard from './CollectionCard'
 import styled from 'styled-components';
 
-
 const CollectionFeed = (props) => {
-  
   const updateFeedState = (incomingId) => {
     props.deletePicture(incomingId)
   }
-
 
   const renderColumns = () => {
     const column_arrays = [[], [], []];
@@ -34,17 +30,12 @@ const CollectionFeed = (props) => {
             {column_arrays[2].map(listItem =><><CollectionCard key={listItem.id} picture={listItem} updateFeedState={updateFeedState}/></>)}
           </ColumnContainer>
         </FeedDiv>
-    
       </>
     )
-      
   }
 
   return renderColumns();
-
 };
-
-
 
 const FeedDiv = styled.div`
   display: flex;
@@ -65,6 +56,4 @@ const ColumnContainer = styled.div`
 
 export default CollectionFeed;
   
-      // <>
-      //   {props.pictures.map(picture => <li><CollectionCard picture={picture}/></li>)}
-      // </>
+    
