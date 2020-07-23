@@ -31,7 +31,6 @@ Rails.application.routes.draw do
       put "banner_image", to: "users#update_banner_image"
     end
     #These are for searching globally --- scratch that?   ..I think I'm doing this different now -DL
-    resources :pictures, only: [:index]
     resources :collections, only: [:index] do 
       resources :pictures, only: [:index], module: :collections
     end   
