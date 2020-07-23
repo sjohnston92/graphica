@@ -18,8 +18,8 @@ const CollectionCard = (props) => {
   }, [])
 
   const updateViewsState = (incomingId) => {
-    if (id === incomingId) {setViews(views + 1)}
-    }
+    // if (id === incomingId) {setViews(views + 1)}
+  }
 
   const toggleAndSetId = () => {
     props.setImageId(props.picture.id)
