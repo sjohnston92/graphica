@@ -3,7 +3,7 @@ import { AuthConsumer, } from "../../providers/AuthProvider";
 import { Link, withRouter, } from 'react-router-dom'
 import styled from 'styled-components'
 import logoFont from '../../fonts/Elianto-Regular.otf';
-import SearchBar from '../home/SearchBar';
+import NavSearchBar from './NavSearchBar';
 import useModal from '../../hooks/useModal';
 import Modal from '../modal/Modal'
 import PictureForm from '../new/PictureForm'
@@ -24,7 +24,7 @@ const NavBar = (props) => {
       </Left>
       <Right>
         <SearchDiv>
-          <SearchBar />
+          <NavSearchBar />
         </SearchDiv>
         <Left>
           <LinkDiv><Link to={`/Profile/${props.auth.user.id}`}>Profile </Link>|&nbsp;</LinkDiv><LinkDiv onClick={()=>toggle()}>Post</LinkDiv>
@@ -47,8 +47,8 @@ const NavBar = (props) => {
           </AuthDiv>
         </Left>
         <Right>
-          <SearchDiv>
-            <SearchBar />
+          <SearchDiv onClick={()=>props.history.push(`/`)}>
+            <NavSearchBar />
           </SearchDiv>
           <div>
             <Link to='/login'>Profile</Link> | <Link to='/login'>Post</Link>
