@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './components/home/Home';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-import Navbar from './components/shared/Navbar';
+import NavBar from './components/shared/NavBar2';
 import Catbar from './components/shared/Catbar';
 import NoMatch from './components/shared/NoMatch';
 import FetchUser from './components/auth/FetchUser';
@@ -24,7 +24,7 @@ const App = () => {
 
   return(
     <>
-      <Navbar />
+      <NavBar />
       {(showCatbar) ? <Catbar /> : null}
       <FetchUser>
         <Switch>
