@@ -16,9 +16,9 @@ const Home = (props) => {
           <GraphicaLogo>
             GRAPHICA
           </GraphicaLogo>
-          <Rectangle>
+          {/* <Rectangle> */}
             <SearchBar />
-          </Rectangle>
+          {/* </Rectangle> */}
           <HeroSubText>
             Discover a world you never knew existed
           </HeroSubText>
@@ -29,11 +29,11 @@ const Home = (props) => {
   )
 }
 const Wrapper = styled.div`
-  
+  padding-top: 45px;
 `
 const Hero = styled.div`
   width: 100%;
-  height: 278px;
+  height: 416px;
   background: url(${store});
   background-position: center;
   background-repeat: no-repeat;
@@ -44,20 +44,23 @@ const HeroArea = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: left;
-  padding: 7rem;
-  margin-left: 1rem;
+  padding: 11rem;
+  margin-left: 12rem;
 `
 const GraphicaLogo = styled.div`
   display: flex;
   align-items: center;
-  padding-bottom: 2rem;
+  padding-bottom: 4rem;
   font-family: 'Elianto-Regular';
-  font-size: 42px;
+  font-size: 44px;
   @font-face {
     font-family: 'Elianto-Regular';
     src: url(${logoFont}) format("opentype");
   }
-  color: #FFF
+  color: #FFF;
+  text-shadow: 1px 1px 3px gray;
+  
+
 `
 const Rectangle = styled.div`
   display: flex;

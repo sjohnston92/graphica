@@ -25,13 +25,15 @@ const SearchBar = (props) => {
 
 const StyledInput = styled.input`
   border: none;
-  height: 35px;
-  width: 30vw;
+  height: 30px;
+  width: 50vw;
   box-sizing: border-box;
   outline: none;
   font-family: Montserrat;
+  font-size: 10px;
   ::placeholder {
     font-family: Montserrat;
+    padding-left: 10px;
   }
 `
 const ConnectedSearchBar = (props) => (
