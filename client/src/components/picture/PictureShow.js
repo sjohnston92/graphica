@@ -127,7 +127,7 @@ const PictureShow = (props) => {
           </UserLeftContent>
         </UserInfoLeft>
         <UserInfoRight>
-          {image.views && <>{image.views + 1} views </>}
+          {image.views && <>{(image.views + 1).toLocaleString()} views </>}
         </UserInfoRight>
       </UserInfoDiv>
       <PictureDiv>
@@ -165,8 +165,14 @@ const Wrapper = styled.div`
   font-family: Montserrat;
   padding-top: 12px;
   
- 
-  
+  ::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+  } 
+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+
 `
 const UserInfoDiv= styled.div`
   display: flex;
@@ -216,9 +222,8 @@ const PictureDiv = styled.div`
   text-align: center;
 `
 const StyledImg = styled.img`
-  margin-top: 1rem;
-  width: 75vw;
-  
+  width: 77vw;
+  max-height: 600px;
 `
 const PictureInfoDiv = styled.div`
   display: flex;

@@ -24,7 +24,7 @@ const NavBar = (props) => {
       </Flex>
       <Right>
         <Flex>
-          <SearchDiv>
+          <SearchDiv onClick={()=>props.history.push(`/`)}>  
             <NavSearchBar />
           </SearchDiv>
           <Flex>

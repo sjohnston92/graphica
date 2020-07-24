@@ -55,7 +55,7 @@ const PictureCollection = (props) => {
 
 const RowDiv = styled.div`
   display: flex;
-  align-items: center;
+  align-items: left;
 `
 const Container = styled.div`
   display: flex;
