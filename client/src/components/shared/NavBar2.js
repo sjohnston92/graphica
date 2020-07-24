@@ -14,45 +14,49 @@ const NavBar = (props) => {
   if(props.auth.authenticated) {
   return(
     <Wrapper>
-      <Left>
+      <Flex>
         <LogoDiv>
           <Link to='/'>GRAPHICA</Link>
         </LogoDiv>
         <AuthDiv>
           <LinkDiv onClick={ () => props.auth.handleLogout(props.history) }>Logout {props.auth.user.first_name}</LinkDiv> 
         </AuthDiv>
-      </Left>
+      </Flex>
       <Right>
-        <SearchDiv>
-          <NavSearchBar />
-        </SearchDiv>
-        <Left>
-          <LinkDiv><Link to={`/Profile/${props.auth.user.id}`}>Profile </Link>|&nbsp;</LinkDiv><LinkDiv onClick={()=>toggle()}>Post</LinkDiv>
-        </Left>
-        <Modal onClose={toggle} open={open}>
-          <PictureForm toggle={toggle}/>
-        </Modal>
+        <Flex>
+          <SearchDiv>
+            <NavSearchBar />
+          </SearchDiv>
+          <Flex>
+            <LinkDiv><Link to={`/Profile/${props.auth.user.id}`}>Profile </Link>|&nbsp;</LinkDiv><LinkDiv onClick={()=>toggle()}>Post</LinkDiv>
+          </Flex>
+          <Modal onClose={toggle} open={open}>
+            <PictureForm toggle={toggle}/>
+          </Modal>
+        </Flex>
       </Right>
     </Wrapper>
   )
   } else { 
     return(   
       <Wrapper>
-        <Left>
+        <Flex>
           <LogoDiv>
             <Link to='/'>GRAPHICA</Link>
           </LogoDiv>
           <AuthDiv>
             <Link to='/register'>  Sign Up</Link> | <Link to='/login'>Login</Link>
           </AuthDiv>
-        </Left>
+        </Flex>
         <Right>
-          <SearchDiv onClick={()=>props.history.push(`/`)}>
-            <NavSearchBar />
-          </SearchDiv>
-          <div>
-            <Link to='/login'>Profile</Link> | <Link to='/login'>Post</Link>
-          </div>
+          <Flex>
+            <SearchDiv onClick={()=>props.history.push(`/`)}>
+              <NavSearchBar />
+            </SearchDiv>
+            <Flex>
+              <Link to='/login'>Profile </Link>&nbsp;|&nbsp; <Link to='/login'>Post</Link>
+            </Flex>
+          </Flex>
         </Right>
       </Wrapper>
     )
@@ -60,11 +64,15 @@ const NavBar = (props) => {
 }
 
 const Wrapper = styled.div`
+  position: fixed;
+  z-index:1;
   display: flex;
-  height: 2rem;
-  margin-left: 2vw;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  width: 100%;
+  
+  
+  padding: 5px;
+  
+  
   justify-content: space-between;
   font-family: 'Montserrat', sans-serif;
   font-style: normal;
@@ -81,18 +89,24 @@ const Wrapper = styled.div`
   a:active {
     color: black;
   }
+  .clearfix {
+    overflow: auto;
+  }
+  background-color: white;
 `
 const Right = styled.div`
-  display: flex;
+  display: block;
   justify: right;
 
 `
 const SearchDiv = styled.div`
-  margin-top: -10px;
+  display: block;
+  margin-top: -5px;
 
 `
-const Left = styled.div `
+const Flex = styled.div `
   display: flex;
+  padding-top: 5px;
 `
 const LogoDiv = styled.div`
   font-family: 'Elianto-Regular';
@@ -101,13 +115,17 @@ const LogoDiv = styled.div`
     font-family: 'Elianto-Regular';
     src: url(${logoFont}) format("opentype");
   }
+  padding-left: 1rem;
+  padding-top: 5px;
 `
 const AuthDiv = styled.div`
   margin-left: 1vw;
+  padding-top: 5px;
 
 `
 const LinkDiv = styled.div`
   cursor: pointer;
+  
 `
 
 const ConnectedNavBar = (props) => (
