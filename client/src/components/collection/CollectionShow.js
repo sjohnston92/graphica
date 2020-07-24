@@ -39,7 +39,7 @@ const CollectionShow = (props) => {
 
   return(
       <Wrapper>
-        {collection && user &&
+        {collection && user && pictures &&
           <>
             <CollectionHeader collection={collection} user={user}/>
             <EditCollection handleRes={handleRes} collection={collection}/>

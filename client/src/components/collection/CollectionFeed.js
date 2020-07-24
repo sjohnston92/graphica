@@ -63,8 +63,4 @@ const ColumnContainer = styled.div`
   @media only screen and (max-width: 800px) {}
 `
 
-export default CollectionFeed;
-  
-      // <>
-      //   {props.pictures.map(picture => <li><CollectionCard picture={picture}/></li>)}
-      // </>
+export default CollectionFeed
