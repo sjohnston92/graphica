@@ -16,7 +16,7 @@ const EditCollection = (props) => {
 
   return (
     <>
-      {props.authenticated && props.user.id === props.collection.user_id || 1 &&
+      {props.authenticated && props.user.id === (props.collection.user_id || 1) &&
         <>
           { editing 
             ? <CollectionForm handleRes={handleRes} collection={props.collection} />

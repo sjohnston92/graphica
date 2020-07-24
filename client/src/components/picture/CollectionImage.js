@@ -25,8 +25,8 @@ const StyledImage = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   margin: 1rem;
-  height: 80px;
-  width: 80px;
+  height: 183px;
+  width: 213px;
   cursor: zoom-in;
 `
 

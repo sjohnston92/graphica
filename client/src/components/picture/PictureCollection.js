@@ -63,8 +63,9 @@ const Container = styled.div`
 `
 const PictureContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   height: 100px;
+  width: 100%;
 `
 
 const CollectionText = styled.span`

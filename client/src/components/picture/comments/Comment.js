@@ -64,7 +64,7 @@ const Comment = (props) => {
         <Right>
           {props.authenticated ? 
             <>
-              {props.user.id === userId || 1 ? 
+              {props.user.id === (userId || 1) ? 
                   <>
                     <EditButton onClick={toggleEdit} image={editImg}/>
                     <DeleteButton onClick={deleteComment} image={deleteImg} />
@@ -156,9 +156,10 @@ const BodyDiv = styled.div`
   background: #F4F4F4;
   padding-botton: 1rem;
   display: flex;
-  width: 40rem;
-  padding: 8px;
-  margin: -8px;
+  padding-top: 8px;
+  padding-botton: 8px;
+  margin-top: -8px;
+  margin-bottom: -8px;
   font-size: 12px;
 
 `

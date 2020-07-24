@@ -103,15 +103,6 @@ const PictureShow = (props) => {
 
   return (
    <Wrapper>
-        { category && 
-          <EditPicture 
-          userId={user.id} 
-          image={image} 
-          category={category} 
-          deleteImageState={deleteImageState}
-          refreshImageState={refreshImageState}
-          />
-        }
       <UserInfoDiv>
         <UserInfoLeft>
           <a href={`/Profile/${user.id}`}>
@@ -128,6 +119,15 @@ const PictureShow = (props) => {
         </UserInfoLeft>
         <UserInfoRight>
           {image.views && <>{(image.views + 1).toLocaleString()} views </>}
+        { category && 
+          <EditPicture 
+          userId={user.id} 
+          image={image} 
+          category={category} 
+          deleteImageState={deleteImageState}
+          refreshImageState={refreshImageState}
+          />
+        }
         </UserInfoRight>
       </UserInfoDiv>
       <PictureDiv>
@@ -148,7 +148,7 @@ const PictureShow = (props) => {
         in <a href="url">{category.title}</a> category
         </InfoRight>
       </PictureDescriptionDiv>
-      <Description> {image.description} </Description>
+        <Description> {image.description} </Description>
       <Comments comments={comments} pictureId={props.imageId} setStatePictureShow={setStatePictureShow} deleteCommentState={deleteCommentState}/>
    </Wrapper>
   )
@@ -157,13 +157,13 @@ const Wrapper = styled.div`
   min-height: 600px;
   max-height: 100vh;
   overflow-y: auto;
-  width: 100%;
+  max-width: 78vw;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   font-family: Montserrat;
-  padding-top: 12px;
+  
   
   ::-webkit-scrollbar { /* WebKit */
     width: 0;
@@ -219,17 +219,19 @@ const EmailDiv = styled.div`
   margin-bottom: 12px;
 `
 const PictureDiv = styled.div`
-  text-align: center;
+  display: grid;
+  height: 100%;
 `
 const StyledImg = styled.img`
-  width: 77vw;
-  max-height: 600px;
+  max-width: 100%;
+  max-height: 85vh;
+  margin: auto;
 `
 const PictureInfoDiv = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-top: 1rem;
+  padding: 2rem;
 `
 
 const InfoRight = styled.div`
@@ -241,19 +243,21 @@ const InfoLeft = styled.div`
 const PictureCollectionDiv = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: flex-start;  
 `
 const PictureDescriptionDiv = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 7rem;
+  padding: 2rem;
 `
 const Description = styled.div`
   width: 100%;
-  margin-top: 1rem;
   font-weight: normal;
   font-size: 12px;
+  padding-left: 2rem;
+  margin-top: -1rem;
 `
 const LinkDiv = styled.div`
   color: #81adda;
