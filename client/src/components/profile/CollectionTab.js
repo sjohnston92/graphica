@@ -1,11 +1,10 @@
 import React from 'react';
-import BottomFeed from './BottomFeed';
+import ProfileCollectionFeed from './ProfileCollectionFeed';
 
-const CollectionTab = () => (
+const CollectionTab = ({user}) => (
   <>
-    {/* <BottomFeed /> */}
+    <ProfileCollectionFeed user={user}/>
   </>
 )
-
 
 export default CollectionTab;

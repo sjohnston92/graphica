@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :set_user, only: [:update_profile_image, :update_banner_image]
+  before_action :set_image_user, only: [:update_profile_image, :update_banner_image]
 
   def index
     render json: User.all
@@ -69,34 +69,6 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  # def update
-  #   user = User.find(params[:id])
-  #   user.first_name = params[:first_name] ? params[:first_name] : user.first_name
-  #   user.last_name = params[:last_name] ? params[:last_name] : user.last_name
-  #   user.email = params[:email] ? params[:email] : user.email
-  #   user.tagline = params[:tagline] ? params[:tagline] : user.tagline
-
-  #   file = params[:file]
-  #   if file
-  #     begin
-  #       ext = File.extname(file.tempfile)
-  #       cloud_image = Cloudinary::Uploader.upload(
-  #         file, public_id: file.original_filename, secure: true 
-  #       )
-  #       user.image = cloud_image['secure_url']
-  #     rescue => e 
-  #       render json: { errors: e }, status: 422
-  #     end
-  #   end
-  #   if user.save
-  #     render json: user
-  #   else
-  #     render json: { errors: user.errors.full_messages }, status: 422
-  #   end
-  # end
-
-
-
   def destroy
     User.find(params[:id]).destroy
     render json: {message: 'Delete Successful' }
@@ -108,7 +80,7 @@ class Api::UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :email, :password, :tagline)
   end
 
-  def set_user
-    @user = User.find(params[:id])
+  def set_image_user
+    @user = User.find(params[:user_id])
   end
 end

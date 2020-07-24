@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { AuthConsumer } from "../../providers/AuthProvider";
+import { ImageConsumer } from "../../providers/ImageProvider";
 import styled  from 'styled-components';
 
 
 const CollectionForm = (props) => {
 
-  //USE OTHER ONE IN COLLECTION/COLLECTIONFORM
-
   const [ title, setTitle ] = useState("")
   const [ description, setDescription ] = useState("")
 
   useEffect(() => {
-    if (props.collection && props.collection.id) {
+    console.log(props)
+    if (props.collection) {
       setDescription(props.collection.description)
       setTitle(props.collection.title)
     }
   }, [])
-
-  
 
   const handleChangeTitle = (event) => {
     setTitle(event.target.value)
@@ -29,7 +27,7 @@ const CollectionForm = (props) => {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-   if (props.collection && props.collection.id) {
+   if (props.collection) {
       axios.patch(
         `/api/users/${props.user.id}/collections/${props.collection.id}`, 
         { title: title, description: description }
@@ -70,15 +68,18 @@ const CollectionForm = (props) => {
 }
 
 
-const CollectionStyleForm = styled.form`
-  display: flex;
-  flex-direction: column;
-`
-
 const ConnectedCollectionForm = (props) => (
   <AuthConsumer>
-    {(value) => <CollectionForm {...props} {...value} />}
+      {(value) => <CollectionForm {...props} {...value} />}
   </AuthConsumer>
 );
 
-export default ConnectedCollectionForm;
+const AuthConnectedCollectionForm = (props) => (
+  <ImageConsumer>
+    {(value) => <ConnectedCollectionForm {...props} {...value} />}
+  </ImageConsumer>
+);
+
+
+
+export default AuthConnectedCollectionForm;

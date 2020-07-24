@@ -13,20 +13,31 @@ import NewPictureModal from '../modal/NewPictureModal';
 import NewPictureButton from '../new/NewPictureButton';
 
 
-
 class Profile extends React.Component {
   state = { currentTab: "recent", user: null, isCurrentUser: false }
   
   componentDidMount() {
-    this.props.toggleCatbar(false)
+    this.props.toggleCatbar(false);
+    this.getUser();
+  }
+  
+  componentDidUpdate(prevProps) {
+    const prevId = prevProps.match.params.id;
+    const currentId = this.props.match.params.id;
+    if(prevId !== currentId) {
+      this.getUser();
+    }
+  }
+
+  getUser = () => {
     axios.get(`/api/users/${this.props.match.params.id}`)
-      .then((res) => {
-        const { user: { id } } = this.props.auth;
-        const isCurrentUser = res.data.id === id;
-        this.setState({ user: res.data, isCurrentUser });
-      })
-      .catch(console.log);
-  } 
+    .then((res) => {
+      const id = this.props.auth.user ? this.props.auth.user.id : null;
+      const isCurrentUser = res.data.id === id;
+      this.setState({ user: res.data, isCurrentUser });
+    })
+    .catch(console.log);
+  }
 
   setUser = (user) => {
     this.setState({ user });
@@ -40,7 +51,6 @@ class Profile extends React.Component {
     switch(this.state.currentTab) {
       case "recent":
         return this.state.user ? <BottomFeed user={this.state.user} isCurrentUser={this.state.isCurrentUser} /> : null
-          // collections modal needs to go next to showModal below (it's the second button)
       case "collections":
         return this.state.user ? <CollectionTab user={this.state.user} /> : null
       case "favorites":
@@ -56,12 +66,19 @@ class Profile extends React.Component {
     return (
       <Wrapper>
         { this.state.user && <ProfileHero user={this.state.user} /> }
-        <ProfileNavbar changeTab={this.changeTab} isCurrentUser={this.state.isCurrentUser}/>
+        <ProfileNavbar 
+          changeTab={this.changeTab} 
+          isCurrentUser={this.state.isCurrentUser}
+        />
         <Line />
         <br></br>
-        <NewPictureButton />
-        <NewPictureModal />
-        <NewCollection />
+        { this.state.isCurrentUser &&
+          <>
+            <NewPictureButton /> 
+            <NewPictureModal />
+            <NewCollection />
+          </>
+        }
         <ProfileBottom>
           { this.renderBottom() }
         </ProfileBottom>
@@ -70,9 +87,7 @@ class Profile extends React.Component {
   }
 }
 
-const Wrapper = styled.div`
-`
-// styled components
+const Wrapper = styled.div``
 
 // line underneath
 const Line = styled.div`
@@ -88,5 +103,6 @@ const ConnectedProfile = (props) => (
     { (auth) => <Profile {...props} auth={auth} /> }
   </AuthConsumer>
 )
+
 
 export default ConnectedProfile;

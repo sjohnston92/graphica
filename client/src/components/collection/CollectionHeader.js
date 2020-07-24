@@ -10,14 +10,16 @@ const CollectionHeader = (props) => {
 
   return(
       <Wrapper>
+        <HeaderColumn>
           <HeaderDiv>
             <HeaderTitle>{props.collection.title}</HeaderTitle>
-          <HeaderName><BySpan>by:</BySpan> {props.user.first_name + " " + props.user.last_name}</HeaderName>
-        </HeaderDiv>
-        <UserImage user={props.user} />
-        <DescriptionDiv>
-              <HeaderDescription>{props.collection.description}</HeaderDescription>
-        </DescriptionDiv>
+            <HeaderName><BySpan>by:</BySpan> {props.user.first_name + " " + props.user.last_name}</HeaderName>
+          </HeaderDiv>
+          <HeaderDescription>{props.collection.description}</HeaderDescription>
+        </HeaderColumn>
+        <ImageDiv>
+         <UserImage user={props.user} />
+        </ImageDiv>
       </Wrapper>
   )
 }
@@ -25,42 +27,44 @@ const CollectionHeader = (props) => {
 
 const Wrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
   min-height: 429px;
-  flex-wrap: wrap;
+  display: flex;
+  margin-left: 20rem;
+  margin-top: 3rem;
+  justify-content: space-between;
+
 `
 
 const HeaderDiv = styled.div`
   display: flex;
-  flex-shrink: 0;
-  margin-left: 5rem;
-  justify-content: flex-start;
+  justify-content: ;
+  width: 100%;
 `
 
 const HeaderTitle = styled.h1`
-  width: 200px;
-  height: 16.64px;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 17px;
-  color: black;
+`
+const HeaderColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
 `
 
 const BySpan = styled.span`
-  color: #57aba9;
+  color: #59cade;
 `
 
 const HeaderName = styled.p`
+ margin-left: 5rem;
+ margin-top: 1rem;
 `
-const DescriptionDiv = styled.div`
-  flex: 0 0 100%;
+const ImageDiv = styled.div`
+  display-flex;
+  justify-content: flex-start;
+  width: 45%;
 `
 
 const HeaderDescription = styled.p`
-  
- 
+ color: black;
 `
 
 const UserImage = styled.div`
@@ -71,10 +75,7 @@ const UserImage = styled.div`
   width: 20rem;
   height: 20rem;
   border-radius: 100%;
-  float: right;
-  align-content: flex-end;
-  margin-left: 50%;
-
+  margin-top: 2%;
 `
 
 export default CollectionHeader;

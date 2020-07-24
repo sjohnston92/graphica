@@ -9,6 +9,9 @@ export const ImageProvider = (props) => {
   const [imageId, setImageId] = useState();
   const [user, setUser] = useState("");
   const [userImage, setUserImage] = useState();
+  const [ pictureJunctions, setPictureJunctions ] = useState(null);
+  const [ userCollections, setUserCollections ] = useState([{title: 'there are none'}])
+
   
   const fetchUser = (userId) => {
     return new Promise((resolve, reject) => {
@@ -65,18 +68,20 @@ export const ImageProvider = (props) => {
       })
     })
   }
-
   const fetchJunction = (id) => {
-    return new Promise((resolve, reject) => {
+    // return new Promise((resolve, reject) => {
       axios.get(`/api/pictures/${id}/collection_pictures`)
       .then( res => {
-        resolve(res)
+        setPictureJunctions(res.data)
+        
+        // resolve(res)
       })
-      .catch((err) => {
-        console.log(err);
-        reject(err);
-      })
-    })
+      .catch(console.log)
+      // .catch((err) => {
+      //   console.log(err);
+      //   reject(err);
+      // })
+    // })
   }
 
   const fetchCollection = (collectionId, userId) => {
@@ -92,6 +97,32 @@ export const ImageProvider = (props) => {
     })  
   }
 
+  const removeImageFromCollection = (junctionId) => {
+    axios.delete(`api/collection_pictures/${junctionId}`)
+      .then( res => {
+        setPictureJunctions(pictureJunctions.filter(a => a.id !== junctionId))
+      })
+      .catch(console.log)
+  }
+
+  const addImageToCollection = (junctionId) => {
+    console.log("imageId:", imageId)
+    console.log('junctionId', junctionId)
+    axios.post(`api/collection_pictures`, {picture_id: imageId, collection_id: junctionId})
+      .then( res => {
+        setPictureJunctions(pictureJunctions.concat(res.data)) //add to top of list at some point?
+      })
+      .catch(console.log)
+  }
+
+
+  const fetchCollections = (userId) => {
+    axios.get(`/api/users/${userId}/collections`)
+    .then( res => (setUserCollections(res.data)) )
+    .catch(console.log)
+
+  }
+
   return(
     <ImageContext.Provider value={{
       fetchUser,
@@ -104,6 +135,12 @@ export const ImageProvider = (props) => {
       fetchCollection,
       imageId,
       setImageId,
+      pictureJunctions,
+      removeImageFromCollection,
+      addImageToCollection,
+      fetchCollections,
+      userCollections,
+      
     }}> 
       { props.children }
     </ImageContext.Provider>     

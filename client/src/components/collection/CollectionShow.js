@@ -4,6 +4,7 @@ import Navbar from '../shared/Navbar';
 import CollectionHeader from './CollectionHeader';
 import CollectionFeed from './CollectionFeed';
 import axios from 'axios';
+import EditCollection from './EditCollection'
 
 const CollectionShow = (props) => {
   const [collection, setCollection] = useState(null);
@@ -30,13 +31,19 @@ const CollectionShow = (props) => {
       .catch(console.log);
   }, [])
   
+  const handleRes = (res) => {
+
+    setCollection(res.data)
+
+  }
 
   return(
       <Wrapper>
         {collection && user && pictures &&
           <>
             <CollectionHeader collection={collection} user={user}/>
-            <CollectionFeed  pictures={pictures}/>
+            <EditCollection handleRes={handleRes} collection={collection}/>
+            <CollectionFeed pictures={pictures}/>
           </>
         }
       </Wrapper>
