@@ -44,8 +44,9 @@ const HeroArea = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: left;
-  padding: 11rem;
-  margin-left: 12rem;
+  padding-top: 11rem;
+
+  margin-left: 25vw;
 `
 const GraphicaLogo = styled.div`
   display: flex;
@@ -58,7 +59,7 @@ const GraphicaLogo = styled.div`
     src: url(${logoFont}) format("opentype");
   }
   color: #FFF;
-  text-shadow: 1px 1px 3px gray;
+  text-shadow: 1px 1px 3px grey;
   
 
 `
