@@ -54,6 +54,4 @@ const ColumnContainer = styled.div`
   @media only screen and (max-width: 800px) {}
 `
 
-export default CollectionFeed;
-  
-    
+export default CollectionFeed

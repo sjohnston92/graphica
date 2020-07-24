@@ -30,6 +30,7 @@ class UpdateBannerImage extends React.Component {
                 {...getRootProps()}
                 style={styles.dropzone}>
                 <input {...getInputProps()} />
+                <img src={this.state.url ? this.state.url : this.props.user.banner_image} style={{width: "100%"}}/>
                 { isDragActive ? <p>Already loaded</p> : <p>Drop items here</p> }
               </div>
             )

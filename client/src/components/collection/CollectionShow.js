@@ -46,7 +46,7 @@ const CollectionShow = (props) => {
 
   return (
       <Wrapper>
-        {collection && user &&
+        {collection && user && pictures &&
           <>
             {redirect && <Redirect to={redirect}/> }
             <CollectionHeader collection={collection} user={user}/>
