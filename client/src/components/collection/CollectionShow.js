@@ -5,13 +5,13 @@ import CollectionHeader from './CollectionHeader';
 import CollectionFeed from './CollectionFeed';
 import axios from 'axios';
 import EditCollection from './EditCollection'
+import { Redirect } from 'react-router-dom';
 
 const CollectionShow = (props) => {
   const [collection, setCollection] = useState(null);
   const [user, setUser] = useState(null);
   const [pictures, setPictures] = useState([]);
-
-  console.log(pictures)
+  const [redirect, setRedirect ] = useState(null);
 
   // get collection and user of collection
   useEffect(() => {
@@ -31,19 +31,27 @@ const CollectionShow = (props) => {
       .catch(console.log);
   }, [])
   
-  const handleRes = (res) => {
-
-    setCollection(res.data)
-
+  const handleRes = (res) => setCollection(res.data);
+  
+  const deleteCollection = (incomingId) => {
+    const result = window.confirm("Delete Collection? (This will not delete its pictures)")
+    if (result) {
+      axios.delete(`/api/collections/${incomingId}`)
+        .then(res => setRedirect(`/Profile/${user.id}/?collections`))
+        .catch(console.log)
+    }
   }
 
-  return(
+  const deletePicture = (incomingId) => setPictures( pictures.filter(a => a.id !== incomingId ))
+
+  return (
       <Wrapper>
         {collection && user && pictures &&
           <>
+            {redirect && <Redirect to={redirect}/> }
             <CollectionHeader collection={collection} user={user}/>
-            <EditCollection handleRes={handleRes} collection={collection}/>
-            <CollectionFeed pictures={pictures}/>
+            <EditCollection deleteCollection={deleteCollection} handleRes={handleRes} collection={collection}/>
+            <CollectionFeed deletePicture={deletePicture} pictures={pictures}/>
           </>
         }
       </Wrapper>
@@ -52,8 +60,4 @@ const CollectionShow = (props) => {
 
 const Wrapper = styled.div`
 `
-
-const Banner = styled.div`
-`
-
 export default CollectionShow;

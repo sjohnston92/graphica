@@ -7,4 +7,9 @@ class Api::CollectionsController < ApplicationController
     render json: Collection.find(params[:id])
   end
 
+  def destroy
+    Collection.find(params[:id]).destroy
+    render json: {message: 'Delete Successful' }
+  end
+
 end

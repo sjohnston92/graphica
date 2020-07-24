@@ -38,9 +38,8 @@ class PictureForm extends React.Component {
 
     axios.post(`/api/users/${this.props.auth.user.id}/pictures`, data, options)
       .then(res => {
-        // do things when picture uploads successfully
         this.props.toggleModal()
-        this.props.history.push(`/profile/${this.props.auth.user.id}`);
+        this.props.history.push(`/`);
       })
       .catch(console.log);
   }
@@ -55,14 +54,11 @@ class PictureForm extends React.Component {
   }
 
   handleChange = (event) => {
-    console.log(this.state.formValues)
     this.setState({ 
       formValues: { 
         ...this.state.formValues,
         [event.target.name]: event.target.value 
       }
-    }, () => {
-      console.log(this.state.formValues)
     });  
   }
 
@@ -72,6 +68,7 @@ class PictureForm extends React.Component {
 
     return (
       <>
+        {redirect && <Redirect to={redirect}/>}
         <PictureFormDiv onSubmit={this.handleSubmit} >
           <Dropzone
             onDrop={this.onDrop}
@@ -115,7 +112,6 @@ class PictureForm extends React.Component {
               onChange={this.handleChange}
             />
             </label>
-
             <label>
               Category: 
             <select
@@ -156,12 +152,9 @@ const styles = {
     padding: "10px",
   },
 }
-
 const ConnectedPictureForm = (props) => (
   <AuthConsumer> 
-    { auth => 
-      <PictureForm { ...props } auth={auth} />
-    }
+    { auth => <PictureForm { ...props } auth={auth} />}
   </AuthConsumer>
 )
 

@@ -69,19 +69,11 @@ export const ImageProvider = (props) => {
     })
   }
   const fetchJunction = (id) => {
-    // return new Promise((resolve, reject) => {
       axios.get(`/api/pictures/${id}/collection_pictures`)
       .then( res => {
         setPictureJunctions(res.data)
-        
-        // resolve(res)
       })
       .catch(console.log)
-      // .catch((err) => {
-      //   console.log(err);
-      //   reject(err);
-      // })
-    // })
   }
 
   const fetchCollection = (collectionId, userId) => {
@@ -115,12 +107,10 @@ export const ImageProvider = (props) => {
       .catch(console.log)
   }
 
-
   const fetchCollections = (userId) => {
     axios.get(`/api/users/${userId}/collections`)
-    .then( res => (setUserCollections(res.data)) )
+    .then(res => (setUserCollections(res.data)))
     .catch(console.log)
-
   }
 
   return(
@@ -145,7 +135,6 @@ export const ImageProvider = (props) => {
       { props.children }
     </ImageContext.Provider>     
   )
-  
 }
 
 export default ImageProvider;

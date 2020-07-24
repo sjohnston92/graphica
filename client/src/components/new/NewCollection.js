@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import Modal from '../modal/Modal';
 import useModal from "../../hooks/useModal";
-import CollectionForm2 from "./CollectionForm2"
+import CollectionForm from "../collection/CollectionForm";
 
-
-const NewPictureCollectionModal = () => {
+const NewPictureCollectionModal = (props) => {
   const { open, toggle } = useModal();
-
+  const handleRes = () => toggle()
 
   return (
    <>
     <button onClick={ toggle }>New Collection</button>
-
     <Modal onClose={toggle} open={open}>
-     <CollectionForm2 />
+      <CollectionForm handleRes={handleRes}/>
     </Modal>
    </>
   )

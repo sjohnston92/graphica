@@ -2,16 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { AuthConsumer } from "../../providers/AuthProvider";
 import { ImageConsumer } from "../../providers/ImageProvider";
-import styled  from 'styled-components';
-
 
 const CollectionForm = (props) => {
-
   const [ title, setTitle ] = useState("")
   const [ description, setDescription ] = useState("")
 
   useEffect(() => {
-    console.log(props)
     if (props.collection) {
       setDescription(props.collection.description)
       setTitle(props.collection.title)
@@ -28,30 +24,17 @@ const CollectionForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
    if (props.collection) {
-      axios.patch(
-        `/api/users/${props.user.id}/collections/${props.collection.id}`, 
-        { title: title, description: description }
-      )
-        .then( res => {
-          props.handleRes(res)
-        })
-     
+      axios.patch(`/api/users/${props.user.id}/collections/${props.collection.id}`, { title: title, description: description })
+        .then( res => props.handleRes(res))
+        .catch(console.log)
    } else {
-      axios.post(
-        `/api/users/${props.user.id}/collections`, 
-        { title: title, description: description }
-        )
-        .then( res => {
-          props.handleRes(res.data)
-          
-          
-        })
+      axios.post(`/api/users/${props.user.id}/collections`, { title: title, description: description })
+        .then( res => props.handleRes(res.data)) //Consider Changing these to both res or both res.data
         .catch(console.log)
     }
   }
 
-  return(
-
+  return (
     <form onSubmit={handleSubmit}>
       <label>
         Title: 
@@ -64,9 +47,7 @@ const CollectionForm = (props) => {
       <button>Submit</button>
     </form>
   )
-
 }
-
 
 const ConnectedCollectionForm = (props) => (
   <AuthConsumer>
@@ -79,7 +60,5 @@ const AuthConnectedCollectionForm = (props) => (
     {(value) => <ConnectedCollectionForm {...props} {...value} />}
   </ImageConsumer>
 );
-
-
 
 export default AuthConnectedCollectionForm;
