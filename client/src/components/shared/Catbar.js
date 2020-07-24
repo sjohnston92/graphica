@@ -63,13 +63,16 @@ const ConnectedCatbar = (props) => (
 );
 
 const Wrapper = styled.div`
-  position: relative;
+  position: fixed;
   display: flex;
   align-items: center;
   background: grey;
   width: 100%;
-  padding: 1rem;
-  opacity: 0.9;
+  padding: 4px;
+  opacity: 0.7;
+  top: 45px;
+  z-index:1;
+
   
 `
 

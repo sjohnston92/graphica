@@ -115,7 +115,7 @@ const LogoDiv = styled.div`
     font-family: 'Elianto-Regular';
     src: url(${logoFont}) format("opentype");
   }
-  padding-left: 1rem;
+  padding-left: 3rem;
   padding-top: 5px;
 `
 const AuthDiv = styled.div`
