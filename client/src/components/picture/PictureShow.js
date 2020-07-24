@@ -163,14 +163,17 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   font-family: Montserrat;
+  padding-top: 12px;
   
-  
+ 
   
 `
-const UserInfoDiv = styled.div`
+const UserInfoDiv= styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding: 10px;
+  padding-left: 25px;
 `
 const UserInfoRight = styled.div`
   display: flex;
@@ -181,9 +184,6 @@ const UserInfoLeft = styled.div`
   align-items: center;
   font-family: Montserrat;
   font-style: normal;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 29px;
 `
 const UserImage = styled.div`
   background-image: url(${props => props.image});
@@ -191,31 +191,34 @@ const UserImage = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 100%;
-  height: 40px;
-  width: 40px;
+  height: 70px;
+  width: 70px;
 `
 const UserLeftContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: left;
-  margin-left: 1rem;
+  padding: 1rem;
+  margin-top: 20px;
 `
 const NameDiv = styled.div`
-  font-size: 18px;
+  font-size: 14px;
   display: flex;
   align-items: center;
 `
 const EmailDiv = styled.div`
   color: gray;
-  font-size: 12px;
+  font-size: 10px;
+  margin-bottom: 12px;
 `
 const PictureDiv = styled.div`
   text-align: center;
 `
 const StyledImg = styled.img`
   margin-top: 1rem;
-  width: 500px;
+  width: 75vw;
+  
 `
 const PictureInfoDiv = styled.div`
   display: flex;
@@ -223,13 +226,7 @@ const PictureInfoDiv = styled.div`
   width: 100%;
   margin-top: 1rem;
 `
-const FeedbackDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  margin-top: 1rem;
-`
+
 const InfoRight = styled.div`
 `
 const InfoLeft = styled.div`
