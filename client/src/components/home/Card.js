@@ -8,28 +8,21 @@ import viewsImage from '../../img/views.png'
 import { ImageConsumer } from '../../providers/ImageProvider'
 
 const Card = (props) => {
-  const { open, toggle } = useModal();
   const id = props.image.id
   const user_id = props.image.user_id
-  const [views, setViews] = useState(props.image.views)
   const url = props.image.url
-
+  const { open, toggle } = useModal();
+  const [views, setViews] = useState(props.image.views)
   const [user, setUser] = useState("");
   const [comments, setComments] = useState([]);
   
   useEffect(() => {
     props.fetchUser(user_id)
-      .then (res => {
-        setUser(res.data)
-      })
+      .then (res => setUser(res.data))
       .catch(console.log)
-
     props.fetchComments(id)
-      .then(res => {
-        setComments(res.data)
-      })
+      .then(res => setComments(res.data))
       .catch(console.log)
-
   }, [])
 
   const updateViewsState = (incomingId) => {
@@ -40,25 +33,35 @@ const Card = (props) => {
     props.setImageId(id)
     toggle()
   }
+
+  const toggleAndDelete = (incomingId) => {
+    toggle()
+    props.updateFeedState(incomingId)
+  }
+
   return (
     <CardBorder>
       <Modal onClose={toggle} open={open}>     
-          <PictureShow updateViewsState={updateViewsState} />   
+        <PictureShow updateViewsState={updateViewsState} toggleAndDelete={toggleAndDelete}/>   
       </Modal>       
-      <CardDiv>
+      <CardDiv onClick={toggleAndSetId} >
         <StyledText>{props.image.title}</StyledText>
-        <StyledImage src={url} onClick={toggleAndSetId} />
+        <StyledImage src={url}  />
       </CardDiv>
       <PointerOff>
         <CardFooterLeft>
-          <SmallImage image={user.image}/>
-          {user.first_name} 
+          <a href={`/Profile/${user.id}`}>
+            <SmallImage image={user.image}/>
+          </a>
+          <a href={`/Profile/${user.id}`}>
+            {user.first_name} {user.last_name}
+          </a>
         </CardFooterLeft>
         <CardFooterRight>
           <SmallImage image={commentsImage} />
           {comments.length}
           <SmallImage image={viewsImage} />
-          {views} 
+          {views ? <>{views}</> : 0} 
         </CardFooterRight>
       </PointerOff>
     </CardBorder>
@@ -97,7 +100,7 @@ const CardDiv = styled.div`
 const PointerOff = styled.div`
   width: 100%
   cursor: default;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat';
 `
 const CardBorder = styled.div`
   margin-bottom: -40px;
@@ -108,6 +111,18 @@ const CardFooterLeft = styled.div`
   cursor: default;
   display: flex;
   align-items: center;
+  a:link {
+    color: black;
+  }
+  a:visited {
+    color: black;
+  }
+  a:hover {
+    color: black;
+  }
+  a:active {
+    color: black;
+  }
 `
 const SmallImage = styled.div`
   background-image: url(${props => props.image});
@@ -123,7 +138,7 @@ const CardFooterRight = styled.div`
   float: right;
   margin-bottom: 15px;
   cursor: default;
-  color: #96969C
+  color: #96969C;
 `
 
 const ConnectedCard = (props) => (

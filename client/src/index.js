@@ -13,15 +13,15 @@ import { initMiddleware } from 'devise-axios';
 initMiddleware()
 ReactDOM.render(
   <React.StrictMode>
-   <AuthProvider>
-     <FeedProvider>
-        <ImageProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-       </ImageProvider>
-     </FeedProvider>
-  </AuthProvider>
+    <AuthProvider>
+      <FeedProvider>
+          <ImageProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+        </ImageProvider>
+      </FeedProvider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     resources :users do
       resources :pictures, module: :users
       resources :collections, module: :users
+      put "profile_image", to: "users#update_profile_image"
+      put "banner_image", to: "users#update_banner_image"
     end
     #These are for searching globally --- scratch that?   ..I think I'm doing this different now -DL
     resources :pictures, only: [:index]

@@ -29,6 +29,7 @@ const Home = (props) => {
   )
 }
 const Wrapper = styled.div`
+  
 `
 const Hero = styled.div`
   width: 100%;
@@ -74,9 +75,6 @@ const HeroSubText = styled.p`
   font-size: 14px;
   line-height: 17px;
   color: #FFF
-`
-const FeedDiv = styled.div`
-  margin: 30px;
 `
 
 export default Home

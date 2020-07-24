@@ -3,6 +3,8 @@ import Feed from '../home/Feed';
 import styled from 'styled-components';
 import axios from "axios";
 import PictureCollection from '../picture/PictureCollection';
+import RecentPicture from './RecentPicture';
+
 
 
 class BottomFeed extends React.Component {
@@ -15,7 +17,7 @@ class BottomFeed extends React.Component {
   }
 
   renderPictures = () => this.state.pictures.map((pic) => (
-    <ProfileCard url={pic.url} />
+    <RecentPicture picture={pic} key={pic.id} user={this.props.user} />
   ))
 
   render() {
@@ -29,16 +31,6 @@ class BottomFeed extends React.Component {
   }
 }
 
-const ProfileCard = styled.div`
-  width: 30rem;
-  height: 30rem;
-  flex-shrink: 0;
-  margin: 20px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: url(${props => props.url});
-`;
 
 const FeedDiv = styled.div`
   width: 75%;

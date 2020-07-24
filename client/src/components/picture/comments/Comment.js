@@ -15,14 +15,15 @@ const Comment = (props) => {
   useEffect(() => {
     axios.get(`/api/users/${userId}`)
       .then(res => {
-          setUserName(res.data.first_name)
+          setUserName(res.data.first_name + " " + res.data.last_name)
           setUserImage(res.data.image) 
       })
       .catch(console.log)
   }, [])
 
-  const toggleEdit = () => {
+  const toggleEdit = (event) => {
     setEditing(!editing)
+    if (editing) { handleSubmit(event) }
   }
   
   const handleSubmit = (e) => {
@@ -49,11 +50,16 @@ const Comment = (props) => {
   }
 
   return (
-    <>
+    <Wrapper>
       <UserDiv>
         <Left>
-          <StyledUserImage image={userImage} />
-          {userName}
+          <a href={`/Profile/${props.user_id}`}>   
+            <StyledUserImage image={userImage} />
+            
+          </a>
+          <a href={`/Profile/${props.user_id}`}>   
+            {userName}
+          </a>
         </Left>
         <Right>
           {props.authenticated ? 
@@ -83,17 +89,35 @@ const Comment = (props) => {
           </>
         }
       </BodyDiv>
-    </>
+    </Wrapper>
   )
 }
+const Wrapper = styled.div`
+  padding-top: 2rem;
+  font-size: 12px;
+`
 const UserDiv = styled.div`
   display: flex;
   height: 45px;
   justify-content: space-between;
+  font-size: 14px;
+  
 `
 const Left = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  a:link {
+    color: black;
+  }
+  a:visited {
+    color: black;
+  }
+  a:hover {
+    color: black;
+  }
+  a:active {
+    color: black;
+  }
 `
 const Right = styled.div`
   display: flex;
@@ -130,9 +154,13 @@ const StyledUserImage = styled.div `
 `
 const BodyDiv = styled.div`
   background: #F4F4F4;
-  padding-botton: 2rem;
+  padding-botton: 1rem;
   display: flex;
   width: 40rem;
+  padding: 8px;
+  margin: -8px;
+  font-size: 12px;
+
 `
 
 const ConnectedComment = (props) => (
