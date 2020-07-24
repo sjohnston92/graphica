@@ -2,7 +2,7 @@ class Api::Users::PicturesController < ApplicationController
   before_action :set_user
 
   def index
-    render json: Picture.all
+    render json: @user.pictures.order(created_at: :desc) 
   end
 
   def create
@@ -20,7 +20,7 @@ class Api::Users::PicturesController < ApplicationController
         else
           render json: { errors: picture.errors }, status: 422
         end
-
+        
       rescue => e
         render json: { errors: e }, status: 422
       end
@@ -55,6 +55,6 @@ class Api::Users::PicturesController < ApplicationController
   end
 
   def picture_query_params
-    params.permit(:title, :description, :category_id, :user_id)
+    params.permit(:title, :description, :category_id)
   end
 end

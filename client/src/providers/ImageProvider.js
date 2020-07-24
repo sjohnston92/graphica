@@ -98,7 +98,7 @@ export const ImageProvider = (props) => {
   }
 
   const removeImageFromCollection = (junctionId) => {
-    axios.delete(`api/collection_pictures/${junctionId}`)
+    axios.delete(`/api/collection_pictures/${junctionId}`)
       .then( res => {
         setPictureJunctions(pictureJunctions.filter(a => a.id !== junctionId))
       })
@@ -108,7 +108,7 @@ export const ImageProvider = (props) => {
   const addImageToCollection = (junctionId) => {
     console.log("imageId:", imageId)
     console.log('junctionId', junctionId)
-    axios.post(`api/collection_pictures`, {picture_id: imageId, collection_id: junctionId})
+    axios.post(`/api/collection_pictures`, {picture_id: imageId, collection_id: junctionId})
       .then( res => {
         setPictureJunctions(pictureJunctions.concat(res.data)) //add to top of list at some point?
       })

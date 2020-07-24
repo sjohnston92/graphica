@@ -4,10 +4,17 @@ import Dropzone from 'react-dropzone';
 
 class UpdateProfileImage extends React.Component {
 
-  state = { formValues: { file: '' }, };
+  state = { 
+    formValues: { file: '' }, url: "" 
+  };
 
   onDrop = (files) => {
-    this.setState({ formValues: { ...this.state.formValues, file: files[0] }})
+    const blob = new Blob([files[0]], { type: 'image/png' });
+    const url = URL.createObjectURL(blob);
+    this.setState({ 
+      formValues: { ...this.state.formValues, file: files[0] },
+      url,
+    }) 
   }
 
   handleSubmit = (event) => {
@@ -30,6 +37,7 @@ class UpdateProfileImage extends React.Component {
                 {...getRootProps()}
                 style={styles.dropzone}>
                 <input {...getInputProps()} />
+                <img src={this.state.url.length > 0 ? this.state.url : this.props.user.image} style={{width: "100%"}}/>
                 { isDragActive ? <p>Already loaded</p> : <p>Drop items here</p> }
               </div>
             )
