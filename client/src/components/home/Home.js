@@ -4,7 +4,8 @@ import logoFont from '../../fonts/Elianto-Regular.otf';
 import store from '../../img/store.jpg'
 import SearchBar from './SearchBar'
 import Feed from './Feed'
-
+import { withRouter, Link } from 'react-router-dom'
+ 
 const Home = (props) => {
   
   useEffect(() => { props.toggleCatbar(true)}, []);
@@ -16,13 +17,19 @@ const Home = (props) => {
           <GraphicaLogo>
             GRAPHICA
           </GraphicaLogo>
-          {/* <Rectangle> */}
-            <SearchBar />
-          {/* </Rectangle> */}
+          <SearchBar />
           <HeroSubText>
             Discover a world you never knew existed
           </HeroSubText>
         </HeroArea>
+        <BottomText>
+          <FreeForever>
+            Free Forever
+          </FreeForever>
+          <AboutUs>
+            <Link to={'/about_us'}>Learn about our developers</Link>
+          </AboutUs>
+        </BottomText>
       </Hero>
       <Feed />  
     </Wrapper>
@@ -63,11 +70,36 @@ const GraphicaLogo = styled.div`
   
 
 `
-const Rectangle = styled.div`
+const BottomText = styled.div`
   display: flex;
-  align-items: center;
-  height: 35.24px;
-  width: 60%;
+  width: 100%;
+  margin-top: 6rem;
+  padding: 2rem;
+  color: #FFF;
+  justify-content: space-between;
+  font-family: 'Montserrat';
+  font-size: 12px;
+`
+const FreeForever = styled.div`
+
+`
+const AboutUs = styled.div`
+
+  a:link {
+    color: white;
+  }
+  a:visited {
+    color: white;
+  }
+  a:hover {
+    color: lightgrey;
+  }
+  a:active {
+    color: white;
+  }
+
+  cursor: pointer;
+
 `
 const HeroSubText = styled.p`
   padding-top: 1rem;

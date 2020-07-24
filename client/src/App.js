@@ -11,6 +11,7 @@ import Dash from './components/shared/Dash';
 import Profile from './components/profile/Profile';
 import Collection from './components/collection/CollectionShow';
 import PictureCollection from './components/picture/PictureCollection';
+import AboutUs from './components/home/AboutUs'
 
 const App = () => {
   const [showCatbar, setShowCatbar] = useState(false)
@@ -29,7 +30,7 @@ const App = () => {
       <FetchUser>
         <Switch>
           <Route exact path='/' render={LoadHome} />
-          <Route exact path='/Feed' component={PictureCollection} />
+          <Route exact path='/about_us' component={AboutUs} />
           <Route exact path='/profile/:id' render={LoadProfile} />
           <Route exact path='/collections/:id' render={LoadCollection} />
           <Route exact path='/dash' component={Dash} />
