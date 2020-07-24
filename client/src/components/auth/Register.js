@@ -2,6 +2,9 @@ import React from 'react';
 import { AuthConsumer, } from "../../providers/AuthProvider";
 import { Button, Form, Segment, Header, Grid, } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone';
+import logoFont from '../../fonts/Elianto-Regular.otf';
+import store from '../../img/login_page.jpg'
+import styled from "styled-components";
 
 class Register extends React.Component {
   state = { email: '', password: '', passwordConfirmation: '', first_name: '', last_name: '', tagline: '', image: '' };
@@ -28,6 +31,25 @@ class Register extends React.Component {
     const { email, password, passwordConfirmation, first_name, last_name, tagline, file } = this.state;
     
     return (
+      <Row>
+        <PictureGroup>
+          <LoginImage>
+            <ImageContents>
+              <h2>Welcome to Graphica!</h2>
+              <p>
+                Discover
+              </p>
+              <p>
+                Experience
+              </p>
+              <p>
+                Learn
+              </p>
+              <br></br>
+            </ImageContents>
+      </LoginImage>
+    </PictureGroup>
+    <LoginGroup>
       <Segment basic>
         <Header as='h1' textAlign='center'>Register</Header>
         <Form onSubmit={this.handleSubmit}>
@@ -108,8 +130,10 @@ class Register extends React.Component {
           <Segment textAlign='center' basic>
             <Button primary type='submit'>Submit</Button>
           </Segment>
-        </Form>
+        </Form>            
       </Segment>
+      </LoginGroup>
+    </Row>
     )
   }
 }
@@ -126,6 +150,64 @@ const styles = {
   },
 }
 
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+`
+
+const PictureGroup = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+flex: 1;
+
+@media (max-width: 812px;) {
+  max-width: 400px;
+}
+`
+
+const LoginImage = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  min-height: 725px;
+  color: white;
+  background-size: cover;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-image: url(https://res.cloudinary.com/graphica/image/upload/v1593472624/spacex-OHOU-5UVIYQ-unsplash_o7mj1l.jpg
+    );
+`
+
+const LoginGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: flex-start;
+  margin-top: 3rem;
+  margin-left: 10rem;
+  flex: 1;
+
+  @media (max-width: 812px;) {
+    max-width: 400px;
+  }
+`
+
+const ImageContents = styled.div`
+  font-family: Montserrat;
+  padding-top: 2rem;
+  padding-left: -35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: left;
+  margin-left: 2rem;
+`;
+
 export default class ConnectedRegister extends React.Component {
   render() {
     return (
@@ -135,3 +217,5 @@ export default class ConnectedRegister extends React.Component {
     )
   }
 }
+
+

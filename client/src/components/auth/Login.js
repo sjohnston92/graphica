@@ -5,9 +5,6 @@ import {Link, withRouter } from 'react-router-dom';
 import logoFont from '../../fonts/Elianto-Regular.otf';
 import store from '../../img/login_page.jpg'
 import styled from "styled-components";
-//import Register from '/Register';
-
-
 
 class Login extends React.Component {
   state = { email: '', password: '' }
@@ -29,7 +26,7 @@ class Login extends React.Component {
     const { email, password, } = this.state;
     
     return (
-      <Wrapper>
+  <Wrapper>
     <Row>
     <PictureGroup>
       <LoginImage>
@@ -107,7 +104,7 @@ const Wrapper = styled.div`
 `
 
 const LoginGroup = styled.div`
-display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: left;
   align-items: flex-start;
@@ -171,16 +168,12 @@ const LoginImage = styled.div`
   height: auto;
   display: flex;
   justify-content: flex-start;
-  align-items: left;
-  min-height: 900px;
+  align-items: stretch;
+  min-height: 725px;
   background-size: cover;
   background-position: left;
   background-repeat: no-repeat;
   background-image: url(https://res.cloudinary.com/graphica/image/upload/v1593188743/white-mountain_eschby.jpg);
-
-  @media (max-width: 812px;) {
-    max-width: 400px;
-  }
 `
 
 const ImageContents = styled.div`

@@ -68,7 +68,6 @@ class PictureForm extends React.Component {
 
     return (
       <>
-        {redirect && <Redirect to={redirect}/>}
         <PictureFormDiv onSubmit={this.handleSubmit} >
           <Dropzone
             onDrop={this.onDrop}
