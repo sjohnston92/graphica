@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Comments from './comments/Comments'
-import { Redirect, Link, NavLink } from 'react-router-dom';
-
+import { Redirect, Link, NavLink } from 'react-router-dom'; 
 import PictureCollection from './PictureCollection';
 import { ImageConsumer } from '../../providers/ImageProvider'
 import EditPicture from './EditPicture'

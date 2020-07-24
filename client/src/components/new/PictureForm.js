@@ -3,30 +3,23 @@ import styled from "styled-components";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 import { AuthConsumer, } from "../../providers/AuthProvider";
-import AddCollectionToPicture from "./AddCollectionToPicture"
+import { withRouter } from "react-router-dom";
+import AddCollectionToPicture from "./AddCollectionToPicture";
 
 class PictureForm extends React.Component {
 
   state = { 
-    formValues: {  file: "", title: "", description: "",  category: "" },
+    formValues: {  file: "", title: "", description: "",  categoryId: "", url: "" },
     categories: [],
-    collectionId: ""
   };
   
   componentDidMount() {
     axios.get("/api/categories")
-    .then((res) => this.setState({ categories: res.data }))
+    .then((res) => this.setState({ 
+      categories: res.data,
+      formValues: { ...this.state.formValues, categoryId: res.data[0].id }
+    }))
     .catch(console.log)
-  }
-
-  newCollectionPicture = (incomingPictureId) => {
-    axios.post(`/api/collection_pictures`, {picture_id: incomingPictureId, collection_id: this.state.collectionId} )
-    .then(res => {
-      (alert("collection picture MADE!!"))
-      this.props.toggleModal()
-      this.props.history.push('/profile');
-    })
-      .catch(console.log)
   }
 
   handleSubmit = (e) => {
@@ -37,38 +30,46 @@ class PictureForm extends React.Component {
       params: { 
         title: this.state.formValues.title,
         description: this.state.formValues.description,
-        category_id: this.state.formValues.category,
+        category_id: this.state.formValues.categoryId,
       } 
-
     }
+
+    console.log(this.state.formValues);
 
     axios.post(`/api/users/${this.props.auth.user.id}/pictures`, data, options)
       .then(res => {
         // do things when picture uploads successfully
-        // this.props.toggleModal()
-        // this.props.history.push('/profile');
-        this.newCollectionPicture(res.data.id)
-        
+        this.props.toggleModal()
+        this.props.history.push(`/profile/${this.props.auth.user.id}`);
       })
       .catch(console.log);
   }
   
   onDrop = (files) => {
-    this.setState({ formValues: { ...this.state.formValues, file: files[0], } });
+    const blob = new Blob([files[0]], { type: 'image/png' });
+    const url = URL.createObjectURL(blob);
+    this.setState({ 
+      formValues: { ...this.state.formValues, file: files[0], },
+      url, 
+    })
   }
 
-  handleChange = (event) => this.setState({ 
-    formValues: { 
-      ...this.state.formValues,
-      [event.target.name]: event.target.value 
-    }
-  });
-  
+  handleChange = (event) => {
+    console.log(this.state.formValues)
+    this.setState({ 
+      formValues: { 
+        ...this.state.formValues,
+        [event.target.name]: event.target.value 
+      }
+    }, () => {
+      console.log(this.state.formValues)
+    });  
+  }
 
 
   render() {
-      const { toggle, open } = this.props;
-      console.log(this.state.collectionId)
+    const { toggle, open } = this.props;
+
     return (
       <>
         <PictureFormDiv onSubmit={this.handleSubmit} >
@@ -83,6 +84,7 @@ class PictureForm extends React.Component {
                   style={styles.dropzone}
                 >
                   <input {...getInputProps()} />
+                <img src={this.state.url} style={{width: "100%"}}/>
                   {
                     isDragActive ?
                       <p>Drop files here...</p> :
@@ -103,7 +105,7 @@ class PictureForm extends React.Component {
                 onChange={this.handleChange}
               />
             </label>
-            <lable>
+            <label>
               Description: 
             <input 
               type="text"
@@ -112,24 +114,23 @@ class PictureForm extends React.Component {
               placeholder="Description..."
               onChange={this.handleChange}
             />
-            </lable>
+            </label>
 
-            <lable>
+            <label>
               Category: 
             <select
               type="select"
-              name="category"
-              value={this.state.formValues.category}
+              name="categoryId"
+              value={this.state.formValues.categoryId}
               onChange={this.handleChange}
               required
             >
-              { this.state.categories.map((category) => {
-                return (
-                <option value={category.id} >{category.title}</option>
-                )
-              }) }
+              { this.state.categories.map((category) => (
+                  <option value={category.id} >{category.title}</option>
+                ))
+              }
             </select>
-            </lable>
+            </label>
             
           <SubmitButton>Submit</SubmitButton>
         </PictureFormDiv>
@@ -164,13 +165,5 @@ const ConnectedPictureForm = (props) => (
   </AuthConsumer>
 )
 
-// function MyDropzone() {
-//   const {getRootProps, getInputProps} = useDropzone()
-//   return (
-//     <div {...getRootProps()}>
-//       <input {...getInputProps()} />
-//       <p>Drag and drop picture image, or click to select files</p>
-//     </div>
-//   )
-// }
-export default ConnectedPictureForm;
+
+export default withRouter(ConnectedPictureForm);
