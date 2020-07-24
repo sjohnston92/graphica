@@ -19,4 +19,6 @@ const NewPictureButton = ({ isCurrentUser }) => {
   )
 }
 
+
+
 export default NewPictureButton;
