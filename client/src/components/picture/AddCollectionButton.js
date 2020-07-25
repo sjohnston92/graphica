@@ -21,7 +21,7 @@ const AddCollectionButton = (props) => {
               <Wrapper>
                 <AddToCollection onClick={()=>toggle()} >
                   <AddDiv image={addImg} />
-                  Add to a collection 
+                  add to a collection 
                 </AddToCollection>
                 <Modal onClose={toggle} open={open}>               
                   <AddOrCreateCollection toggleModal={toggle}/>

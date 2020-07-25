@@ -1,9 +1,11 @@
 import React from 'react'
 import { AuthConsumer, } from "../../providers/AuthProvider";
-
+import styled from 'styled-components';
 const ContactTest = ({user}) => (
   <>
-    <h1>{user.first_name} {user.last_name}</h1>
+    <div style="padding: 2rem"> 
+      <h1>{user.first_name} {user.last_name}</h1>
+    </div>
     <hr></hr>
     <h2>Contact Info</h2>
     <h3>Email</h3>

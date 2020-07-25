@@ -58,7 +58,7 @@ const Comment = (props) => {
             
           </a>
           <a href={`/Profile/${props.user_id}`}>   
-            {userName}
+            &nbsp;{userName}
           </a>
         </Left>
         <Right>
@@ -106,6 +106,7 @@ const UserDiv = styled.div`
 const Left = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   a:link {
     color: black;
   }
@@ -154,12 +155,9 @@ const StyledUserImage = styled.div `
 `
 const BodyDiv = styled.div`
   background: #F4F4F4;
-  padding-botton: 1rem;
   display: flex;
-  padding-top: 8px;
-  padding-botton: 8px;
-  margin-top: -8px;
-  margin-bottom: -8px;
+  border: solid #F4F4F4;
+  padding: 10px;
   font-size: 12px;
 
 `

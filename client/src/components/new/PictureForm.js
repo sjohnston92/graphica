@@ -5,6 +5,7 @@ import axios from "axios";
 import { AuthConsumer, } from "../../providers/AuthProvider";
 import { withRouter } from "react-router-dom";
 import AddCollectionToPicture from "./AddCollectionToPicture";
+import '../../Styles/Form.css'
 
 class PictureForm extends React.Component {
 
@@ -68,7 +69,14 @@ class PictureForm extends React.Component {
 
     return (
       <>
-        <PictureFormDiv onSubmit={this.handleSubmit} >
+      <FormWrapper>
+        <HeaderDiv>
+          <FormHeader>Add A Picture</FormHeader>
+        </HeaderDiv>
+      </FormWrapper>
+        <StyledLine></StyledLine>
+        <FormWrapper>
+        <StyledForm onSubmit={this.handleSubmit} >
           <Dropzone
             onDrop={this.onDrop}
             multiple={false}
@@ -90,9 +98,9 @@ class PictureForm extends React.Component {
               )
             }}
           </Dropzone>
-            <label>
+            <StyledLabel>
               Title: 
-              <input
+              <TitleInput
                 type="text"
                 name="title"
                 value={this.state.formValues.title}
@@ -100,20 +108,20 @@ class PictureForm extends React.Component {
                 required
                 onChange={this.handleChange}
               />
-            </label>
-            <label>
+            </StyledLabel>
+            <StyledLabel>
               Description: 
-            <input 
+            <DescriptionInput 
               type="text"
               name="description"
               value={this.state.formValues.description}
               placeholder="Description..."
               onChange={this.handleChange}
             />
-            </label>
-            <label>
+            </StyledLabel>
+            <StyledLabel>
               Category: 
-            <select
+            <FormSelect
               type="select"
               name="categoryId"
               value={this.state.formValues.categoryId}
@@ -124,21 +132,77 @@ class PictureForm extends React.Component {
                   <option value={category.id} >{category.title}</option>
                 ))
               }
-            </select>
-            </label>
+            </FormSelect>
+            </StyledLabel>
             
           <SubmitButton>Submit</SubmitButton>
-        </PictureFormDiv>
+        </StyledForm>
+      </FormWrapper>
       </>
     )
   }
 }
+const FormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+`
+const FormHeader = styled.div`
+ font-size: 1.5rem;
+ font-family: 'Montserrat',  sans-serif !important;
+`
+const HeaderDiv = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`
 
-const PictureFormDiv = styled.form`
+const StyledLabel = styled.div`
+  font-family: 'Montserrat',  sans-serif !important;
+`
+
+const StyledLine = styled.hr`
+  background-color: #96969C;
+  margin: 0;
+`
+
+const TitleInput = styled.input`
+  font-size: 1rem;
+  width: 90%;
+  font-family: 'Montserrat',  sans-serif !important;
+  margin-top: 4px;
+`
+const DescriptionInput = styled.textarea`
+  font-size: 1rem;
+  width: 90%;
+  max-height: 40%;
+  font-family: 'Montserrat',  sans-serif !important;
+  resize: none;
+  margin-top: 4px;
+`
+const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
 `
-const SubmitButton = styled.button``
+const SubmitButton = styled.button`
+  background: #0099BA;
+  box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
+  border-radius: 4px;
+  color: white;
+  border: none;
+  font-family: 'Montserrat',  sans-serif;
+  margin-top: 10px;
+  display: flex;
+  align-self: center;
+`
+
+const FormSelect = styled.select`
+  font-size: 1rem;
+  width: 90%;
+  font-family: 'Montserrat',  sans-serif !important;
+`
+
+
+
 const styles = {
   dropzone: {
     height: "150px",
