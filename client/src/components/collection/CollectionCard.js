@@ -38,14 +38,13 @@ const CollectionCard = (props) => {
       <CardDiv onClick={toggleAndSetId} >
         <StyledImage src={props.picture.url}  />
       </CardDiv>
-      <PointerOff>
-      </PointerOff>
+
     </CardBorder>
   )
 }
 
 const StyledImage = styled.img`
-  width: 100%
+  width: 100%;
 `
 const StyledText = styled.div`
   position: absolute;
@@ -73,13 +72,9 @@ const CardDiv = styled.div`
         visibility: visible;
   }
 `
-const PointerOff = styled.div`
-  width: 100%
-  cursor: default;
-  font-family: 'Montserrat';
-`
+
 const CardBorder = styled.div`
-  margin-bottom: -40px;
+  margin-bottom: 20px;
 `
 const CardFooterLeft = styled.div`
   float: left;
