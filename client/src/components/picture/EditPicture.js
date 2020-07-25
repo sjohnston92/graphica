@@ -95,7 +95,7 @@ const EditPicture = (props) => {
       { props.authenticated && 
         <> 
           { 
-            props.user.id === (props.userId || 1) &&
+            props.user.id === (props.userId) &&
               <>
                 { RenderEditPicture() }
               </>

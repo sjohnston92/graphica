@@ -59,15 +59,11 @@ const GraphicaLogo = styled.div`
   display: flex;
   align-items: center;
   padding-bottom: 4rem;
-  font-family: 'Elianto-Regular';
+  font-family: 'Elianto';
   font-size: 44px;
-  @font-face {
-    font-family: 'Elianto-Regular';
-    src: url(${logoFont}) format("opentype");
-  }
   color: #FFF;
-  text-shadow: 1px 1px 3px grey;
-  
+  text-shadow: 0 2px 5px rgba(0,0,0,0.75), 0 -1px 4px rgba(255,255,255,0.75);
+  //text shadow is the same on search
 
 `
 const BottomText = styled.div`

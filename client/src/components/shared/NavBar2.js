@@ -16,25 +16,19 @@ const NavBar = (props) => {
     <>
       <Wrapper>
         <Flex>
-          <LogoDiv>
-            <Link to='/'>GRAPHICA</Link>
-          </LogoDiv>
+            <LogoLink to='/'>GRAPHICA</LogoLink>
           <AuthDiv>
             <LinkDiv onClick={ () => props.auth.handleLogout(props.history) }>Logout {props.auth.user.first_name}</LinkDiv> 
           </AuthDiv>
         </Flex>
         <Right>
-          <Flex>
             <SearchDiv onClick={()=>props.history.push(`/`)}>  
               <NavSearchBar />
             </SearchDiv>
-            <Flex>
               <LinkDiv><Link to={`/Profile/${props.auth.user.id}`}>Profile </Link>|&nbsp;</LinkDiv><LinkDiv onClick={()=>toggle()}>Post</LinkDiv>
-            </Flex>
             <Modal onClose={toggle} open={open}>
               <PictureForm toggle={toggle}/>
             </Modal>
-          </Flex>
         </Right>
       </Wrapper>
       <ClearFix />
@@ -45,22 +39,16 @@ const NavBar = (props) => {
       <>
         <Wrapper>
           <Flex>
-            <LogoDiv>
-              <Link to='/'>GRAPHICA</Link>
-            </LogoDiv>
+              <LogoLink to='/'>GRAPHICA</LogoLink>
             <AuthDiv>
               <Link to='/register'>  Sign Up</Link> | <Link to='/login'>Login</Link>
             </AuthDiv>
           </Flex>
           <Right>
-            <Flex>
               <SearchDiv onClick={()=>props.history.push(`/`)}>
                 <NavSearchBar />
               </SearchDiv>
-              <Flex>
                 <Link to='/login'>Profile </Link>&nbsp;|&nbsp; <Link to='/login'>Post</Link>
-              </Flex>
-            </Flex>
           </Right>
         </Wrapper>
         <ClearFix />
@@ -76,10 +64,7 @@ const Wrapper = styled.div`
   display: flex;
   width: 100%;
   height: 3rem;
-  
-  
-  
-  
+  padding: 0 3rem;
   justify-content: space-between;
   font-family: 'Montserrat', sans-serif;
   font-style: normal;
@@ -107,37 +92,24 @@ const ClearFix = styled.div`
   height: 3rem;
 `
 const Right = styled.div`
-  display: block;
-  justify: right;
-
+  display: flex;
+  align-items: center;
 `
 const SearchDiv = styled.div`
-  display: block;
-  margin-top: -5px;
-
+  
 `
 const Flex = styled.div `
   display: flex;
-  padding-top: 5px;
 `
-const LogoDiv = styled.div`
-  font-family: 'Elianto-Regular';
+const LogoLink = styled(Link)`
+  font-family: 'Elianto' !important;
   font-size: 17px;
-  @font-face {
-    font-family: 'Elianto-Regular';
-    src: url(${logoFont}) format("opentype");
-  }
-  padding-left: 3rem;
-  padding-top: 5px;
 `
 const AuthDiv = styled.div`
   margin-left: 1vw;
-  padding-top: 5px;
-
 `
 const LinkDiv = styled.div`
   cursor: pointer;
-  
 `
 
 const ConnectedNavBar = (props) => (

@@ -27,7 +27,7 @@ const NavSearchBar = (props) => {
 const StyledInput = styled.input`
   border: none;
   height: 35px;
-  width: 20vw;
+  width: 10rem;
   box-sizing: border-box;
   outline: none;
   font-family: Montserrat;

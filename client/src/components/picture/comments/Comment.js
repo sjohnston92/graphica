@@ -64,7 +64,7 @@ const Comment = (props) => {
         <Right>
           {props.authenticated ? 
             <>
-              {props.user.id === (userId || 1) ? 
+              {props.user.id === userId ? 
                   <>
                     <EditButton onClick={toggleEdit} image={editImg}/>
                     <DeleteButton onClick={deleteComment} image={deleteImg} />
