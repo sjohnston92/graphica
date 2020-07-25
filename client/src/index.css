@@ -10,6 +10,12 @@ code {
     monospace;
 }
 
+@font-face {
+  font-family: "Elianto";
+  src: url(./fonts/Elianto-Regular.otf);
+}
+
+
 button, input, h1, a, h2, h3, h4, h5, h6, li, ul, p {
   font-family: 'Montserrat',  sans-serif !important;
 }

@@ -5,7 +5,7 @@ import axios from 'axios';
 import { FeedConsumer } from '../../providers/FeedProvider'
 import useTrigger from '../../hooks/useTrigger'
 
-const SearchBar = (props) => {
+const NavSearchBar = (props) => {
   
   useTrigger(props.query, 500, () => {
     props.setCategoryId(null)
@@ -19,27 +19,27 @@ const SearchBar = (props) => {
       value={props.query}
       placeholder="Find something new..."
       onChange={(e) => props.setQuery(e.target.value)}
+      
     />
   )
 }
 
 const StyledInput = styled.input`
   border: none;
-  height: 30px;
-  width: 50vw;
+  height: 35px;
+  width: 10rem;
   box-sizing: border-box;
   outline: none;
   font-family: Montserrat;
-  font-size: 10px;
   ::placeholder {
     font-family: Montserrat;
-    padding-left: 10px;
+    color: black;
   }
 `
-const ConnectedSearchBar = (props) => (
+const ConnectedNavSearchBar = (props) => (
   <FeedConsumer>
-    {(value) => <SearchBar {...props} {...value} />}
+    {(value) => <NavSearchBar {...props} {...value} />}
   </FeedConsumer>
 );
 
-export default ConnectedSearchBar;
+export default ConnectedNavSearchBar;

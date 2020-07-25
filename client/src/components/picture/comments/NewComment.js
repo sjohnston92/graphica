@@ -48,7 +48,7 @@ export default class ConnectedCommentBar extends React.Component {
 const StyledInput = styled.input`
   border: 1px solid black;
   height: 35px;
-  width: 525px;
+  width: 72vw;
   box-sizing: border-box;
   outline: none;
   ::placeholder {

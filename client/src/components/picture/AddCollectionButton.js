@@ -17,7 +17,7 @@ const AddCollectionButton = (props) => {
       { props.authenticated && 
         <> 
           { 
-            (props.user.id === props.userId) &&
+            (props.user.id === props.userId ) &&
               <Wrapper>
                 <AddToCollection onClick={()=>toggle()} >
                   <AddDiv image={addImg} />

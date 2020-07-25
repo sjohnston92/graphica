@@ -59,8 +59,8 @@ const EditPicture = (props) => {
 
   const RenderEditPicture = () => (
     <Wrapper>
-      <EditButton onClick={toggleEdit} image={editImg}/>
-      <DeleteButton onClick={deleteImage} image={deleteImg} />
+      <EditButton onClick={toggleEdit} image={editImg} title="Edit"/>
+      <DeleteButton onClick={deleteImage} image={deleteImg} title="Delete" />
       {editing &&
         <>
           <form onSubmit={handleSubmit}>
@@ -95,7 +95,7 @@ const EditPicture = (props) => {
       { props.authenticated && 
         <> 
           { 
-            (props.user.id === props.userId) &&
+            props.user.id === (props.userId) &&
               <>
                 { RenderEditPicture() }
               </>
