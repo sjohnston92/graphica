@@ -23,9 +23,9 @@ const CollectionFeed = (props) => {
           <ColumnContainer>
             {column_arrays[0].map(listItem =><><CollectionCard key={listItem.id} picture={listItem} updateFeedState={updateFeedState}/></>)}
           </ColumnContainer>
-          <ColumnContainer>
+          <MiddleContainer>
             {column_arrays[1].map(listItem =><><CollectionCard key={listItem.id} picture={listItem} updateFeedState={updateFeedState}/></>)}
-          </ColumnContainer>
+          </MiddleContainer>
           <ColumnContainer>
             {column_arrays[2].map(listItem =><><CollectionCard key={listItem.id} picture={listItem} updateFeedState={updateFeedState}/></>)}
           </ColumnContainer>
@@ -39,15 +39,22 @@ const CollectionFeed = (props) => {
 
 const FeedDiv = styled.div`
   display: flex;
-  padding-right: 20px;
-  padding-top: 20px;
+  // padding-right: 20px;
+  // padding-top: 20px;
   width: 75vw;
   margin: auto;
   min-width: 1000px;
 `
 const ColumnContainer = styled.div`
-  margin-top: 20px;
-  margin-left: 20px;
+  // margin-top: 20px;
+  // margin-left: 20px;
+  width: calc(100% / 3);
+  @media (max-width: 1600px) {};
+  @media (max-width: 1100px) {}
+  @media only screen and (max-width: 800px) {}
+`
+const MiddleContainer = styled.div`
+  margin: 0 20px;
   width: calc(100% / 3);
   @media (max-width: 1600px) {};
   @media (max-width: 1100px) {}

@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
-import CollectionForm from './CollectionForm'
-import { AuthConsumer } from '../../providers/AuthProvider'
+import React, { useState } from 'react';
+import CollectionForm from './CollectionForm';
+import { AuthConsumer } from '../../providers/AuthProvider';
+import styled from 'styled-components';
 
 const EditCollection = (props) => {
   const [ editing, setEditing ] = useState()
@@ -21,16 +22,49 @@ const EditCollection = (props) => {
           { editing 
             ? <CollectionForm handleRes={handleRes} collection={props.collection} />
             : 
-              <>
-                <button onClick={()=>setEditing(true)}>Edit Collection</button> 
-                <button onClick={deleteCollection}>Delete Collection</button>
-              </>
+              <ButtonWrapper>
+                <EditButton onClick={()=>setEditing(true)}>Edit Collection</EditButton> 
+                <DeleteButton onClick={deleteCollection}>Delete Collection</DeleteButton>
+              </ButtonWrapper>
           }      
         </>
       }
     </>
   )
 }
+
+  const ButtonWrapper = styled.div `
+    width: 75vw;
+    display: flex;
+    align-items: center;
+    margin: 0 auto 0 auto;
+    margin-bottom: 20px;
+  `
+
+  const EditButton = styled.button`
+    width: 148px;
+    height: 38px;
+    
+    background: #0099BA;
+    box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
+    border-radius: 4px;
+    border: none;
+    color: white;
+  `
+
+  const DeleteButton = styled.button`
+    width: 148px;
+    height: 38px;
+
+    background: #0099BA;
+    box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
+    border-radius: 4px;
+    color: white;
+    margin-left: 20px;
+    border: none;
+    font-family: 'Montserrat',  sans-serif;
+  `
+
 
   const ConnectedEditCollection = (props) => (
     <AuthConsumer>
