@@ -71,7 +71,7 @@ class PictureForm extends React.Component {
       <>
       <FormWrapper>
         <HeaderDiv>
-          <FormHeader>Add A Picture</FormHeader>
+          <FormHeader>add a picture</FormHeader>
         </HeaderDiv>
       </FormWrapper>
         <StyledLine></StyledLine>
@@ -92,14 +92,14 @@ class PictureForm extends React.Component {
                   {
                     isDragActive ?
                       <p>Drop files here...</p> :
-                      <p>Try dropping some files here, or click to select files to upload.</p>
+                      <p>Click Here...</p>
                   }
                 </div>
               )
             }}
           </Dropzone>
             <StyledLabel>
-              Title: 
+              title: 
               <TitleInput
                 type="text"
                 name="title"
@@ -110,7 +110,7 @@ class PictureForm extends React.Component {
               />
             </StyledLabel>
             <StyledLabel>
-              Description: 
+              description: 
             <DescriptionInput 
               type="text"
               name="description"
@@ -120,7 +120,7 @@ class PictureForm extends React.Component {
             />
             </StyledLabel>
             <StyledLabel>
-              Category: 
+              category: 
             <FormSelect
               type="select"
               name="categoryId"
@@ -135,7 +135,7 @@ class PictureForm extends React.Component {
             </FormSelect>
             </StyledLabel>
             
-          <SubmitButton>Submit</SubmitButton>
+          <SubmitButton>submit</SubmitButton>
         </StyledForm>
       </FormWrapper>
       </>
@@ -193,6 +193,7 @@ const SubmitButton = styled.button`
   margin-top: 10px;
   display: flex;
   align-self: center;
+  cursor: pointer;
 `
 
 const FormSelect = styled.select`

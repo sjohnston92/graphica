@@ -63,21 +63,21 @@ const EditPicture = (props) => {
       <DeleteButton onClick={deleteImage} image={deleteImg} title="Delete" />
         <Modal onClose={toggle} open={open}>               
           <FormWrapper>
-              <FormHeader>Edit Picture Info</FormHeader>
+              <FormHeader>edit picture info</FormHeader>
           </FormWrapper>
           <StyledLine></StyledLine>
           <FormWrapper>
             <StyledForm onSubmit={handleSubmit}>
               <StyledLabel>
-                Title: 
+                title: 
                 <TitleInput type="text" name="title" value={title} required onChange={handleChangeTitle}/>
               </StyledLabel>
               <StyledLabel>
-                Description: 
+                description: 
                 <DescriptionInput type="text" name="description" value={description} onChange={handleChangeDescription}/>
               </StyledLabel>
               <StyledLabel>
-                Category: 
+                category: 
                 <FormSelect type="select" name="category" onChange={handleChangeCategory} required>
                   {/* how do I remove duplicate title? */}
                   <option value={category.id}>{category.title}</option> 
@@ -87,7 +87,7 @@ const EditPicture = (props) => {
                     }
                 </FormSelect>
               </StyledLabel>
-              <SubmitButton>Submit</SubmitButton>
+              <SubmitButton>submit</SubmitButton>
             </StyledForm>
           </FormWrapper>
         </Modal>
@@ -160,6 +160,7 @@ const SubmitButton = styled.button`
   border: none;
   font-family: 'Montserrat',  sans-serif;
   margin-top: 10px;
+  cursor: pointer;
 `
 
 const FormSelect = styled.select`

@@ -55,6 +55,7 @@ const SubmitButton = styled.button`
   margin-top: 10px;
   display: flex;
   align-self: center;
+  cursor: pointer;
 `
 
 
@@ -70,7 +71,6 @@ const FormSelect = styled.select`
   font-size: 1rem;
   width: 90%;
   font-family: 'Montserrat',  sans-serif !important;
-  
 `
 
 

@@ -107,6 +107,7 @@ const SubmitButton = styled.button`
   margin-top: 10px;
   display: flex;
   align-self: center;
+  cursor: pointer;
 `
 
 const ConnectedCollectionForm = (props) => (
