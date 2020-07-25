@@ -28,6 +28,7 @@ const StyledImage = styled.div`
   height: 183px;
   width: 213px;
   cursor: zoom-in;
+  flex-shrink: 0;
 `
 
 const ConnectedCollectionImage = (props) => (

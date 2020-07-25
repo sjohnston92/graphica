@@ -157,7 +157,7 @@ const Wrapper = styled.div`
   min-height: 600px;
   max-height: 100vh;
   overflow-y: auto;
-  max-width: 78vw;
+  width: 78vw;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

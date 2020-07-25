@@ -13,52 +13,58 @@ const NavBar = (props) => {
 
   if(props.auth.authenticated) {
   return(
-    <Wrapper>
-      <Flex>
-        <LogoDiv>
-          <Link to='/'>GRAPHICA</Link>
-        </LogoDiv>
-        <AuthDiv>
-          <LinkDiv onClick={ () => props.auth.handleLogout(props.history) }>Logout {props.auth.user.first_name}</LinkDiv> 
-        </AuthDiv>
-      </Flex>
-      <Right>
-        <Flex>
-          <SearchDiv onClick={()=>props.history.push(`/`)}>  
-            <NavSearchBar />
-          </SearchDiv>
-          <Flex>
-            <LinkDiv><Link to={`/Profile/${props.auth.user.id}`}>Profile </Link>|&nbsp;</LinkDiv><LinkDiv onClick={()=>toggle()}>Post</LinkDiv>
-          </Flex>
-          <Modal onClose={toggle} open={open}>
-            <PictureForm toggle={toggle}/>
-          </Modal>
-        </Flex>
-      </Right>
-    </Wrapper>
-  )
-  } else { 
-    return(   
+    <>
       <Wrapper>
         <Flex>
           <LogoDiv>
             <Link to='/'>GRAPHICA</Link>
           </LogoDiv>
           <AuthDiv>
-            <Link to='/register'>  Sign Up</Link> | <Link to='/login'>Login</Link>
+            <LinkDiv onClick={ () => props.auth.handleLogout(props.history) }>Logout {props.auth.user.first_name}</LinkDiv> 
           </AuthDiv>
         </Flex>
         <Right>
           <Flex>
-            <SearchDiv onClick={()=>props.history.push(`/`)}>
+            <SearchDiv onClick={()=>props.history.push(`/`)}>  
               <NavSearchBar />
             </SearchDiv>
             <Flex>
-              <Link to='/login'>Profile </Link>&nbsp;|&nbsp; <Link to='/login'>Post</Link>
+              <LinkDiv><Link to={`/Profile/${props.auth.user.id}`}>Profile </Link>|&nbsp;</LinkDiv><LinkDiv onClick={()=>toggle()}>Post</LinkDiv>
             </Flex>
+            <Modal onClose={toggle} open={open}>
+              <PictureForm toggle={toggle}/>
+            </Modal>
           </Flex>
         </Right>
       </Wrapper>
+      <ClearFix />
+    </>
+  )
+  } else { 
+    return(   
+      <>
+        <Wrapper>
+          <Flex>
+            <LogoDiv>
+              <Link to='/'>GRAPHICA</Link>
+            </LogoDiv>
+            <AuthDiv>
+              <Link to='/register'>  Sign Up</Link> | <Link to='/login'>Login</Link>
+            </AuthDiv>
+          </Flex>
+          <Right>
+            <Flex>
+              <SearchDiv onClick={()=>props.history.push(`/`)}>
+                <NavSearchBar />
+              </SearchDiv>
+              <Flex>
+                <Link to='/login'>Profile </Link>&nbsp;|&nbsp; <Link to='/login'>Post</Link>
+              </Flex>
+            </Flex>
+          </Right>
+        </Wrapper>
+        <ClearFix />
+      </>
     )
   }
 }
@@ -66,11 +72,12 @@ const NavBar = (props) => {
 const Wrapper = styled.div`
   position: fixed;
   z-index:1;
+  align-items: center;
   display: flex;
   width: 100%;
+  height: 3rem;
   
   
-  padding: 5px;
   
   
   justify-content: space-between;
@@ -93,6 +100,11 @@ const Wrapper = styled.div`
     overflow: auto;
   }
   background-color: white;
+`
+
+const ClearFix = styled.div`
+  width: 100%;
+  height: 3rem;
 `
 const Right = styled.div`
   display: block;

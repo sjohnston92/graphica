@@ -60,12 +60,15 @@ const RowDiv = styled.div`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  flex-shrink: 0;
 `
 const PictureContainer = styled.div`
   display: flex;
   justify-content: left;
-  height: 100px;
-  width: 100%;
+  width: 78vw;
+  overflow-x: auto;
+  flex-shrink: 0;
 `
 
 const CollectionText = styled.span`

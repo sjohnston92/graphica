@@ -36,7 +36,7 @@ const Home = (props) => {
   )
 }
 const Wrapper = styled.div`
-  padding-top: 45px;
+  
 `
 const Hero = styled.div`
   width: 100%;
