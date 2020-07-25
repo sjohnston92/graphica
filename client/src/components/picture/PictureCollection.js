@@ -73,6 +73,7 @@ const PictureContainer = styled.div`
 
 const CollectionText = styled.span`
   align-self: flex-end;
+  margin-left: 2rem;
 `
 
 export default PictureCollection;

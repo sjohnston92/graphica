@@ -63,17 +63,9 @@ const PictureShow = (props) => {
 
   const renderCollections = () => (
     <>
-      { props.pictureJunctions.length > 1 &&
-        <>
-          { (showAllCollections == false) 
-            ? <LinkDiv onClick={()=>setShowAllCollections(true)}> See All Collections </LinkDiv>
-            : <LinkDiv onClick={()=>setShowAllCollections(false)}> Show Less </LinkDiv>
-          }
-        </>
-      }
       { showAllCollections 
         ?
-          <>
+        <>
             {props.pictureJunctions.map(jct => (
               <>
                 <PictureCollection 
@@ -92,11 +84,19 @@ const PictureShow = (props) => {
               pictureCollection={props.pictureJunctions[0]}
               runFetch={runFetch} 
               fetchCollection={props.fetchCollection}
-                image={image}
-                userId={user.id}
-            /> 
+              image={image}
+              userId={user.id}
+              /> 
 
           </>
+      }
+      { props.pictureJunctions.length > 1 &&
+        <>
+          { (showAllCollections == false) 
+            ? <LinkDiv onClick={()=>setShowAllCollections(true)}> see all collections </LinkDiv>
+            : <LinkDiv onClick={()=>setShowAllCollections(false)}> show less </LinkDiv>
+          }
+        </>
       }
     </>
   )
@@ -145,7 +145,8 @@ const PictureShow = (props) => {
           Description
         </InfoLeft>
         <InfoRight>
-        in <a href="url">{category.title}</a> category
+        in {category.title} category
+        {/* in <a href="url">{category.title}</a> category */}
         </InfoRight>
       </PictureDescriptionDiv>
         <Description> {image.description} </Description>
@@ -249,20 +250,20 @@ const PictureDescriptionDiv = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-top: 7rem;
   padding: 2rem;
+  padding-bottom: 9px;
 `
 const Description = styled.div`
   width: 100%;
   font-weight: normal;
   font-size: 12px;
   padding-left: 2rem;
-  margin-top: -1rem;
+  margin-top: 1px;
 `
 const LinkDiv = styled.div`
   color: #81adda;
   cursor: pointer;
-
+  padding-left: 2rem;
 
 `
 

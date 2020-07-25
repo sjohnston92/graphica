@@ -45,6 +45,7 @@ const InfoRight = styled.div`
 const InfoLeft = styled.div`
   font-weight: bold;
   font-size: 24px;
+  margin-bottom: 10px;
 `
 const CommentsDiv = styled.div`
   width: 100%;
