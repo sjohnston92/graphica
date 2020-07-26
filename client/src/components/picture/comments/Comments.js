@@ -5,13 +5,15 @@
 
 const Comments = (props) => (
   <FeedbackDiv>
-    <InfoLeft>
-      Feedback
-    </InfoLeft>
-    <InfoRight>
-      {props.comments.length} 
-      {props.comments.length !== 1 ? " responses" : " response" }
-    </InfoRight>
+    <Flex>
+      <InfoLeft>
+        Feedback
+      </InfoLeft>
+      <InfoRight>
+        {props.comments.length} 
+        {props.comments.length !== 1 ? " responses" : " response" }
+      </InfoRight>
+    </Flex>
 
     <NewComment id={props.pictureId} setStatePictureShow={props.setStatePictureShow}/>
 
@@ -30,17 +32,23 @@ const FeedbackDiv = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  margin-top: 1rem;
+  padding: 2rem;
+`
+const Flex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `
 const InfoRight = styled.div`
+
 `
 const InfoLeft = styled.div`
   font-weight: bold;
   font-size: 24px;
+  margin-bottom: 10px;
 `
 const CommentsDiv = styled.div`
   width: 100%;
   margin-top: 1rem;
-  padding-bottom: 10rem;
 `
 export default Comments

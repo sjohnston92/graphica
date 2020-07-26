@@ -56,25 +56,21 @@ const Catbar = (props) => {
    </Wrapper>           
   )  
 }
-const ConnectedCatbar = (props) => (
-  <FeedConsumer>
-    {(value) => <Catbar {...props} {...value} />}
-  </FeedConsumer>
-);
 
 const Wrapper = styled.div`
-  position: relative;
-  display: flex;
+position: fixed;
+display: flex;
   align-items: center;
   background: grey;
   width: 100%;
-  padding: 1rem;
-  opacity: 0.9;
+  padding: 4px;
+  opacity: 0.7;
+  top: 3rem;
+  z-index:1;
   
 `
-
 const Spacer = styled.div`
-  width: 40px;
+width: 40px;
 `
 const LinkDiv = styled.div`
   font-family: Montserrat;
@@ -84,4 +80,11 @@ const LinkDiv = styled.div`
   color: white;
   cursor: pointer;
 `
+
+const ConnectedCatbar = (props) => (
+  <FeedConsumer>
+    {(value) => <Catbar {...props} {...value} />}
+  </FeedConsumer>
+);
+
 export default ConnectedCatbar;

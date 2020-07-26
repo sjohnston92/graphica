@@ -69,7 +69,7 @@ const Feed = (props) => {
             {column_arrays[2].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={updateFeedState}/></>)}
           </ColumnContainer>
         </FeedDiv>
-        {noMorePictures && 'No more pictures'}
+        {noMorePictures && <> No more pictures {props.query.length > 1 && `found for: "${props.query}"`}  </>}
         {isFetching && !noMorePictures && 'Loading..'}
       </>
     )

@@ -54,14 +54,14 @@ const Card = (props) => {
             <SmallImage image={user.image}/>
           </a>
           <a href={`/Profile/${user.id}`}>
-            {user.first_name} {user.last_name}
+            &nbsp;{user.first_name} {user.last_name}
           </a>
         </CardFooterLeft>
         <CardFooterRight>
           <SmallImage image={commentsImage} />
-          {comments.length}
+          {comments.length}&nbsp;
           <SmallImage image={viewsImage} />
-          {views ? <>{views}</> : 0} 
+          {views ? <>{views.toLocaleString()}</> : 0} 
         </CardFooterRight>
       </PointerOff>
     </CardBorder>
@@ -101,6 +101,7 @@ const PointerOff = styled.div`
   width: 100%
   cursor: default;
   font-family: 'Montserrat';
+  font-size: 12px;
 `
 const CardBorder = styled.div`
   margin-bottom: -40px;

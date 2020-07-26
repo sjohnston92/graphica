@@ -17,11 +17,11 @@ const AddCollectionButton = (props) => {
       { props.authenticated && 
         <> 
           { 
-            (props.user.id === props.userId) &&
+            (props.user.id === props.userId ) &&
               <Wrapper>
                 <AddToCollection onClick={()=>toggle()} >
                   <AddDiv image={addImg} />
-                  Add to a collection 
+                  &nbsp;add to a collection 
                 </AddToCollection>
                 <Modal onClose={toggle} open={open}>               
                   <AddOrCreateCollection toggleModal={toggle}/>
@@ -45,6 +45,8 @@ const AddToCollection = styled.div`
   align-items: center;
   display: flex;
   cursor: pointer;
+  margin-top: 10px;
+  padding-bottom: -20px;
 `
 
 const AddDiv = styled.div`
@@ -57,8 +59,6 @@ const AddDiv = styled.div`
   height: 30px;
   width: 30px;  
   cursor: pointer;
-
-
 `
 
 const ConnectedAddCollectionButton = (props) => (

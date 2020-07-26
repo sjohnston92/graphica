@@ -4,7 +4,8 @@ import logoFont from '../../fonts/Elianto-Regular.otf';
 import store from '../../img/store.jpg'
 import SearchBar from './SearchBar'
 import Feed from './Feed'
-
+import { withRouter, Link } from 'react-router-dom'
+ 
 const Home = (props) => {
   
   useEffect(() => { props.toggleCatbar(true)}, []);
@@ -16,13 +17,19 @@ const Home = (props) => {
           <GraphicaLogo>
             GRAPHICA
           </GraphicaLogo>
-          <Rectangle>
-            <SearchBar />
-          </Rectangle>
+          <SearchBar />
           <HeroSubText>
             Discover a world you never knew existed
           </HeroSubText>
         </HeroArea>
+        <BottomText>
+          <FreeForever>
+            Free Forever
+          </FreeForever>
+          <AboutUs>
+            <Link to={'/about_us'}>Learn about our developers</Link>
+          </AboutUs>
+        </BottomText>
       </Hero>
       <Feed />  
     </Wrapper>
@@ -33,8 +40,8 @@ const Wrapper = styled.div`
 `
 const Hero = styled.div`
   width: 100%;
-  height: 278px;
-  background: url(${store});
+  height: 416px;
+  background: url('https://res.cloudinary.com/graphica/image/upload/v1595688102/ladybug_ekpq5c.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -44,26 +51,51 @@ const HeroArea = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: left;
-  padding: 7rem;
-  margin-left: 1rem;
+  padding-top: 11rem;
+
+  margin-left: 25vw;
 `
 const GraphicaLogo = styled.div`
   display: flex;
   align-items: center;
-  padding-bottom: 2rem;
-  font-family: 'Elianto-Regular';
-  font-size: 42px;
-  @font-face {
-    font-family: 'Elianto-Regular';
-    src: url(${logoFont}) format("opentype");
-  }
-  color: #FFF
+  padding-bottom: 4rem;
+  font-family: 'Elianto';
+  font-size: 44px;
+  color: #FFF;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.75), 0 -1px 4px rgba(255,255,255,0.75);
+  //text shadow is the same on search
+
 `
-const Rectangle = styled.div`
+const BottomText = styled.div`
   display: flex;
-  align-items: center;
-  height: 35.24px;
-  width: 60%;
+  width: 100%;
+  margin-top: 6rem;
+  padding: 2rem;
+  color: #FFF;
+  justify-content: space-between;
+  font-family: 'Montserrat';
+  font-size: 12px;
+`
+const FreeForever = styled.div`
+
+`
+const AboutUs = styled.div`
+
+  a:link {
+    color: white;
+  }
+  a:visited {
+    color: white;
+  }
+  a:hover {
+    color: lightgrey;
+  }
+  a:active {
+    color: white;
+  }
+
+  cursor: pointer;
+
 `
 const HeroSubText = styled.p`
   padding-top: 1rem;

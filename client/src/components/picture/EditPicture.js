@@ -4,6 +4,8 @@ import deleteImg from '../../img/delete.png';
 import editImg from '../../img/edit.jpg';
 import axios from 'axios';
 import styled from 'styled-components';
+import Modal from '../modal/Modal';
+import useModal from '../../hooks/useModal';
 
 const EditPicture = (props) => {
   const [ title, setTitle ] = useState(props.image.title)
@@ -12,17 +14,15 @@ const EditPicture = (props) => {
   const [ categories, setCategories ] = useState([])
   const [ editing, setEditing ] = useState(false)
   const [ categoryId, setCategoryId ] = useState(props.category.id)
-  
+  const { open, toggle } = useModal();
+
   useEffect(() => { 
     axios.get("/api/categories")
     .then(res => setCategories(res.data))
     .catch(console.log)
   }, [])
 
-  const toggleEdit = () => {
-    setEditing(!editing)
-  }
-
+ 
   const deleteImage = () => {
     const result = window.confirm("Delete Image!?")
     if (result) {
@@ -39,7 +39,7 @@ const EditPicture = (props) => {
       { title: title, description: description, category_id: categoryId }
     )
       .then( res => {
-        toggleEdit()
+        toggle()
         props.refreshImageState(res.data, categories[categoryId-1])
       })
       .catch(console.log)
@@ -59,34 +59,38 @@ const EditPicture = (props) => {
 
   const RenderEditPicture = () => (
     <Wrapper>
-      <EditButton onClick={toggleEdit} image={editImg}/>
-      <DeleteButton onClick={deleteImage} image={deleteImg} />
-      {editing &&
-        <>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Title: 
-              <input type="text" name="title" value={title} required onChange={handleChangeTitle}/>
-            </label>
-            <label>
-              Description: 
-              <input type="text" name="description" value={description} onChange={handleChangeDescription}/>
-            </label>
-            <label>
-              Category: 
-              <select type="select" name="category" onChange={handleChangeCategory} required>
-                {/* how do I remove duplicate title? */}
-                <option value={category.id}>{category.title}</option> 
-                  { categories.map(cat => (
-                      <option value={cat.id}>{cat.title}</option>
-                    )) 
-                  }
-              </select>
-            </label>
-            <button>Submit</button>
-          </form>
-        </>
-      }
+      <EditButton onClick={toggle} image={editImg} title="Edit"/>
+      <DeleteButton onClick={deleteImage} image={deleteImg} title="Delete" />
+        <Modal onClose={toggle} open={open}>               
+          <FormWrapper>
+              <FormHeader>edit picture info</FormHeader>
+          </FormWrapper>
+          <StyledLine></StyledLine>
+          <FormWrapper>
+            <StyledForm onSubmit={handleSubmit}>
+              <StyledLabel>
+                title: 
+                <TitleInput type="text" name="title" value={title} required onChange={handleChangeTitle}/>
+              </StyledLabel>
+              <StyledLabel>
+                description: 
+                <DescriptionInput type="text" name="description" value={description} onChange={handleChangeDescription}/>
+              </StyledLabel>
+              <StyledLabel>
+                category: 
+                <FormSelect type="select" name="category" onChange={handleChangeCategory} required>
+                  {/* how do I remove duplicate title? */}
+                  <option value={category.id}>{category.title}</option> 
+                    { categories.map(cat => (
+                        <option value={cat.id}>{cat.title}</option>
+                      )) 
+                    }
+                </FormSelect>
+              </StyledLabel>
+              <SubmitButton>submit</SubmitButton>
+            </StyledForm>
+          </FormWrapper>
+        </Modal>
     </Wrapper>
   )
 
@@ -95,7 +99,7 @@ const EditPicture = (props) => {
       { props.authenticated && 
         <> 
           { 
-            (props.user.id === props.userId) &&
+            props.user.id === (props.userId) &&
               <>
                 { RenderEditPicture() }
               </>
@@ -106,6 +110,67 @@ const EditPicture = (props) => {
   )
 }
 
+const FormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+`
+const FormHeader = styled.div`
+ font-size: 1.5rem;
+ font-family: 'Montserrat',  sans-serif !important;
+`
+const HeaderDiv = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`
+
+const StyledLabel = styled.div`
+  font-family: 'Montserrat',  sans-serif !important;
+`
+
+const StyledLine = styled.hr`
+  background-color: #96969C;
+  margin: 0;
+`
+
+const TitleInput = styled.input`
+  font-size: 1rem;
+  width: 90%;
+  font-family: 'Montserrat',  sans-serif !important;
+  margin-top: 4px;
+`
+const DescriptionInput = styled.textarea`
+  font-size: 1rem;
+  width: 90%;
+  max-height: 40%;
+  font-family: 'Montserrat',  sans-serif !important;
+  resize: none;
+  margin-top: 4px;
+`
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+`
+const SubmitButton = styled.button`
+  width: 90%;
+  background: #0099BA;
+  box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
+  border-radius: 4px;
+  color: white;
+  border: none;
+  font-family: 'Montserrat',  sans-serif;
+  margin-top: 10px;
+  cursor: pointer;
+`
+
+const FormSelect = styled.select`
+  font-size: 1rem;
+  width: 90%;
+  font-family: 'Montserrat',  sans-serif !important;
+`
+
+
+////////////
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
