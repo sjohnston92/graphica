@@ -142,7 +142,7 @@ class Register extends React.Component {
 const styles = {
   dropzone: {
     height: "150px",
-    width: "150px",
+    width: "250px",
     border: "1px dashed black",
     borderRadius: "5px",
     display: "flex",
@@ -181,7 +181,7 @@ const LoginImage = styled.div`
   background-size: cover;
   background-position: left;
   background-repeat: no-repeat;
-  background-image: url(https://res.cloudinary.com/graphica/image/upload/v1593472624/spacex-OHOU-5UVIYQ-unsplash_o7mj1l.jpg
+  background-image: url(https://res.cloudinary.com/graphica/image/upload/v1593188740/droplet_hv3anl.jpg
     );
 `
 
@@ -194,10 +194,6 @@ const LoginGroup = styled.div`
   margin-top: 1rem;
   margin-left: 10rem;
   flex: 1;
-
-  @media (max-width: 812px;) {
-    max-width: 400px;
-  }
 `
 
 const ImageContents = styled.div`
