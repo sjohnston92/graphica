@@ -33,7 +33,7 @@ class BottomFeed extends React.Component {
 
 
 const FeedDiv = styled.div`
-  width: 75%;
+  width: 75vw;
   min-width: 1000px;
   display: flex;
   justify-content: center;

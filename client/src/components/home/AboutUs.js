@@ -37,7 +37,7 @@ const AboutUs = () => {
       concepts in Ruby on Rails and ReactJS along the way, and I also learned how to work
       on a somewhat complex idea in a group setting. It was challenging to finish on time, as well as collaborate efficiently. 
          `
-         
+
     }, 
     
     {name: 'Jacob Koskimaki', 

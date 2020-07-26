@@ -27,7 +27,7 @@ const NavBar = (props) => {
             </SearchDiv>
               <LinkDiv><Link to={`/Profile/${props.auth.user.id}`}>Profile </Link>|&nbsp;</LinkDiv><LinkDiv onClick={()=>toggle()}>Post</LinkDiv>
             <Modal onClose={toggle} open={open}>
-              <PictureForm toggle={toggle}/>
+              <PictureForm toggleModal={toggle}/>
             </Modal>
         </Right>
       </Wrapper>
