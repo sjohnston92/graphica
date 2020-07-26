@@ -51,7 +51,7 @@ class Register extends React.Component {
     </PictureGroup>
     <LoginGroup>
       <Segment basic>
-        <Header as='h1' textAlign='center'>Register</Header>
+        <Header as='h1' textAlign='left'>Register</Header>
         <Form onSubmit={this.handleSubmit}>
         <Grid.Column width={4}>
           <Dropzone
@@ -75,9 +75,11 @@ class Register extends React.Component {
             }}
           </Dropzone>
         </Grid.Column>
+        <br></br>
         <Form.Input
             label="First Name"
             required
+            min-width="22%"
             name='first_name'
             value={first_name}
             placeholder='First Name'
@@ -185,10 +187,11 @@ const LoginImage = styled.div`
 
 const LoginGroup = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: left;
   align-items: flex-start;
-  margin-top: 3rem;
+  margin-top: 1rem;
   margin-left: 10rem;
   flex: 1;
 

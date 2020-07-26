@@ -69,9 +69,6 @@ class PictureForm extends React.Component {
 
     return (
       <>
-<<<<<<< HEAD
-        <PictureFormDiv onSubmit={this.handleSubmit} >
-=======
       <FormWrapper>
         <HeaderDiv>
           <FormHeader>add a picture</FormHeader>
@@ -80,7 +77,6 @@ class PictureForm extends React.Component {
         <StyledLine></StyledLine>
         <FormWrapper>
         <StyledForm onSubmit={this.handleSubmit} >
->>>>>>> 6ccf8c9fe20f266a6a3294776f4de6b3beaf8768
           <Dropzone
             onDrop={this.onDrop}
             multiple={false}
