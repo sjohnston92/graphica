@@ -41,7 +41,7 @@ const Wrapper = styled.div`
 const Hero = styled.div`
   width: 100%;
   height: 416px;
-  background: url(${store});
+  background: url('https://res.cloudinary.com/graphica/image/upload/v1595688102/ladybug_ekpq5c.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

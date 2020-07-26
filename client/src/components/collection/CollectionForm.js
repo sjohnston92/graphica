@@ -38,7 +38,7 @@ const CollectionForm = (props) => {
   return (
     <>
     <FormWrapper>
-      <FormHeader>create a new collection</FormHeader>
+      <FormHeader>{props.collection ?<> edit collection</> : <>create a new collection</>}</FormHeader>
     </FormWrapper>
       <StyledLine></StyledLine>
     <FormWrapper>

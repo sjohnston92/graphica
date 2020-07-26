@@ -250,8 +250,9 @@ const PictureDescriptionDiv = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 2rem;
-  padding-bottom: 9px;
+  // padding: 1rem;
+  padding: 1rem 2rem 9px 2rem;
+  // padding-bottom: 9px;
 `
 const Description = styled.div`
   width: 100%;

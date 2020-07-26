@@ -34,6 +34,8 @@ const StyledInput = styled.input`
   ::placeholder {
     font-family: Montserrat;
     padding-left: 10px;
+    text-shadow: 0px 2px 4px rgba(255, 255, 255, 0.25), 0px 2px 4px rgba(0, 0, 0, 0.25);
+    color: rgba(39, 39, 53, 0.75);
   }
 `
 const ConnectedSearchBar = (props) => (
