@@ -7,13 +7,22 @@ import store from '../../img/login_page.jpg'
 import styled from "styled-components";
 
 class Register extends React.Component {
-  state = { email: '', password: '', passwordConfirmation: '', first_name: '', last_name: '', tagline: '', image: '' };
+  state = { email: '', password: '', passwordConfirmation: '', first_name: '', last_name: '', tagline: '', file: '' };
   
   componentDidMount() { this.props.toggleCatbar(false) }
+
+  onDrop = (files) => {
+    const blob = new Blob([files[0]], { type: 'image/png' });
+    const url = URL.createObjectURL(blob);
+    this.setState({ 
+      formValues: { ...this.state.formValues, file: files[0] },
+      url,
+    }) 
+  }
   
   handleSubmit = (e) => {
     e.preventDefault();
-    const { email, password, passwordConfirmation } = this.state;
+    const { email, password, passwordConfirmation, file } = this.state;
     const { auth: { handleRegister, }, history, } = this.props;
 
     if (password === passwordConfirmation)
@@ -23,7 +32,7 @@ class Register extends React.Component {
   }
   
   handleChange = (e) => {
-    const { name, value, } = e.target;
+    const { name, value, file} = e.target;
     this.setState({ [name]: value, });
   }
   
