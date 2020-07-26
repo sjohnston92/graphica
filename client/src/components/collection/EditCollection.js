@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import CollectionForm from './CollectionForm';
 import { AuthConsumer } from '../../providers/AuthProvider';
 import styled from 'styled-components';
+import Modal from '../modal/Modal';
+import useModal from '../../hooks/useModal';
 
 const EditCollection = (props) => {
   const [ editing, setEditing ] = useState()
-  
+  const { open, toggle } = useModal();
   const handleRes = (res) => {
-    setEditing(false)
+    toggle()
     props.handleRes(res)
   }
 
@@ -19,14 +21,18 @@ const EditCollection = (props) => {
     <>
       {props.authenticated && props.user.id === props.collection.user_id &&
         <>
-          { editing 
-            ? <CollectionForm handleRes={handleRes} collection={props.collection} />
-            : 
+           
+
+               
+              <Modal onClose={toggle} open={open}>               
+                <CollectionForm handleRes={handleRes} collection={props.collection} />
+              </Modal>
+             
               <ButtonWrapper>
-                <EditButton onClick={()=>setEditing(true)}>Edit Collection</EditButton> 
+                <EditButton onClick={()=>toggle()}>Edit Collection</EditButton> 
                 <DeleteButton onClick={deleteCollection}>Delete Collection</DeleteButton>
               </ButtonWrapper>
-          }      
+                
         </>
       }
     </>
@@ -50,6 +56,7 @@ const EditCollection = (props) => {
     border-radius: 4px;
     border: none;
     color: white;
+    cursor: pointer;
   `
 
   const DeleteButton = styled.button`
@@ -63,6 +70,8 @@ const EditCollection = (props) => {
     margin-left: 20px;
     border: none;
     font-family: 'Montserrat',  sans-serif;
+    cursor: pointer;
+
   `
 
 
