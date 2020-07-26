@@ -83,6 +83,9 @@ class Login extends React.Component {
             </Form>
           </Segment>
         </SegmentWrapper>
+        {/* <AboutUs>
+            <Link to={'..home/about_us'}>Learn about our developers</Link>
+      </AboutUs> */}
       </LoginGroup>
       </Row>
     </Wrapper>
@@ -186,5 +189,29 @@ const ImageContents = styled.div`
   align-items: left;
   margin-left: 2rem;
 `;
+
+const AboutUs = styled.div`
+
+  a:link {
+    color: black;
+  }
+  a:visited {
+    color: lightgrey;
+  }
+  a:hover {
+    color: lightgrey;
+  }
+  a:active {
+    color: black;
+  }
+
+  align-items: left;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+
+
+  cursor: pointer;
+
+`
 
 export default withRouter(ConnectedLogin)
