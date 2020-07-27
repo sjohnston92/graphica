@@ -27,7 +27,7 @@ const ModalWrapper = styled.div`
   position: fixed;  
   top: 0;
   left: 0;
-  
+  z-index:1;
   width: 100vw;  
   height: 100vh;
   display: flex;
@@ -35,12 +35,11 @@ const ModalWrapper = styled.div`
   align-items: center;
 `;
 const ModalCard = styled.div`
-  margin-top: 100px;
+  
   min-width: 320px;
   z-index: 10;
   background: white;
-  border-radius: 5px;
-  padding: 15px;
+  
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
 `; 
 const CloseButton = styled.button`

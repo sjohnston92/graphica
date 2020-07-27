@@ -55,20 +55,25 @@ const PictureCollection = (props) => {
 
 const RowDiv = styled.div`
   display: flex;
-  align-items: center;
+  align-items: left;
 `
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  flex-shrink: 0;
 `
 const PictureContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  height: 100px;
+  justify-content: left;
+  width: 78vw;
+  overflow-x: auto;
+  flex-shrink: 0;
 `
 
 const CollectionText = styled.span`
   align-self: flex-end;
+  margin-left: 2rem;
 `
 
 export default PictureCollection;

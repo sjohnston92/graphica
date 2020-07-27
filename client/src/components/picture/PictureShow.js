@@ -63,17 +63,9 @@ const PictureShow = (props) => {
 
   const renderCollections = () => (
     <>
-      { props.pictureJunctions.length > 1 &&
-        <>
-          { (showAllCollections == false) 
-            ? <LinkDiv onClick={()=>setShowAllCollections(true)}> See All Collections </LinkDiv>
-            : <LinkDiv onClick={()=>setShowAllCollections(false)}> Show Less </LinkDiv>
-          }
-        </>
-      }
       { showAllCollections 
         ?
-          <>
+        <>
             {props.pictureJunctions.map(jct => (
               <>
                 <PictureCollection 
@@ -92,26 +84,25 @@ const PictureShow = (props) => {
               pictureCollection={props.pictureJunctions[0]}
               runFetch={runFetch} 
               fetchCollection={props.fetchCollection}
-                image={image}
-                userId={user.id}
-            /> 
+              image={image}
+              userId={user.id}
+              /> 
 
           </>
+      }
+      { props.pictureJunctions.length > 1 &&
+        <>
+          { (showAllCollections == false) 
+            ? <LinkDiv onClick={()=>setShowAllCollections(true)}> see all collections </LinkDiv>
+            : <LinkDiv onClick={()=>setShowAllCollections(false)}> show less </LinkDiv>
+          }
+        </>
       }
     </>
   )
 
   return (
    <Wrapper>
-        { category && 
-          <EditPicture 
-          userId={user.id} 
-          image={image} 
-          category={category} 
-          deleteImageState={deleteImageState}
-          refreshImageState={refreshImageState}
-          />
-        }
       <UserInfoDiv>
         <UserInfoLeft>
           <a href={`/Profile/${user.id}`}>
@@ -127,7 +118,16 @@ const PictureShow = (props) => {
           </UserLeftContent>
         </UserInfoLeft>
         <UserInfoRight>
-          {image.views && <>{image.views + 1} views </>}
+          {image.views && <>{(image.views + 1).toLocaleString()} views </>}
+        { category && 
+          <EditPicture 
+          userId={user.id} 
+          image={image} 
+          category={category} 
+          deleteImageState={deleteImageState}
+          refreshImageState={refreshImageState}
+          />
+        }
         </UserInfoRight>
       </UserInfoDiv>
       <PictureDiv>
@@ -145,10 +145,11 @@ const PictureShow = (props) => {
           Description
         </InfoLeft>
         <InfoRight>
-        in <a href="url">{category.title}</a> category
+        in {category.title} category
+        {/* in <a href="url">{category.title}</a> category */}
         </InfoRight>
       </PictureDescriptionDiv>
-      <Description> {image.description} </Description>
+        <Description> {image.description} </Description>
       <Comments comments={comments} pictureId={props.imageId} setStatePictureShow={setStatePictureShow} deleteCommentState={deleteCommentState}/>
    </Wrapper>
   )
@@ -157,7 +158,7 @@ const Wrapper = styled.div`
   min-height: 600px;
   max-height: 100vh;
   overflow-y: auto;
-  width: 100%;
+  width: 78vw;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -165,12 +166,21 @@ const Wrapper = styled.div`
   font-family: Montserrat;
   
   
-  
+  ::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+  } 
+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+
 `
-const UserInfoDiv = styled.div`
+const UserInfoDiv= styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding: 10px;
+  padding-left: 25px;
 `
 const UserInfoRight = styled.div`
   display: flex;
@@ -181,9 +191,6 @@ const UserInfoLeft = styled.div`
   align-items: center;
   font-family: Montserrat;
   font-style: normal;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 29px;
 `
 const UserImage = styled.div`
   background-image: url(${props => props.image});
@@ -191,45 +198,43 @@ const UserImage = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 100%;
-  height: 40px;
-  width: 40px;
+  height: 70px;
+  width: 70px;
 `
 const UserLeftContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: left;
-  margin-left: 1rem;
+  padding: 1rem;
+  margin-top: 20px;
 `
 const NameDiv = styled.div`
-  font-size: 18px;
+  font-size: 14px;
   display: flex;
   align-items: center;
 `
 const EmailDiv = styled.div`
   color: gray;
-  font-size: 12px;
+  font-size: 10px;
+  margin-bottom: 12px;
 `
 const PictureDiv = styled.div`
-  text-align: center;
+  display: grid;
+  height: 100%;
 `
 const StyledImg = styled.img`
-  margin-top: 1rem;
-  width: 500px;
+  max-width: 100%;
+  max-height: 85vh;
+  margin: auto;
 `
 const PictureInfoDiv = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-top: 1rem;
+  padding: 2rem;
 `
-const FeedbackDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  margin-top: 1rem;
-`
+
 const InfoRight = styled.div`
 `
 const InfoLeft = styled.div`
@@ -239,24 +244,27 @@ const InfoLeft = styled.div`
 const PictureCollectionDiv = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: flex-start;  
 `
 const PictureDescriptionDiv = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-top: 1rem;
+  // padding: 1rem;
+  padding: 1rem 2rem 9px 2rem;
+  // padding-bottom: 9px;
 `
 const Description = styled.div`
   width: 100%;
-  margin-top: 1rem;
   font-weight: normal;
   font-size: 12px;
+  padding-left: 2rem;
+  margin-top: 1px;
 `
 const LinkDiv = styled.div`
   color: #81adda;
   cursor: pointer;
-
+  padding-left: 2rem;
 
 `
 
