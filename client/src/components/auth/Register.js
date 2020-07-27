@@ -63,7 +63,7 @@ class Register extends React.Component {
         <Header as='h1' textAlign='left'>Register</Header>
         <Form onSubmit={this.handleSubmit}>
         <Grid.Column width={4}>
-          <Dropzone
+          {/* <Dropzone
             onDrop={this.onDrop}
             multiple={false}
           >
@@ -82,7 +82,7 @@ class Register extends React.Component {
                 </div>
               )
             }}
-          </Dropzone>
+          </Dropzone> */}
         </Grid.Column>
         <br></br>
         <Form.Input
