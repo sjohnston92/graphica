@@ -63,6 +63,8 @@ class Profile extends React.Component {
     }
   }
 
+
+
   render() { 
     return (
       <Wrapper>
@@ -74,10 +76,12 @@ class Profile extends React.Component {
         <Line />
         <br></br>
         { this.state.isCurrentUser &&
-          <>
-            <NewPictureButton /> 
+
+          <ButtonWrapper>
+            <NewPictureButton />
             <NewCollection />
-          </>
+          </ButtonWrapper>
+
         }
         <ProfileBottom>
           { this.renderBottom() }
@@ -97,6 +101,14 @@ border: 1px solid rgba(39, 39, 53, 0.75);
 const ProfileBottom = styled.div`
   width: 100%;
 `
+
+  const ButtonWrapper = styled.div `
+    width: 75vw;
+    display: flex;
+    align-items: center;
+    margin: 0 auto 0 auto;
+    margin-bottom: 20px;
+  `
 
 const ConnectedProfile = (props) => (
   <AuthConsumer>
