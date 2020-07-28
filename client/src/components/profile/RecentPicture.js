@@ -15,13 +15,18 @@ class RecentPicture extends React.Component {
     this.toggle()
   }
 
+  toggleAndDelete = (pictureId) => {
+    this.props.deletePicture(pictureId)
+    this.toggle() 
+  }
+
   render() {
     const { picture } = this.props;
     
     return(
       <Container>
         <Modal onClose={this.toggle} open={this.state.open}>     
-          <PictureShow />   
+          <PictureShow toggleAndDelete={this.toggleAndDelete} />   
         </Modal>  
         <StyledTitle>
           { picture.title }

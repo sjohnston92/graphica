@@ -82,6 +82,7 @@ const UserName = styled.p`
   font-size: 24px;
   line-height: 17px;
   color: black;
+  text-transform: capitalize;
 `
 
 //users email
@@ -94,7 +95,7 @@ const UserEmail = styled.p`
   font-size: 12px;
   line-height: 15px;
   color: black;
-
+  font-style: italic;
 `
 
   // about me under profile picture

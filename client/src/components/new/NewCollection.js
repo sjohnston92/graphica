@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import Modal from '../modal/Modal';
 import useModal from "../../hooks/useModal";
 import CollectionForm from "../collection/CollectionForm";
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
-const NewPictureCollectionModal = (props) => {
+const NewCollection = (props) => {
   const { open, toggle } = useModal();
-  const handleRes = () => toggle()
+  const handleRes = (newCollection) => {
+    toggle()
+    props.history.push(`/collections/${newCollection.id}`)
+  } 
 
   return (
    <>
@@ -36,4 +40,4 @@ const NewPictureCollectionModal = (props) => {
 
   `
 
-export default NewPictureCollectionModal;
+export default withRouter(NewCollection);

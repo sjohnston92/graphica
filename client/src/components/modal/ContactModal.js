@@ -2,7 +2,7 @@ import useModal from '../../hooks/useModal';
 import Modal from './Modal';
 import React, { useState } from 'react'
 import ContactTest from './ContactTest'
-import { AuthConsumer } from '../../providers/AuthProvider';
+import styled from 'styled-components';
 
 
 const ContactModal = ({ user }) => {
@@ -10,7 +10,7 @@ const ContactModal = ({ user }) => {
 
   return (
       <>
-        <button onClick={ toggle }>See Contact</button>
+        <ContactInfo onClick={ toggle }>See Contact</ContactInfo>
         <Modal onClose={toggle} open={open}>
           <ContactTest user={ user } />
         </Modal>
@@ -18,6 +18,13 @@ const ContactModal = ({ user }) => {
 
   )
 }
+
+
+const ContactInfo = styled.div`
+    color: black;
+    cursor: pointer;
+    display: inline;
+    `
 
 export default ContactModal;
 

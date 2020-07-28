@@ -39,13 +39,7 @@ const EditCollection = (props) => {
   )
 }
 
-  const ButtonWrapper = styled.div `
-    width: 75vw;
-    display: flex;
-    align-items: center;
-    margin: 0 auto 0 auto;
-    margin-bottom: 20px;
-  `
+  
 
   const EditButton = styled.button`
     width: 148px;
@@ -72,6 +66,13 @@ const EditCollection = (props) => {
     font-family: 'Montserrat',  sans-serif;
     cursor: pointer;
 
+  `
+  const ButtonWrapper = styled.div `
+    width: 75vw;
+    display: flex;
+    align-items: center;
+    margin: 0 auto 0 auto;
+    margin-bottom: 20px;
   `
 
 
