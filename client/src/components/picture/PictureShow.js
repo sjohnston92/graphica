@@ -119,6 +119,13 @@ const PictureShow = (props) => {
         </UserInfoLeft>
         <UserInfoRight>
           {image.views && <>{(image.views + 1).toLocaleString()} views </>}
+        </UserInfoRight>
+      </UserInfoDiv>
+      <PictureDiv>
+        <StyledImg src={image.url} />
+      </PictureDiv>
+      <PictureInfoDiv>
+        <InfoLeft>{image.title}</InfoLeft>
         { category && 
           <EditPicture 
           userId={user.id} 
@@ -128,18 +135,21 @@ const PictureShow = (props) => {
           refreshImageState={refreshImageState}
           />
         }
-        </UserInfoRight>
-      </UserInfoDiv>
-      <PictureDiv>
-        <StyledImg src={image.url} />
-      </PictureDiv>
-      <PictureInfoDiv>
-        <InfoLeft>{image.title}</InfoLeft>
       </PictureInfoDiv>
       <PictureCollectionDiv>
           { props.pictureJunctions && (props.pictureJunctions.length > 0) ? <> {renderCollections()} </> : null }
-          <AddCollectionButton userId={user.id} image={image}/>
       </PictureCollectionDiv>
+   
+        
+      <AddDiv>
+        
+          
+          <AddCollectionButton  userId={user.id} image={image}/>
+          
+      </AddDiv>
+        
+      
+      
       <PictureDescriptionDiv>
         <InfoLeft>
           Description
@@ -164,6 +174,7 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   font-family: Montserrat;
+  padding-bottom: 2rem;
   
   
   ::-webkit-scrollbar { /* WebKit */
@@ -175,6 +186,7 @@ const Wrapper = styled.div`
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
 
 `
+
 const UserInfoDiv= styled.div`
   display: flex;
   justify-content: space-between;
@@ -234,6 +246,12 @@ const PictureInfoDiv = styled.div`
   width: 100%;
   padding: 2rem;
 `
+const AddDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 2rem 0rem 2rem;
+`
 
 const InfoRight = styled.div`
 `
@@ -262,7 +280,7 @@ const Description = styled.div`
   margin-top: 1px;
 `
 const LinkDiv = styled.div`
-  color: #81adda;
+  color: #0099BA;
   cursor: pointer;
   padding-left: 2rem;
 

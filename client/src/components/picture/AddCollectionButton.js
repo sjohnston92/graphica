@@ -3,7 +3,7 @@ import { AuthConsumer } from '../../providers/AuthProvider';
 import CollectionForm from '../new/CollectionForm'
 import AddCollectionToPicture from '../new/AddCollectionToPicture';
 import axios from 'axios';
-import addImg from '../../img/add.png';
+import addImg from '../../img/add_circle_outline_24px.svg';
 import styled from 'styled-components';
 import AddOrCreateCollection from './AddOrCreateCollection';
 import Modal from '../modal/Modal';
@@ -18,15 +18,17 @@ const AddCollectionButton = (props) => {
         <> 
           { 
             (props.user.id === props.userId ) &&
-              <Wrapper>
+              <>
                 <AddToCollection onClick={()=>toggle()} >
                   <AddDiv image={addImg} />
-                  &nbsp;add to a collection 
+                  <TextDiv>
+                    &nbsp;add to a collection 
+                  </TextDiv>
                 </AddToCollection>
                 <Modal onClose={toggle} open={open}>               
                   <AddOrCreateCollection toggleModal={toggle}/>
                 </Modal>
-              </Wrapper>
+              </>
           }
         </>
       }
@@ -34,21 +36,19 @@ const AddCollectionButton = (props) => {
   )
 }
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
 
 const AddToCollection = styled.div`
-  align-items: center;
+  justify-content: left;
   display: flex;
   cursor: pointer;
-  margin-top: 10px;
-  padding-bottom: -20px;
+  width: 200px;
+  
 `
 
+const TextDiv = styled.div`
+  color: #0099BA;
+
+`
 const AddDiv = styled.div`
 
   background-image: url(${props => props.image});
@@ -56,9 +56,10 @@ const AddDiv = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 100%;
-  height: 30px;
-  width: 30px;  
+  height: 20px;
+  width: 20px;  
   cursor: pointer;
+  padding-top: 1rem;
 `
 
 const ConnectedAddCollectionButton = (props) => (
