@@ -54,4 +54,5 @@ const StyledInput = styled.input`
   ::placeholder {
     font-family: Montserrat;
   }
+  padding: 1rem;
 `

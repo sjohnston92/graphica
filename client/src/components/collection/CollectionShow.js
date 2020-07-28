@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Navbar from '../shared/Navbar';
 import CollectionHeader from './CollectionHeader';
 import CollectionFeed from './CollectionFeed';
 import axios from 'axios';
@@ -31,7 +30,8 @@ const CollectionShow = (props) => {
     axios.get(`/api/collections/${props.match.params.id}/pictures`)
       .then((res) => setPictures(res.data))
       .catch(console.log);
-}
+  }
+
   const handleRes = (res) => setCollection(res.data);
   
   const deleteCollection = (incomingId) => {
@@ -46,16 +46,16 @@ const CollectionShow = (props) => {
   const deletePicture = (incomingId) => setPictures( pictures.filter(a => a.id !== incomingId ))
 
   return (
-      <Wrapper>
-        {collection && user && pictures &&
-          <>
-            {redirect && <Redirect to={redirect}/> }
-            <CollectionHeader collection={collection} user={user}/>
-            <EditCollection deleteCollection={deleteCollection} handleRes={handleRes} collection={collection}/>
-            <CollectionFeed deletePicture={deletePicture} pictures={pictures}/>
-          </>
-        }
-      </Wrapper>
+    <Wrapper>
+      {collection && user && pictures &&
+        <>
+          {redirect && <Redirect to={redirect}/> }
+          <CollectionHeader collection={collection} user={user}/>
+          <EditCollection deleteCollection={deleteCollection} handleRes={handleRes} collection={collection}/>
+          <CollectionFeed deletePicture={deletePicture} pictures={pictures}/>
+        </>
+      }
+    </Wrapper>
   )
 }
 

@@ -201,6 +201,7 @@ const UserInfoDiv= styled.div`
 const UserInfoRight = styled.div`
   display: flex;
   align-items: center;
+  padding-right: 1rem;
 `
 const UserInfoLeft = styled.div`
   display: flex;
@@ -226,13 +227,13 @@ const UserLeftContent = styled.div`
   margin-top: 20px;
 `
 const NameDiv = styled.div`
-  font-size: 14px;
+  font-size: 16px;
   display: flex;
   align-items: center;
 `
 const EmailDiv = styled.div`
   color: gray;
-  font-size: 10px;
+  font-size: 12px;
   margin-bottom: 12px;
 `
 const PictureDiv = styled.div`

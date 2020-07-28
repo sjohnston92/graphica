@@ -29,7 +29,7 @@ const PictureCollection = (props) => {
               <div onClick={props.toggle}>
                 <StyledBlue to={`/collections/${props.pictureCollection.collection_id}`}>{" " + collection.title + " "}</StyledBlue> 
               </div>
-              &nbsp;collection 
+              &nbsp;collection&nbsp;
             </CollectionText>
             <RemoveImage 
               refreshJunctionState={props.refreshJunctionState}
