@@ -12,9 +12,14 @@ const CollectionShow = (props) => {
   const [user, setUser] = useState(null);
   const [pictures, setPictures] = useState([]);
   const [redirect, setRedirect ] = useState(null);
+  
+  useEffect(() => getData(), [])
 
-  // get collection and user of collection
   useEffect(() => {
+    if (user && props.match.params.id !== user.id) { getData() }
+  }, [props.match.params.id])
+
+  const getData = () => {
     axios.get(`/api/collections/${props.match.params.id}`)
       .then( res => {
         setCollection(res.data);
@@ -22,22 +27,18 @@ const CollectionShow = (props) => {
       })
       .then((res) => setUser(res.data))
       .catch(console.log);
-    }, []);
 
-  // get pictures by collection
-  useEffect(() => {
     axios.get(`/api/collections/${props.match.params.id}/pictures`)
       .then((res) => setPictures(res.data))
       .catch(console.log);
-  }, [])
-  
+}
   const handleRes = (res) => setCollection(res.data);
   
   const deleteCollection = (incomingId) => {
     const result = window.confirm("Delete Collection? (This will not delete its pictures)")
     if (result) {
       axios.delete(`/api/collections/${incomingId}`)
-        .then(res => setRedirect(`/Profile/${user.id}/?collections`))
+        .then(res => setRedirect(`/profile/${user.id}/?collections`))
         .catch(console.log)
     }
   }

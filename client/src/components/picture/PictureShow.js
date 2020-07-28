@@ -74,6 +74,7 @@ const PictureShow = (props) => {
                   fetchCollection={props.fetchCollection}
                   image={image}
                   userId={user.id}
+                  toggle={props.toggle}
                 />
               </>
             ))}
@@ -86,6 +87,7 @@ const PictureShow = (props) => {
               fetchCollection={props.fetchCollection}
               image={image}
               userId={user.id}
+              toggle={props.toggle}
               /> 
 
           </>

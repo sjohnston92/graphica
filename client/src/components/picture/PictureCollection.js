@@ -25,9 +25,11 @@ const PictureCollection = (props) => {
         { collection && 
           <RowDiv>
             <CollectionText> 
-              part of 
-              <StyledBlue to={`/collections/${props.pictureCollection.collection_id}`}>{" " + collection.title + " "}</StyledBlue> 
-              collection 
+              part of&nbsp;
+              <div onClick={props.toggle}>
+                <StyledBlue to={`/collections/${props.pictureCollection.collection_id}`}>{" " + collection.title + " "}</StyledBlue> 
+              </div>
+              &nbsp;collection 
             </CollectionText>
             <RemoveImage 
               refreshJunctionState={props.refreshJunctionState}
@@ -77,6 +79,7 @@ const PictureContainer = styled.div`
 `
 
 const CollectionText = styled.span`
+  display: flex;
   align-self: flex-end;
   margin-left: 2rem;
 `
