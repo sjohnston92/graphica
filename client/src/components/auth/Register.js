@@ -42,7 +42,7 @@ class Register extends React.Component {
     return (
       <Row>
         <PictureGroup>
-          <LoginImage>
+          <RegisterImage>
             <ImageContents>
               <h2>Welcome to Graphica!</h2>
               <p>
@@ -56,9 +56,9 @@ class Register extends React.Component {
               </p>
               <br></br>
             </ImageContents>
-      </LoginImage>
+      </RegisterImage>
     </PictureGroup>
-    <LoginGroup>
+    <RegisterGroup>
       <Segment basic>
         <Header as='h1' textAlign='left'>Register</Header>
         <Form onSubmit={this.handleSubmit}>
@@ -143,7 +143,7 @@ class Register extends React.Component {
           </Segment>
         </Form>            
       </Segment>
-      </LoginGroup>
+      </RegisterGroup>
     </Row>
     )
   }
@@ -166,22 +166,22 @@ const Row = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
+  height: 100%;
 `
 
 const PictureGroup = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
 
-@media (max-width: 812px;) {
-  max-width: 400px;
-}
+  @media (max-width: 812px;) {
+    max-width: 400px;
+  }
 `
 
-const LoginImage = styled.div`
-  width: 100%;
-  height: auto;
+const RegisterImage = styled.div`
+  height: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
@@ -190,11 +190,10 @@ const LoginImage = styled.div`
   background-size: cover;
   background-position: left;
   background-repeat: no-repeat;
-  background-image: url(https://res.cloudinary.com/graphica/image/upload/v1593188740/droplet_hv3anl.jpg
-    );
+  background-image: url(https://res.cloudinary.com/graphica/image/upload/v1593188740/droplet_hv3anl.jpg);
 `
 
-const LoginGroup = styled.div`
+const RegisterGroup = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
