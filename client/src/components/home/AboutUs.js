@@ -115,8 +115,8 @@ const BannerRight = styled.div`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  margin-left: 5rem;
-  align-self: center;
+  margin: 11.7rem 0 0 20rem;
+  align-self: flex-start;
 `
 
 const StyledP = styled.p`
