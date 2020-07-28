@@ -1,4 +1,10 @@
-class StaticController < ApplicationController
+require 'rails/application_controller'
+
+
+class StaticController < Rails::ApplicationController
+  layout false
+
   def index
+    render file: Rails.root.join('public')
   end
 end
