@@ -2,15 +2,27 @@ import React from 'react';
 import { AuthConsumer, } from "../../providers/AuthProvider";
 import { Button, Form, Segment, Header, Grid, } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone';
+import logoFont from '../../fonts/Elianto-Regular.otf';
+import store from '../../img/login_page.jpg'
+import styled from "styled-components";
 
 class Register extends React.Component {
-  state = { email: '', password: '', passwordConfirmation: '', first_name: '', last_name: '', tagline: '', image: '' };
+  state = { email: '', password: '', passwordConfirmation: '', first_name: '', last_name: '', tagline: '', file: '' };
   
   componentDidMount() { this.props.toggleCatbar(false) }
+
+  onDrop = (files) => {
+    const blob = new Blob([files[0]], { type: 'image/png' });
+    const url = URL.createObjectURL(blob);
+    this.setState({ 
+      formValues: { ...this.state.formValues, file: files[0] },
+      url,
+    }) 
+  }
   
   handleSubmit = (e) => {
     e.preventDefault();
-    const { email, password, passwordConfirmation } = this.state;
+    const { email, password, passwordConfirmation, file } = this.state;
     const { auth: { handleRegister, }, history, } = this.props;
 
     if (password === passwordConfirmation)
@@ -20,7 +32,7 @@ class Register extends React.Component {
   }
   
   handleChange = (e) => {
-    const { name, value, } = e.target;
+    const { name, value, file} = e.target;
     this.setState({ [name]: value, });
   }
   
@@ -28,11 +40,30 @@ class Register extends React.Component {
     const { email, password, passwordConfirmation, first_name, last_name, tagline, file } = this.state;
     
     return (
+      <Row>
+        <PictureGroup>
+          <LoginImage>
+            <ImageContents>
+              <h2>Welcome to Graphica!</h2>
+              <p>
+                Discover
+              </p>
+              <p>
+                Experience
+              </p>
+              <p>
+                Learn
+              </p>
+              <br></br>
+            </ImageContents>
+      </LoginImage>
+    </PictureGroup>
+    <LoginGroup>
       <Segment basic>
-        <Header as='h1' textAlign='center'>Register</Header>
+        <Header as='h1' textAlign='left'>Register</Header>
         <Form onSubmit={this.handleSubmit}>
         <Grid.Column width={4}>
-          <Dropzone
+          {/* <Dropzone
             onDrop={this.onDrop}
             multiple={false}
           >
@@ -51,11 +82,13 @@ class Register extends React.Component {
                 </div>
               )
             }}
-          </Dropzone>
+          </Dropzone> */}
         </Grid.Column>
+        <br></br>
         <Form.Input
             label="First Name"
             required
+            min-width="22%"
             name='first_name'
             value={first_name}
             placeholder='First Name'
@@ -108,15 +141,17 @@ class Register extends React.Component {
           <Segment textAlign='center' basic>
             <Button primary type='submit'>Submit</Button>
           </Segment>
-        </Form>
+        </Form>            
       </Segment>
+      </LoginGroup>
+    </Row>
     )
   }
 }
 const styles = {
   dropzone: {
     height: "150px",
-    width: "150px",
+    width: "250px",
     border: "1px dashed black",
     borderRadius: "5px",
     display: "flex",
@@ -125,6 +160,61 @@ const styles = {
     padding: "10px",
   },
 }
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+`
+
+const PictureGroup = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+flex: 1;
+
+@media (max-width: 812px;) {
+  max-width: 400px;
+}
+`
+
+const LoginImage = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  min-height: 725px;
+  color: white;
+  background-size: cover;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-image: url(https://res.cloudinary.com/graphica/image/upload/v1593188740/droplet_hv3anl.jpg
+    );
+`
+
+const LoginGroup = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: left;
+  align-items: flex-start;
+  margin-top: 1rem;
+  margin-left: 10rem;
+  flex: 1;
+`
+
+const ImageContents = styled.div`
+  font-family: Montserrat;
+  padding-top: 2rem;
+  padding-left: -35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: left;
+  margin-left: 2rem;
+`;
 
 export default class ConnectedRegister extends React.Component {
   render() {
@@ -135,3 +225,5 @@ export default class ConnectedRegister extends React.Component {
     )
   }
 }
+
+

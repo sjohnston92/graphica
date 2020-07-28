@@ -1,7 +1,6 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
 
-
 class UpdateProfileImage extends React.Component {
 
   state = { 
