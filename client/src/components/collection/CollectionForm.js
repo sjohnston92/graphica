@@ -81,17 +81,21 @@ const StyledLine = styled.hr`
 
 const TitleInput = styled.input`
   font-size: 1rem;
-  width: 90%;
+  width: 100%;
   font-family: 'Montserrat',  sans-serif !important;
   margin-top: 4px;
+  margin-bottom: 10px;
+  padding: 5px;
+  margin-bottom: 10px;
 `
 const DescriptionInput = styled.textarea`
   font-size: 1rem;
-  width: 90%;
+  width: 100%;
   max-height: 40%;
   font-family: 'Montserrat',  sans-serif !important;
   resize: none;
-  margin-top: 4px;
+  padding: 5px;
+  margin-bottom: 10px;
 `
 const StyledForm = styled.form`
   display: flex;
@@ -105,9 +109,10 @@ const SubmitButton = styled.button`
   border: none;
   font-family: 'Montserrat',  sans-serif;
   margin-top: 10px;
-  display: flex;
   align-self: center;
   cursor: pointer;
+  padding: 10px 20px;
+  width: 100%;
 `
 
 const ConnectedCollectionForm = (props) => (
