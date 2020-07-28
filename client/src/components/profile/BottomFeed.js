@@ -16,9 +16,16 @@ class BottomFeed extends React.Component {
       .catch(console)
   }
 
+  deletePicture = (incomingId) => {
+    this.setState({ pictures: this.state.pictures.filter(a => a.id !== incomingId) })
+  }
+
   renderPictures = () => this.state.pictures.map((pic) => (
-    <RecentPicture picture={pic} key={pic.id} user={this.props.user} />
+    <RecentPicture picture={pic} key={pic.id} user={this.props.user} deletePicture={this.deletePicture} />
   ))
+
+  
+
 
   render() {
     return (
