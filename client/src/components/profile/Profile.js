@@ -101,12 +101,11 @@ const ProfileBottom = styled.div`
   width: 100%;
 `
 const ButtonWrapper = styled.div `
-  width: 71vw;
+  width: 100%;
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  margin: 0 auto 0 auto;
-
+  margin-left: 4.9rem;
 `
 
 const ConnectedProfile = (props) => (

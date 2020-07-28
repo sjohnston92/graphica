@@ -46,24 +46,24 @@ const Wrapper = styled.div`
 `
 
 const Flex = styled.div`
-  padding-bottom: 1rem;
-  padding-top: 1rem;
   display: flex;
-  justify-content: space-between;
-  width: 71vw;
-  margin: 0 auto 0 auto;
+  width: 100%;
+  padding: 2rem 5rem;
 `
 
 const RecentDiv = styled.div`
-  color: ${props => props.color}
+  color: ${props => props.color};
+  margin-right: 3rem;
 `
 
 const CollectionDiv = styled.div`
-  color: ${props => props.color}
+  color: ${props => props.color};
+  margin-right: 3rem;
 `
 
 const SettingsDiv = styled.div`
-  color: ${props => props.color}
+  color: ${props => props.color};
+  margin-right: 3rem;
 `
 
 const NavBar = styled.div`
