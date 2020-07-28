@@ -41,10 +41,10 @@ const AboutUs = () => {
     }, 
     
     {name: 'Jacob Koskimaki', 
-      email: 'none@none.com', 
-      avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595459547/juno-jo-_0JsVnHSc0I-unsplash.jpg.jpg',
+      email: 'jkoskimaki@gmail.com', 
+      avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595796766/jacob_gf3qrh.jpg',
       banner: 'https://res.cloudinary.com/graphica/image/upload/v1595464168/elephant.jpeg.jpg',
-      description: '' 
+      description: 'As a photography enthusiast, the Graphica project naturally stood out to me as a way to apply programming skills towards an exciting end project. Graphica gave me a chance to work on the backend framework and apply novel design principles using React and Ruby on Rails.' 
     }, 
 
     {name: 'Jake Sasser', 
