@@ -9,8 +9,8 @@ const ContactTest = ({user}) => (
     <h3>Email</h3>
     <UserEmail>{user.email}</UserEmail>
     <h3>Graphica Account:</h3>  
-    <a href={`https://graphica_domain/profile/${user.id}`} target="_blank" >
-      <p>https://graphica_domain/profile/{user.id}</p>
+    <a href={`https://discover-graphica.herokuapp.com/profile/${user.id}`} target="_blank" >
+      <p>https://discover-graphica.herokuapp.com/profile/{user.id}</p>
     </a>
   </>
 )

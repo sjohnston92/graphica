@@ -20,7 +20,7 @@ const Comments = (props) => (
     <CommentsDiv>
       {props.comments.map((comment, index) => (
         <>
-          <Comment key={comment.id} {...comment} deleteCommentState={props.deleteCommentState}/>
+          <Comment toggle={props.toggle} key={comment.id} {...comment} deleteCommentState={props.deleteCommentState}/>
         </>
       ))}
     </CommentsDiv>

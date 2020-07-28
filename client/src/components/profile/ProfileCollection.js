@@ -13,6 +13,9 @@ class ProfileCollection extends React.Component {
     .catch(console.log)
   }
 
+
+
+
   render() {
     const { pictures } = this.state;
     

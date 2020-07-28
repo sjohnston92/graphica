@@ -33,7 +33,7 @@ const CollectionCard = (props) => {
   return (
     <CardBorder>
       <Modal onClose={toggle} open={open}> 
-          <PictureShow updateViewsState={updateViewsState} toggleAndDelete={toggleAndDelete}/>   
+          <PictureShow toggle={toggle} updateViewsState={updateViewsState} toggleAndDelete={toggleAndDelete}/>   
       </Modal>       
       <CardDiv onClick={toggleAndSetId} >
         <StyledImage src={props.picture.url}  />

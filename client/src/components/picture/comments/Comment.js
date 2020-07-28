@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { AuthConsumer } from '../../../providers/AuthProvider';
 import deleteImg from '../../../img/delete_24px.svg';
 import editImg from '../../../img/settings_24px.svg';
-
+import { Link } from 'react-router-dom';
 const Comment = (props) => {
   const userId = props.user_id
   const [userName, setUserName] = useState()
@@ -52,14 +52,13 @@ const Comment = (props) => {
   return (
     <Wrapper>
       <UserDiv>
-        <Left>
-          <a href={`/Profile/${props.user_id}`}>   
+        <Left onClick={()=> props.toggle() }>
+          <Link to={`/profile/${props.user_id}`}>   
             <StyledUserImage image={userImage} />
-            
-          </a>
-          <a href={`/Profile/${props.user_id}`}>   
+          </Link>
+          <Link to={`/profile/${props.user_id}`}>   
             &nbsp;{userName}
-          </a>
+          </Link>
         </Left>
         <Right>
           {props.authenticated ? 

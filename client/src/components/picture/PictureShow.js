@@ -105,9 +105,11 @@ const PictureShow = (props) => {
    <Wrapper>
       <UserInfoDiv>
         <UserInfoLeft>
-          <a href={`/Profile/${user.id}`}>
-            <UserImage image={user.image} />  
-          </a>
+          <div onClick={()=>props.toggle()}>
+            <Link to={`/profile/${user.id}`} >
+                <UserImage image={user.image} />  
+            </Link>
+          </div>
           <UserLeftContent>
             <NameDiv>
               {user.first_name} {user.last_name}
@@ -160,7 +162,7 @@ const PictureShow = (props) => {
         </InfoRight>
       </PictureDescriptionDiv>
         <Description> {image.description} </Description>
-      <Comments comments={comments} pictureId={props.imageId} setStatePictureShow={setStatePictureShow} deleteCommentState={deleteCommentState}/>
+      <Comments toggle={props.toggle} comments={comments} pictureId={props.imageId} setStatePictureShow={setStatePictureShow} deleteCommentState={deleteCommentState}/>
    </Wrapper>
   )
 }
