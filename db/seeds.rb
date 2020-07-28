@@ -112,7 +112,7 @@ end
     PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(47)+1), body: Faker::Movies::BackToTheFuture.quote)
   end
   40.times do    
-    PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(47)+1), body: Faker::Movies::StarWars.quote
+    PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(47)+1), body: Faker::Movies::StarWars.quote)
   end
   40.times do    
     PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(47)+1), body: Faker::Movies::VForVendetta.quote)
