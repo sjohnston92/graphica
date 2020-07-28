@@ -33,29 +33,40 @@ require Rails.root.join("data", "urls.rb")
     image: "https://images.unsplash.com/photo-1525129075020-d43c7ba72ecf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
     first_name: "Fird",last_name: "Mann", password: 'password', password_confirmation: 'password')
 
-#CATEGORIES (7)
-  Category.create(title: "Animals") #1
-  Category.create(title: "Art") #2
-  Category.create(title: "Other") #3
-  Category.create(title: "Nature") #4
-  Category.create(title: "Places") #5
-  Category.create(title: "People") #6
-  Category.create(title: "Technology") #7
+#CATEGORIES (18)
+  Category.create(title: "Athletics")
+  Category.create(title: "Animals")
+  Category.create(title: "Art")
+  Category.create(title: "Architecture") 
+  Category.create(title: "Business")
+  Category.create(title: "Culture")
+  Category.create(title: "Experimental")
+  Category.create(title: "Fashion")
+  Category.create(title: "Film")
+  Category.create(title: "Food")
+  Category.create(title: "Geometry") 
+  Category.create(title: "History")
+  Category.create(title: "Landscape") 
+  Category.create(title: "Nature") 
+  Category.create(title: "Technology") 
+  Category.create(title: "Textures") 
+  Category.create(title: "Travel") 
+  Category.create(title: "Wellness")
     
 colors = []
-2.times do
+7.times do
   color = Faker::Color.color_name
   colors << color
 end
 
-#PICTURES (27)
+#PICTURES (50)
 users = User.all
 categories = Category.all
 IMAGE_URLS.map { |url| 
   Picture.create(
-    category_id: (rand(7)+1), 
-    user_id: (rand(4)+2), 
-    title: "#{colors[rand(2)]}  #{Faker::Dessert.variety}".titleize,
+    category_id: (rand(18)+1), 
+    user_id: (rand(7)+2), 
+    title: "#{colors[rand(7)]}  #{Faker::Dessert.variety}".titleize,
     url: url,
     description: Faker::Lorem.sentence(word_count: 3, supplemental: true),
     views: rand(1...3000)
@@ -98,13 +109,13 @@ end
 
 #PICTURE COMMENTS (50)
   40.times do    
-    PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(27)+1), body: Faker::TvShows::BojackHorseman.quote)
+    PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(50)+1), body: Faker::TvShows::BojackHorseman.quote)
   end
   40.times do    
-    PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(27)+1), body: Faker::TvShows::Seinfeld.quote)
+    PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(50)+1), body: Faker::TvShows::Seinfeld.quote)
   end
   40.times do    
-    PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(27)+1), body: Faker::TvShows::SouthPark.quote)
+    PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(50)+1), body: Faker::TvShows::SouthPark.quote)
   end
   
 

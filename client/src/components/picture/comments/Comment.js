@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { AuthConsumer } from '../../../providers/AuthProvider';
-import deleteImg from '../../../img/delete.png';
-import editImg from '../../../img/edit.jpg';
+import deleteImg from '../../../img/delete_24px.svg';
+import editImg from '../../../img/settings_24px.svg';
 
 const Comment = (props) => {
   const userId = props.user_id
@@ -66,8 +66,8 @@ const Comment = (props) => {
             <>
               {props.user.id === userId ? 
                   <>
-                    <EditButton onClick={toggleEdit} image={editImg}/>
-                    <DeleteButton onClick={deleteComment} image={deleteImg} />
+                    <EditButton onClick={toggleEdit} image={editImg} />
+                    <DeleteButton onClick={deleteComment} image={deleteImg}/>
                   </>
                 : null
               }
@@ -130,8 +130,8 @@ background-image: url(${props => props.image});
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 100%;
-  height: 30px;
-  width: 30px;  
+  height: 25px;
+  width: 25px;  
   cursor: pointer;
 `
 const DeleteButton = styled.div `
@@ -140,8 +140,8 @@ background-image: url(${props => props.image});
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 100%;
-  height: 30px;
-  width: 30px;  
+  height: 25px;
+  width: 25px;  
   cursor: pointer;
 `
 const StyledUserImage = styled.div `

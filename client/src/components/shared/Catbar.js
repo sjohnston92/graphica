@@ -8,51 +8,44 @@ import { FeedConsumer } from '../../providers/FeedProvider'
 const Catbar = (props) => {
   const [cats, setCats] = useState([])
 
-  // useEffect(() => {
-  //   axios.get("/api/categories")
-  //     .then( res => setCats(res.data))
-  //     .catch(console.log)
-  // }, [])
-  
-  const handleClick1 = () => {  
-    props.setCategoryId(1)
-    props.categorySearch(1)
-  }
-  const handleClick2 = () => {  
-    props.setCategoryId(2)
-    props.categorySearch(2)
-  }
-  const handleClick3 = () => {  
-    props.setCategoryId(3)
-    props.categorySearch(3)
-  }
-  const handleClick4 = () => {  
-    props.setCategoryId(4)
-    props.categorySearch(4)
-  }
-  const handleClick5 = () => {  
-    props.setCategoryId(5)
-    props.categorySearch(5)
-  }
-  const handleClick6 = () => {  
-    props.setCategoryId(6)
-    props.categorySearch(6)
-  }
-  const handleClick7 = () => {  
-    props.setCategoryId(7)
-    props.categorySearch(7)
-  }
+  useEffect(() => {
+    axios.get("/api/categories")
+      .then( res => {
+        shuffleArray(res.data)
+      })
+      .catch(console.log)
+  }, [])
 
+
+function shuffleArray(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+      console.log(temp)
+  }
+  setCats(array)
+}
+  
+ 
+
+  const handleClick = (category) => {
+    props.setCategoryId(category)
+    props.categorySearch(category)
+  }
   return (
-  <Wrapper>
+    <Wrapper>
+      <Scroll>
+
       <Spacer></Spacer>
-      <LinkDiv onClick={handleClick1}>animals</LinkDiv><Spacer></Spacer>
-      <LinkDiv onClick={handleClick2}>art</LinkDiv><Spacer></Spacer>
-      <LinkDiv onClick={handleClick3}>other</LinkDiv><Spacer></Spacer>
-      <LinkDiv onClick={handleClick4}>nature</LinkDiv><Spacer></Spacer>
-      <LinkDiv onClick={handleClick5}>places</LinkDiv><Spacer></Spacer>
-      <LinkDiv onClick={handleClick6}>people</LinkDiv><Spacer></Spacer>
-      <LinkDiv onClick={handleClick7}>technology</LinkDiv>
+
+      {cats.map(cat => (
+        <>
+        <LinkDiv onClick={()=>handleClick(cat.id)}> {cat.title} </LinkDiv><Spacer></Spacer>
+            </>
+      ))}
+      </Scroll>
    </Wrapper>           
   )  
 }
@@ -66,10 +59,25 @@ display: flex;
   padding: 4px;
   top: 3rem;
   z-index:1;
+`
+const Scroll = styled.div`
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
   
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+
+  flex-shrink: 0;
+
 `
 const Spacer = styled.div`
-width: 40px;
+  width: 40px;
+  flex-shrink: 0;
 `
 const LinkDiv = styled.div`
   font-family: Montserrat;
