@@ -50,7 +50,7 @@ class Login extends React.Component {
         GRAPHICA
       </GraphicaLogo>
       <GraphicaParagraph>
-        Graphica is a novel photo-sharing app that allows users to share their collections. Create an account to start sharing and connect with other photographers!
+        Graphica is a novel photo-sharing app that allows users to share their collections. Create an account to start sharing and connecting with other photographers!
       </GraphicaParagraph>
       <SegmentWrapper>
       <Segment basic>
@@ -83,11 +83,16 @@ class Login extends React.Component {
             </Form>
           </Segment>
         </SegmentWrapper>
-        {/* <AboutUs>
-            <Link to={'..home/about_us'}>Learn about our developers</Link>
-      </AboutUs> */}
+        <AboutUs>
+            <Link to={'../about_us'}>Learn about our developers</Link>
+        </AboutUs>
+        <Home>
+          <Link to={'../home'}>Back to Search</Link>
+        </Home>
       </LoginGroup>
+  
       </Row>
+
     </Wrapper>
     )
   }
@@ -104,6 +109,8 @@ class ConnectedLogin extends React.Component {
 }
 
 const Wrapper = styled.div`
+width: 100%
+height: 100%
 `
 
 const LoginGroup = styled.div`
@@ -130,6 +137,7 @@ const PictureGroup = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 100%;
   flex: 1;
 
   @media (max-width: 812px;) {
@@ -143,7 +151,8 @@ const GraphicaParagraph = styled.div`
   align-items: left;
   padding-left: 1rem;
   padding-bottom: 5rem;
-  margin-right: 50px;
+  width: 60%;
+  justify;
 `
 
 const SegmentWrapper = styled.div`
@@ -190,13 +199,50 @@ const ImageContents = styled.div`
   margin-left: 2rem;
 `;
 
+// const Header = styled.div`
+// position: absolute;
+// width: 105px;
+// height: 44px;
+// left: 798px;
+// top: 405px;
+
+// font-family: Montserrat;
+// font-style: normal;
+// font-weight: 600;
+// font-size: 36px;
+// line-height: 44px;
+// `
+
+const Home = styled.div`
+a:link {
+  color: black;
+}
+a:visited {
+  color: black;
+}
+a:hover {
+  color: lightgrey;
+}
+a:active {
+  color: black;
+}
+
+position: absolute;
+bottom: 0px;
+right: 525px;
+padding-left: 1rem;
+
+cursor: pointer;
+
+`
+
 const AboutUs = styled.div`
 
   a:link {
     color: black;
   }
   a:visited {
-    color: lightgrey;
+    color: black;
   }
   a:hover {
     color: lightgrey;
@@ -205,10 +251,10 @@ const AboutUs = styled.div`
     color: black;
   }
 
-  align-items: left;
-  padding-bottom: 1rem;
+  position: absolute;
+  bottom: 0px;
+  right: 20px;
   padding-left: 1rem;
-
 
   cursor: pointer;
 
