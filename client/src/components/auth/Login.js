@@ -54,7 +54,7 @@ class Login extends React.Component {
       </GraphicaParagraph>
       <SegmentWrapper>
       <Segment basic>
-        <Header as='h1'>Login  <Link to ='Register'>or Sign Up</Link>
+        <Header as='h1' style={{fontSize: '36px'}}>Login  <Link to ='Register' style={{fontSize: '14px'}}>or Sign Up</Link>
 
         </Header>
         
@@ -87,12 +87,10 @@ class Login extends React.Component {
             <Link to={'../about_us'}>Learn about our developers</Link>
         </AboutUs>
         <Home>
-          <Link to={'../home'}>Back to Search</Link>
+          <Link to={'/'}>Back to Search</Link>
         </Home>
       </LoginGroup>
-  
       </Row>
-
     </Wrapper>
     )
   }
@@ -229,8 +227,20 @@ a:active {
 
 position: absolute;
 bottom: 0px;
-right: 525px;
+margin-left: 1rem;
 padding-left: 1rem;
+
+//  display: flex;
+//   flex-direction: column;
+//   justify-content: left;
+//   align-items: flex-start;
+//   margin-top: 10rem;
+//   margin-left: 1rem;
+//   flex: 1;
+
+//   @media (max-width: 812px;) {
+//     max-width: 400px;
+//   }
 
 cursor: pointer;
 
@@ -255,6 +265,16 @@ const AboutUs = styled.div`
   bottom: 0px;
   right: 20px;
   padding-left: 1rem;
+
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: left;
+  // align-items: flex-end;
+  // margin-top: 10rem;
+  // margin-left: 10rem;
+  // flex: 1;
+
+
 
   cursor: pointer;
 
