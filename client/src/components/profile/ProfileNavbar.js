@@ -42,7 +42,7 @@ const SettingsTab = styled.div`
     color: black;
     cursor: pointer;
     display: inline;
-    margin-left: 60rem;
+    margin-left: 90rem;
 `
 
 

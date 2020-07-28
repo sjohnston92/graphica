@@ -12,8 +12,6 @@ const ContactTest = ({user}) => (
     <a href={`https://graphica_domain/profile/${user.id}`} target="_blank" >
       <p>https://graphica_domain/profile/{user.id}</p>
     </a>
-    <h3>Phone #</h3>
-    <p>123-123-1234</p>
   </>
 )
 
