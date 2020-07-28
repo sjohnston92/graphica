@@ -19,7 +19,9 @@ const CollectionHeader = (props) => {
           <HeaderDescription>{props.collection.description}</HeaderDescription>
         </HeaderColumn>
         <ImageDiv>
-         <UserImage user={props.user} />
+          <a href={`/profile/${props.user.id}`}>
+            <UserImage user={props.user} />
+          </a>
         </ImageDiv>
       </Wrapper>
   )
