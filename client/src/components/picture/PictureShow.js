@@ -144,7 +144,7 @@ const PictureShow = (props) => {
       <AddDiv>
         
           
-          <AddCollectionButton  userId={user.id} image={image}/>
+          <AddCollectionButton  pictureJunctions={props.pictureJunctions} userId={user.id} image={image}/>
           
       </AddDiv>
         

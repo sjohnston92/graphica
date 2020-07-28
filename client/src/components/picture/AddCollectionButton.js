@@ -22,7 +22,7 @@ const AddCollectionButton = (props) => {
                 <AddToCollection onClick={()=>toggle()} >
                   <AddDiv image={addImg} />
                   <TextDiv>
-                    &nbsp;add to a collection 
+                    &nbsp;add to a{ props.pictureJunctions && props.pictureJunctions.length > 0 && <>nother</>} collection 
                   </TextDiv>
                 </AddToCollection>
                 <Modal onClose={toggle} open={open}>               
@@ -41,7 +41,7 @@ const AddToCollection = styled.div`
   justify-content: left;
   display: flex;
   cursor: pointer;
-  width: 200px;
+  width: 300px;
   
 `
 
