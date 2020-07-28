@@ -41,7 +41,7 @@ const Wrapper = styled.div`
 const Hero = styled.div`
   width: 100%;
   height: 416px;
-  background: url('https://res.cloudinary.com/graphica/image/upload/v1595688102/ladybug_ekpq5c.jpg');
+  background: linear-gradient(0deg, rgba(39, 39, 53, 0.35), rgba(39, 39, 53, 0.35)), url('https://res.cloudinary.com/graphica/image/upload/v1595688102/ladybug_ekpq5c.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -75,6 +75,8 @@ const BottomText = styled.div`
   justify-content: space-between;
   font-family: 'Montserrat';
   font-size: 12px;
+  font-weight: 600;
+
 `
 const FreeForever = styled.div`
 

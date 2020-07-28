@@ -11,7 +11,7 @@ const NewPictureButton = ({ isCurrentUser }) => {
   return (
    <>
       {/* make button reactive to user */}
-      <AddPictureButton onClick={ toggle }>Add a Picture</AddPictureButton>
+        <AddButton onClick={ toggle }>Add a Picture</AddButton>
       
     <Modal onClose={toggle} open={open}>
       <PictureForm toggleModal={toggle}/>
@@ -20,7 +20,9 @@ const NewPictureButton = ({ isCurrentUser }) => {
   )
 }
 
-const AddPictureButton = styled.button`
+
+
+  const AddButton = styled.button`
     width: 148px;
     height: 38px;
     
@@ -30,7 +32,6 @@ const AddPictureButton = styled.button`
     border: none;
     color: white;
     cursor: pointer;
-    margin-right: 1.5rem;
   `
 
 export default NewPictureButton;

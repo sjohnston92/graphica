@@ -70,18 +70,17 @@ class Profile extends React.Component {
       <Wrapper>
         { this.state.user && <ProfileHero user={this.state.user} /> }
         <ProfileNavbar 
+          currentTab={this.state.currentTab}
           changeTab={this.changeTab} 
           isCurrentUser={this.state.isCurrentUser}
         />
         <Line />
         <br></br>
         { this.state.isCurrentUser &&
-
           <ButtonWrapper>
-            <NewPictureButton />
+            <NewPictureButton /> 
             <NewCollection />
           </ButtonWrapper>
-
         }
         <ProfileBottom>
           { this.renderBottom() }
@@ -101,14 +100,13 @@ border: 1px solid rgba(39, 39, 53, 0.75);
 const ProfileBottom = styled.div`
   width: 100%;
 `
-
-  const ButtonWrapper = styled.div `
-    width: 75vw;
-    display: flex;
-    align-items: center;
-    margin: 0 auto 0 auto;
-    margin-bottom: 20px;
-  `
+const ButtonWrapper = styled.div `
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-left: 4.9rem;
+`
 
 const ConnectedProfile = (props) => (
   <AuthConsumer>

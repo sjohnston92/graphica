@@ -61,10 +61,9 @@ const Wrapper = styled.div`
 position: fixed;
 display: flex;
   align-items: center;
-  background: grey;
+  background: rgba(200, 200, 200, 0.7);
   width: 100%;
   padding: 4px;
-  opacity: 0.7;
   top: 3rem;
   z-index:1;
   
@@ -79,6 +78,8 @@ const LinkDiv = styled.div`
   font-size: 12px;
   color: white;
   cursor: pointer;
+  text-shadow: 0px -2px 4px rgba(255, 255, 255, 0.25), 0px 2px 4px rgba(0, 0, 0, 0.25);
+
 `
 
 const ConnectedCatbar = (props) => (

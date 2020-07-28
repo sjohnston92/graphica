@@ -88,6 +88,9 @@ const StyledText = styled.div`
   font-size: 18px;
   color: white;
 
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.35), 0px -2px 4px rgba(255, 255, 255, 0.35);
+
+
 `
 const CardDiv = styled.div`
   cursor: zoom-in;
