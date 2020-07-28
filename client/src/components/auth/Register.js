@@ -121,11 +121,11 @@ class Register extends React.Component {
             onChange={this.handleChange}
           />
           <Form.Input
-            label="Password Confirmation"
+            label="Confirm"
             required
             name='passwordConfirmation'
             value={passwordConfirmation}
-            placeholder='Password Confirmation'
+            placeholder='Confirm'
             type='password'
             onChange={this.handleChange}
           />
