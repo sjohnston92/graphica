@@ -60,7 +60,7 @@ class Register extends React.Component {
     </PictureGroup>
     <LoginGroup>
       <Segment basic>
-        <Header as='h1' textAlign='left'>Register</Header>
+        <Header as='h1' textAlign='left'>Sign Up</Header>
         <Form onSubmit={this.handleSubmit}>
         <Grid.Column width={4}>
           {/* <Dropzone
