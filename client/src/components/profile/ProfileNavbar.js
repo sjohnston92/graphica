@@ -54,16 +54,19 @@ const Flex = styled.div`
 const RecentDiv = styled.div`
   color: ${props => props.color};
   margin-right: 3rem;
+  cursor: pointer;
 `
 
 const CollectionDiv = styled.div`
   color: ${props => props.color};
   margin-right: 3rem;
+  cursor: pointer;
 `
 
 const SettingsDiv = styled.div`
   color: ${props => props.color};
   margin-right: 3rem;
+  cursor: pointer;
 `
 
 
