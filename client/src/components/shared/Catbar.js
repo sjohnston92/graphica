@@ -42,7 +42,7 @@ function shuffleArray(array) {
 
       {cats.map(cat => (
         <>
-        <LinkDiv onClick={()=>handleClick(cat.id)}> {cat.title} </LinkDiv><Spacer></Spacer>
+        <LinkDiv isCurrentCat={ cat.id === props.categoryId } onClick={()=>handleClick(cat.id)}> {cat.title} </LinkDiv><Spacer></Spacer>
             </>
       ))}
       </Scroll>
@@ -54,11 +54,12 @@ const Wrapper = styled.div`
 position: fixed;
 display: flex;
   align-items: center;
-  background: rgba(200, 200, 200, 0.7);
+  background: rgba(200, 200, 200, 0.75);
   width: 100%;
-  padding: 4px;
+  padding: 6px;
   top: 3rem;
   z-index:1;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.25);
 `
 const Scroll = styled.div`
   display: flex;
@@ -84,7 +85,7 @@ const LinkDiv = styled.div`
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
-  color: white;
+  color: ${props => props.isCurrentCat ? "black" : "white"};
   cursor: pointer;
   text-shadow: 0px -2px 4px rgba(255, 255, 255, 0.25), 0px 2px 4px rgba(0, 0, 0, 0.25);
 

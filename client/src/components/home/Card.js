@@ -6,6 +6,7 @@ import PictureShow from '../picture/PictureShow';
 import commentsImage from '../../img/comments.png'
 import viewsImage from '../../img/views.png'
 import { ImageConsumer } from '../../providers/ImageProvider'
+import { Link } from 'react-router-dom';
 
 const Card = (props) => {
   const id = props.image.id
@@ -42,7 +43,7 @@ const Card = (props) => {
   return (
     <CardBorder>
       <Modal onClose={toggle} open={open}>     
-        <PictureShow updateViewsState={updateViewsState} toggleAndDelete={toggleAndDelete}/>   
+        <PictureShow toggle={toggle} updateViewsState={updateViewsState} toggleAndDelete={toggleAndDelete}/>   
       </Modal>       
       <CardDiv onClick={toggleAndSetId} >
         <StyledText>{props.image.title}</StyledText>
@@ -50,12 +51,13 @@ const Card = (props) => {
       </CardDiv>
       <PointerOff>
         <CardFooterLeft>
-          <a href={`/Profile/${user.id}`}>
-            <SmallImage image={user.image}/>
-          </a>
-          <a href={`/Profile/${user.id}`}>
-            &nbsp;{user.first_name} {user.last_name}
-          </a>
+          <Link to={`/profile/${user.id}`} >
+            <Flex>
+
+              <SmallImage image={user.image}/>
+              &nbsp;{user.first_name} {user.last_name}
+            </Flex>
+           </Link>
         </CardFooterLeft>
         <CardFooterRight>
           <SmallImage image={commentsImage} />
@@ -67,7 +69,9 @@ const Card = (props) => {
     </CardBorder>
   )
 }
-
+const Flex = styled.div`
+  display: flex;
+`
 const StyledImage = styled.img`
   width: 100%
 `

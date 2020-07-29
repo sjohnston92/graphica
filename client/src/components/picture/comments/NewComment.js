@@ -29,9 +29,9 @@ const CommentBar = (props) => {
   }
   return(
     <>
-      <form onSubmit={handleSubmit}>
+      <StyledForm onSubmit={handleSubmit}>
         <StyledInput type="text" name="body" value={comment} onChange={handleChange} placeholder="Have something to say...?"/>
-      </form>
+      </StyledForm>
     </>
   )
 }
@@ -48,10 +48,16 @@ export default class ConnectedCommentBar extends React.Component {
 const StyledInput = styled.input`
   border: 1px solid black;
   height: 35px;
-  width: 72vw;
+  width: 100%;
   box-sizing: border-box;
   outline: none;
   ::placeholder {
     font-family: Montserrat;
   }
+  padding: 1rem;
+`
+
+const StyledForm = styled.form`
+  width: 100%;
+ 
 `

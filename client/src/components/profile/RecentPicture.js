@@ -26,7 +26,7 @@ class RecentPicture extends React.Component {
     return(
       <Container>
         <Modal onClose={this.toggle} open={this.state.open}>     
-          <PictureShow toggleAndDelete={this.toggleAndDelete} />   
+          <PictureShow toggle={this.toggle} toggleAndDelete={this.toggleAndDelete} />   
         </Modal>  
         <StyledTitle>
           { picture.title }

@@ -1,6 +1,6 @@
 IMAGE_URLS = [
 
-  "https://res.cloudinary.com/graphica/image/upload/v1593418089/sample.jpg",
+  
   "https://res.cloudinary.com/graphica/image/upload/v1593188743/white-mountain_eschby.jpg",
   "https://res.cloudinary.com/graphica/image/upload/v1593188742/beach_zgmqsw.jpg",
   "https://res.cloudinary.com/graphica/image/upload/v1593188740/space-station_zzsqub.jpg",
@@ -45,8 +45,8 @@ IMAGE_URLS = [
   "https://res.cloudinary.com/graphica/image/upload/v1595689078/dewang-gupta-tcLcXdiAzDA-unsplash_eqq8fq.jpg",
   "https://res.cloudinary.com/graphica/image/upload/v1595688313/will-li-_kSWutjgAOs-unsplash_vawnqm.jpg",
   "https://res.cloudinary.com/graphica/image/upload/v1595465676/white-flowers.jpg.jpg",
-  "https://res.cloudinary.com/graphica/image/upload/v1595465276/skymanipulation.jpg.jpg",
-  "https://res.cloudinary.com/graphica/image/upload/v1595464240/steps.jpg.jpg",
+  
+  
   "https://res.cloudinary.com/graphica/image/upload/v1595464168/elephant.jpeg.jpg",
   "https://res.cloudinary.com/graphica/image/upload/v1595688312/huper-by-joshua-earle-MiNIw72unu0-unsplash_r2adec.jpg",
   "https://res.cloudinary.com/graphica/image/upload/v1595464133/snake.jpeg.jpg",

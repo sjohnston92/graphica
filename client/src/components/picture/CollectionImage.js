@@ -24,7 +24,7 @@ const StyledImage = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  margin: 1rem;
+  margin: 2rem 2rem 2rem 0;
   height: 183px;
   width: 213px;
   cursor: zoom-in;

@@ -3,6 +3,7 @@ import axios from 'axios';
 import CollectionImage from './CollectionImage'
 import styled from "styled-components";
 import RemoveImage from './RemoveImage';
+import { Link } from 'react-router-dom';
 
 const PictureCollection = (props) => {
   const [ pics, setPics ] = useState([]);
@@ -24,9 +25,11 @@ const PictureCollection = (props) => {
         { collection && 
           <RowDiv>
             <CollectionText> 
-              part of 
-              <StyledBlue href={`/collections/${props.pictureCollection.collection_id}`}>{" " + collection.title + " "}</StyledBlue> 
-              collection 
+              part of&nbsp;
+              <div onClick={props.toggle}>
+                <StyledBlue to={`/collections/${props.pictureCollection.collection_id}`}>{" " + collection.title + " "}</StyledBlue> 
+              </div>
+              &nbsp;collection&nbsp;
             </CollectionText>
             <RemoveImage 
               refreshJunctionState={props.refreshJunctionState}
@@ -53,7 +56,7 @@ const PictureCollection = (props) => {
   )
 }
 
-const StyledBlue = styled.a`
+const StyledBlue = styled(Link)`
   color: #0099BA;
 `
 
@@ -76,6 +79,7 @@ const PictureContainer = styled.div`
 `
 
 const CollectionText = styled.span`
+  display: flex;
   align-self: flex-end;
   margin-left: 2rem;
 `

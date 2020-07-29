@@ -21,7 +21,7 @@ const RemoveImage = (props) => {
               (props.user.id === props.userId) &&
                 <RemoveFromCollection onClick={removeImage}>
                   <RemoveDiv image={deleteImg} />
-                    Remove
+                    
                 </RemoveFromCollection>
            }
         </>

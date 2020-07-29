@@ -74,9 +74,10 @@ const SubmitButton = styled.button`
   border: none;
   font-family: 'Montserrat',  sans-serif;
   margin-top: 10px;
-  display: flex;
   align-self: center;
   cursor: pointer;
+  padding: 10px 20px;
+  width: 100%;
 `
 
 
