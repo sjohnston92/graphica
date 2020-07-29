@@ -54,6 +54,7 @@ const ProfileCard = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-image: url(${props => props.url});
+  cursor: zoom-in;
 `;
 
 const ConnectedRecentPicture = (props) => (

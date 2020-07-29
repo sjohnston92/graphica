@@ -25,7 +25,7 @@ const PictureCollection = (props) => {
           <RowDiv>
             <CollectionText> 
               part of 
-              <a href={`/collections/${props.pictureCollection.collection_id}`}>{" " + collection.title + " "}</a> 
+              <StyledBlue href={`/collections/${props.pictureCollection.collection_id}`}>{" " + collection.title + " "}</StyledBlue> 
               collection 
             </CollectionText>
             <RemoveImage 
@@ -52,6 +52,10 @@ const PictureCollection = (props) => {
     </Container>
   )
 }
+
+const StyledBlue = styled.a`
+  color: #0099BA;
+`
 
 const RowDiv = styled.div`
   display: flex;
