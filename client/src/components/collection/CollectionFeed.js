@@ -54,7 +54,7 @@ const ColumnContainer = styled.div`
   @media only screen and (max-width: 800px) {}
 `
 const MiddleContainer = styled.div`
-  margin: 0 20px;
+  margin: 0 25px;
   width: calc(100% / 3);
   @media (max-width: 1600px) {};
   @media (max-width: 1100px) {}

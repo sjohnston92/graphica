@@ -71,7 +71,7 @@ const EditCollection = (props) => {
     box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
     border-radius: 4px;
     color: white;
-    margin-left: 20px;
+    margin-left: 25px;
     border: none;
     font-family: 'Montserrat',  sans-serif;
     cursor: pointer;
@@ -82,7 +82,7 @@ const EditCollection = (props) => {
     display: flex;
     align-items: center;
     margin: 0 auto 0 auto;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   `
 
 
