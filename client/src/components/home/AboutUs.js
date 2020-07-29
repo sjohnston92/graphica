@@ -4,30 +4,33 @@ import styled from "styled-components";
 const AboutUs = () => {
 
   const developers = [
-    {name: 'Nick Ristango', 
-      email: 'none@none.com',
-      avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595459547/juno-jo-_0JsVnHSc0I-unsplash.jpg.jpg', 
+    {name: 'Nick Ristagno', 
+      email: 'nick.ristagno@gmail.com',
+      avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595961629/nick_profile_mkdumk.jpg', 
       banner: 'https://res.cloudinary.com/graphica/image/upload/v1595689078/dewang-gupta-tcLcXdiAzDA-unsplash_eqq8fq.jpg',
-      description: '',
-      contribution: ''
+      description: 'Project Manger',
+      contributionFront: 'Designed Wireframes',
+      contributionEnd: 'Oversaw all procedures'
     },
     
     {name: 'Braden Church', 
       email: 'bradenchurch@gmail.com', 
       avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595690175/tan-guy.jpeg.jpg', 
       banner: 'https://res.cloudinary.com/graphica/image/upload/v1595690134/roan-lavery-p9tE8gHjd6s-unsplash.jpg.jpg',
-      contribution: '',
-      description: 'I chose to work on the Graphica app because I felt like it would be the most real to life applications. I really enjoyed working on the routing and seeing the app come to life while watching the fronted and backend come to life.'
+      contributionFront: 'Profile Page, Collection Page, Registration',
+      description: 'I chose to work on the Graphica app because I felt like it would be the most real to life applications. I really enjoyed working on the routing and seeing the app come to life while watching the fronted and backend come to life.',
+      contributionEnd: 'User Authentication, React-Router-Dom'
     }, 
     
     {name: 'Daniel McKenna', 
-      email: 'codingp3nguin@gmail.com', 
+      email: 'mckenna.daniel15@gmail.com', 
       avatar: 'https://res.cloudinary.com/graphica/image/upload/v1594778414/DSC03579.JPG.jpg', 
       banner: 'https://res.cloudinary.com/graphica/image/upload/v1595704387/waves_fti7dk.jpg',
       description: `I decided to work on the graphica project becasue I felt it had the most features in regards to,
       working with other API's and how much data we would need to get from the backend to the front end. To me that is what sold me on this
       project. I really wanted to learn how to use differnt API's and how to connect backend functionality to the frontend. `,
-      contribution: ''
+      contributionFront: 'Forms, Collection Show, Developer Page',
+      contributionEnd: 'Controllers, Cloudinary API, Routes'
     }, 
 
     {name: 'Danny Leaver', 
@@ -39,7 +42,8 @@ const AboutUs = () => {
       concepts in Ruby on Rails and ReactJS along the way, and I also learned how to work
       on a somewhat complex idea in a group setting. It was challenging to finish on time, as well as collaborate efficiently. 
          `,
-      contribution: ''
+      contributionFront: 'Homepage, Searchbar, Modals',
+      contributionEnd: 'Seeds, Searchbar, Routes'
 
     }, 
     
@@ -48,15 +52,17 @@ const AboutUs = () => {
       avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595796766/jacob_gf3qrh.jpg',
       banner: 'https://res.cloudinary.com/graphica/image/upload/v1595464168/elephant.jpeg.jpg',
       description: 'As a photography enthusiast, the Graphica project naturally stood out to me as a way to apply programming skills towards an exciting end project. Graphica gave me a chance to work on the backend framework and apply novel design principles using React and Ruby on Rails.',
-      contribution: ''
+      contributionFront: 'Login, Registration, Form styling',
+      contributionEnd: 'Controllers and Routes'
     }, 
 
     {name: 'Jake Sasser', 
       email: 'sasserjacob@gmail.com', 
-      avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595903722/IMG_0907_2_h2xtxr.jpg', 
+      avatar: 'https://res.cloudinary.com/graphica/image/upload/ar_1:1,b_rgb:262c35,bo_2px_solid_rgb:fdfdfd,c_fill,g_auto,r_max,w_1000/v1595984208/IMG_0907_new_n2yswb.jpg', 
       banner: 'https://res.cloudinary.com/graphica/image/upload/v1594947500/alex-lange-pv14V3sRB0c-unsplash_flxbhi.jpg.jpg',
-      description: '',
-      contribution: ''
+      description: 'I chose Graphica as my portfolio project because I felt that it would be a project where I could apply and solidify my newly learned skills plus learn additional concepts. It proved to be both challenging and rewarding.',
+      contributionFront: 'Sign up and Login Page, Profile Page',
+      contributionEnd: 'User Authentication, React-Router-Dom'
     },
   ]
 
@@ -83,10 +89,18 @@ const AboutUs = () => {
               </BioSubText>
           </BannerLeft>
           <BannerRight>
-            <StyledP>contributions:</StyledP>
-            <BioSubText>
-              {developer.description}
-            </BioSubText>
+            <FrontEndDiv>
+              <StyledP>Front End:</StyledP>
+              <ConSubText>
+                {developer.contributionFront}
+              </ConSubText>
+            </FrontEndDiv>
+            <BackEndDiv>
+              <StyledP>Back End:</StyledP>
+              <ConSubText>
+                {developer.contributionEnd}
+              </ConSubText>
+            </BackEndDiv>
           </BannerRight>
 
 
@@ -118,10 +132,10 @@ const BannerLeft = styled.div`
 `
 const BannerRight = styled.div`
   display: flex;
-  flex-direction: column;
   flex-shrink: 0;
-  margin: 11.7rem 0 0 20rem;
+  margin: 11.7rem 0 0 10rem;
   align-self: flex-start;
+  flex-direction: column;
 `
 
 const StyledP = styled.p`
@@ -161,7 +175,7 @@ const UserAvatar = styled.div`
 `;
 
 const UserName = styled.p`
-  width: 200px;
+  width: 300px;
   height: 16.64px;
   font-family: Montserrat;
   font-style: normal;
@@ -195,6 +209,19 @@ const BioSubText = styled.p`
   font-size: 14px;
   line-height: 17px;
   color: black;
+`
+
+const FrontEndDiv = styled.div`
+ display: flex;
+ flex-direction: column;
+`
+
+const BackEndDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 6.7rem;
+`
+const ConSubText = styled.p`
 `
 
 
