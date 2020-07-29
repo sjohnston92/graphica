@@ -64,7 +64,10 @@ class Register extends React.Component {
           <GraphicaLogo>
             GRAPHICA
           </GraphicaLogo>
-          <Header as='h1' style={{fontSize: '36px'}} textAlign='left'>Register</Header>
+          <Header as='h1' style={{fontSize: '36px'}} textAlign='left'>           
+          Register
+          <Link to ='Login' style={{fontSize: '12px', color: '#0099BA'}}> or login</Link>
+          </Header>
           <Form onSubmit={this.handleSubmit}>
           <Grid.Column width={4}>
           </Grid.Column>
@@ -160,13 +163,14 @@ const Wrapper = styled.div`
   width: 100%;
   height: calc(100vh - 3rem);
   min-height: 450px;
+  align-items: left;
 `
 
 const SegmentWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-right: 100px;
+  justify-content: flex-start;
+  align-items: left;
+  margin-right: 175px;
 `
 
 const PictureGroup = styled.div`
@@ -288,7 +292,7 @@ const RegisterInput = styled.input`
   border-width: 2px !important;
   border-color: transparent !important;
   margin-bottom: 1.5rem !important;
-  margin-right: 8rem;
+  margin-right: 16rem;
   background-color: lightgrey !important;
   
   ::placeholder {
