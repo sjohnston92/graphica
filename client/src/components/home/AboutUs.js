@@ -53,7 +53,7 @@ const AboutUs = () => {
 
     {name: 'Jake Sasser', 
       email: 'sasserjacob@gmail.com', 
-      avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595903722/IMG_0907_2_h2xtxr.jpg', 
+      avatar: 'https://res.cloudinary.com/graphica/image/upload/c_scale,h_505/v1595983802/IMG_0907_unnvt6.jpg', 
       banner: 'https://res.cloudinary.com/graphica/image/upload/v1594947500/alex-lange-pv14V3sRB0c-unsplash_flxbhi.jpg.jpg',
       description: '',
       contribution: ''
