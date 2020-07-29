@@ -32,24 +32,30 @@ class ProfileCollectionFeed extends React.Component {
   render() {
     return(
       <>
-        <FeedDiv>
-          { this.renderCollections() }
-        </FeedDiv>
+        { this.state.collections.length > 0 
+        ?
+          <FeedDiv>
+            { this.renderCollections() }
+          </FeedDiv>
+        :
+          <NoContent>
+            [ there are no collections here yet ]
+          </NoContent>
+        }
       </>
     )
   }
 }
 
-// const ProfileCard = styled.div`
-//   width: 30rem;
-//   height: 30rem;
-//   flex-shrink: 0;
-//   margin: 20px;
-//   background-size: cover;
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   background-image: url(https://res.cloudinary.com/graphica/image/upload/v1594948579/ian-keefe-OgcJIKRnRC8-unsplash.jpg.jpg);
-// `;
+const NoContent = styled.div`
+  display: flex;  
+  width: 100vw;
+  justify-content: center;
+  padding: 2rem;
+  font-weight: 600;
+  font-size: 16px;
+  color: grey;
+`
 
 const FeedDiv = styled.div`
   width: 75%;
@@ -60,7 +66,5 @@ const FeedDiv = styled.div`
   margin: auto;
   padding-top: 5%;
 `
-
-
 
 export default ProfileCollectionFeed;

@@ -19,9 +19,7 @@ const NavSearchBar = (props) => {
       value={props.query}
       placeholder="Find something new . . ."
       onChange={(e) => props.setQuery(e.target.value)}
-      
     />
-    
   )
 }
 

@@ -56,8 +56,6 @@ const Feed = (props) => {
   }
     return (
       <>
-        {/* { props.searching ? "Searching" : "Not Searching" } */}
- 
         <FeedDiv>
           <ColumnContainer>
             {column_arrays[0].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={updateFeedState}/></>)}
@@ -69,7 +67,7 @@ const Feed = (props) => {
             {column_arrays[2].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={updateFeedState}/></>)}
           </ColumnContainer>
         </FeedDiv>
-        {noMorePictures && <> No more pictures {props.query.length > 1 && `found for: "${props.query}"`}  </>}
+        {noMorePictures && <NoContent> [ No {props.pictures.length > 0 && "more"} pictures {props.query.length > 1 && `found for: "${props.query}"`}  ]</NoContent>}
         {isFetching && !noMorePictures && 'Loading..'}
       </>
     )
@@ -80,6 +78,15 @@ const Feed = (props) => {
 
 const SearchResults = styled.div`
 
+`
+const NoContent = styled.div`
+  display: flex;  
+  width: 100vw;
+  justify-content: center;
+  padding: 2rem;
+  font-weight: 600;
+  font-size: 16px;
+  color: grey;
 `
 
 const FeedDiv = styled.div`

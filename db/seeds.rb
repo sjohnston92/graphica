@@ -7,31 +7,31 @@ require Rails.root.join("data", "urls.rb")
   User.create(email: "rod_dod@gmail.com", 
     banner_image: IMAGE_URLS.sample,
     image: "https://images.unsplash.com/photo-1588948138600-bc75fd417834?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80",
-    first_name: "Rod", last_name: "Stewart", password: 'password', password_confirmation: 'password')
+    first_name: "Rod", last_name: "Stewart", password: 'password', password_confirmation: 'password', tagline: "I've been taking pictures for a long time. I really enjoy sharing my work and seeing others.")
   User.create(email: "binda_binda@gmail.com", 
     banner_image: IMAGE_URLS.sample,
     image: "https://images.unsplash.com/photo-1568967729548-e3dbad3d37e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80",
-    first_name: "Belinda",last_name: "Howard", password: 'password', password_confirmation: 'password')
+    first_name: "Belinda",last_name: "Howard", password: 'password', password_confirmation: 'password', tagline: "I’m a kickass part-time nature photographer that frequently takes helicopter flights for work. Check out my Oceanography collection. I’m open to working together.")
   User.create(email: "turtles42@gmail.com",
     banner_image: IMAGE_URLS.sample,
     image: "https://images.unsplash.com/photo-1593839686924-4b344fac3f8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
-    first_name: "Leigh",last_name: "Bray", password: 'password', password_confirmation: 'password')
+    first_name: "Leigh",last_name: "Bray", password: 'password', password_confirmation: 'password', tagline: "I’m a kickass part-time nature photographer that frequently takes helicopter flights for work. Check out my Oceanography collection. I’m open to working together.")
   User.create(email: "sun.n.moon87@gmail.com", 
     banner_image: IMAGE_URLS.sample,
     image: "https://images.unsplash.com/photo-1593771009063-e2a5fc81be47?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=646&q=80",
-    first_name: "Chera",last_name: "Moond", password: 'password', password_confirmation: 'password')
+    first_name: "Chera",last_name: "Moond", password: 'password', password_confirmation: 'password', tagline: "I’m a kickass part-time nature photographer that frequently takes helicopter flights for work. Check out my Oceanography collection. I’m open to working together.")
   User.create(email: "make_movement@gmail.com", 
     banner_image: IMAGE_URLS.sample,
     image: "https://images.unsplash.com/photo-1593591182784-05bba029a8cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=652&q=80",
-    first_name: "Lasha",last_name: "Quinn", password: 'password', password_confirmation: 'password')
+    first_name: "Lasha",last_name: "Quinn", password: 'password', password_confirmation: 'password', tagline: "I’m a kickass part-time nature photographer that frequently takes helicopter flights for work. Check out my Oceanography collection. I’m open to working together.")
   User.create(email: "unicornsarerainbows@gmail.com", 
     banner_image: IMAGE_URLS.sample,
     image: "https://images.unsplash.com/photo-1593793602373-ca02114d4a3f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80",
-    first_name: "Laura",last_name: "Zak", password: 'password', password_confirmation: 'password')
+    first_name: "Laura",last_name: "Zak", password: 'password', password_confirmation: 'password', tagline: "I’m a kickass part-time nature photographer that frequently takes helicopter flights for work. Check out my Oceanography collection. I’m open to working together.")
   User.create(email: "chateaubrion@gmail.com", 
     banner_image: IMAGE_URLS.sample,
     image: "https://images.unsplash.com/photo-1525129075020-d43c7ba72ecf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
-    first_name: "Fird",last_name: "Mann", password: 'password', password_confirmation: 'password')
+    first_name: "Fird",last_name: "Mann", password: 'password', password_confirmation: 'password', tagline: "I’m a kickass part-time nature photographer that frequently takes helicopter flights for work. Check out my Oceanography collection. I’m open to working together.")
 
 #CATEGORIES (18)
   Category.create(title: "Athletics")
@@ -84,17 +84,17 @@ User.all.each do |user|
     collection_1 = Collection.create(
       user_id: user.id,
       title: "#{Faker::Appliance.equipment}".titleize,
-      description: "The theoretical description of a collection goes here..",
+      description: "This is my collection that really means a lot to me. I made it from pictures I took from all around the world. I hope you enjoy.",
     )
     
     collection_2 = Collection.create(
       user_id: user.id, 
       title: Faker::Movies::HarryPotter.location,
-      description: "The theoretical description of a collection goes here..",
+      description: "Here is a collection from the time that I was travelling to the old country.",
     )
     
-    if pic_amount > 0
-      for index in  (1..half_amount) 
+    # if pic_amount > 0
+      for index in  (0..half_amount) 
       # for index in (0..pic_amount-1)
         CollectionPicture.create(collection_id: collection_1.id, picture_id: user.pictures[index].id)
       end
@@ -102,7 +102,7 @@ User.all.each do |user|
       # for index in (0..pic_amount-1)
         CollectionPicture.create(collection_id: collection_2.id, picture_id: user.pictures[index].id)
       end
-    end
+    # end
     
   end
 end
@@ -115,7 +115,7 @@ end
     PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(47)+1), body: Faker::Movies::StarWars.quote)
   end
   40.times do    
-    PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(47)+1), body: Faker::Movies::VForVendetta.quote)
+    PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(47)+1), body: Faker::Movies::BackToTheFuture.quote)
   end
   
 

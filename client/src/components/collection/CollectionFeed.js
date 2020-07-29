@@ -19,17 +19,24 @@ const CollectionFeed = (props) => {
   
     return(
       <>
-        <FeedDiv>
-          <ColumnContainer>
-            {column_arrays[0].map(listItem =><><CollectionCard key={listItem.id} picture={listItem} updateFeedState={updateFeedState}/></>)}
-          </ColumnContainer>
-          <MiddleContainer>
-            {column_arrays[1].map(listItem =><><CollectionCard key={listItem.id} picture={listItem} updateFeedState={updateFeedState}/></>)}
-          </MiddleContainer>
-          <ColumnContainer>
-            {column_arrays[2].map(listItem =><><CollectionCard key={listItem.id} picture={listItem} updateFeedState={updateFeedState}/></>)}
-          </ColumnContainer>
-        </FeedDiv>
+        {props.pictures.length > 0 
+          ?
+            <FeedDiv>
+              <ColumnContainer>
+                {column_arrays[0].map(listItem =><><CollectionCard key={listItem.id} picture={listItem} updateFeedState={updateFeedState}/></>)}
+              </ColumnContainer>
+              <MiddleContainer>
+                {column_arrays[1].map(listItem =><><CollectionCard key={listItem.id} picture={listItem} updateFeedState={updateFeedState}/></>)}
+              </MiddleContainer>
+              <ColumnContainer>
+                {column_arrays[2].map(listItem =><><CollectionCard key={listItem.id} picture={listItem} updateFeedState={updateFeedState}/></>)}
+              </ColumnContainer>
+            </FeedDiv>
+          : 
+            <NoContent>
+              [ there are no pictures in this collection yet ]
+            </NoContent>
+        }
       </>
     )
   }
@@ -37,6 +44,16 @@ const CollectionFeed = (props) => {
   return renderColumns();
 };
 
+
+const NoContent = styled.div`
+  display: flex;  
+  width: 100vw;
+  justify-content: center;
+  padding: 2rem;
+  font-weight: 600;
+  font-size: 16px;
+  color: grey;
+`
 const FeedDiv = styled.div`
   display: flex;
   // padding-right: 20px;
