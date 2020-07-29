@@ -179,16 +179,12 @@ const Wrapper = styled.div`
   align-items: center;
   font-family: Montserrat;
   padding-bottom: 2rem;
-  
-  
   ::-webkit-scrollbar { /* WebKit */
     width: 0;
     height: 0;
   } 
-
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
-
 `
 
 const UserInfoDiv= styled.div`

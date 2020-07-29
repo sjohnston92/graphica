@@ -1,11 +1,7 @@
 import React from 'react';
-import Feed from '../home/Feed';
 import styled from 'styled-components';
 import axios from "axios";
-import PictureCollection from '../picture/PictureCollection';
 import RecentPicture from './RecentPicture';
-
-
 
 class BottomFeed extends React.Component {
   state = { pictures: [] }
@@ -36,20 +32,33 @@ class BottomFeed extends React.Component {
     <RecentPicture picture={pic} key={pic.id} user={this.props.user} deletePicture={this.deletePicture} />
   ))
 
-  
-
-
   render() {
     return (
       <>
-        <FeedDiv>
-          { this.renderPictures() }
-        </FeedDiv> 
+        {(this.state.pictures.length > 0) 
+          ? 
+            <FeedDiv>
+              { this.renderPictures() }
+            </FeedDiv> 
+          : 
+            <NoContent>
+              [ there are no pictures here yet ]
+            </NoContent>
+        }
       </>
     )
   }
 }
 
+const NoContent = styled.div`
+  display: flex;  
+  width: 100vw;
+  justify-content: center;
+  padding: 2rem;
+  font-weight: 600;
+  font-size: 16px;
+  color: grey;
+`
 
 const FeedDiv = styled.div`
   width: 75vw;
