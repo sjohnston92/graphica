@@ -4,6 +4,7 @@ import { Form, Grid, Image, Container, Divider, Header, Button, } from 'semantic
 import Dropzone from 'react-dropzone';
 import UpdateProfileImage from './UpdateProfileImage';
 import UpdateBannerImage from './UpdateBannerImage';
+import styled from 'styled-components';
 
 const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png';
 
@@ -106,7 +107,7 @@ class Profile extends React.Component {
               required
               onChange={this.handleChange}
               />
-            <Button>Update</Button>
+            <UpdateButton>Update</UpdateButton>
           </Grid.Column>
         </Form>
       </>
@@ -122,7 +123,7 @@ class Profile extends React.Component {
           <Grid.Row>
             { editing ? this.editView() : this.profileView()}
             <Grid.Column>
-              <Button onClick={this.toggleEdit}>{editing ? 'Cancel' : 'Edit'}</Button>
+              <UpdateButton onClick={this.toggleEdit}>{editing ? 'Cancel' : 'Edit'}</UpdateButton>
             </Grid.Column>
           </Grid.Row>
         </Grid>
@@ -138,6 +139,20 @@ const SettingsTab = (props) => (
     }
   </AuthConsumer>
 )
+
+
+const UpdateButton = styled.button`
+  background: #0099BA;
+  box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
+  border-radius: 4px;
+  color: white;
+  border: none;
+  font-family: 'Montserrat',  sans-serif;
+  margin-top: 10px;
+  display: flex;
+  align-self: center;
+  cursor: pointer;
+`
 
 const styles = {
   dropzone: {

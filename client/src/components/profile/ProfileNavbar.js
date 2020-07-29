@@ -69,29 +69,7 @@ const SettingsDiv = styled.div`
   cursor: pointer;
 `
 
-const NavBar = styled.div`
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-`
 
-const RecentTab = styled.div`
-    color: black;
-    cursor: pointer;
-    display: inline;
-    margin-left: 4rem;
-`
-const CollectionTab = styled.div`
-    color: black;
-    cursor: pointer;
-    display: inline;
-    margin-left: 4rem;
-`
-const SettingsTab = styled.div`
-    color: black;
-    cursor: pointer;
-    display: inline;
-    margin-left: 90rem;
-`
 
 
 
