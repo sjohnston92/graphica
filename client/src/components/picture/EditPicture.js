@@ -82,10 +82,6 @@ const EditPicture = (props) => {
                 <TitleInput type="text" name="title" value={title} required onChange={handleChangeTitle}/>
               </StyledLabel>
               <StyledLabel>
-                description: 
-                <DescriptionInput type="text" name="description" value={description} onChange={handleChangeDescription}/>
-              </StyledLabel>
-              <StyledLabel>
                 category: 
                 <FormSelect type="select" name="category" onChange={handleChangeCategory} required>
                   {/* how do I remove duplicate title? */}
@@ -95,6 +91,10 @@ const EditPicture = (props) => {
                       )) 
                     }
                 </FormSelect>
+              </StyledLabel>
+              <StyledLabel>
+                description: 
+                <DescriptionInput type="text" name="description" value={description} onChange={handleChangeDescription}/>
               </StyledLabel>
               <SubmitButton>submit</SubmitButton>
             </StyledForm>
@@ -155,24 +155,27 @@ const StyledLine = styled.hr`
 
 const TitleInput = styled.input`
   font-size: 1rem;
-  width: 90%;
+  width: 100%;
   font-family: 'Montserrat',  sans-serif !important;
   margin-top: 4px;
+  padding: 5px;
+  margin-bottom: 20px;
 `
 const DescriptionInput = styled.textarea`
   font-size: 1rem;
-  width: 90%;
+  width: 100%;
   max-height: 40%;
   font-family: 'Montserrat',  sans-serif !important;
   resize: none;
   margin-top: 4px;
+  padding: 5px;
+  margin-bottom: 20px;
 `
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
 `
 const SubmitButton = styled.button`
-  width: 90%;
   background: #0099BA;
   box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
   border-radius: 4px;
@@ -181,12 +184,16 @@ const SubmitButton = styled.button`
   font-family: 'Montserrat',  sans-serif;
   margin-top: 10px;
   cursor: pointer;
+  padding: 10px 20px;
+  width: 100%;
 `
 
 const FormSelect = styled.select`
   font-size: 1rem;
-  width: 90%;
+  width: 100%;
   font-family: 'Montserrat',  sans-serif !important;
+  padding: 5px;
+  margin-bottom: 20px;
 `
 
 

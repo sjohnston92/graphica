@@ -53,9 +53,10 @@ const SubmitButton = styled.button`
   border: none;
   font-family: 'Montserrat',  sans-serif;
   margin-top: 10px;
-  display: flex;
   align-self: center;
   cursor: pointer;
+  padding: 10px 20px;
+  width: 100%;
 `
 
 
@@ -69,7 +70,8 @@ const StyledForm = styled.form`
 `
 const FormSelect = styled.select`
   font-size: 1rem;
-  width: 90%;
+  width: 100%;
+  padding 5px;
   font-family: 'Montserrat',  sans-serif !important;
 `
 
