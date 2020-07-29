@@ -2,7 +2,7 @@ import React from 'react';
 import { AuthConsumer } from '../../providers/AuthProvider';
 import { ImageConsumer } from '../../providers/ImageProvider';
 import axios from 'axios';
-import deleteImg from '../../img/delete.png';
+import deleteImg from '../../img/delete_24px.svg';
 import styled from 'styled-components';
 const RemoveImage = (props) => {
 
@@ -35,6 +35,7 @@ const RemoveFromCollection = styled.div`
   display: flex;
   cursor: pointer;
   font-size: 12px;
+  color: #0099BA;
 `
 const RemoveDiv = styled.div`
 
@@ -43,8 +44,8 @@ const RemoveDiv = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 100%;
-  height: 30px;
-  width: 30px;  
+  height: 20px;
+  width: 20px;  
   cursor: pointer;
 
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AuthConsumer } from '../../providers/AuthProvider'
-import deleteImg from '../../img/delete.png';
-import editImg from '../../img/edit.jpg';
+import deleteImg from '../../img/delete_24px.svg';
+import editImg from '../../img/settings_24px.svg';
 import axios from 'axios';
 import styled from 'styled-components';
 import Modal from '../modal/Modal';
@@ -59,8 +59,17 @@ const EditPicture = (props) => {
 
   const RenderEditPicture = () => (
     <Wrapper>
-      <EditButton onClick={toggle} image={editImg} title="Edit"/>
-      <DeleteButton onClick={deleteImage} image={deleteImg} title="Delete" />
+      <Flex>
+
+        <Words onClick={toggle}>
+        <EditButton image={editImg} title="Edit"/>
+        Edit Picture
+        </Words>
+        <Words onClick={deleteImage}>
+        <DeleteButton image={deleteImg} title="Delete" /> 
+        Delete Picture
+        </Words>
+      </Flex>
         <Modal onClose={toggle} open={open}>               
           <FormWrapper>
               <FormHeader>edit picture info</FormHeader>
@@ -109,6 +118,17 @@ const EditPicture = (props) => {
     </>
   )
 }
+
+const Flex = styled.div`
+  display: flex;
+`
+const Words = styled.div`
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  font-size: 12px;
+  color: #0099BA;
+`
 
 const FormWrapper = styled.div`
   display: flex;
@@ -181,6 +201,7 @@ const FormSelect = styled.select`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: -6px;
 `
 const EditButton = styled.div `
 background-image: url(${props => props.image});
@@ -188,8 +209,8 @@ background-image: url(${props => props.image});
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 100%;
-  height: 30px;
-  width: 30px;  
+  height: 25px;
+  width: 25px;  
   cursor: pointer;
 `
 const DeleteButton = styled.div `

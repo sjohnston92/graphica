@@ -35,5 +35,6 @@ Rails.application.routes.draw do
       resources :pictures, only: [:index], module: :collections
     end   
 
+    get '*other', to: 'static#index'
   end
 end

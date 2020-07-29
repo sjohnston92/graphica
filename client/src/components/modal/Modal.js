@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-import closeImg from "../../img/redclose.jpg"
+import closeImg from "../../img/close_24px.svg"
  
 const Modal = ({children, onClose, open }) =>
   open
