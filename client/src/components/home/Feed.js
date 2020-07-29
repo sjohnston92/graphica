@@ -56,8 +56,6 @@ const Feed = (props) => {
   }
     return (
       <>
-        {/* { props.searching ? "Searching" : "Not Searching" } */}
- 
         <FeedDiv>
           <ColumnContainer>
             {column_arrays[0].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={updateFeedState}/></>)}

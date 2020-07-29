@@ -56,9 +56,7 @@ const PictureShow = (props) => {
   }
 
   const deleteImageState = () => {
-    alert("image has been deleted")
     props.toggleAndDelete(image.id)
-    //delete junctions.. maybe no need..
   }
 
   const renderCollections = () => (
