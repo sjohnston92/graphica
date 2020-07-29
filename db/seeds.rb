@@ -65,7 +65,7 @@ categories = Category.all
 IMAGE_URLS.map { |url| 
   Picture.create(
     category_id: (rand(18)+1), 
-    user_id: (rand(7)+2), 
+    user_id: (rand(4)+2), 
     title: "#{colors[rand(7)]}  #{Faker::Dessert.variety}".titleize,
     url: url,
     description: Faker::Lorem.sentence(word_count: 3, supplemental: true),
