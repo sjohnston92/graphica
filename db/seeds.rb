@@ -93,7 +93,7 @@ User.all.each do |user|
       description: "Here is a collection from the time that I was travelling to the old country.",
     )
     
-    # if pic_amount > 0
+    if pic_amount > 0
       for index in  (0..half_amount) 
       # for index in (0..pic_amount-1)
         CollectionPicture.create(collection_id: collection_1.id, picture_id: user.pictures[index].id)
@@ -102,7 +102,7 @@ User.all.each do |user|
       # for index in (0..pic_amount-1)
         CollectionPicture.create(collection_id: collection_2.id, picture_id: user.pictures[index].id)
       end
-    # end
+    end
     
   end
 end
