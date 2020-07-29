@@ -15,7 +15,7 @@ const AboutUs = () => {
     
     {name: 'Braden Church', 
       email: 'bradenchurch@gmail.com', 
-      avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595690175/tan-guy.jpeg.jpg', 
+      avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595988171/C734132E-A3DE-4A62-A2EB-8FE267626751_dxnosp.jpg', 
       banner: 'https://res.cloudinary.com/graphica/image/upload/v1595690134/roan-lavery-p9tE8gHjd6s-unsplash.jpg.jpg',
       contributionFront: 'Profile Page, Collection Page, Registration',
       description: 'I chose to work on the Graphica app because I felt like it would be the most real to life applications. I really enjoyed working on the routing and seeing the app come to life while watching the fronted and backend come to life.',
@@ -37,8 +37,8 @@ const AboutUs = () => {
       email: 'dleaver@gmail.com', 
       avatar: 'https://res.cloudinary.com/graphica/image/upload/v1594861200/WillyCrop.jpg.jpg',
       banner: 'https://res.cloudinary.com/graphica/image/upload/v1595725935/tetons_e1hvnu.jpg',
-      description: `I decided on this one because I thought it could be pretty in-depth, 
-      and that I would be able to apply a lot of what I had learned from the bootcamp and also pick up new coding skills. I learned many
+      description: `I thought this project would be pretty in-depth, 
+      and that I would be able to apply a lot of what I had learned from the bootcamp. I learned many
       concepts in Ruby on Rails and ReactJS along the way, and I also learned how to work
       on a somewhat complex idea in a group setting. It was challenging to finish on time, as well as collaborate efficiently. 
          `,
