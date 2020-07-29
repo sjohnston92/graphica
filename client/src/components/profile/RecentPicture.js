@@ -54,6 +54,10 @@ const StyledTitle = styled.p`
 
 const StyledDescription = styled.div`
   margin-top: 0.5rem;
+  width: 30rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 const ProfileCard = styled.div`
