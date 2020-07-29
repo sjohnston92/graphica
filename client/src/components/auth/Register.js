@@ -4,6 +4,7 @@ import { Button, Form, Segment, Header, Grid, } from 'semantic-ui-react';
 import Dropzone from 'react-dropzone';
 import logoFont from '../../fonts/Elianto-Regular.otf';
 import store from '../../img/login_page.jpg'
+import {Link, withRouter } from 'react-router-dom';
 import styled from "styled-components";
 
 class Register extends React.Component {
@@ -40,7 +41,7 @@ class Register extends React.Component {
     const { email, password, passwordConfirmation, first_name, last_name, tagline, file } = this.state;
     
     return (
-      <Row>
+      <Wrapper>
         <PictureGroup>
           <RegisterImage>
             <ImageContents>
@@ -54,125 +55,125 @@ class Register extends React.Component {
               <p>
                 Learn
               </p>
-              <br></br>
             </ImageContents>
-      </RegisterImage>
-    </PictureGroup>
-    <RegisterGroup>
-      <Segment basic>
-        <Header as='h1' textAlign='left'>Register</Header>
-        <Form onSubmit={this.handleSubmit}>
-        <Grid.Column width={4}>
-          {/* <Dropzone
-            onDrop={this.onDrop}
-            multiple={false}
-          >
-            {({ getRootProps, getInputProps, isDragActive}) => {
-              return (
-                <div
-                  {...getRootProps()}
-                  style={styles.dropzone}
-                >
-                  <input {...getInputProps()} />
-                  {
-                    isDragActive ?
-                      <p>Already loaded</p> :
-                      <p>Your picture here!</p>
-                  }
-                </div>
-              )
-            }}
-          </Dropzone> */}
-        </Grid.Column>
-        <br></br>
-        <Form.Input
-            label="First Name"
-            required
-            min-width="22%"
-            name='first_name'
-            value={first_name}
-            placeholder='First Name'
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            label="Last Name"
-            required
-            name='last_name'
-            value={last_name}
-            placeholder='Last Name'
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            label="Email"
-            required
-            autoFocus
-            name='email'
-            value={email}
-            placeholder='Email'
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            label="Password"
-            required
-            name='password'
-            value={password}
-            placeholder='Password'
-            type='password'
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            label="Confirm"
-            required
-            name='passwordConfirmation'
-            value={passwordConfirmation}
-            placeholder='Confirm'
-            type='password'
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            label="Bio"
-            required
-            name='tagline'
-            value={tagline}
-            placeholder='Tell us a little about yourself'
-            type='tagline'
-            onChange={this.handleChange}
-          />
-          <Segment textAlign='center' basic>
-            <Button primary type='submit'>Submit</Button>
-          </Segment>
-        </Form>            
-      </Segment>
+          </RegisterImage>
+        </PictureGroup>
+      <RegisterGroup>
+        <SegmentWrapper>
+        <Segment basic>
+          <GraphicaLogo>
+            GRAPHICA
+          </GraphicaLogo>
+          <Header as='h1' style={{fontSize: '36px'}} textAlign='left'>Register</Header>
+          <Form onSubmit={this.handleSubmit}>
+          <Grid.Column width={4}>
+          </Grid.Column>
+          <br></br>
+          <label>
+          <RegisterText>
+              First Name
+          </RegisterText> 
+          <RegisterInput
+              label="First Name"
+              required
+              min-width="22%"
+              name='first_name'
+              value={first_name}
+              placeholder='First Name'
+              onChange={this.handleChange}
+            />
+            </label>
+            <label>
+            <RegisterText>
+              Last Name
+            </RegisterText>   
+            <RegisterInput
+              label="Last Name"
+              required
+              name='last_name'
+              value={last_name}
+              placeholder='Last Name'
+              onChange={this.handleChange}
+            />
+            </label>
+            <label>
+            <RegisterText>
+              Email
+            </RegisterText>        
+            <RegisterInput
+              label="Email"
+              required
+              autoFocus
+              name='email'
+              value={email}
+              placeholder='Email'
+              onChange={this.handleChange}
+            />
+            </label>
+            <label>
+            <RegisterText>
+              Password
+            </RegisterText>
+            <RegisterInput
+              label="Password"
+              required
+              name='password'
+              value={password}
+              placeholder='Password'
+              type='password'
+              onChange={this.handleChange}
+            />
+            </label>
+            <label>
+            <RegisterText>
+              Confirm
+            </RegisterText>
+            <RegisterInput
+              label="Confirm"
+              required
+              name='passwordConfirmation'
+              value={passwordConfirmation}
+              placeholder='Confirm'
+              type='password'
+              onChange={this.handleChange}
+            />
+            </label>
+            <FormSubmit type='submit'>Submit</FormSubmit>
+          </Form>            
+        </Segment>
+        </SegmentWrapper>
+        <AboutUs>
+          <Link to={'/about_us'}>learn about our developers</Link>
+        </AboutUs>
+        <Home>
+          <Link to={'/'}>back to search</Link>
+        </Home>
       </RegisterGroup>
-    </Row>
+    </Wrapper>
     )
   }
 }
-const styles = {
-  dropzone: {
-    height: "150px",
-    width: "250px",
-    border: "1px dashed black",
-    borderRadius: "5px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "10px",
-  },
-}
 
-const Row = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 3rem);
+  min-height: 450px;
+`
+
+const SegmentWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 100px;
 `
 
 const PictureGroup = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 100%;
   flex: 1;
 
   @media (max-width: 812px;) {
@@ -180,40 +181,140 @@ const PictureGroup = styled.div`
   }
 `
 
+const GraphicaLogo = styled.div`
+  display: flex;
+  padding-bottom: 2rem;
+  margin-top: 1rem;
+  font-family: 'Elianto-Regular';
+  font-size: 42px;
+  @font-face {
+    font-family: 'Elianto-Regular';
+    src: url(${logoFont}) format("opentype");
+  }
+  color: #000000
+`
+
 const RegisterImage = styled.div`
   height: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
-  min-height: 725px;
-  color: white;
   background-size: cover;
   background-position: left;
   background-repeat: no-repeat;
   background-image: url(https://res.cloudinary.com/graphica/image/upload/v1593188740/droplet_hv3anl.jpg);
 `
 
-const RegisterGroup = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  justify-content: left;
-  align-items: flex-start;
-  margin-top: 1rem;
-  margin-left: 10rem;
-  flex: 1;
-`
-
 const ImageContents = styled.div`
   font-family: Montserrat;
-  padding-top: 2rem;
-  padding-left: -35rem;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: left;
-  margin-left: 2rem;
+  margin-left: 3rem;
+  color: white;
 `;
+
+const Home = styled.div`
+  position: absolute;
+  bottom: 0.5rem;
+  left: -9rem;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+
+  a:link {
+    color: #0099BA;
+  }
+
+  a:hover {
+    color: lightgrey;
+  }
+
+  a:active {
+    color: black;
+  }
+`
+
+const AboutUs = styled.div`
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1rem;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+
+  a:link {
+    color: #0099BA;
+  }
+
+  a:hover {
+    color: lightgrey;
+  }
+
+  a:active {
+    color: black;
+  }
+`
+
+const RegisterGroup = styled.div`
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: left;
+  align-items: flex-start;
+  margin-top: 0rem;
+  margin-left: 10rem;
+
+  flex: 1;
+`
+
+const RegisterForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  width: 20.5rem;
+`
+
+const RegisterText = styled.span`
+  display: inline-block;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  `
+
+const RegisterInput = styled.input`
+  border-radius: 0 !important;
+  border-width: 2px !important;
+  border-color: transparent !important;
+  margin-bottom: 1.5rem !important;
+  margin-right: 8rem;
+  background-color: lightgrey !important;
+  
+  ::placeholder {
+    color: black !important;
+  }
+  
+  &:focus {
+    border-color: black !important;
+    background-color: white !important;
+    ::placeholder {
+      color: grey !important;
+    }
+  }
+`
+
+const FormSubmit = styled.button`
+  align-self: flex-start;
+  padding: 0.75rem 2rem;
+  background: #0099BA;
+  box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
+  border-radius: 4px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-top: .5rem;
+`
 
 export default class ConnectedRegister extends React.Component {
   render() {

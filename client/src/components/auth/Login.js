@@ -40,7 +40,6 @@ class Login extends React.Component {
             <p>
               Learn
             </p>
-            <br></br>
           </ImageContents>
         </LoginImage>
       </PictureGroup>
