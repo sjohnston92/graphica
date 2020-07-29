@@ -22,16 +22,16 @@ const NewPictureButton = ({ isCurrentUser }) => {
 
 
 
-  const AddButton = styled.button`
-    width: 148px;
-    height: 38px;
-    
-    background: #0099BA;
-    box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
-    border-radius: 4px;
-    border: none;
-    color: white;
-    cursor: pointer;
-  `
+const AddButton = styled.button`
+  width: 148px;
+  height: 38px;
+  
+  background: #0099BA;
+  box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
+  border-radius: 4px;
+  border: none;
+  color: white;
+  cursor: pointer;
+`
 
 export default NewPictureButton;
