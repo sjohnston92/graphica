@@ -21,10 +21,10 @@ const ContactModal = ({ user }) => {
 
 
 const ContactInfo = styled.div`
-    color: black;
-    cursor: pointer;
-    display: inline;
-    `
+  color: #0099BA;
+  cursor: pointer;
+  display: inline;
+`
 
 export default ContactModal;
 

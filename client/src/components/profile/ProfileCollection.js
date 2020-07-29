@@ -18,7 +18,9 @@ class ProfileCollection extends React.Component {
     
     return(
       <Container>
-        {this.props.collection.title}
+        <StyledTitle>
+          {this.props.collection.title}
+        </StyledTitle>
         <Link to={`/collections/${this.props.collection.id}`}>
           <PictureArea>
               <CollectionImage url={pictures[0] ? pictures[0].url : ""} />
@@ -28,7 +30,9 @@ class ProfileCollection extends React.Component {
             </PictureAreaRight>
           </PictureArea>
         </Link>
-        {this.props.collection.description}
+        <StyledDescription>
+          {this.props.collection.description}
+        </StyledDescription>
       </Container>
     )
   }
@@ -51,6 +55,14 @@ const PictureAreaRight = styled.div`
   flex-shrink: 0;
   height: 100%;
   width: 50%;
+`
+const StyledTitle = styled.p`
+  font-size: 24px;
+  margin-bottom: 0.75rem !important;
+`
+
+const StyledDescription = styled.div`
+  margin-top: 0.5rem;
 `
 
 const CollectionImage = styled.div`

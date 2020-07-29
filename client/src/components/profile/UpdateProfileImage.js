@@ -27,7 +27,7 @@ class UpdateProfileImage extends React.Component {
 
   render() {
     return(
-      <form onSubmit={this.handleSubmit} style={{margin: "1rem"}} >
+      <form onSubmit={this.handleSubmit} style={{marginRight: "2rem"}} >
         <Dropzone
           onDrop={this.onDrop}
           multiple={false}>
@@ -37,7 +37,7 @@ class UpdateProfileImage extends React.Component {
                 {...getRootProps()}
                 style={styles.dropzone}>
                 <input {...getInputProps()} />
-                <img src={this.state.url.length > 0 ? this.state.url : this.props.user.image} style={{width: "100%"}}/>
+                <DropBackground url={this.state.url.length > 0 ? this.state.url : this.props.user.image}/>
                 { isDragActive ? <p>Already loaded</p> : <p></p> }
               </div>
             )
@@ -49,6 +49,8 @@ class UpdateProfileImage extends React.Component {
   }
 }
 const SubmitButton = styled.button`
+  padding: 0.75rem 1.25rem;
+  width: 148px;
   background: #0099BA;
   box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
   border-radius: 4px;
@@ -58,6 +60,16 @@ const SubmitButton = styled.button`
   margin-top: 10px;
   display: flex;
   align-self: center;
+  cursor: pointer;
+  `
+  
+const DropBackground = styled.div`
+  background-image: url(${props => props.url});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
 `
 
@@ -70,7 +82,6 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "10px",
   },
 }
 
