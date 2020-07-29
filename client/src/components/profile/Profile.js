@@ -94,7 +94,8 @@ const Wrapper = styled.div``
 
 // line underneath
 const Line = styled.div`
-border: 1px solid rgba(39, 39, 53, 0.75);
+  border-bottom: 1px solid rgba(39, 39, 53, 0.75);
+  margin: 0 5rem;
 `;
 
 const ProfileBottom = styled.div`
