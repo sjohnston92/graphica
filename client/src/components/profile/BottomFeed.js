@@ -67,7 +67,8 @@ const FeedDiv = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   margin: auto;
-  padding-top: 5%;
+  margin-top: 5rem;
+  align-items: center;
 `
 
 export default BottomFeed;

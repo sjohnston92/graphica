@@ -10,7 +10,7 @@ const ContactModal = ({ user }) => {
 
   return (
       <>
-        <ContactInfo onClick={ toggle }>See Contact</ContactInfo>
+        <ContactInfo onClick={ toggle }>see contact</ContactInfo>
         <Modal onClose={toggle} open={open}>
           <ContactTest user={ user } />
         </Modal>
@@ -21,10 +21,10 @@ const ContactModal = ({ user }) => {
 
 
 const ContactInfo = styled.div`
-    color: black;
-    cursor: pointer;
-    display: inline;
-    `
+  color: #0099BA;
+  cursor: pointer;
+  display: inline;
+`
 
 export default ContactModal;
 

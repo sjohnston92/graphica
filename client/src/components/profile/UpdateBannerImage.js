@@ -21,7 +21,7 @@ class UpdateBannerImage extends React.Component {
 
   render() {
     return(
-      <form onSubmit={this.handleSubmit} style={{margin: "1rem"}} >
+      <form onSubmit={this.handleSubmit} style={{marginRight: "2rem"}} >
         <Dropzone
           onDrop={this.onDrop}
           multiple={false}>
@@ -31,7 +31,7 @@ class UpdateBannerImage extends React.Component {
                 {...getRootProps()}
                 style={styles.dropzone}>
                 <input {...getInputProps()} />
-                <img src={this.state.url ? this.state.url : this.props.user.banner_image} style={{width: "100%"}}/>
+                <DropBackground url={this.state.url ? this.state.url : this.props.user.banner_image}/>
                 { isDragActive ? <p>Already loaded</p> : <p></p> }
               </div>
             )
@@ -52,20 +52,29 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "10px",
   },
 }
 
 const SubmitButton = styled.button`
     width: 148px;
-    height: 38px;
-    
+    padding: 0.75rem 1.25rem;
+    margin-top: 10px;
     background: #0099BA;
     box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
     border-radius: 4px;
     border: none;
     color: white;
     cursor: pointer;
-  `
+`
+
+const DropBackground = styled.div`
+  background-image: url(${props => props.url});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+`
 
 export default UpdateBannerImage;
