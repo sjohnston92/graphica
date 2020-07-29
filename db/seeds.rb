@@ -84,13 +84,13 @@ User.all.each do |user|
     collection_1 = Collection.create(
       user_id: user.id,
       title: "#{Faker::Appliance.equipment}".titleize,
-      description: "This is my collection that really means a lot to me. I made it from pictures I took from all around the world. I hope you enjoy.",
+      description: "This is my collection from pictures I took last summer.",
     )
     
     collection_2 = Collection.create(
       user_id: user.id, 
       title: Faker::Movies::HarryPotter.location,
-      description: "Here is a collection from the time that I was travelling to the old country.",
+      description: "Photos from college",
     )
     
     if pic_amount > 0

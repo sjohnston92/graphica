@@ -62,10 +62,18 @@ const PictureAreaRight = styled.div`
 const StyledTitle = styled.p`
   font-size: 24px;
   margin-bottom: 0.75rem !important;
+  width: 30rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 const StyledDescription = styled.div`
   margin-top: 0.5rem;
+  width: 30rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 const CollectionImage = styled.div`
