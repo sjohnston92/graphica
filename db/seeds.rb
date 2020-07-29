@@ -59,7 +59,7 @@ colors = []
   colors << color
 end
 
-#PICTURES (50)
+#PICTURES (47)
 users = User.all
 categories = Category.all
 IMAGE_URLS.map { |url| 
@@ -109,13 +109,13 @@ end
 
 #PICTURE COMMENTS (50)
   40.times do    
-    PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(50)+1), body: Faker::TvShows::BojackHorseman.quote)
+    PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(47)+1), body: Faker::Movies::BackToTheFuture.quote)
   end
   40.times do    
-    PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(50)+1), body: Faker::TvShows::Seinfeld.quote)
+    PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(47)+1), body: Faker::Movies::StarWars.quote)
   end
   40.times do    
-    PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(50)+1), body: Faker::TvShows::SouthPark.quote)
+    PictureComment.create(user_id: (rand(7)+2), picture_id: (rand(47)+1), body: Faker::Movies::VForVendetta.quote)
   end
   
 

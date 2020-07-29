@@ -91,8 +91,8 @@ const FeedDiv = styled.div`
   min-width: 1000px;
 `
 const ColumnContainer = styled.div`
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-top: 25px;
+  margin-left: 25px;
   width: calc(100% / 3);
   @media (max-width: 1600px) {};
   @media (max-width: 1100px) {}

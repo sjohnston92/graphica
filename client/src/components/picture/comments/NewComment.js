@@ -54,9 +54,10 @@ const StyledInput = styled.input`
   ::placeholder {
     font-family: Montserrat;
   }
+  padding: 1rem;
 `
 
 const StyledForm = styled.form`
   width: 100%;
-  margin-top: 20px;
+ 
 `

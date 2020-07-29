@@ -80,6 +80,7 @@ export const FeedProvider = (props) => {
       resetAndSearchPictures,
       setQuery,
       setCategoryId,
+      categoryId,
       categorySearch,
       query,
       searchPictures,

@@ -8,9 +8,21 @@ class ProfileCollectionFeed extends React.Component {
   state = { collections: [], user: null }
 
   componentDidMount() {
+    this.getCollections()
+  }
+
+  componentDidUpdate(prevProps) {
+    const prevId = prevProps.user.id;
+    const currentId = this.props.user.id;
+    if(prevId !== currentId) {
+      this.getCollections();
+    }
+  }
+
+  getCollections() {
     axios.get(`/api/users/${this.props.user.id}/collections`)
-      .then((res) => this.setState({ collections: res.data }))
-      .catch(console)
+    .then((res) => this.setState({ collections: res.data }))
+    .catch(console)
   }
 
   renderCollections = () => this.state.collections.map((collection) => (

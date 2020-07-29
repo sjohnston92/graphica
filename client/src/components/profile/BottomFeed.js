@@ -11,11 +11,23 @@ class BottomFeed extends React.Component {
   state = { pictures: [] }
 
   componentDidMount() {
-    axios.get(`/api/users/${this.props.user.id}/pictures`)
-      .then((res) => this.setState({ pictures: res.data }))
-      .catch(console)
+    this.getPictures()
+  }
+  
+  componentDidUpdate(prevProps) {
+    const prevId = prevProps.user.id;
+    const currentId = this.props.user.id;
+    if(prevId !== currentId) {
+      this.getPictures();
+    }
   }
 
+  getPictures() {
+    axios.get(`/api/users/${this.props.user.id}/pictures`)
+    .then((res) => this.setState({ pictures: res.data }))
+    .catch(console)
+  }
+  
   deletePicture = (incomingId) => {
     this.setState({ pictures: this.state.pictures.filter(a => a.id !== incomingId) })
   }

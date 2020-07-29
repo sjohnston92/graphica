@@ -74,6 +74,7 @@ const PictureShow = (props) => {
                   fetchCollection={props.fetchCollection}
                   image={image}
                   userId={user.id}
+                  toggle={props.toggle}
                 />
               </>
             ))}
@@ -86,6 +87,7 @@ const PictureShow = (props) => {
               fetchCollection={props.fetchCollection}
               image={image}
               userId={user.id}
+              toggle={props.toggle}
               /> 
 
           </>
@@ -105,9 +107,11 @@ const PictureShow = (props) => {
    <Wrapper>
       <UserInfoDiv>
         <UserInfoLeft>
-          <a href={`/Profile/${user.id}`}>
-            <UserImage image={user.image} />  
-          </a>
+          <div onClick={()=>props.toggle()}>
+            <Link to={`/profile/${user.id}`} >
+                <UserImage image={user.image} />  
+            </Link>
+          </div>
           <UserLeftContent>
             <NameDiv>
               {user.first_name} {user.last_name}
@@ -160,7 +164,7 @@ const PictureShow = (props) => {
         </InfoRight>
       </PictureDescriptionDiv>
         <Description> {image.description} </Description>
-      <Comments comments={comments} pictureId={props.imageId} setStatePictureShow={setStatePictureShow} deleteCommentState={deleteCommentState}/>
+      <Comments toggle={props.toggle} comments={comments} pictureId={props.imageId} setStatePictureShow={setStatePictureShow} deleteCommentState={deleteCommentState}/>
    </Wrapper>
   )
 }
@@ -197,6 +201,7 @@ const UserInfoDiv= styled.div`
 const UserInfoRight = styled.div`
   display: flex;
   align-items: center;
+  padding-right: 1rem;
 `
 const UserInfoLeft = styled.div`
   display: flex;
@@ -222,13 +227,13 @@ const UserLeftContent = styled.div`
   margin-top: 20px;
 `
 const NameDiv = styled.div`
-  font-size: 14px;
+  font-size: 16px;
   display: flex;
   align-items: center;
 `
 const EmailDiv = styled.div`
   color: gray;
-  font-size: 10px;
+  font-size: 12px;
   margin-bottom: 12px;
 `
 const PictureDiv = styled.div`

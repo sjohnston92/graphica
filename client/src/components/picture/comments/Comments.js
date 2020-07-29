@@ -20,7 +20,7 @@ const Comments = (props) => (
     <CommentsDiv>
       {props.comments.map((comment, index) => (
         <>
-          <Comment key={comment.id} {...comment} deleteCommentState={props.deleteCommentState}/>
+          <Comment toggle={props.toggle} key={comment.id} {...comment} deleteCommentState={props.deleteCommentState}/>
         </>
       ))}
     </CommentsDiv>
@@ -46,6 +46,7 @@ const InfoLeft = styled.div`
   font-weight: bold;
   font-size: 24px;
   margin-bottom: 10px;
+  padding-bottom: 1rem;
 `
 const CommentsDiv = styled.div`
   width: 100%;
