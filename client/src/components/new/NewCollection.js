@@ -4,6 +4,7 @@ import useModal from "../../hooks/useModal";
 import CollectionForm from "../collection/CollectionForm";
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
+import Gallery from "../../img/photo_library_24px.svg";
 
 const NewCollection = (props) => {
   const { open, toggle } = useModal();
@@ -16,9 +17,7 @@ const NewCollection = (props) => {
    <>
     <CollectionButton onClick={ toggle }>
       New Collection 
-      <svg width="1rem" height="1rem" viewBox="0 0 15 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M6 0H18C19.1 0 20 0.9 20 2V14C20 15.1 19.1 16 18 16H6C4.9 16 4 15.1 4 14V2C4 0.9 4.9 0 6 0ZM18 14V2H6V14H18ZM9.5 9.67L11.19 11.93L13.67 8.83L17 13H7L9.5 9.67ZM0 18V4H2V18H16V20H2C0.9 20 0 19.1 0 18Z" fill="white"/>
-      </svg>
+      <Icon src={Gallery} />
     </CollectionButton>
     <Modal onClose={toggle} open={open}>
       <CollectionForm handleRes={handleRes}/>
@@ -28,19 +27,24 @@ const NewCollection = (props) => {
 }
 
 
-  const CollectionButton = styled.button`
-    width: 148px;
-    height: 38px;
+const CollectionButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.25rem;
+  background: #0099BA;
+  box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
+  border-radius: 4px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-left: 1.5rem;
+`
 
-    background: #0099BA;
-    box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
-    border-radius: 4px;
-    color: white;
-    margin-left: 20px;
-    border: none;
-    font-family: 'Montserrat',  sans-serif;
-    cursor: pointer;
-
-  `
+const Icon = styled.img`
+  height: 1.15rem;
+  margin-left: 0.5rem;
+  filter: invert(100%) sepia(0%) saturate(7488%) hue-rotate(11deg) brightness(98%) contrast(97%);
+`
 
 export default withRouter(NewCollection);

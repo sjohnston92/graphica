@@ -77,27 +77,30 @@ class PictureForm extends React.Component {
         <StyledLine></StyledLine>
         <FormWrapper>
         <StyledForm onSubmit={this.handleSubmit} >
-          <Dropzone
-            onDrop={this.onDrop}
-            multiple={false}
-          >
-            {({ getRootProps, getInputProps, isDragActive }) => {
-              return (
-                <div
-                  {...getRootProps()}
-                  style={styles.dropzone}
-                >
-                  <input {...getInputProps()} />
-                <img src={this.state.url} style={{width: "100%"}}/>
-                  {
-                    isDragActive ?
-                      <p>Drop files here...</p> :
-                      <p>Click Here...</p>
-                  }
-                </div>
-              )
-            }}
-          </Dropzone>
+          <StyledLabel>
+            Click or drop files here
+            <Dropzone
+              onDrop={this.onDrop}
+              multiple={false}
+            >
+              {({ getRootProps, getInputProps, isDragActive }) => {
+                return (
+                  <div
+                    {...getRootProps()}
+                    style={styles.dropzone}
+                  >
+                    <input {...getInputProps()} />
+                  <DropBackground url={this.state.url} />
+                    {/* {
+                      isDragActive ?
+                        <p>Drop files here...</p> :
+                        <p>Click Here...</p>
+                    } */}
+                  </div>
+                )
+              }}
+            </Dropzone>
+          </StyledLabel>
             <StyledLabel>
               title: 
               <TitleInput
@@ -210,21 +213,31 @@ const FormSelect = styled.select`
   margin-bottom: 10px;
 `
 
-
+const DropBackground = styled.div`
+  background-image: url(${props => props.url});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+`
 
 const styles = {
   dropzone: {
     height: "150px",
-    width: "150px",
+    width: "100%",
     border: "1px dashed black",
     borderRadius: "5px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "10px",
-    marginBottom: "10px"
+    marginBottom: "10px",
+    marginTop: "4px"
   },
 }
+
+
 const ConnectedPictureForm = (props) => (
   <AuthConsumer> 
     { auth => <PictureForm { ...props } auth={auth} />}

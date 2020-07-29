@@ -48,7 +48,7 @@ const Wrapper = styled.div`
 const Flex = styled.div`
   display: flex;
   width: 100%;
-  padding: 2rem 5rem;
+  padding: 2rem 7.5rem;
 `
 
 const RecentDiv = styled.div`

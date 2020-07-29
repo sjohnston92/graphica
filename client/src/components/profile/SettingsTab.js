@@ -152,6 +152,7 @@ const UpdateButton = styled.button`
   display: flex;
   align-self: center;
   cursor: pointer;
+  padding: 0.75rem 1.25rem; 
 `
 
 const styles = {
