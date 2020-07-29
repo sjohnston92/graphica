@@ -13,11 +13,11 @@ const AboutUs = () => {
     },
     
     {name: 'Braden Church', 
-      email: 'none@none.com', 
+      email: 'bradenchurch@gmail.com', 
       avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595690175/tan-guy.jpeg.jpg', 
       banner: 'https://res.cloudinary.com/graphica/image/upload/v1595690134/roan-lavery-p9tE8gHjd6s-unsplash.jpg.jpg',
-      description: '',
-      contribution: ''
+      contribution: '',
+      description: 'I chose to work on the Graphica app because I felt like it would be the most real to life applications. I really enjoyed working on the routing and seeing the app come to life while watching the fronted and backend come to life.'
     }, 
     
     {name: 'Daniel McKenna', 

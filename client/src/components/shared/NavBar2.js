@@ -48,7 +48,8 @@ const NavBar = (props) => {
               <SearchDiv onClick={()=>props.history.push(`/`)}>
                 <NavSearchBar />
               </SearchDiv>
-                <Link to='/login'>Profile </Link>&nbsp;|&nbsp; <Link to='/login'>Post</Link>
+                <Link to='/login'>Profile </Link>&nbsp;|&nbsp; 
+                <Link to='/login'>Post </Link>
           </Right>
         </Wrapper>
         <ClearFix />
