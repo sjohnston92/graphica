@@ -10,7 +10,7 @@ const ContactModal = ({ user }) => {
 
   return (
       <>
-        <ContactInfo onClick={ toggle }>See Contact</ContactInfo>
+        <ContactInfo onClick={ toggle }>see contact</ContactInfo>
         <Modal onClose={toggle} open={open}>
           <ContactTest user={ user } />
         </Modal>

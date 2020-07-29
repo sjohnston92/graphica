@@ -33,7 +33,7 @@ class RecentPicture extends React.Component {
         </StyledTitle>
         <ProfileCard url={picture.url} onClick={this.toggleAndSetId} />
         <StyledDescription>
-          { picture.description }
+          { picture.description.slice() }
         </StyledDescription>
       </Container>
     )
@@ -45,6 +45,10 @@ const Container = styled.div`
 `
 const StyledTitle = styled.p`
   font-size: 24px;
+  width: 30rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-bottom: 0.75rem !important;
 `
 
