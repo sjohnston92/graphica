@@ -48,11 +48,11 @@ const AboutUs = () => {
     }, 
 
     {name: 'Jake Sasser', 
-      email: 'none@none.com', 
-      avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595459547/juno-jo-_0JsVnHSc0I-unsplash.jpg.jpg', 
-      banner: 'https://res.cloudinary.com/graphica/image/upload/v1595465676/white-flowers.jpg.jpg',
+      email: 'sasserjacob@gmail.com', 
+      avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595903722/IMG_0907_2_h2xtxr.jpg', 
+      banner: 'https://res.cloudinary.com/graphica/image/upload/v1594947500/alex-lange-pv14V3sRB0c-unsplash_flxbhi.jpg.jpg',
       description: '' 
-    }
+    },
   ]
 
   return (
