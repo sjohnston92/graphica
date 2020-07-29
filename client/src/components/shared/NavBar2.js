@@ -130,7 +130,7 @@ const ClearFix = styled.div`
 const Right = styled.div`
   display: flex;
   align-items: center;
-  width: 340px;
+  width: 300px;
   justify-content: space-between;
 `
 const RightLogout = styled.div`

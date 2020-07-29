@@ -8,14 +8,16 @@ const AboutUs = () => {
       email: 'none@none.com',
       avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595459547/juno-jo-_0JsVnHSc0I-unsplash.jpg.jpg', 
       banner: 'https://res.cloudinary.com/graphica/image/upload/v1595689078/dewang-gupta-tcLcXdiAzDA-unsplash_eqq8fq.jpg',
-      description: ''
+      description: '',
+      contribution: ''
     },
     
     {name: 'Braden Church', 
-      email: 'none@none.com', 
+      email: 'bradenchurch@gmail.com', 
       avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595690175/tan-guy.jpeg.jpg', 
       banner: 'https://res.cloudinary.com/graphica/image/upload/v1595690134/roan-lavery-p9tE8gHjd6s-unsplash.jpg.jpg',
-      description: ''
+      contribution: '',
+      description: 'I chose to work on the Graphica app because I felt like it would be the most real to life applications. I really enjoyed working on the routing and seeing the app come to life while watching the fronted and backend come to life.'
     }, 
     
     {name: 'Daniel McKenna', 
@@ -36,7 +38,8 @@ const AboutUs = () => {
       and that I would be able to apply a lot of what I had learned from the bootcamp and also pick up new coding skills. I learned many
       concepts in Ruby on Rails and ReactJS along the way, and I also learned how to work
       on a somewhat complex idea in a group setting. It was challenging to finish on time, as well as collaborate efficiently. 
-         `
+         `,
+      contribution: ''
 
     }, 
     
@@ -44,15 +47,17 @@ const AboutUs = () => {
       email: 'jkoskimaki@gmail.com', 
       avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595796766/jacob_gf3qrh.jpg',
       banner: 'https://res.cloudinary.com/graphica/image/upload/v1595464168/elephant.jpeg.jpg',
-      description: 'As a photography enthusiast, the Graphica project naturally stood out to me as a way to apply programming skills towards an exciting end project. Graphica gave me a chance to work on the backend framework and apply novel design principles using React and Ruby on Rails.' 
+      description: 'As a photography enthusiast, the Graphica project naturally stood out to me as a way to apply programming skills towards an exciting end project. Graphica gave me a chance to work on the backend framework and apply novel design principles using React and Ruby on Rails.',
+      contribution: ''
     }, 
 
     {name: 'Jake Sasser', 
-      email: 'none@none.com', 
-      avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595459547/juno-jo-_0JsVnHSc0I-unsplash.jpg.jpg', 
-      banner: 'https://res.cloudinary.com/graphica/image/upload/v1595465676/white-flowers.jpg.jpg',
-      description: '' 
-    }
+      email: 'sasserjacob@gmail.com', 
+      avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595903722/IMG_0907_2_h2xtxr.jpg', 
+      banner: 'https://res.cloudinary.com/graphica/image/upload/v1594947500/alex-lange-pv14V3sRB0c-unsplash_flxbhi.jpg.jpg',
+      description: '',
+      contribution: ''
+    },
   ]
 
   return (
@@ -115,8 +120,8 @@ const BannerRight = styled.div`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  margin-left: 5rem;
-  align-self: center;
+  margin: 11.7rem 0 0 20rem;
+  align-self: flex-start;
 `
 
 const StyledP = styled.p`

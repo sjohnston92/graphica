@@ -1,5 +1,6 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
+import styled from 'styled-components';
 
 
 class UpdateBannerImage extends React.Component {
@@ -31,12 +32,12 @@ class UpdateBannerImage extends React.Component {
                 style={styles.dropzone}>
                 <input {...getInputProps()} />
                 <img src={this.state.url ? this.state.url : this.props.user.banner_image} style={{width: "100%"}}/>
-                { isDragActive ? <p>Already loaded</p> : <p>Drop items here</p> }
+                { isDragActive ? <p>Already loaded</p> : <p></p> }
               </div>
             )
           }}
         </Dropzone>
-        <button type="submit" >Update Banner Image</button>
+        <SubmitButton type="submit" >Update Banner Image</SubmitButton>
       </form>
     )
   }
@@ -54,5 +55,17 @@ const styles = {
     padding: "10px",
   },
 }
+
+const SubmitButton = styled.button`
+    width: 148px;
+    height: 38px;
+    
+    background: #0099BA;
+    box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
+    border-radius: 4px;
+    border: none;
+    color: white;
+    cursor: pointer;
+  `
 
 export default UpdateBannerImage;

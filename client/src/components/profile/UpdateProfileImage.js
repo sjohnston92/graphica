@@ -1,5 +1,6 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
+import styled from 'styled-components';
 
 class UpdateProfileImage extends React.Component {
 
@@ -37,16 +38,28 @@ class UpdateProfileImage extends React.Component {
                 style={styles.dropzone}>
                 <input {...getInputProps()} />
                 <img src={this.state.url.length > 0 ? this.state.url : this.props.user.image} style={{width: "100%"}}/>
-                { isDragActive ? <p>Already loaded</p> : <p>Drop items here</p> }
+                { isDragActive ? <p>Already loaded</p> : <p></p> }
               </div>
             )
           }}
         </Dropzone>
-        <button type="submit" >Update Profile Image</button>
+        <SubmitButton type="submit" >Update Profile Image</SubmitButton>
       </form>
     )
   }
 }
+const SubmitButton = styled.button`
+  background: #0099BA;
+  box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
+  border-radius: 4px;
+  color: white;
+  border: none;
+  font-family: 'Montserrat',  sans-serif;
+  margin-top: 10px;
+  display: flex;
+  align-self: center;
+  cursor: pointer;
+`
 
 const styles = {
   dropzone: {

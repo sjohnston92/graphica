@@ -13,7 +13,7 @@ const NavSearchBar = (props) => {
   });
 
   return (
-    <StyledInput
+    <StyledInput 
       type="text"
       name="formName"
       value={props.query}
@@ -21,6 +21,7 @@ const NavSearchBar = (props) => {
       onChange={(e) => props.setQuery(e.target.value)}
       
     />
+    
   )
 }
 
