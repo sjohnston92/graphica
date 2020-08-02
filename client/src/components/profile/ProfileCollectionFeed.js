@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import ProfileCollection from './ProfileCollection';
+import ProfileCollection from './ProfileCollectionCard';
 
 
 class ProfileCollectionFeed extends React.Component {

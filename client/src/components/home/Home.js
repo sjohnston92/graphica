@@ -79,10 +79,8 @@ const BottomText = styled.div`
 
 `
 const FreeForever = styled.div`
-
 `
 const AboutUs = styled.div`
-
   a:link {
     color: white;
   }
@@ -95,9 +93,7 @@ const AboutUs = styled.div`
   a:active {
     color: white;
   }
-
   cursor: pointer;
-
 `
 const HeroSubText = styled.p`
   padding-top: 1rem;

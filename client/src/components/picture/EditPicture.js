@@ -7,6 +7,9 @@ import styled from 'styled-components';
 import Modal from '../modal/Modal';
 import useModal from '../../hooks/useModal';
 
+//Convert title category & description to state hook
+//Consider dividing into two components
+
 const EditPicture = (props) => {
   const [ title, setTitle ] = useState(props.image.title)
   const [ description, setDescription ] = useState(props.image.description)

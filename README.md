@@ -12,6 +12,8 @@ Aug 1, 2020
       (see all users pictures at once and be able to select one or many to add or remove from collection)
       
     3. Click on comment icon to comment
+
+    4. Favorites Tab
       
   Fix these bugs: 
     
@@ -27,9 +29,14 @@ Aug 1, 2020
     
     3. Add icons to comments and views on Card.js
     
-    4. Add main icon to index.html
+    4. Add main icon to index.html --Done
     
     5. Category Bar has l-r arrows that can be clicked on to scroll when content overflows
+    
+    6. Make Mobile Friendly
+
+    7. Use Cloudinary API to load thumbnails, etc..
+    
     
   Refactor Code:
   

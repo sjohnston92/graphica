@@ -34,7 +34,7 @@ const CollectionShow = (props) => {
 
   const handleRes = (res) => setCollection(res.data);
   
-  const deleteCollection = (incomingId) => {
+  const deleteCollection = (incomingId) => { //MODALIZE THIS
     const result = window.confirm("Delete Collection? (This will not delete its pictures)")
     if (result) {
       axios.delete(`/api/collections/${incomingId}`)

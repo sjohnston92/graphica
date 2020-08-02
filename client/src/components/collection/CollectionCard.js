@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import styled from 'styled-components'
 import Modal from '../modal/Modal';
 import useModal from '../../hooks/useModal';
@@ -7,19 +6,7 @@ import PictureShow from '../picture/PictureShow'
 import { ImageConsumer } from '../../providers/ImageProvider'
 
 const CollectionCard = (props) => {
-  const [collectionPictures, setCollectionPictures] = useState([])
   const { open, toggle } = useModal();
-
-  useEffect(() => {
-    // axios.get(`api/collections/${props.id}/collection_pictures`)
-    // .then(res => setCollectionPictures(res.data))
-    // .catch(console.log)
-  //  toggle()
-  }, [])
-
-  const updateViewsState = (incomingId) => {
-    // if (id === incomingId) {setViews(views + 1)}
-  }
 
   const toggleAndSetId = () => {
     props.setImageId(props.picture.id)
@@ -33,12 +20,11 @@ const CollectionCard = (props) => {
   return (
     <CardBorder>
       <Modal onClose={toggle} open={open}> 
-          <PictureShow toggle={toggle} updateViewsState={updateViewsState} toggleAndDelete={toggleAndDelete}/>   
+          <PictureShow toggle={toggle} toggleAndDelete={toggleAndDelete}/>   
       </Modal>       
-      <CardDiv onClick={toggleAndSetId} >
-        <StyledImage src={props.picture.url}  />
+      <CardDiv onClick={toggleAndSetId}>
+        <StyledImage src={props.picture.url} />
       </CardDiv>
-
     </CardBorder>
   )
 }
@@ -56,13 +42,11 @@ const StyledText = styled.div`
   text-align: left;
   width: 90%;
   visibility: hidden;
-  
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
   color: white;
-
 `
 const CardDiv = styled.div`
   cursor: zoom-in;
@@ -72,7 +56,6 @@ const CardDiv = styled.div`
         visibility: visible;
   }
 `
-
 const CardBorder = styled.div`
   margin-bottom: 20px;
 `
@@ -111,7 +94,6 @@ const CardFooterRight = styled.div`
   cursor: default;
   color: #96969C;
 `
-
 
 const ConnectedCollectionCard = (props) => (
   <ImageConsumer>

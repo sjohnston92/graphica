@@ -28,7 +28,7 @@ const Card = (props) => {
 
   const updateViewsState = (incomingId) => {
     if (id === incomingId) {setViews(views + 1)}
-    }
+  }
 
   const toggleAndSetId = () => {
     props.setImageId(id)
@@ -47,13 +47,12 @@ const Card = (props) => {
       </Modal>       
       <CardDiv onClick={toggleAndSetId} >
         <StyledText>{props.image.title}</StyledText>
-        <StyledImage src={url}  />
+        <StyledImage src={url} />
       </CardDiv>
       <PointerOff>
         <CardFooterLeft>
           <Link to={`/profile/${user.id}`} >
             <Flex>
-
               <SmallImage image={user.image}/>
               &nbsp;{user.first_name} {user.last_name}
             </Flex>
@@ -85,16 +84,12 @@ const StyledText = styled.div`
   text-align: left;
   width: 90%;
   visibility: hidden;
-  
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
   color: white;
-
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.35), 0px -2px 4px rgba(255, 255, 255, 0.35);
-
-
 `
 const CardDiv = styled.div`
   cursor: zoom-in;

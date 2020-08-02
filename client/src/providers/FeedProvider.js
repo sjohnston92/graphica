@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 const FeedContext = React.createContext();
@@ -14,15 +14,10 @@ export const FeedProvider = (props) => {
 
   const categorySearch = (catId) => {
     setSearching(true)
-    // console.log("Category Id:", categoryId)
-    // console.log("CATEGORY SEARCH FIRED")
-    // console.log("pictures.length",pictures.length)
-    // console.log("query", query)
     axios.get(`/api/pictures/?search=${query}&limit=11&offset=${0}&category_id=${catId}`)
       .then(res => {
         setPictures(res.data);
         setSearching(false);
-        // setCategoryId(null)
       })
       .catch(console.log)
   }
@@ -31,9 +26,6 @@ export const FeedProvider = (props) => {
     return new Promise((resolve, reject) => {
       setCategoryId(null)
       setSearching(true)
-      // console.log(" REGULAR SEARCH FIRED")
-      // console.log("pictures.length",pictures.length)
-      // console.log("query", query)
       axios.get(`/api/pictures/?search=${query}&limit=11&offset=${pictures.length}&category_id=${categoryId}`)
         .then(res => {
           setPictures(pictures.concat(res.data));
@@ -46,15 +38,11 @@ export const FeedProvider = (props) => {
         })
     })
   }
-  // console.log("category Id", categoryId)
 
   const resetAndSearchPictures = () => {
     return new Promise((resolve, reject) => {
       setCategoryId(null)
       setSearching(true)
-      // console.log("RESET SEARCH FIRED")
-      // console.log(pictures.length)
-      // console.log("query", query)
       axios.get(`/api/pictures/?search=${query}&limit=11&offset=${0}&category_id=${categoryId}`)
         .then(res => {
           setPictures(res.data);
@@ -90,7 +78,6 @@ export const FeedProvider = (props) => {
       { props.children }
     </FeedContext.Provider>     
   )
-  
 }
 
 export default FeedProvider;

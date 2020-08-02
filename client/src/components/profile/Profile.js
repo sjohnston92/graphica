@@ -1,16 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProfileNavbar from './ProfileNavbar';
-import Feed from '../home/Feed';
 import ProfileHero from './ProfileHero';
-import CollectionTab from './CollectionTab';
+import ProfileCollectionFeed from './ProfileCollectionFeed';
 import SettingsTab from './SettingsTab';
 import axios from "axios";
 import { AuthConsumer } from "../../providers/AuthProvider";
-import BottomFeed from './BottomFeed';
+import ProfileRecent from './ProfileRecent';
 import NewCollection from '../new/NewCollection';
-import NewPictureModal from '../modal/NewPictureModal';
 import NewPictureButton from '../new/NewPictureButton';
+import Favorites from './Favorites'
 
 
 class Profile extends React.Component {
@@ -51,11 +50,11 @@ class Profile extends React.Component {
   renderBottom = () => {
     switch(this.state.currentTab) {
       case "recent":
-        return this.state.user ? <BottomFeed user={this.state.user} isCurrentUser={this.state.isCurrentUser} /> : null
+        return this.state.user ? <ProfileRecent user={this.state.user} isCurrentUser={this.state.isCurrentUser} /> : null
       case "collections":
-        return this.state.user ? <CollectionTab user={this.state.user} /> : null
+        return this.state.user ? <ProfileCollectionFeed user={this.state.user} /> : null
       case "favorites":
-        return <p>Favorites go here</p>
+        return this.state.user && <Favorites />
       case "settings":
         return this.state.user ? <SettingsTab setUser={this.setUser} user={this.state.user} /> : null
       default:

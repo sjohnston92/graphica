@@ -12,7 +12,6 @@ export const ImageProvider = (props) => {
   const [ pictureJunctions, setPictureJunctions ] = useState(null);
   const [ userCollections, setUserCollections ] = useState([{title: 'there are none'}])
 
-  
   const fetchUser = (userId) => {
     return new Promise((resolve, reject) => {
       axios.get(`/api/users/${userId}`)
@@ -56,6 +55,7 @@ export const ImageProvider = (props) => {
   const updateViews = (image) => {
     axios.patch(`/api/pictures/${image.id}`, {views: image.views+1, url: image.url, title: image.title, description: image.description, user_id: image.user_id, category_id: image.category_id})
   }
+
   const fetchCategory = (catId) => {
     return new Promise((resolve, reject) => {
       axios.get(`/api/categories/${catId}`)
@@ -68,6 +68,7 @@ export const ImageProvider = (props) => {
       })
     })
   }
+
   const fetchJunction = (id) => {
       axios.get(`/api/pictures/${id}/collection_pictures`)
       .then( res => {
@@ -130,7 +131,6 @@ export const ImageProvider = (props) => {
       addImageToCollection,
       fetchCollections,
       userCollections,
-      
     }}> 
       { props.children }
     </ImageContext.Provider>     

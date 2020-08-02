@@ -32,11 +32,9 @@ const StyledInput = styled.input`
   font-family: Montserrat;
   font-size: 10px;
   font-weight: 600;
-
   text-indent:10px;
   ::placeholder {
     font-family: Montserrat;
-    
     font-weight: 600;
     text-shadow: 0px 2px 4px rgba(255, 255, 255, 0.25), 0px 2px 4px rgba(0, 0, 0, 0.25);
     color: rgba(39, 39, 53, 0.75);

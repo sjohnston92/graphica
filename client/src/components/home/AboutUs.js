@@ -2,8 +2,18 @@ import React from 'react';
 import styled from "styled-components";
 
 const AboutUs = () => {
-
   const developers = [
+    {name: 'Danny Leaver', 
+      email: 'dleaver@gmail.com', 
+      avatar: 'https://res.cloudinary.com/danleaver/image/upload/v1596344132/photo_o4dy0m.jpg',
+      banner: 'https://res.cloudinary.com/graphica/image/upload/v1595725935/tetons_e1hvnu.jpg',
+      description: `I have decided to continue the project on my own referring to it as Version 2.0. 
+        Below are the About sections from the original version.
+        `,
+      contributionFront: ` See GitHub for List of Changes `,
+      contributionEnd: ' ... ',
+      link: "https://github.com/danleaver/graphica/blob/master/README.md",
+    }, 
     {name: 'Nick Ristagno', 
       email: 'nick.ristagno@gmail.com',
       avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595961629/nick_profile_mkdumk.jpg', 
@@ -12,7 +22,6 @@ const AboutUs = () => {
       contributionFront: 'Designed Wireframes',
       contributionEnd: 'Oversaw all procedures'
     },
-    
     {name: 'Braden Church', 
       email: 'bradenchurch@gmail.com', 
       avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595988171/C734132E-A3DE-4A62-A2EB-8FE267626751_dxnosp.jpg', 
@@ -21,7 +30,6 @@ const AboutUs = () => {
       description: 'I chose to work on the Graphica app because I felt like it would be the most real to life applications. I really enjoyed working on the routing and seeing the app come to life while watching the fronted and backend come to life.',
       contributionEnd: 'User Authentication, React-Router-Dom'
     }, 
-    
     {name: 'Daniel McKenna', 
       email: 'mckenna.daniel15@gmail.com', 
       avatar: 'https://res.cloudinary.com/graphica/image/upload/v1594778414/DSC03579.JPG.jpg', 
@@ -32,7 +40,6 @@ const AboutUs = () => {
       contributionFront: 'Forms, Collection Show, Developer Page',
       contributionEnd: 'Controllers, Cloudinary API, Routes'
     }, 
-
     {name: 'Danny Leaver', 
       email: 'dleaver@gmail.com', 
       avatar: 'https://res.cloudinary.com/graphica/image/upload/v1594861200/WillyCrop.jpg.jpg',
@@ -44,9 +51,7 @@ const AboutUs = () => {
          `,
       contributionFront: 'Homepage, Searchbar, Modals',
       contributionEnd: 'Seeds, Searchbar, Routes'
-
     }, 
-    
     {name: 'Jacob Koskimaki', 
       email: 'jkoskimaki@gmail.com', 
       avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595796766/jacob_gf3qrh.jpg',
@@ -55,7 +60,6 @@ const AboutUs = () => {
       contributionFront: 'Login, Registration, Form styling',
       contributionEnd: 'Controllers and Routes'
     }, 
-
     {name: 'Jake Sasser', 
       email: 'sasserjacob@gmail.com', 
       avatar: 'https://res.cloudinary.com/graphica/image/upload/ar_1:1,b_rgb:262c35,bo_2px_solid_rgb:fdfdfd,c_fill,g_auto,r_max,w_1000/v1595984208/IMG_0907_new_n2yswb.jpg', 
@@ -69,7 +73,6 @@ const AboutUs = () => {
   return (
     <>
       {developers.map(developer => (
-
         <BannerImage url={developer.banner}>
           <BannerLeft>
             <BannerLeftTop>
@@ -81,7 +84,6 @@ const AboutUs = () => {
                 <UserEmail>
                   {developer.email}
                 </UserEmail>
-                
               </BannerContents>
             </BannerLeftTop>
               <BioSubText>
@@ -91,23 +93,17 @@ const AboutUs = () => {
           <BannerRight>
             <FrontEndDiv>
               <StyledP>Front End:</StyledP>
-              <ConSubText>
-                {developer.contributionFront}
-              </ConSubText>
+              {developer.contributionFront} 
+              {developer.link && <a href={developer.link}>GitHub Readme</a> }
             </FrontEndDiv>
             <BackEndDiv>
               <StyledP>Back End:</StyledP>
-              <ConSubText>
                 {developer.contributionEnd}
-              </ConSubText>
             </BackEndDiv>
           </BannerRight>
-
-
         </BannerImage>
       ))}
     </>
-    
   )
 }
 
@@ -122,8 +118,7 @@ const BannerImage = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-image: linear-gradient(89.41deg, #FFFFFF 37.43%, rgba(255, 255, 255, 0) 90.74%), url(${props => props.url});
-`;
-
+`
 const BannerLeft = styled.div`
   display: flex;
   flex-direction: column;
@@ -137,7 +132,6 @@ const BannerRight = styled.div`
   align-self: flex-start;
   flex-direction: column;
 `
-
 const StyledP = styled.p`
   width: 200px;
   height: 16.64px;
@@ -148,12 +142,10 @@ const StyledP = styled.p`
   line-height: 17px;
   color: black;
 `
-
 const BannerLeftTop = styled.div`
   display: flex;
   line-height: 17px;
 `
-
 const BannerContents = styled.div`
   display: flex;
   flex-direction: column;
@@ -161,7 +153,6 @@ const BannerContents = styled.div`
   align-items: flex-start;
   margin-left: 2rem;
 `
-
 // css calc function for accurate vh for the image
 const UserAvatar = styled.div`
   width: 186px;
@@ -172,8 +163,7 @@ const UserAvatar = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-image: url(${props => props.url});
-`;
-
+`
 const UserName = styled.p`
   width: 300px;
   height: 16.64px;
@@ -184,8 +174,6 @@ const UserName = styled.p`
   line-height: 17px;
   color: black;
 `
-
-//users email
 const UserEmail = styled.p`
   width: 130px;
   height: 15px;
@@ -195,10 +183,7 @@ const UserEmail = styled.p`
   font-size: 12px;
   line-height: 15px;
   color: black;
-
 `
-
-  // about me under profile picture
 const BioSubText = styled.p`
   width: 425px;
   height: 16.64px;
@@ -210,20 +195,14 @@ const BioSubText = styled.p`
   line-height: 17px;
   color: black;
 `
-
 const FrontEndDiv = styled.div`
  display: flex;
  flex-direction: column;
 `
-
 const BackEndDiv = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 6.7rem;
 `
-const ConSubText = styled.p`
-`
-
-
 
 export default AboutUs

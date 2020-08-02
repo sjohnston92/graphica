@@ -25,13 +25,10 @@ const Feed = (props) => {
   function handleScroll() {
     if ((window.innerHeight + window.pageYOffset) >= document.body.scrollHeight - 1000) {
       setIsFetching(true);
-      // console.log(isFetching)
-      
     }
   }
   
   function getMore() {
-    // console.log("getMOREfired")
     if(noMorePictures) return;
     props.searchPictures()
       .then((pictures) => {
@@ -77,7 +74,6 @@ const Feed = (props) => {
 };
 
 const SearchResults = styled.div`
-
 `
 const NoContent = styled.div`
   display: flex;  

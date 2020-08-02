@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from "axios";
 import RecentPicture from './RecentPicture';
 
-class BottomFeed extends React.Component {
+class ProfileFeed extends React.Component {
   state = { pictures: [] }
 
   componentDidMount() {
@@ -59,7 +59,6 @@ const NoContent = styled.div`
   font-size: 16px;
   color: grey;
 `
-
 const FeedDiv = styled.div`
   width: 75vw;
   min-width: 1000px;
@@ -71,4 +70,4 @@ const FeedDiv = styled.div`
   align-items: center;
 `
 
-export default BottomFeed;
+export default ProfileFeed;

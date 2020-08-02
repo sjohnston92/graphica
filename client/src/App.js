@@ -3,15 +3,15 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './components/home/Home';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-import NavBar from './components/shared/NavBar2';
+import Navbar from './components/shared/Navbar';
 import Catbar from './components/shared/Catbar';
 import NoMatch from './components/shared/NoMatch';
 import FetchUser from './components/auth/FetchUser';
-import Dash from './components/shared/Dash';
+// import Dash from './components/shared/Dash';
+import Users from './components/users/Users';
 import Profile from './components/profile/Profile';
 import Collection from './components/collection/CollectionShow';
-import PictureCollection from './components/picture/PictureCollection';
-import AboutUs from './components/home/AboutUs'
+import AboutUs from './components/home/AboutUs';
 
 const App = () => {
   const [showCatbar, setShowCatbar] = useState(false)
@@ -23,17 +23,18 @@ const App = () => {
   const LoadLogin = (props) => { return <Login {...props} toggleCatbar={toggleCatbar}/>}
   const LoadRegister = (props) => { return <Register {...props} toggleCatbar={toggleCatbar}/>}
 
-  return(
+  return(                                           //Did Nick say to render Catbar inside of NavBar??
     <>
-      <NavBar />
-      {(showCatbar) ? <Catbar /> : null}
+      <Navbar />
+      {(showCatbar) ? <Catbar /> : null} 
       <FetchUser>
         <Switch>
           <Route exact path='/' render={LoadHome} />
           <Route exact path='/about_us' component={AboutUs} />
           <Route exact path='/profile/:id' render={LoadProfile} />
           <Route exact path='/collections/:id' render={LoadCollection} />
-          <Route exact path='/dash' component={Dash} />
+          <Route exact path='/users' component={Users} />
+          {/* <Route exact path='/dash' component={Dash} /> This can go?? */}
           <Route exact path='/login' render={LoadLogin} />
           <Route exact path='/register' render={LoadRegister} />
           <Route component={NoMatch} />

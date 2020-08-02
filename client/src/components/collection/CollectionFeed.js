@@ -6,7 +6,7 @@ const CollectionFeed = (props) => {
   const updateFeedState = (incomingId) => {
     props.deletePicture(incomingId)
   }
-
+  
   const renderColumns = () => {
     const column_arrays = [[], [], []];
     let iterator = 0;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-class ProfileCollection extends React.Component {
+class ProfileCollectionCard extends React.Component {
   state = { pictures: [] }
 
   // get our pictures by collection
@@ -12,9 +12,6 @@ class ProfileCollection extends React.Component {
     .then((res) => this.setState({ pictures: res.data }))
     .catch(console.log)
   }
-
-
-
 
   render() {
     const { pictures } = this.state;
@@ -86,4 +83,4 @@ const CollectionImage = styled.div`
 `;
 
 
-export default ProfileCollection;
+export default ProfileCollectionCard;
