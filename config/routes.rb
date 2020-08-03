@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   namespace :api do
     namespace :pictures do
       get 'search'
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
     end
 
     resources :users do
+      resources :favorites
       resources :pictures, module: :users
       resources :collections, module: :users
       put "profile_image", to: "users#update_profile_image"

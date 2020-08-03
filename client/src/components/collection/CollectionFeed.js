@@ -17,14 +17,13 @@ const CollectionFeed = (props) => {
         })
         .catch(console.log)
     ))
-    console.log(newarray)
   }, [props.otherPicIds])
 
-  
   const addPicture = (incomingPicture) => {
     setOtherPics( otherPics.filter(a => a.id !== incomingPicture.id)) 
     props.addPicture(incomingPicture)
   }
+  
   const updateFeedState = (incomingId) => {
     props.deletePicture(incomingId)
   }

@@ -54,7 +54,7 @@ class Profile extends React.Component {
       case "collections":
         return this.state.user ? <ProfileCollectionFeed user={this.state.user} /> : null
       case "favorites":
-        return this.state.user && <Favorites />
+        return this.state.user && <Favorites user={this.state.user}/>
       case "settings":
         return this.state.user ? <SettingsTab setUser={this.setUser} user={this.state.user} /> : null
       default:

@@ -114,6 +114,12 @@ export const ImageProvider = (props) => {
     .catch(console.log)
   }
 
+  const addToFavorites = (userId) => {
+    axios.post(`/api/users/${userId}/favorites`, {picture_id: imageId, user_id: userId})
+      .then(res => console.log("new favorite", res.data))
+      .catch(console.log)
+  }
+
   return(
     <ImageContext.Provider value={{
       fetchUser,
@@ -131,6 +137,7 @@ export const ImageProvider = (props) => {
       addImageToCollection,
       fetchCollections,
       userCollections,
+      addToFavorites,
     }}> 
       { props.children }
     </ImageContext.Provider>     

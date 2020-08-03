@@ -6,6 +6,7 @@ class Picture < ApplicationRecord
   # has_many :picture_comments, through: :users, dependent: :destroy
   has_many :collections, through: :collection_pictures
   has_many :collection_pictures, dependent: :destroy
+  has_many :users, through: :favorites
 
   validates :url, presence: true
   validates :title, presence: true

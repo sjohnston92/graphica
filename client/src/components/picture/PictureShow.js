@@ -6,6 +6,7 @@ import PictureCollection from './PictureCollection';
 import { ImageConsumer } from '../../providers/ImageProvider'
 import EditPicture from './EditPicture'
 import AddCollectionButton from './AddCollectionButton';
+import AddToFavorites from './AddToFavorites';
 
 //Add category search on category click
 
@@ -46,6 +47,8 @@ const PictureShow = (props) => {
   const deleteCommentState = (incomingId) => setComments( comments.filter( a => a.id !== incomingId ))
   const deleteImageState = () => props.toggleAndDelete(image.id)
   
+  const addToFavorites = (userId) => { props.addToFavorites(userId) }
+
   const renderCollections = () => (
     <>
       { showAllCollections 
@@ -106,6 +109,7 @@ const PictureShow = (props) => {
           </UserLeftContent>
         </UserInfoLeft>
         <UserInfoRight>
+          <AddToFavorites addToFavorites={addToFavorites}/>
           {image.views && <>{(image.views + 1).toLocaleString()} views </>}
         </UserInfoRight>
       </UserInfoDiv>
