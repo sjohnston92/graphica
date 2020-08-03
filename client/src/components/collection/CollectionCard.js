@@ -4,7 +4,7 @@ import Modal from '../modal/Modal';
 import useModal from '../../hooks/useModal';
 import PictureShow from '../picture/PictureShow'
 import { ImageConsumer } from '../../providers/ImageProvider'
-
+import axios from 'axios';
 const CollectionCard = (props) => {
   const { open, toggle } = useModal();
 
@@ -17,14 +17,40 @@ const CollectionCard = (props) => {
     props.updateFeedState(incomingId)
   }
 
+  const addImage = () => {
+    props.addPicture(props.picture)
+  }
+
   return (
     <CardBorder>
       <Modal onClose={toggle} open={open}> 
           <PictureShow toggle={toggle} toggleAndDelete={toggleAndDelete}/>   
-      </Modal>       
-      <CardDiv onClick={toggleAndSetId}>
-        <StyledImage src={props.picture.url} />
-      </CardDiv>
+      </Modal>  
+      { props.adding
+        ?
+          <>
+          Click to Add
+          <CardDiv onClick={addImage}>
+            <StyledImage src={props.picture.url} />
+          </CardDiv>
+        </>
+        :
+          <>
+            { props.removing 
+              ? 
+                <>
+                  Click to Remove
+                  <CardDiv onClick={() => props.removeImage(props.picture.id)}>
+                    <StyledImage src={props.picture.url} />
+                  </CardDiv>
+                </>
+              :
+                <CardDiv onClick={toggleAndSetId}>
+                  <StyledImage src={props.picture.url} />
+                </CardDiv>
+            }   
+          </>  
+      }
     </CardBorder>
   )
 }

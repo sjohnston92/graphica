@@ -4,6 +4,7 @@ import { AuthConsumer } from '../../providers/AuthProvider';
 import styled from 'styled-components';
 import Modal from '../modal/Modal';
 import useModal from '../../hooks/useModal';
+import EditCollectionPictures from './EditCollectionPictures'
 
 const EditCollection = (props) => {
   const { open, toggle } = useModal();
@@ -21,22 +22,30 @@ const EditCollection = (props) => {
     <>
       {props.authenticated && props.user.id === props.collection.user_id &&
         <>
-          <Modal onClose={toggle} open={open}>               
+          <Modal onClose={toggle} open={open}>  
+            {/* <EditCollectionPictures /> */}
             <CollectionForm handleRes={handleRes} collection={props.collection} />
           </Modal>
           <ButtonWrapper>
+            <EditButton onClick={props.toggleAdding}>
+              Add Pictures
+            </EditButton>
+            <EditButton onClick={props.toggleRemoving}>
+              Remove Pictures
+            </EditButton>
             <EditButton onClick={()=>toggle()}>
               Edit Collection
               <svg style={{display: "inline-block"}} width="1rem" height="1rem" viewBox="0 0 15 25" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M6 0H18C19.1 0 20 0.9 20 2V14C20 15.1 19.1 16 18 16H6C4.9 16 4 15.1 4 14V2C4 0.9 4.9 0 6 0ZM18 14V2H6V14H18ZM9.5 9.67L11.19 11.93L13.67 8.83L17 13H7L9.5 9.67ZM0 18V4H2V18H16V20H2C0.9 20 0 19.1 0 18Z" fill="white"/>
               </svg>
-              </EditButton> 
+            </EditButton> 
             <DeleteButton onClick={deleteCollection}>
               Delete Collection
               <svg style={{display: "inline-block"}} width="18" height="18" viewBox="0 0 15 25" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5 3H9.5L8.5 4H5V6H19V4H15.5L14.5 3ZM16 9V19H8V9H16ZM6 7H18V19C18 20.1 17.1 21 16 21H8C6.9 21 6 20.1 6 19V7Z" fill="white"/>
               </svg>
-              </DeleteButton>
+            </DeleteButton>
+            
           </ButtonWrapper>
         </>
       }
@@ -56,6 +65,7 @@ const EditButton = styled.button`
   border: none;
   color: white;
   cursor: pointer;
+  margin-right: 25px;
 `
 
 const DeleteButton = styled.button`
@@ -68,7 +78,7 @@ const DeleteButton = styled.button`
   box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
   border-radius: 4px;
   color: white;
-  margin-left: 25px;
+  // margin-left: 25px;
   border: none;
   font-family: 'Montserrat',  sans-serif;
   cursor: pointer;
