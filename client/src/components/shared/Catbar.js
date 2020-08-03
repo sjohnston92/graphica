@@ -16,19 +16,15 @@ const Catbar = (props) => {
       .catch(console.log)
   }, [])
 
-
-function shuffleArray(array) {
-  for (var i = array.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-      console.log(temp)
+  function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    setCats(array)
   }
-  setCats(array)
-}
-  
- 
 
   const handleClick = (category) => {
     props.setCategoryId(category)
@@ -37,13 +33,11 @@ function shuffleArray(array) {
   return (
     <Wrapper>
       <Scroll>
-
       <Spacer></Spacer>
-
       {cats.map(cat => (
         <>
-        <LinkDiv isCurrentCat={ cat.id === props.categoryId } onClick={()=>handleClick(cat.id)}> {cat.title} </LinkDiv><Spacer></Spacer>
-            </>
+          <LinkDiv isCurrentCat={ cat.id === props.categoryId } onClick={()=>handleClick(cat.id)}> {cat.title} </LinkDiv><Spacer></Spacer>
+        </>
       ))}
       </Scroll>
    </Wrapper>           
@@ -65,16 +59,12 @@ const Scroll = styled.div`
   display: flex;
   width: 100%;
   overflow-x: auto;
-  
   ::-webkit-scrollbar {
     display: none;
   }
-  
   -ms-overflow-style: none;  
   scrollbar-width: none;  
-
   flex-shrink: 0;
-
 `
 const Spacer = styled.div`
   width: 40px;
@@ -88,7 +78,6 @@ const LinkDiv = styled.div`
   color: ${props => props.isCurrentCat ? "black" : "white"};
   cursor: pointer;
   text-shadow: 0px -2px 4px rgba(255, 255, 255, 0.25), 0px 2px 4px rgba(0, 0, 0, 0.25);
-
 `
 
 const ConnectedCatbar = (props) => (

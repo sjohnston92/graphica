@@ -109,7 +109,7 @@ const PictureShow = (props) => {
           </UserLeftContent>
         </UserInfoLeft>
         <UserInfoRight>
-          <AddToFavorites addToFavorites={addToFavorites}/>
+          {image && <AddToFavorites image={image} addToFavorites={addToFavorites}/> }
           {image.views && <>{(image.views + 1).toLocaleString()} views </>}
         </UserInfoRight>
       </UserInfoDiv>

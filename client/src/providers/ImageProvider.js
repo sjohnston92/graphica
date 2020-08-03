@@ -43,6 +43,7 @@ export const ImageProvider = (props) => {
       axios.get(`/api/pictures/${id}`)
       .then( res => {
         updateViews(res.data)
+        // checkFavorite(res.data)
         resolve(res)
       })
       .catch((err) => {

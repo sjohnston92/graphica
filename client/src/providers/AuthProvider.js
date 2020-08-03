@@ -5,12 +5,26 @@ const AuthContext = React.createContext();
 export const AuthConsumer = AuthContext.Consumer;
 
 export class AuthProvider extends React.Component {
-  state = { user: null, };
+  state = { user: null, favorites: null };
 
-  componentDidUpdate() {
-    console.log(this.state)
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log(this.state)
 
+  //   if (this.state.user && this.state.user !== prevState.user) {this.checkFavorites()}
+  // }
+
+  // componentDidMount() {
+  //   if(this.state.user) {this.checkFavorites()}
+  // }
+
+  // checkFavorites() {
+  //   console.log('checking favorites')
+  //   axios.get(`/api/users/${this.state.user.id}/favorites`)
+  //     .then( res => {
+  //       this.setState({ favorites: res.data})
+  //     })
+  //     .catch(console.log)
+  // }
   handleRegister = (user, history) => {
     axios.post("/api/auth", user)
       .then( res => {
