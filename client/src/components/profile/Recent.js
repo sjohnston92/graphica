@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from "axios";
-import RecentPicture from './RecentPicture';
+import RecentCard from './RecentCard';
 
-class ProfileFeed extends React.Component {
+class Recent extends React.Component {
   state = { pictures: [] }
 
   componentDidMount() {
     this.getPictures()
+    window.scrollTo(0, 0);
   }
   
   componentDidUpdate(prevProps) {
@@ -16,6 +17,7 @@ class ProfileFeed extends React.Component {
     if(prevId !== currentId) {
       this.getPictures();
     }
+    window.scrollTo(0, 0);
   }
 
   getPictures() {
@@ -29,7 +31,7 @@ class ProfileFeed extends React.Component {
   }
 
   renderPictures = () => this.state.pictures.map((pic) => (
-    <RecentPicture picture={pic} key={pic.id} user={this.props.user} deletePicture={this.deletePicture} />
+    <RecentCard picture={pic} key={pic.id} user={this.props.user} deletePicture={this.deletePicture} />
   ))
 
   render() {
@@ -70,4 +72,4 @@ const FeedDiv = styled.div`
   align-items: center;
 `
 
-export default ProfileFeed;
+export default Recent;

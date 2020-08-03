@@ -6,10 +6,10 @@ import ProfileCollectionFeed from './ProfileCollectionFeed';
 import SettingsTab from './SettingsTab';
 import axios from "axios";
 import { AuthConsumer } from "../../providers/AuthProvider";
-import ProfileRecent from './ProfileRecent';
+import Recent from './Recent';
 import NewCollection from '../new/NewCollection';
 import NewPictureButton from '../new/NewPictureButton';
-import Favorites from './Favorites'
+import Favorites from './favorites/Favorites'
 
 
 class Profile extends React.Component {
@@ -26,6 +26,7 @@ class Profile extends React.Component {
     const currentId = this.props.match.params.id;
     if(prevId !== currentId) {
       this.getUser();
+      this.setState({ currentTab: "recent" })
     }
   }
 
@@ -50,7 +51,7 @@ class Profile extends React.Component {
   renderBottom = () => {
     switch(this.state.currentTab) {
       case "recent":
-        return this.state.user ? <ProfileRecent user={this.state.user} isCurrentUser={this.state.isCurrentUser} /> : null
+        return this.state.user ? <Recent user={this.state.user} isCurrentUser={this.state.isCurrentUser} /> : null
       case "collections":
         return this.state.user ? <ProfileCollectionFeed user={this.state.user} /> : null
       case "favorites":

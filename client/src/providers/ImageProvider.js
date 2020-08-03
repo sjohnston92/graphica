@@ -6,9 +6,9 @@ const ImageContext = React.createContext();
 export const ImageConsumer = ImageContext.Consumer;
 
 export const ImageProvider = (props) => {
-  const [imageId, setImageId] = useState();
-  const [user, setUser] = useState("");
-  const [userImage, setUserImage] = useState();
+  const [ imageId, setImageId] = useState();
+  const [ user, setUser] = useState("");
+  const [ userImage, setUserImage] = useState();
   const [ pictureJunctions, setPictureJunctions ] = useState(null);
   const [ userCollections, setUserCollections ] = useState([{title: 'there are none'}])
 
