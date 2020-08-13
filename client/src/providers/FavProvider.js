@@ -7,13 +7,12 @@ const FavContext = React.createContext();
 export const FavConsumer = FavContext.Consumer;
 
 const FavProvider = (props) => {
-
   const [ favorites, setFavorites ] = useState([]);
 
   useEffect(() => {
-    console.log(props.authenticated)
     if (props.authenticated){checkFavorites()}
   }, [])
+
   useEffect(() => {
     if (props.authenticated){checkFavorites()}
   }, [props.user])
@@ -26,9 +25,22 @@ const FavProvider = (props) => {
       .catch(console.log)
   }
 
+  const toggleFavorite = (userId, favId, imageId) => {
+    if (favId) {
+      axios.delete(`/api/users/${userId}/favorites/${favId}`)
+        .then(res => setFavorites(favorites.filter(a => a.id !== favId)))
+        .catch(console.log)
+    } else {
+      axios.post(`/api/users/${userId}/favorites`, {picture_id: imageId, user_id: userId})
+        .then(res => setFavorites(favorites.concat(res.data)))
+        .catch(console.log)
+    } 
+  }
+
   return(
     <FavContext.Provider value={{
-      favorites
+      favorites,
+      toggleFavorite,
       
     }}> 
       { props.children }

@@ -1,17 +1,13 @@
 import React from 'react';
 import deleteImg from '../../../img/delete_24px.svg';
 import styled from 'styled-components';
-import axios from 'axios';
 import { AuthConsumer } from '../../../providers/AuthProvider';
+import { FavConsumer } from '../../../providers/FavProvider';
 
 const RemoveFavorite = (props) => {
 
   const removeImage = () => {
-    axios.delete(`/api/users/${props.fav.user_id}/favorites/${props.fav.id}`)
-      .then(res => {
-        props.updateFeed(props.fav.picture_id)
-      })
-      .catch(console.log)
+    props.toggleFavorite(props.user.id, props.fav.id, props.fav.picture_id)
   }
 
   return(
@@ -38,8 +34,13 @@ const RemoveDiv = styled.div`
 `
 
 const ConnectedRemoveFavorite = (props) => (
-  <AuthConsumer>
+  <FavConsumer>
     {(value) => <RemoveFavorite {...props} {...value} />}
+  </FavConsumer>
+);
+const AuthConnectedRemoveFavorite = (props) => (
+  <AuthConsumer>
+    {(value) => <ConnectedRemoveFavorite {...props} {...value} />}
   </AuthConsumer>
 );
-export default ConnectedRemoveFavorite
+export default AuthConnectedRemoveFavorite

@@ -51,7 +51,7 @@ const FavoritesCard = (props) => {
               <StyledTitle>
                 { picture.title }
               </StyledTitle>
-              <RemoveFavorite fav={props.fav} updateFeed={props.updateFeed} />
+              <RemoveFavorite fav={props.fav} />
             </Flex>
             <ProfileCard url={picture.url} onClick={toggleAndSetId} />
             <Link to={`/profile/${user.id}`}>

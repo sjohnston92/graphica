@@ -3,25 +3,21 @@ import { FavConsumer } from '../../providers/FavProvider';
 import { AuthConsumer } from '../../providers/AuthProvider';
 
 const AddToFavorites = (props) => {
-  const [ isFavorite, setIsFavorite ] = useState(false)
+  const [ favId, setFavId ] = useState(null)
+  
   useEffect(() => {
-      //get all favorites by user
-      //check to see if this pictures is one of those favorites
-    console.log("favorites", props.favorites)
-    console.log("image id", props.image.id)
+    setFavId(null)
     props.favorites.map( favorite => {
       if (favorite.picture_id === props.image.id) {
-        setIsFavorite(true)
+        setFavId(favorite.id)
       }
     })
-  }, [props.image])
-  // }, [props.image], [props.favorites]) //need to add to favorites in Fav Provider so this will change
-
+  }, [props.favorites, props.image]) 
 
   return(
     <>
       {props.authenticated && 
-        <button onClick={() => props.addToFavorites(props.user.id)}>{isFavorite ? <> Favorited </>: <>Favorite Me</> } </button>
+        <button onClick={() => props.toggleFavorite(props.user.id, favId, props.image.id)}>{favId ? <> Favorited(click to remove) </>: <>Favorite Me</> } </button>
       }
     </>
   )

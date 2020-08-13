@@ -53,7 +53,7 @@ const PictureShow = (props) => {
     <>
       { showAllCollections 
         ?
-        <>
+          <>
             {props.pictureJunctions.map(jct => (
               <>
                 <PictureCollection 

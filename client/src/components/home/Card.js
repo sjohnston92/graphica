@@ -7,6 +7,7 @@ import commentsImage from '../../img/comments.png'
 import viewsImage from '../../img/views.png'
 import { ImageConsumer } from '../../providers/ImageProvider'
 import { Link } from 'react-router-dom';
+import AddToFavorites from '../picture/AddToFavorites'
 
 const Card = (props) => {
   const id = props.image.id
@@ -45,9 +46,14 @@ const Card = (props) => {
       <Modal onClose={toggle} open={open}>     
         <PictureShow toggle={toggle} updateViewsState={updateViewsState} toggleAndDelete={toggleAndDelete}/>   
       </Modal>       
-      <CardDiv onClick={toggleAndSetId} >
-        <StyledText>{props.image.title}</StyledText>
-        <StyledImage src={url} />
+      <CardDiv>
+        <StyledText>
+          <div onClick={toggleAndSetId}>
+            {props.image.title}
+          </div>
+          <AddToFavorites image={props.image} />
+        </StyledText>
+        <StyledImage src={url} onClick={toggleAndSetId}/>
       </CardDiv>
       <PointerOff>
         <CardFooterLeft>

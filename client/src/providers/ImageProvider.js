@@ -119,7 +119,7 @@ export const ImageProvider = (props) => {
     axios.post(`/api/users/${userId}/favorites`, {picture_id: imageId, user_id: userId})
       .then(res => console.log("new favorite", res.data))
       .catch(console.log)
-  }
+  } //Removing from here..
 
   return(
     <ImageContext.Provider value={{
