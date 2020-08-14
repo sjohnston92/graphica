@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const ImageContext = React.createContext();
+export const ImageContext = React.createContext();
 
 export const ImageConsumer = ImageContext.Consumer;
+
 
 export const ImageProvider = (props) => {
   const [ imageId, setImageId] = useState();

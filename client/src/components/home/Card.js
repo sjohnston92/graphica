@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import Modal from '../modal/Modal';
 import useModal from '../../hooks/useModal';
 import PictureShow from '../picture/PictureShow';
 import commentsImage from '../../img/comments.png'
 import viewsImage from '../../img/views.png'
-import { ImageConsumer } from '../../providers/ImageProvider'
+import { ImageContext } from '../../providers/ImageProvider'
 import { Link } from 'react-router-dom';
 import AddToFavorites from '../picture/AddToFavorites'
 
@@ -17,12 +17,13 @@ const Card = (props) => {
   const [views, setViews] = useState(props.image.views)
   const [user, setUser] = useState("");
   const [comments, setComments] = useState([]);
-  
+  const context = useContext(ImageContext);
+
   useEffect(() => {
-    props.fetchUser(user_id)
+    context.fetchUser(user_id)
       .then (res => setUser(res.data))
       .catch(console.log)
-    props.fetchComments(id)
+    context.fetchComments(id)
       .then(res => setComments(res.data))
       .catch(console.log)
   }, [])
@@ -32,7 +33,7 @@ const Card = (props) => {
   }
 
   const toggleAndSetId = () => {
-    props.setImageId(id)
+    context.setImageId(id)
     toggle()
   }
 
@@ -150,10 +151,4 @@ const CardFooterRight = styled.div`
   color: #96969C;
 `
 
-const ConnectedCard = (props) => (
-  <ImageConsumer>
-    {(value) => <Card {...props} {...value} />}
-  </ImageConsumer>
-);
-
-export default ConnectedCard;
+export default Card;
