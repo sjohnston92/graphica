@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  # before_action :authenticate_user!, except: [:show] //Change 8/1/20
+  # before_action :authenticate_user!, except: [:show] //Change 8/1/20 //I guess we should leave this in for security 
   before_action :authenticate_user!, except: [:show, :index]
 
   before_action :set_image_user, only: [:update_profile_image, :update_banner_image]

@@ -6,18 +6,20 @@ const FeedContext = React.createContext();
 export const FeedConsumer = FeedContext.Consumer;
 
 export const FeedProvider = (props) => {
-  
   const [pictures, setPictures] = useState([]);
   const [query, setQuery ] = useState("");
   const [categoryId, setCategoryId] = useState(null);
   const [searching, setSearching ] = useState(false);
+  const [noMorePictures, setNoMorePictures] = useState(false);
 
   const categorySearch = (catId) => {
     setSearching(true)
+    setNoMorePictures(false)
     axios.get(`/api/pictures/?search=${query}&limit=11&offset=${0}&category_id=${catId}`)
       .then(res => {
         setPictures(res.data);
         setSearching(false);
+        setCategoryId(catId)
       })
       .catch(console.log)
   }
@@ -26,21 +28,24 @@ export const FeedProvider = (props) => {
     return new Promise((resolve, reject) => {
       setCategoryId(null)
       setSearching(true)
-      axios.get(`/api/pictures/?search=${query}&limit=11&offset=${pictures.length}&category_id=${categoryId}`)
-        .then(res => {
-          setPictures(pictures.concat(res.data));
-          setSearching(false);
-          resolve(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-          reject(err);
-        })
+        axios.get(`/api/pictures/?search=${query}&limit=11&offset=${pictures.length}&category_id=${categoryId}`)
+          .then(res => {
+            console.log(res.data);
+            setPictures(pictures.concat(res.data));
+            setSearching(false);
+            if (res.data.length < 11) setNoMorePictures(true)
+            resolve(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+            reject(err);
+          })
     })
   }
 
   const resetAndSearchPictures = () => {
     return new Promise((resolve, reject) => {
+      setNoMorePictures(false)
       setCategoryId(null)
       setSearching(true)
       axios.get(`/api/pictures/?search=${query}&limit=11&offset=${0}&category_id=${categoryId}`)
@@ -74,6 +79,8 @@ export const FeedProvider = (props) => {
       searchPictures,
       offset: pictures.length,
       deletePicture,
+      noMorePictures,
+      setNoMorePictures,
     }}> 
       { props.children }
     </FeedContext.Provider>     

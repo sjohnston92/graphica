@@ -10,6 +10,7 @@ const SearchBar = (props) => {
   useTrigger(props.query, 500, () => {
     props.setCategoryId(null)
     props.resetAndSearchPictures();
+    props.setNoMorePictures(false)
   });
 
   return (

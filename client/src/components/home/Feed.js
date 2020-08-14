@@ -4,9 +4,7 @@ import styled from 'styled-components';
 import { FeedConsumer } from '../../providers/FeedProvider'
 
 const Feed = (props) => {
-  const [listItems, setListItems] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
-  const [noMorePictures, setNoMorePictures] = useState(false);
   
   useEffect(() => {
     props.searchPictures();
@@ -29,13 +27,15 @@ const Feed = (props) => {
   }
   
   function getMore() {
-    if(noMorePictures) return;
-    props.searchPictures()
-      .then((pictures) => {
-        if(pictures.length < 11) setNoMorePictures(true);
-        setIsFetching(false);
-      })
-      .catch(console.log)
+    if(props.noMorePictures){
+      setIsFetching(false)
+    } else {
+      props.searchPictures()
+        .then(res => {
+          setIsFetching(false);
+        })
+        .catch(console.log)
+    }
   }
 
   const renderColumns = () => {
@@ -64,8 +64,8 @@ const Feed = (props) => {
             {column_arrays[2].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={updateFeedState}/></>)}
           </ColumnContainer>
         </FeedDiv>
-        {noMorePictures && <NoContent> [ No {props.pictures.length > 0 && "more"} pictures {props.query.length > 1 && `found for: "${props.query}"`}  ]</NoContent>}
-        {isFetching && !noMorePictures && 'Loading..'}
+        {props.noMorePictures && <NoContent> [ No {props.pictures.length > 0 && "more"} pictures {props.query.length > 1 && `found for: "${props.query}"`}  ]</NoContent>}
+        {isFetching && !props.noMorePictures && 'Loading..'}
       </>
     )
   }
@@ -73,8 +73,6 @@ const Feed = (props) => {
   return renderColumns();
 };
 
-const SearchResults = styled.div`
-`
 const NoContent = styled.div`
   display: flex;  
   width: 100vw;
@@ -84,7 +82,6 @@ const NoContent = styled.div`
   font-size: 16px;
   color: grey;
 `
-
 const FeedDiv = styled.div`
   display: flex;
   padding-right: 20px;
