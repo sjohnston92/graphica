@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { Link } from  'react-router-dom';
+
+//THIS NEEDS TO BE CHANGED INTO A USER SEARCH ##
 
 //Load the user with the most recent picture first.
 //Sort by newest user (server-side)
@@ -10,7 +12,7 @@ import { Link } from  'react-router-dom';
 // Link to Favorites, Recent, and Collections
 
 const Users = () => {
-  const [allUsers, setAllUsers] = useState([])
+  const [allUsers, setAllUsers] = useState([]);
 
   useEffect(() => { 
     axios.get("/api/users")

@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styled from "styled-components";
 import logoFont from '../../fonts/Elianto-Regular.otf';
 import store from '../../img/store.jpg'
 import SearchBar from './SearchBar'
 import Feed from './Feed'
 import { withRouter, Link } from 'react-router-dom'
+import { ConfigContext } from '../../App';
  
 const Home = (props) => {
-  
-  useEffect(() => { props.toggleCatbar(true)}, []);
-  
+  const context = useContext(ConfigContext)
+
+  useEffect(() => {
+    context.setShowCatbar(true)
+    console.log(context.showCatbar)
+    return () => context.setShowCatbar(false)
+  })
   return(
     <Wrapper>
       <Hero>

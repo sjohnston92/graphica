@@ -11,12 +11,10 @@ import NewCollection from '../new/NewCollection';
 import NewPictureButton from '../new/NewPictureButton';
 import Favorites from './favorites/Favorites'
 
-
 class Profile extends React.Component {
   state = { currentTab: "recent", user: null, isCurrentUser: false }
   
   componentDidMount() {
-    this.props.toggleCatbar(false);
     this.getUser();
     if (this.props.location.search === "?collections") { this.setState({ currentTab: "collections" }) }
   }
@@ -24,7 +22,7 @@ class Profile extends React.Component {
   componentDidUpdate(prevProps) {
     const prevId = prevProps.match.params.id;
     const currentId = this.props.match.params.id;
-    if(prevId !== currentId) {
+    if (prevId !== currentId) {
       this.getUser();
       this.setState({ currentTab: "recent" })
     }

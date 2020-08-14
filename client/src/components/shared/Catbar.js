@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Menu, Button} from 'semantic-ui-react'
 import { Link, withRouter, } from 'react-router-dom'
 import axios from 'axios';
 import styled from 'styled-components'
 import { FeedConsumer } from '../../providers/FeedProvider'
+import { ConfigContext } from '../../App';
 
 const Catbar = (props) => {
   const [cats, setCats] = useState([])
+
+  const context = useContext(ConfigContext);
 
   useEffect(() => {
     axios.get("/api/categories")
@@ -31,16 +34,18 @@ const Catbar = (props) => {
     props.categorySearch(category)
   }
   return (
-    <Wrapper>
-      <Scroll>
-      <Spacer></Spacer>
-      {cats.map(cat => (
-        <>
-          <LinkDiv isCurrentCat={ cat.id === props.categoryId } onClick={()=>handleClick(cat.id)}> {cat.title} </LinkDiv><Spacer></Spacer>
-        </>
-      ))}
-      </Scroll>
-   </Wrapper>           
+    <>{context.showCatbar && 
+      <Wrapper>
+          <Scroll>
+          <Spacer></Spacer>
+          {cats.map(cat => (
+            <>
+              <LinkDiv isCurrentCat={ cat.id === props.categoryId } onClick={()=>handleClick(cat.id)}> {cat.title} </LinkDiv><Spacer></Spacer>
+            </>
+          ))}
+          </Scroll>
+      </Wrapper>           
+    }</>
   )  
 }
 
