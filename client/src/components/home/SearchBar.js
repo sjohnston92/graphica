@@ -6,11 +6,12 @@ import { FeedConsumer } from '../../providers/FeedProvider'
 import useTrigger from '../../hooks/useTrigger'
 
 const SearchBar = (props) => {
-  
+
   useTrigger(props.query, 500, () => {
-    props.setCategoryId(null)
+    if (props.categoryId) return;
     props.resetAndSearchPictures();
     props.setNoMorePictures(false)
+    props.setQuerySearch(props.query)
   });
 
   return (
@@ -19,7 +20,10 @@ const SearchBar = (props) => {
       name="formName"
       value={props.query}
       placeholder="Find something new..."
-      onChange={(e) => props.setQuery(e.target.value)}
+      onChange={(e) => {
+        props.setQuery(e.target.value)
+        props.setCategoryId(null)
+      }}
     />
   )
 }

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,} from 'react';
 import Card from './Card';
 import styled from 'styled-components';
 import { FeedConsumer } from '../../providers/FeedProvider'
 
 const Feed = (props) => {
-  const [isFetching, setIsFetching] = useState(false);
-  
+  const [isFetching, setIsFetching] = useState(true);
+
   useEffect(() => {
     props.searchPictures();
   }, [])
@@ -64,8 +64,11 @@ const Feed = (props) => {
             {column_arrays[2].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={updateFeedState}/></>)}
           </ColumnContainer>
         </FeedDiv>
-        {props.noMorePictures && <NoContent> [ No {props.pictures.length > 0 && "more"} pictures {props.query.length > 1 && `found for: "${props.query}"`}  ]</NoContent>}
-        {isFetching && !props.noMorePictures && 'Loading..'}
+        <NoContent>
+          {isFetching && !props.noMorePictures ? '[ Loading.. ]' : (props.noMorePictures || props.querySearch.length > 0) &&
+            <>[ No {props.pictures.length > 0 && "more"} pictures {props.querySearch.length > 0 && `found for: "${props.querySearch}"`}  ]</>
+          }         
+        </NoContent>
       </>
     )
   }

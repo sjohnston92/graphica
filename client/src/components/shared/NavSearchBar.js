@@ -10,17 +10,22 @@ import useTrigger from '../../hooks/useTrigger'
 const NavSearchBar = (props) => {
   
   useTrigger(props.query, 500, () => {
-    props.setCategoryId(null)
+    if (props.categoryId) return;
     props.resetAndSearchPictures();
+    props.setNoMorePictures(false)
+    props.setQuerySearch(props.query)
   });
 
   return (
-    <StyledInput 
+    <StyledInput
       type="text"
       name="formName"
       value={props.query}
-      placeholder="Find something new . . ."
-      onChange={(e) => props.setQuery(e.target.value)}
+      placeholder="Find something new..."
+      onChange={(e) => {
+        props.setQuery(e.target.value)
+        props.setCategoryId(null)
+      }}
     />
   )
 }

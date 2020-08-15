@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const FeedContext = React.createContext();
@@ -11,6 +11,7 @@ export const FeedProvider = (props) => {
   const [categoryId, setCategoryId] = useState(null);
   const [searching, setSearching ] = useState(false);
   const [noMorePictures, setNoMorePictures] = useState(false);
+  const [querySearch, setQuerySearch] = useState("")
 
   const categorySearch = (catId) => {
     setSearching(true)
@@ -26,11 +27,9 @@ export const FeedProvider = (props) => {
 
   const searchPictures = () => {
     return new Promise((resolve, reject) => {
-      setCategoryId(null)
       setSearching(true)
         axios.get(`/api/pictures/?search=${query}&limit=11&offset=${pictures.length}&category_id=${categoryId}`)
           .then(res => {
-            console.log(res.data);
             setPictures(pictures.concat(res.data));
             setSearching(false);
             if (res.data.length < 11) setNoMorePictures(true)
@@ -46,9 +45,8 @@ export const FeedProvider = (props) => {
   const resetAndSearchPictures = () => {
     return new Promise((resolve, reject) => {
       setNoMorePictures(false)
-      setCategoryId(null)
       setSearching(true)
-      axios.get(`/api/pictures/?search=${query}&limit=11&offset=${0}&category_id=${categoryId}`)
+      axios.get(`/api/pictures/?search=${query}&limit=11&offset=${0}&category_id=${null}`)
         .then(res => {
           setPictures(res.data);
           setSearching(false);
@@ -71,11 +69,13 @@ export const FeedProvider = (props) => {
       searching,
       resetPictures,
       resetAndSearchPictures,
-      setQuery,
       setCategoryId,
       categoryId,
       categorySearch,
       query,
+      setQuery,
+      querySearch,
+      setQuerySearch,
       searchPictures,
       offset: pictures.length,
       deletePicture,

@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Menu, Button} from 'semantic-ui-react'
-import { Link, withRouter, } from 'react-router-dom'
 import axios from 'axios';
 import styled from 'styled-components'
 import { FeedConsumer } from '../../providers/FeedProvider'
@@ -30,9 +28,12 @@ const Catbar = (props) => {
   }
 
   const handleClick = (category) => {
-    props.setCategoryId(category)
-    props.categorySearch(category)
+    props.setCategoryId(category.id)
+    props.categorySearch(category.id)
+    props.setQuerySearch(`${category.title} Category`)
+    props.setQuery("")
   }
+  
   return (
     <>{context.showCatbar && 
       <Wrapper>
@@ -40,7 +41,7 @@ const Catbar = (props) => {
           <Spacer></Spacer>
           {cats.map(cat => (
             <>
-              <LinkDiv isCurrentCat={ cat.id === props.categoryId } onClick={()=>handleClick(cat.id)}> {cat.title} </LinkDiv><Spacer></Spacer>
+              <LinkDiv isCurrentCat={ cat.id === props.categoryId } onClick={()=>handleClick(cat)}> {cat.title} </LinkDiv><Spacer></Spacer>
             </>
           ))}
           </Scroll>
