@@ -40,12 +40,19 @@ const Feed = (props) => {
 
   const renderColumns = () => {
     const column_arrays = [[], [], []];
-    let iterator = 0;
+    const column_height = [0,0,0]
 
     props.pictures.forEach((listItem) => {
-      column_arrays[iterator].push(listItem);
-      if(iterator == 2) iterator = 0;
-      else iterator ++;
+      if (column_height[0] <= (column_height[1] && column_height[2])) {
+        column_arrays[0].push(listItem);
+        column_height[0] = column_height[0] + 1/listItem.ratio
+      } else if (column_height[1] <= (column_height[0] && column_height[2])) {
+        column_arrays[1].push(listItem);
+        column_height[1] = column_height[1] + 1/listItem.ratio
+      } else {
+        column_arrays[2].push(listItem);
+        column_height[2] = column_height[2] + 1/listItem.ratio
+      }
     })
   
   const updateFeedState = (incomingId) => {

@@ -8,7 +8,7 @@ import '../../Styles/Form.css'
 
 class PictureForm extends React.Component {
   state = { 
-    formValues: {  file: "", title: "", description: "",  categoryId: "", url: "" },
+    formValues: {  file: "", title: "", description: "",  categoryId: "", url: "", ratio: 1.01 },
     categories: [],
   };
   
@@ -30,6 +30,7 @@ class PictureForm extends React.Component {
         title: this.state.formValues.title,
         description: this.state.formValues.description,
         category_id: this.state.formValues.categoryId,
+        ratio: this.state.formValues.ratio,
       } 
     }
 
@@ -42,11 +43,18 @@ class PictureForm extends React.Component {
   }
   
   onDrop = (files) => {
+    const img = document.createElement('img');
     const blob = new Blob([files[0]], { type: 'image/png' });
     const url = URL.createObjectURL(blob);
+    img.src = url
+
+    img.onload = () =>{
+      this.setState({ formValues: { ...this.state.formValues, ratio: img.width/img.height }})
+    }
+
     this.setState({ 
       formValues: { ...this.state.formValues, file: files[0], },
-      url, 
+      url,
     })
   }
 
@@ -79,7 +87,7 @@ class PictureForm extends React.Component {
             >
               {({ getRootProps, getInputProps, isDragActive }) => {
                 return (
-                  <div // What is best practice for formatting code here?
+                  <div 
                     {...getRootProps()}
                     style={styles.dropzone}
                     >
