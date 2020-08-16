@@ -7,13 +7,14 @@ const CollectionFeed = (props) => {
   const [ otherPics, setOtherPics ] = useState([]);
 
   useEffect(() => {
-    setOtherPics([])
     const newarray = []
     props.otherPicIds.map( id => (
       axios.get(`/api/pictures/${id}`)
         .then(res => {
           newarray.push(res.data)
-          if (newarray.length === props.otherPicIds.length) {setOtherPics(newarray)}
+          if (newarray.length === props.otherPicIds.length) {
+            setOtherPics(newarray.sort((a, b) => (a.id > b.id) ? 1 : -1))
+          }
         })
         .catch(console.log)
     ))
@@ -27,7 +28,7 @@ const CollectionFeed = (props) => {
   const updateFeedState = (incomingId) => {
     props.deletePicture(incomingId)
   }
-  
+
   const renderColumns = (input) => {
     const column_arrays = [[], [], []];
     let iterator = 0;
@@ -37,7 +38,7 @@ const CollectionFeed = (props) => {
       if(iterator == 2) iterator = 0;
       else iterator ++;
     })
-  
+
     return(
       <>
         {input.length > 0 
