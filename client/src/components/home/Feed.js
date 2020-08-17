@@ -1,14 +1,20 @@
 import React, { useState, useEffect,} from 'react';
 import Card from './Card';
 import styled from 'styled-components';
-import { FeedConsumer } from '../../providers/FeedProvider'
+import { FeedConsumer } from '../../providers/FeedProvider';
+import useRenderColumns from '../../hooks/useRenderColumns';
 
 const Feed = (props) => {
   const [isFetching, setIsFetching] = useState(true);
+  const { columnArrays, renderColumns } = useRenderColumns();
 
   useEffect(() => {
-    props.searchPictures();
+    props.searchPictures()
   }, [])
+
+  useEffect(() => {
+    renderColumns(props.pictures)
+  }, [props.pictures])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -37,81 +43,27 @@ const Feed = (props) => {
         .catch(console.log)
     }
   }
-
-  const renderColumns = (input, offset) => {
-    const column_arrays = [[], [], []];
-    const column_height = [0,0,0];
-    
-    const assignColumns = (listItem) => {
-      if (column_height[0] <= column_height[1] && column_height[0] <= column_height[2]) {
-        column_arrays[0].push(listItem);
-        column_height[0] = column_height[0] + 1/listItem.ratio + offset
-      } else if (column_height[1] <= column_height[0] && column_height[1] <= column_height[2]) {
-        column_arrays[1].push(listItem);
-        column_height[1] = column_height[1] + 1/listItem.ratio + offset
-      } else {
-        column_arrays[2].push(listItem);
-        column_height[2] = column_height[2] + 1/listItem.ratio + offset
-      }
-    }
-    
-    const sortMany = () => {
-      let last3 = [];
-      let i = 1;
-
-      input.forEach((listItem) => {
-        if (i + 2 < input.length) {
-          assignColumns(listItem)
-        } else if (i + 2 === input.length) {
-          last3.push(listItem)
-        } else if (i + 1 === input.length) {
-          last3.push(listItem)
-        } else {
-          last3.push(listItem)
-          last3.sort((a,b) => a.ratio - b.ratio )
-          last3.forEach((listItem) => {
-            assignColumns(listItem)
-          })
-        }
-        i ++ 
-      })
-    }
-
-    if (input.length > 2){
-      sortMany()
-    } else if (input.length === 2) {
-      if (input[0].ratio < input[1].ratio) {
-        column_arrays[0].push(input[0])
-        column_arrays[1].push(input[1])
-      } else {
-        column_arrays[0].push(input[1])
-        column_arrays[1].push(input[0])
-      }
-    } else input.forEach(listItem => column_arrays[0].push(listItem));
-
-    return (
-      <>
-        <FeedDiv>
-          <ColumnContainer>
-            {column_arrays[0].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={props.deletePicture}/></>)}
-          </ColumnContainer>
-          <ColumnContainer>
-            {column_arrays[1].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={props.deletePicture}/></>)}
-          </ColumnContainer>
-          <ColumnContainer>
-            {column_arrays[2].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={props.deletePicture}/></>)}
-          </ColumnContainer>
-        </FeedDiv>
-        <NoContent>
-          {isFetching && !props.noMorePictures ? '[ Loading.. ]' : (props.noMorePictures || props.querySearch.length > 0) &&
-            <>[ No {props.pictures.length > 0 && "more"} pictures {props.querySearch.length > 0 && `found for: "${props.querySearch}"`}  ]</>
-          }         
-        </NoContent>
-      </>
-    )
-  }
-
-  return renderColumns(props.pictures, 0.15);
+  
+  return (
+    <>
+      <FeedDiv>
+        <ColumnContainer>
+          {columnArrays[0].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={props.deletePicture}/></>)}
+        </ColumnContainer>
+        <ColumnContainer>
+          {columnArrays[1].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={props.deletePicture}/></>)}
+        </ColumnContainer>
+        <ColumnContainer>
+          {columnArrays[2].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={props.deletePicture}/></>)}
+        </ColumnContainer>
+      </FeedDiv>
+      <NoContent>
+        {isFetching && !props.noMorePictures ? '[ Loading.. ]' : (props.noMorePictures || props.querySearch.length > 0) &&
+          <>[ No {props.pictures.length > 0 && "more"} pictures {props.querySearch.length > 0 && `found for: "${props.querySearch}"`}  ]</>
+        }         
+      </NoContent>
+    </> 
+  )
 };
 
 const NoContent = styled.div`
@@ -147,4 +99,3 @@ const ConnectedFeed = (props) => (
 );
 
 export default ConnectedFeed;
-
