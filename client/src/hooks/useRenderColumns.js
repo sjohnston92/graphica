@@ -17,7 +17,10 @@ const useRenderColumns = (input = []) => {
         column_arrays[0].push(input[1])
         column_arrays[1].push(input[0])
       }
-    } else input.forEach(listItem => column_arrays[0].push(listItem));
+    } else {
+      input.forEach(listItem => column_arrays[0].push(listItem))
+    }
+    setColumnArrays(column_arrays)
   }
   
   const assignColumns = (listItem) => {
