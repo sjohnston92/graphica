@@ -16,7 +16,8 @@ const CollectionShow = (props) => {
   const [ allPictures, setAllPictures ] = useState([]);
   const [ otherPicIds, setOtherPicIds ] = useState([]);
   const [ finalArray, setFinalArray ] = useState([]);
-  
+  const [ loading, setLoading ] = useState(false);
+
   useEffect(() => getData(), [])
 
   useEffect(() => {
@@ -41,13 +42,10 @@ const CollectionShow = (props) => {
 
   const handleRes = (res) => setCollection(res.data);
   
-  const deleteCollection = (incomingId) => { //MODALIZE THIS
-    const result = window.confirm("Delete Collection? (This will not delete its pictures)")
-    if (result) {
+  const deleteCollection = (incomingId) => {
       axios.delete(`/api/collections/${incomingId}`)
         .then(res => setRedirect(`/profile/${user.id}/?collections`))
         .catch(console.log)
-    }
   }
 
   const removeImage = (picId) => {
@@ -67,10 +65,7 @@ const CollectionShow = (props) => {
 
   const addPicture = (incomingPicture) => {
     axios.post(`/api/collection_pictures/`, {collection_id: collection.id, picture_id: incomingPicture.id} )
-      .then( res => {
-        // setOtherPicIds( otherPicIds.filter(a => a !== incomingPicture.id))
-        setPictures( pictures.concat(incomingPicture))
-      })
+      .then( res => setPictures( pictures.concat(incomingPicture)) )
       .catch(console.log)
   }
 
@@ -82,6 +77,7 @@ const CollectionShow = (props) => {
   const toggleAdding = () => {
     setRemoving(false)
     setAdding(!adding)
+    setLoading(true)
     axios.get(`/api/users/${user.id}/pictures`)
       .then( res => {
         setAllPictures(res.data)
@@ -108,8 +104,10 @@ const CollectionShow = (props) => {
             deleteCollection={deleteCollection} 
             handleRes={handleRes} 
             collection={collection} 
-            toggleRemoving={toggleRemoving} 
+            toggleRemoving={toggleRemoving}
+            removing={removing}
             toggleAdding={toggleAdding}
+            adding={adding}
           />
           <CollectionFeed addPicture={addPicture} 
             deletePicture={deletePicture} 
@@ -118,6 +116,8 @@ const CollectionShow = (props) => {
             adding={adding} 
             removeImage={removeImage} 
             removing={removing}
+            loading={loading}
+            setLoading={setLoading}
           />
         </>
       }

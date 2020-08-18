@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form } from 'semantic-ui-react';
 import styled from 'styled-components';
-import axios from 'axios';
 import { FeedConsumer } from '../../providers/FeedProvider'
 import useTrigger from '../../hooks/useTrigger'
 

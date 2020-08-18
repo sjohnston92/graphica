@@ -16,7 +16,6 @@ const Feed = (props) => {
     renderColumns(props.pictures)
   }, [props.pictures])
 
-  console.log(props.pictures)
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);

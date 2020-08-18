@@ -63,7 +63,7 @@ const EditPicture = (props) => {
     setCategoryId(event.target.value)
   }
 
-  const RenderEditPicture = () => (
+  const renderEditPicture = () => (
     <Wrapper>
       <Flex>
         <StyledButton onClick={toggle}>
@@ -132,7 +132,7 @@ const EditPicture = (props) => {
           { 
             props.user.id === (props.userId) &&
               <>
-                { RenderEditPicture() }
+                { renderEditPicture() }
               </>
           }
         </>
