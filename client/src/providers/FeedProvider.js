@@ -27,7 +27,9 @@ export const FeedProvider = (props) => {
 
   const searchPictures = () => {
     return new Promise((resolve, reject) => {
-      setSearching(true)
+      setSearching(true) //
+      setCategoryId(null) //
+      setQuery("")
         axios.get(`/api/pictures/?search=${query}&limit=11&offset=${pictures.length}&category_id=${categoryId}`)
           .then(res => {
             setPictures(pictures.concat(res.data));

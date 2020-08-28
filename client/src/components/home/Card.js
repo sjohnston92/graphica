@@ -83,7 +83,7 @@ const StyledImage = styled.img`
 `
 const StyledText = styled.div`
   position: absolute;
-  z-index: 999;
+  z-index: 1;
   margin: 0 auto;
   left: 0;
   right: 0;
@@ -111,6 +111,9 @@ const PointerOff = styled.div`
   cursor: default;
   font-family: 'Montserrat';
   font-size: 12px;
+  @media only screen and (max-width: 400px) { 
+     margin: 0.5rem 1rem 0rem 1rem;
+  }
 `
 const CardBorder = styled.div`
   margin-bottom: -40px;
@@ -149,6 +152,7 @@ const CardFooterRight = styled.div`
   margin-bottom: 15px;
   cursor: default;
   color: #96969C;
+
 `
 
 export default Card;

@@ -15,6 +15,8 @@ const Home = (props) => {
     console.log(context.showCatbar)
     return () => context.setShowCatbar(false)
   })
+
+
   return(
     <Wrapper>
       <Hero>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect,} from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import Card from './Card';
 import styled from 'styled-components';
 import { FeedConsumer } from '../../providers/FeedProvider';
@@ -6,16 +6,38 @@ import useRenderColumns from '../../hooks/useRenderColumns';
 
 const Feed = (props) => {
   const [isFetching, setIsFetching] = useState(true);
-  const { columnArrays, renderColumns } = useRenderColumns();
+  const { columnArrays, columnArrays2, renderColumns } = useRenderColumns();
 
   useEffect(() => {
     props.searchPictures()
   }, [])
+  
+  
+  // let columnCount = (window.innerWidth > 1000) ? 3 : (window.innerWidth < 650) ? 1 : 2
 
+  // function useWindowSize() {
+  //   const [size, setSize] = useState([0, 0]);
+  //   useLayoutEffect(() => {
+  //     function updateSize() {
+  //       setSize([window.innerWidth, window.innerHeight]);
+  //     }
+  //     window.addEventListener('resize', updateSize);
+  //     updateSize();
+  //     return () => window.removeEventListener('resize', updateSize);
+  //   }, []);
+  //   console.log(size[0])
+  //   if (size[0] < 650) {
+  //     columnCount = 1
+  //   } else if (size[0] > 1000){
+  //     columnCount = 3
+  //   } else columnCount = 2
+  // }
+  // useWindowSize()
   useEffect(() => {
+    
     renderColumns(props.pictures)
   }, [props.pictures])
-
+  
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -43,20 +65,28 @@ const Feed = (props) => {
         .catch(console.log)
     }
   }
-  
+  // console.log(columnArrays2)
   return (
     <>
       <FeedDiv>
-        <ColumnContainer>
-          {columnArrays[0].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={props.deletePicture}/></>)}
-        </ColumnContainer>
-        <ColumnContainer>
-          {columnArrays[1].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={props.deletePicture}/></>)}
-        </ColumnContainer>
-        <ColumnContainer>
-          {columnArrays[2].map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={props.deletePicture}/></>)}
-        </ColumnContainer>
+        { columnArrays.map( column => (
+          <ColumnContainer>
+            {column.map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={props.deletePicture}/></>)}
+          </ColumnContainer>
+        ))}
       </FeedDiv>
+      <FeedDiv2>
+        { columnArrays2.map( column => (
+          <ColumnContainer2>
+            {column.map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={props.deletePicture}/></>)}
+          </ColumnContainer2>
+        ))}
+      </FeedDiv2>
+      <FeedDiv1>
+          <ColumnContainer1>
+            {props.pictures.map(listItem =><><Card key={listItem.id} image={listItem} updateFeedState={props.deletePicture}/></>)}
+          </ColumnContainer1>
+      </FeedDiv1>
       <NoContent>
         {isFetching && !props.noMorePictures ? '[ Loading.. ]' : (props.noMorePictures || props.querySearch.length > 0) &&
           <>[ No {props.pictures.length > 0 && "more"} pictures {props.querySearch.length > 0 && `found for: "${props.querySearch}"`}  ]</>
@@ -65,6 +95,8 @@ const Feed = (props) => {
     </> 
   )
 };
+
+
 
 const NoContent = styled.div`
   display: flex;  
@@ -82,14 +114,51 @@ const FeedDiv = styled.div`
   width: 75vw;
   margin: auto;
   min-width: 1000px;
+  // max-width: 1500px;
+  @media (max-width: 1000px) {
+    display: none;
+  };
 `
-const ColumnContainer = styled.div`
+const FeedDiv2 = styled.div`
+  display: flex;
+  padding-right: 20px;
+  padding-top: 20px;
+  width: 95vw;
+  margin: auto;
+  min-width: 700px;
+  @media (max-width: 700px) {
+    display: none;
+  };
+  @media (min-width: 1000px) {
+    display: none;
+  }
+`
+const FeedDiv1 = styled.div`
+  display: flex;
+  width: 95vw;
+  margin: auto;
+  min-width: 375px;
+  @media only screen and (min-width: 700px) { 
+    display: none;
+  };
+`
+  const ColumnContainer = styled.div`
   margin-top: 25px;
   margin-left: 25px;
   width: calc(100% / 3);
-  @media (max-width: 1600px) {};
-  @media (max-width: 1100px) {}
-  @media only screen and (max-width: 800px) {}
+  
+ 
+`
+const ColumnContainer2 = styled.div`
+  margin-top: 25px;
+  margin-left: 25px;
+  width: calc(100% / 2);
+
+`
+const ColumnContainer1 = styled.div`
+  margin-top: 25px;
+  width: 100%;
+
 `
 
 const ConnectedFeed = (props) => (

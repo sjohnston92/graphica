@@ -8,6 +8,7 @@ import useModal from '../../hooks/useModal';
 import Modal from '../modal/Modal'
 import PictureForm from '../new/PictureForm'
 
+
 const NavBar = (props) => {
   const {toggle, open} = useModal()
 
@@ -16,7 +17,7 @@ const NavBar = (props) => {
     <>
       <Wrapper>
         <Flex>
-            <LogoLink to='/'>GRAPHICA</LogoLink>
+            <LogoLink to='/'>GRAPHICA</LogoLink> 
           <AuthDiv>
             <LinkDiv onClick={ () => props.auth.handleLogout(props.history) }>Logout {props.auth.user.first_name}</LinkDiv> 
           </AuthDiv>
@@ -29,7 +30,7 @@ const NavBar = (props) => {
                 </svg>
             </SearchDiv>
               <LinkDiv>
-                <Link to='/users'> Users </Link>
+                <Link to='/users'> Admin </Link>
               </LinkDiv>
               <LinkDiv>
                 <Link to={`/Profile/${props.auth.user.id}`}>
@@ -72,7 +73,7 @@ const NavBar = (props) => {
             </AuthDiv>
           </Flex>
           <RightLogout>
-              <Link to='/users'> Users </Link>
+              <Link to='/users'> Admin </Link>
               <SearchDiv onClick={()=>props.history.push(`/`)}>
                 <NavSearchBar />
                 <svg width="11" height="11" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">

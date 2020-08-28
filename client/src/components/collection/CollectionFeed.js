@@ -62,7 +62,8 @@ const CollectionFeed = ({ loading, setLoading, ...props }) => {
               { props.pictures === input &&
                 <> [ there are no pictures in this collection ] </>
               }
-              { otherPics === input && 
+              {/* { otherPics === input &&  */}
+              { otherPics === input && input.length > 0 &&
                 <> [ all your pictures are in this collection ] </>
               }
             </>
