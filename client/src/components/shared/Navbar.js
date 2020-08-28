@@ -18,9 +18,13 @@ const NavBar = (props) => {
       <Wrapper>
         <Flex>
             <LogoLink to='/'>GRAPHICA</LogoLink> 
+            <LogoLinkSm to='/'>G</LogoLinkSm>
           <AuthDiv>
             <LinkDiv onClick={ () => props.auth.handleLogout(props.history) }>Logout {props.auth.user.first_name}</LinkDiv> 
           </AuthDiv>
+          <AuthDivMobile>
+            <LinkDiv onClick={ () => props.auth.handleLogout(props.history) }>Logout</LinkDiv>
+          </AuthDivMobile>
         </Flex>
         <Right>
             <SearchDiv onClick={()=>props.history.push(`/`)}>  
@@ -30,7 +34,7 @@ const NavBar = (props) => {
                 </svg>
             </SearchDiv>
               <LinkDiv>
-                <Link to='/users'> Admin </Link>
+                {/* <Link to='/users'> Admin </Link> */}
               </LinkDiv>
               <LinkDiv>
                 <Link to={`/Profile/${props.auth.user.id}`}>
@@ -71,9 +75,17 @@ const NavBar = (props) => {
             <AuthDiv>
               <Link to='/register'>  Sign Up</Link> | <Link to='/login'>Login</Link>
             </AuthDiv>
+            <AuthDivMobile>
+              <div>
+                <Link to='/register'> Sign Up </Link> | 
+              </div>
+              <div>
+                <Link to='/login'> &#8239; Login</Link>
+              </div>
+            </AuthDivMobile>
           </Flex>
           <RightLogout>
-              <Link to='/users'> Admin </Link>
+              {/* <Link to='/users'> Admin </Link> */}
               <SearchDiv onClick={()=>props.history.push(`/`)}>
                 <NavSearchBar />
                 <svg width="11" height="11" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -131,8 +143,9 @@ const Right = styled.div`
 const RightLogout = styled.div`
   display: flex;
   align-items: center;
-  width: 300px;
+  width: 20vw;
   justify-content: space-between;
+  min-width: 175px;
 `
 const SearchDiv = styled.div`
 `
@@ -144,10 +157,33 @@ const Flex = styled.div `
 const LogoLink = styled(Link)`
   font-family: 'Elianto' !important;
   font-size: 17px;
+  @media only screen and (max-width: 499px) { 
+    display: none;
+  }
+`
+const LogoLinkSm = styled(Link)`
+  font-family: 'Elianto' !important;
+  font-size: 17px;
+  @media only screen and (min-width: 500px) { 
+    display: none;
+  }
 `
 const AuthDiv = styled.div`
   margin-left: 1vw;
+  @media only screen and (max-width: 599px) { 
+    display: none;
+  }
 `
+const AuthDivMobile = styled.div`
+  display: flex;
+  justify-content: left;
+  margin-left: 1vw;
+  min-width: 25vw;
+  @media only screen and (min-width: 600px) { 
+    display: none;
+  }
+`
+
 const LinkDiv = styled.div`
   cursor: pointer;
 `

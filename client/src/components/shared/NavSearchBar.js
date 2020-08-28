@@ -15,6 +15,7 @@ const NavSearchBar = (props) => {
   });
 
   return (
+  <>
     <StyledInput
       type="text"
       name="formName"
@@ -25,6 +26,27 @@ const NavSearchBar = (props) => {
         props.setCategoryId(null)
       }}
     />
+    <StyledInputMediaLg
+      type="text"
+      name="formName"
+      value={props.query}
+      placeholder="Find something...      "
+      onChange={(e) => {
+        props.setQuery(e.target.value)
+        props.setCategoryId(null)
+      }}
+    />
+    <StyledInputMediaSm
+      type="text"
+      name="formName"
+      placeholder="Search...        "
+      value={props.query}
+      onChange={(e) => {
+        props.setQuery(e.target.value)
+        props.setCategoryId(null)
+      }}
+    />
+  </>
   )
 }
 
@@ -36,8 +58,47 @@ const StyledInput = styled.input`
   outline: none;
   font-family: Montserrat;
   ::placeholder {
+    
     font-family: Montserrat;
     color: black;
+  }
+  @media only screen and (max-width: 499px) { 
+    display: none;
+  }
+`
+const StyledInputMediaLg = styled.input`
+  border: none;
+  height: 35px;
+  width: 10rem;
+  box-sizing: border-box;
+  outline: none;
+  font-family: Montserrat;
+  ::placeholder {
+    text-align: right;
+    font-family: Montserrat;
+    color: black;
+  }
+  @media (min-width: 500px) { 
+    display: none;
+  }
+  @media (max-width: 399px) { 
+    display: none;
+  }
+`
+const StyledInputMediaSm = styled.input`
+  border: none;
+  height: 35px;
+  width: 8rem;
+  box-sizing: border-box;
+  outline: none;
+  font-family: Montserrat;
+  ::placeholder {
+    text-align: right;
+    font-family: Montserrat;
+    color: black;
+  }
+  @media only screen and (min-width: 400px) { 
+    display: none;
   }
 `
 const ConnectedNavSearchBar = (props) => (
