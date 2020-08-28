@@ -85,41 +85,6 @@ const CardDiv = styled.div`
 const CardBorder = styled.div`
   margin-bottom: 20px;
 `
-const CardFooterLeft = styled.div`
-  float: left;
-  margin-bottom: 15px;
-  cursor: default;
-  display: flex;
-  align-items: center;
-  a:link {
-    color: black;
-  }
-  a:visited {
-    color: black;
-  }
-  a:hover {
-    color: black;
-  }
-  a:active {
-    color: black;
-  }
-`
-const SmallImage = styled.div`
-  background-image: url(${props => props.image});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 100%;
-  height: 20px;
-  width: 20px;
-`
-const CardFooterRight = styled.div`
-  display: flex;  
-  float: right;
-  margin-bottom: 15px;
-  cursor: default;
-  color: #96969C;
-`
 
 const ConnectedCollectionCard = (props) => (
   <ImageConsumer>

@@ -3,10 +3,11 @@ import CollectionCard from './CollectionCard'
 import styled from 'styled-components';
 import axios from 'axios';
 import useRenderColumns from '../../hooks/useRenderColumns';
+import FeedColumns from '../feed/FeedColumns';
 
 const CollectionFeed = ({ loading, setLoading, ...props }) => {
   const [ otherPics, setOtherPics ] = useState([]);
-  const { columnArrays, renderColumns } = useRenderColumns();
+  const { columnArrays, columnArrays2, renderColumns } = useRenderColumns();
 
   useEffect(() => {
     const newarray = []
@@ -45,25 +46,16 @@ const CollectionFeed = ({ loading, setLoading, ...props }) => {
     <>
       {input.length > 0 
         ?
-          <FeedDiv>
-            <ColumnContainer>
-              {columnArrays[0].map(listItem =><><CollectionCard key={listItem.id} picture={listItem} addPicture={addPicture} adding={props.adding} removing={props.removing} removeImage={props.removeImage} updateFeedState={updateFeedState}/></>)}
-            </ColumnContainer>
-            <MiddleContainer>
-              {columnArrays[1].map(listItem =><><CollectionCard key={listItem.id} picture={listItem} addPicture={addPicture} adding={props.adding} removing={props.removing} removeImage={props.removeImage} updateFeedState={updateFeedState}/></>)}
-            </MiddleContainer>
-            <ColumnContainer>
-              {columnArrays[2].map(listItem =><><CollectionCard key={listItem.id} picture={listItem} addPicture={addPicture} adding={props.adding} removing={props.removing} removeImage={props.removeImage} updateFeedState={updateFeedState}/></>)}
-            </ColumnContainer>
-          </FeedDiv>
+          <FeedColumns tag={CollectionCard} input={input} columnArrays={columnArrays} columnArrays2={columnArrays2} 
+            addPicture={addPicture} adding={props.adding} removing={props.removing} removeImage={props.removeImage} updateFeedState={updateFeedState}
+          />
         : 
           <NoContent> 
             <>
               { props.pictures === input &&
                 <> [ there are no pictures in this collection ] </>
               }
-              {/* { otherPics === input &&  */}
-              { otherPics === input && input.length > 0 &&
+              { otherPics === input && 
                 <> [ all your pictures are in this collection ] </>
               }
             </>
@@ -101,29 +93,6 @@ const NoContent = styled.div`
   font-weight: 600;
   font-size: 16px;
   color: grey;
-`
-const FeedDiv = styled.div`
-  display: flex;
-  // padding-right: 20px;
-  // padding-top: 20px;
-  width: 75vw;
-  margin: auto;
-  min-width: 1000px;
-`
-const ColumnContainer = styled.div`
-  // margin-top: 20px;
-  // margin-left: 20px;
-  width: calc(100% / 3);
-  @media (max-width: 1600px) {};
-  @media (max-width: 1100px) {}
-  @media only screen and (max-width: 800px) {}
-`
-const MiddleContainer = styled.div`
-  margin: 0 25px;
-  width: calc(100% / 3);
-  @media (max-width: 1600px) {};
-  @media (max-width: 1100px) {}
-  @media only screen and (max-width: 800px) {}
 `
 
 export default CollectionFeed
