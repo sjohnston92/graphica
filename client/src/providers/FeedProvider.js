@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const FeedContext = React.createContext();
+export const FeedContext = React.createContext();
 
 export const FeedConsumer = FeedContext.Consumer;
 
@@ -12,7 +12,7 @@ export const FeedProvider = (props) => {
   const [searching, setSearching ] = useState(false);
   const [noMorePictures, setNoMorePictures] = useState(false);
   const [querySearch, setQuerySearch] = useState("")
-
+  
   const categorySearch = (catId) => {
     setSearching(true)
     setNoMorePictures(false)
@@ -24,14 +24,12 @@ export const FeedProvider = (props) => {
       })
       .catch(console.log)
   }
-
+  
   const searchPictures = () => {
     return new Promise((resolve, reject) => {
-      setSearching(true) //
-      setCategoryId(null) //
-      setQuery("")
+      setSearching(true)
         axios.get(`/api/pictures/?search=${query}&limit=11&offset=${pictures.length}&category_id=${categoryId}`)
-          .then(res => {
+        .then(res => {
             setPictures(pictures.concat(res.data));
             setSearching(false);
             if (res.data.length < 11) setNoMorePictures(true)
@@ -56,6 +54,7 @@ export const FeedProvider = (props) => {
         })
         .catch((err) => {
           console.log(err);
+          setSearching(false)
           reject(err);
         })
     })
@@ -64,9 +63,17 @@ export const FeedProvider = (props) => {
   const resetPictures = () => setPictures([]);
 
   const deletePicture = (incomingId) => setPictures( pictures.filter(a => a.id !== incomingId ))
-
+  
+  const feedConfig = {
+    setQuery,
+    setCategoryId,
+    resetAndSearchPictures,
+    setQuerySearch,
+  } 
+  // Refactor to remove consumer..
   return(
     <FeedContext.Provider value={{
+      feedConfig,
       pictures,
       searching,
       resetPictures,

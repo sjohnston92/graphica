@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from './Card';
 import styled from 'styled-components';
 import { FeedConsumer } from '../../providers/FeedProvider';
@@ -25,9 +25,10 @@ const Feed = (props) => {
 
   useEffect(() => {
     if (!isFetching) return;
+    if (props.searching) return;
     getMore();
   }, [isFetching]);
-  
+  //remove scroll listener if no more pictures
   function handleScroll() {
     if ((window.innerHeight + window.pageYOffset) >= document.body.scrollHeight - 1000) {
       setIsFetching(true);

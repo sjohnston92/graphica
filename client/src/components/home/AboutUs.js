@@ -3,17 +3,6 @@ import styled from "styled-components";
 
 const AboutUs = () => {
   const developers = [
-    {name: 'Danny Leaver', 
-      email: 'dleaver@gmail.com', 
-      avatar: 'https://res.cloudinary.com/danleaver/image/upload/v1596344132/photo_o4dy0m.jpg',
-      banner: 'https://res.cloudinary.com/graphica/image/upload/v1595725935/tetons_e1hvnu.jpg',
-      description: `I have decided to continue the project on my own referring to it as Version 2.0. 
-        Below are the About sections from the original version.
-        `,
-      contributionFront: ` See GitHub for List of Changes `,
-      contributionEnd: ' ... ',
-      link: "https://github.com/danleaver/graphica/blob/master/README.md",
-    }, 
     {name: 'Nick Ristagno', 
       email: 'nick.ristagno@gmail.com',
       avatar: 'https://res.cloudinary.com/graphica/image/upload/v1595961629/nick_profile_mkdumk.jpg', 
@@ -42,15 +31,16 @@ const AboutUs = () => {
     }, 
     {name: 'Danny Leaver', 
       email: 'dleaver@gmail.com', 
-      avatar: 'https://res.cloudinary.com/graphica/image/upload/v1594861200/WillyCrop.jpg.jpg',
+      avatar: 'https://res.cloudinary.com/danleaver/image/upload/v1596344132/photo_o4dy0m.jpg',
       banner: 'https://res.cloudinary.com/graphica/image/upload/v1595725935/tetons_e1hvnu.jpg',
       description: `I thought this project would be pretty in-depth, 
       and that I would be able to apply a lot of what I had learned from the bootcamp. I learned many
       concepts in Ruby on Rails and ReactJS along the way, and I also learned how to work
       on a somewhat complex idea in a group setting. It was challenging to finish on time, as well as collaborate efficiently. 
          `,
-      contributionFront: 'Homepage, Searchbar, Modals',
-      contributionEnd: 'Seeds, Searchbar, Routes'
+      contributionFront: 'Homepage, Feeds, Collections, Favorites, Navbar, Picture Modal',
+      contributionEnd: 'Seeds, Searchbar, Routes',
+      link: "https://github.com/danleaver/",
     }, 
     {name: 'Jacob Koskimaki', 
       email: 'jkoskimaki@gmail.com', 
@@ -94,7 +84,7 @@ const AboutUs = () => {
             <FrontEndDiv>
               <StyledP>Front End:</StyledP>
               {developer.contributionFront} 
-              {developer.link && <a href={developer.link}>GitHub Readme</a> }
+              {developer.link && <a href={developer.link}>GitHub</a> }
             </FrontEndDiv>
             <BackEndDiv>
               <StyledP>Back End:</StyledP>
