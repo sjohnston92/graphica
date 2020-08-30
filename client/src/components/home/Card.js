@@ -8,6 +8,7 @@ import viewsImage from '../../img/views.png'
 import { ImageContext } from '../../providers/ImageProvider'
 import { Link } from 'react-router-dom';
 import AddToFavorites from '../picture/AddToFavorites'
+// import starIcon from '../../img/star_outline_24px.svg'
 
 const Card = (props) => {
   const id = props.image.id
@@ -49,10 +50,14 @@ const Card = (props) => {
       </Modal>       
       <CardDiv>
         <StyledText>
-          <div onClick={toggleAndSetId}>
-            {props.image.title}
-          </div>
-          <AddToFavorites image={props.image} />
+          <Hover>
+            <div onClick={toggleAndSetId}>
+              {props.image.title}
+            </div>
+            <div>
+              <AddToFavorites image={props.image} />
+            </div>
+          </Hover>
         </StyledText>
         <StyledImage src={url} onClick={toggleAndSetId}/>
       </CardDiv>
@@ -75,6 +80,18 @@ const Card = (props) => {
     </CardBorder>
   )
 }
+// const Icon = styled.img`
+//   border: 3px solid rgba(39, 39, 53, 0.75);
+//   box-sizing: border-box;
+//   border-radius: 4px;
+//   height: 2.25rem;
+//   filter: brightness(18%) hue-rotate(240deg) saturate(15%) opacity(75%);
+// `
+const Hover = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`
 const Flex = styled.div`
   display: flex;
 `
