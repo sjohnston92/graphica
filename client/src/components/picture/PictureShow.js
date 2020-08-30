@@ -109,8 +109,12 @@ const PictureShow = (props) => {
           </UserLeftContent>
         </UserInfoLeft>
         <UserInfoRight>
-          {image && <AddToFavorites image={image} addToFavorites={addToFavorites}/> }
-          {image.views && <>{(image.views + 1).toLocaleString()} views </>}
+          <div>
+            {image && <AddToFavorites shadow={true} image={image} addToFavorites={addToFavorites}/> }
+          </div>
+          <ViewsDiv>
+            {image.views && <>{(image.views + 1).toLocaleString()} views </>}
+          </ViewsDiv>
         </UserInfoRight>
       </UserInfoDiv>
       <PictureDiv>
@@ -176,8 +180,16 @@ const UserInfoDiv= styled.div`
 `
 const UserInfoRight = styled.div`
   display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
   align-items: center;
   padding-right: 1rem;
+  // padding: 1rem;
+  margin-top: 20px;
+`
+const ViewsDiv = styled.div`
+  padding-top: 0.75rem;
 `
 const UserInfoLeft = styled.div`
   display: flex;

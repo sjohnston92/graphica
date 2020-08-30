@@ -55,7 +55,7 @@ const Card = (props) => {
               {props.image.title}
             </div>
             <div>
-              <AddToFavorites image={props.image} />
+              <AddToFavorites shadow={false} image={props.image} />
             </div>
           </Hover>
         </StyledText>
