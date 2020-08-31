@@ -22,7 +22,7 @@ const App = () => {
     setShowCatbar,
   }
 
-  return(                                           //Did Nick say to render Catbar inside of NavBar??
+  return(                                          
     <ConfigContext.Provider value={configValue}>
       <Navbar />
       <Catbar />

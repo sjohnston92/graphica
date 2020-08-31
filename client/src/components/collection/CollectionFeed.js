@@ -8,31 +8,68 @@ import FeedColumns from '../feed/FeedColumns';
 const CollectionFeed = ({ loading, setLoading, ...props }) => {
   const [ otherPics, setOtherPics ] = useState([]);
   const { columnArrays, columnArrays2, renderColumns } = useRenderColumns();
-
+  const [ columnCount, setColumnCount ] = useState(3);
+  const [ width, setWidth ] = useState(1000);
+  
+  useEffect(() => {
+    findColumnCount(window.innerWidth)
+  }, [])
+  
   useEffect(() => {
     const newarray = []
     if (props.otherPicIds.length === 0) setLoading(false);
     props.otherPicIds.map( id => (
       axios.get(`/api/pictures/${id}`)
-        .then(res => {
-          setLoading(false)
+      .then(res => {
+        setLoading(false)
           newarray.push(res.data)
           if (newarray.length === props.otherPicIds.length) {
             setOtherPics(newarray.sort((a, b) => (a.id > b.id) ? 1 : -1))
           }
         })
         .catch(console.log)
-    ))
+        ))
   }, [props.otherPicIds])
-
+  
   useEffect(() => {
-    if (props.adding) {
-      renderColumns(otherPics)
-    } else {
-      renderColumns(props.pictures)
-    }
+    runRenderColumns()
   }, [props.pictures, otherPics, props.adding])
 
+  window.onresize = () => handleResize()
+
+  const handleResize = () => {
+    let newWidth = window.innerWidth
+    if (width < 1000 && newWidth > 999) {
+      setColumnCount(3)
+      runRenderColumns(3)
+    } else if (width > 699 && newWidth < 700) {
+      setColumnCount(1)
+      runRenderColumns(1)
+    } else if (width > 999 && newWidth < 1000 || width < 700 && newWidth > 699) {
+      setColumnCount(2)
+      runRenderColumns(2)
+    }
+    setWidth(window.innerWidth)
+  }
+
+  const findColumnCount = (width) => {
+    if (width > 999) {
+      setColumnCount(3)
+    } else if (width < 1000 && width > 699) {
+      setColumnCount(2)
+    } else {
+      setColumnCount(1)
+    }
+  }
+
+  const runRenderColumns = (n) => {
+    if (props.adding) {
+      renderColumns(otherPics, n || columnCount)
+    } else {
+      renderColumns(props.pictures, n || columnCount)
+    }
+  }
+  
   const addPicture = (incomingPicture) => {
     setOtherPics( otherPics.filter(a => a.id !== incomingPicture.id)) 
     props.addPicture(incomingPicture)

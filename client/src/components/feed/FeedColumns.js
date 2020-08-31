@@ -17,28 +17,6 @@ const FeedColumns = ({ tag, columnArrays, columnArrays2, input, ...props}) => (
         </ColumnContainer>
       ))}
     </FeedDiv>
-    <FeedDiv2>
-      { columnArrays2.map( column => (
-        <ColumnContainer2>
-          {column.map(listItem =>(
-            <>
-              {tag === Card && <Card key={listItem.id} image={listItem} updateFeedState={props.deletePicture}/>}
-              {tag === CollectionCard && <CollectionCard key={listItem.id} picture={listItem} addPicture={props.addPicture} adding={props.adding} removing={props.removing} removeImage={props.removeImage} updateFeedState={props.updateFeedState}/>}
-            </>
-          ))}
-        </ColumnContainer2>
-      ))}
-    </FeedDiv2>
-    <FeedDiv1>
-      <ColumnContainer1>
-        {input.map(listItem => (
-          <>
-            {tag === Card && <Card key={listItem.id} image={listItem} updateFeedState={props.deletePicture}/>}
-            {tag === CollectionCard && <CollectionCard key={listItem.id} picture={listItem} addPicture={props.addPicture} adding={props.adding} removing={props.removing} removeImage={props.removeImage} updateFeedState={props.updateFeedState}/>}
-         </>
-        ))}
-      </ColumnContainer1>
-    </FeedDiv1>
   </>
 )
 
@@ -49,47 +27,27 @@ const FeedDiv = styled.div`
   width: 75vw;
   margin: auto;
   min-width: 1000px;
-  // max-width: 1500px;
-  @media (max-width: 1000px) {
-    display: none;
-  };
-`
-const FeedDiv2 = styled.div`
-  display: flex;
-  padding-right: 20px;
-  padding-top: 20px;
-  width: 95vw;
-  margin: auto;
-  min-width: 700px;
-  @media (max-width: 700px) {
-    display: none;
-  };
-  @media (min-width: 1000px) {
-    display: none;
+  @media (max-width: 999px) {
+    min-width: 700px;
+    width: 95vw;
+    @media (max-width: 699px) {
+      min-width: 375px;
+      padding: 0;
+    }
   }
 `
-const FeedDiv1 = styled.div`
-  display: flex;
-  width: 95vw;
-  margin: auto;
-  min-width: 375px;
-  @media only screen and (min-width: 700px) { 
-    display: none;
-  };
-`
-  const ColumnContainer = styled.div`
+
+const ColumnContainer = styled.div`
   margin-top: 25px;
   margin-left: 25px;
   width: calc(100% / 3);
-`
-const ColumnContainer2 = styled.div`
-  margin-top: 25px;
-  margin-left: 25px;
-  width: calc(100% / 2);
-`
-const ColumnContainer1 = styled.div`
-  margin-top: 25px;
-  width: 100%;
+  @media (max-width: 999px) {
+    width: calc(100% / 2);
+    @media (max-width: 699px) {
+      width: 100%;
+      margin: 25px 0 0 0;
+    }
+  }
 `
 
 export default FeedColumns

@@ -30,15 +30,15 @@ export const FeedProvider = (props) => {
       setSearching(true)
         axios.get(`/api/pictures/?search=${query}&limit=11&offset=${pictures.length}&category_id=${categoryId}`)
         .then(res => {
-            setPictures(pictures.concat(res.data));
-            setSearching(false);
-            if (res.data.length < 11) setNoMorePictures(true)
-            resolve(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-            reject(err);
-          })
+          setPictures(pictures.concat(res.data));
+          setSearching(false);
+          if (res.data.length < 11) setNoMorePictures(true)
+          resolve(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        })
     })
   }
 
@@ -48,6 +48,7 @@ export const FeedProvider = (props) => {
       setSearching(true)
       axios.get(`/api/pictures/?search=${query}&limit=11&offset=${0}&category_id=${null}`)
         .then(res => {
+          console.log("PICTURES LOADED")
           setPictures(res.data);
           setSearching(false);
           resolve(res.data);
