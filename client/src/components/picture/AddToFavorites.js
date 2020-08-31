@@ -8,6 +8,7 @@ import styled from 'styled-components';
 
 const AddToFavorites = (props) => {
   const [ favId, setFavId ] = useState(null)
+  const [ href, setHref ] = useState(null)
 
   useEffect(() => {
     setFavId(null)
@@ -18,12 +19,37 @@ const AddToFavorites = (props) => {
     })
   }, [props.favorites, props.image]) 
 
+  useEffect(() => {
+    if (href) {
+      let link = document.createElement('a')
+      link.href = href
+      link.download = props.image.title
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      setHref(null)
+    }
+  },[href])
+
   const handleClick = () => {
     props.toggleFavorite(props.user.id, favId, props.image.id)
   }
 
-  const handleClickDownload = () => {
-    //need to save image locally
+  const handleDownload = () => {
+
+    const imageReceived = () => {
+      let canvas = document.createElement("canvas")
+      let context = canvas.getContext("2d");
+      canvas.width = downloadedImg.width;
+      canvas.height = downloadedImg.height;
+      context.drawImage(downloadedImg, 0, 0);
+      setHref(canvas.toDataURL('image/jpeg', 0.5))
+    }
+
+    let downloadedImg = new Image;
+    downloadedImg.crossOrigin = "Anonymous";
+    downloadedImg.addEventListener("load", imageReceived, false);
+    downloadedImg.src = props.image.url;
   }
     
   return(
@@ -34,9 +60,7 @@ const AddToFavorites = (props) => {
           <SpacerDiv />
         </>
       }
-      <a href={props.image.url} add target="_blank" download>
-        <DownloadIcon shadow={props.shadow} src={downloadIcon} onClick={handleClickDownload} />
-      </a>
+      <DownloadIcon shadow={props.shadow} src={downloadIcon} onClick={handleDownload}/>
     </Flex>
   )
 }
@@ -62,13 +86,15 @@ const SpacerDiv = styled.div`
 `
 const Icon = styled.img`
   border: 2.5px solid rgb(39, 39, 53);
-  background-color: ${props=> props.favId ? "#ffcc00" : "none"};
+  background-color: ${props=> props.favId && "#ffcc00"};
   box-sizing: border-box;
   border-radius: 4px;
   height: 2.25rem;
   filter: opacity(75%);
   cursor: pointer;
-  box-shadow: ${props => props.shadow ? '0 1px 3px rgba(0,0,0,0.75), 0 -1px 4px rgba(255,255,255,0.75), inset 0 1px 3px rgba(0,0,0,0.75), inset 0 -1px 4px rgba(255,255,255,0.75)' : 'none'};
+  box-shadow: ${props => (
+    props.shadow && '0 1px 3px rgba(0,0,0,0.75), 0 -1px 4px rgba(255,255,255,0.75), inset 0 1px 3px rgba(0,0,0,0.75), inset 0 -1px 4px rgba(255,255,255,0.75)' 
+  )};
 `
 const DownloadIcon = styled.img`
   background: rgb(39, 39, 53);
@@ -76,6 +102,8 @@ const DownloadIcon = styled.img`
   height: 2.25rem;
   filter: opacity(75%);
   cursor: pointer;
-  box-shadow: ${props => props.shadow ? '0 1px 3px rgba(0,0,0,0.75), 0 -1px 4px rgba(255,255,255,0.75)' : 'none'};
+  box-shadow: ${props => (
+    props.shadow && '0 1px 3px rgba(0,0,0,0.75), 0 -1px 4px rgba(255,255,255,0.75)' 
+  )};
   padding: 6px 7.5px;
 `
