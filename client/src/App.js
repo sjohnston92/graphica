@@ -9,8 +9,9 @@ import NoMatch from './components/shared/NoMatch';
 import FetchUser from './components/auth/FetchUser';
 import Users from './components/users/Users';
 import Profile from './components/profile/Profile';
-import Collection from './components/collection/CollectionShow';
+import CollectionShow from './components/collection/CollectionShow';
 import AboutUs from './components/home/AboutUs';
+import Collections from './components/collections/Collections'
 
 export const ConfigContext = React.createContext();
 
@@ -29,9 +30,10 @@ const App = () => {
       <FetchUser>
         <Switch>
           <Route exact path='/' component={Home} />
+          <Route exact path='/collections' component={Collections} />
           <Route exact path='/about_us' component={AboutUs} />
           <Route exact path='/profile/:id' component={Profile} />
-          <Route exact path='/collections/:id' component={Collection} />
+          <Route exact path='/collections/:id' component={CollectionShow} />
           <Route exact path='/users' component={Users} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />

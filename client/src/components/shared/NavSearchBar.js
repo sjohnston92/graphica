@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { FeedConsumer } from '../../providers/FeedProvider'
 import useTrigger from '../../hooks/useTrigger'
 
-//Can be made into 1 component with other search bar, and styles are props
-
 const NavSearchBar = (props) => {
   
   useTrigger(props.query, 500, () => {

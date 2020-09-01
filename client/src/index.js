@@ -6,6 +6,7 @@ import { AuthProvider, } from "./providers/AuthProvider";
 import { FeedProvider, } from "./providers/FeedProvider";
 import { ImageProvider } from './providers/ImageProvider';
 import { AuthFavProvider } from './providers/FavProvider';
+import { CollectionsProvider } from './providers/CollectionsProvider';
 import './index.css';
 import 'semantic-ui-css/semantic.min.css';
 import { initMiddleware } from 'devise-axios';
@@ -17,11 +18,13 @@ ReactDOM.render(
     <AuthProvider>
       <AuthFavProvider>
         <FeedProvider>
+          <CollectionsProvider>
             <ImageProvider>
               <BrowserRouter>
                 <App />
               </BrowserRouter>
-          </ImageProvider>
+            </ImageProvider>
+          </CollectionsProvider>
         </FeedProvider>
       </AuthFavProvider>
     </AuthProvider>

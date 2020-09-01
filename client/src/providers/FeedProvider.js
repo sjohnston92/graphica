@@ -48,7 +48,6 @@ export const FeedProvider = (props) => {
       setSearching(true)
       axios.get(`/api/pictures/?search=${query}&limit=11&offset=${0}&category_id=${null}`)
         .then(res => {
-          console.log("PICTURES LOADED")
           setPictures(res.data);
           setSearching(false);
           resolve(res.data);
@@ -70,7 +69,7 @@ export const FeedProvider = (props) => {
     setCategoryId,
     resetAndSearchPictures,
     setQuerySearch,
-  } 
+  } //THIS ISN'T DOING ANYTHING ^^
   // Refactor to remove consumer..
   return(
     <FeedContext.Provider value={{

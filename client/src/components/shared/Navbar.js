@@ -70,10 +70,11 @@ const NavBar = (props) => {
                 <Icon src={SearchIcon} />&nbsp;&nbsp;&nbsp;
               </Flex>
                 <LinkDiv>
-                      <Link to={`/Profile/${props.auth.user.id}`}>
+                  <Link to={'/collections'}>
+                      {/* <Link to={`/Profile/${props.auth.user.id}`}> */}
                   <Flex>
                     <div>
-                      Profile&nbsp;&nbsp; 
+                      Collections&nbsp;&nbsp; 
                     </div>
                     <Icon src={CollectionIcon} />&nbsp;&nbsp;&nbsp;
                   </Flex>
@@ -81,9 +82,9 @@ const NavBar = (props) => {
                 </LinkDiv>
                 <LinkDiv onClick={()=>toggle()}>
                   <Flex>
-                    <div>
+                    <PostDiv>
                       Post&nbsp;&nbsp;
-                    </div>
+                    </PostDiv>
                     <Icon src={PostIcon} />
                   </Flex>
                 </LinkDiv>
@@ -98,6 +99,12 @@ const NavBar = (props) => {
   )
   
 }
+
+const PostDiv = styled.div`
+  @media(max-width: 400px){
+    display: none;
+  }
+`
 const Name = styled.div`
   @media (max-width: 499px){
     display: none;
