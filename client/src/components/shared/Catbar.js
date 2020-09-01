@@ -51,14 +51,14 @@ const Catbar = (props) => {
 }
 
 const Wrapper = styled.div`
-position: fixed;
-display: flex;
+  position: fixed;
+  display: flex;
   align-items: center;
   background: rgba(200, 200, 200, 0.75);
   width: 100%;
   padding: 6px;
   top: 3rem;
-  z-index:1;
+  z-index: 1;
   box-shadow: 0 2px 2px rgba(0,0,0,0.25);
 `
 const Scroll = styled.div`

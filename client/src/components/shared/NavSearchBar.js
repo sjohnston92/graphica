@@ -18,7 +18,7 @@ const NavSearchBar = (props) => {
       type="text"
       name="formName"
       value={props.query}
-      placeholder="Find something new..."
+      placeholder="Find something new . . ."
       onChange={(e) => {
         props.setQuery(e.target.value)
         props.setCategoryId(null)

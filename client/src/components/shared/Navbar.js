@@ -2,15 +2,16 @@ import React, { useContext } from 'react'
 import { AuthConsumer, } from "../../providers/AuthProvider";
 import { Link, withRouter, } from 'react-router-dom'
 import styled from 'styled-components'
-import logoFont from '../../fonts/Elianto-Regular.otf';
 import NavSearchBar from './NavSearchBar';
+import SearchBar from '../home/SearchBar';
 import useModal from '../../hooks/useModal';
-import Modal from '../modal/Modal'
-import PictureForm from '../new/PictureForm'
-import { FeedContext } from '../../providers/FeedProvider'
-import PostIcon from '../../img/add_circle_outline_24px.svg'
-import CollectionIcon from '../../img/photo_library_24px.svg'
-import SearchIcon from '../../img/search_24px.svg'
+import Modal from '../modal/Modal';
+import PictureForm from '../new/PictureForm';
+import { FeedContext } from '../../providers/FeedProvider';
+import PostIcon from '../../img/add_circle_outline_24px.svg';
+import CollectionIcon from '../../img/photo_library_24px.svg';
+import SearchIcon from '../../img/search_24px.svg';
+import Hamburger from '../navbar/Hamburger';
 
 const NavBar = (props) => {
   const {toggle, open} = useModal();
@@ -27,7 +28,6 @@ const NavBar = (props) => {
       })
       .catch(console.log)
   }
-
   
   return(
     <>
@@ -53,25 +53,30 @@ const NavBar = (props) => {
         </Flex>
         { !login && 
           <Right>
-              <Flex>
-                <SearchDiv onClick={()=>props.history.push(`/`)}>  
+                <div onClick={()=>props.history.push(`/`)}>  
                   <NavSearchBar />
-                </SearchDiv>
-                <Icon src={SearchIcon} />
-              </Flex>
+                  <Icon src={SearchIcon} />
+                </div>
+                <LinkDiv>
+                  <Link to={'/collections'}>
+                  <Flex>
+                    Collections&nbsp;&nbsp;&nbsp;
+                    <Icon src={CollectionIcon} />
+                  </Flex>
+                  </Link>
+                </LinkDiv>
           </Right>
         }
         { login &&   
           <RightLogin>    
               <Flex>
-                <SearchDiv onClick={()=>props.history.push(`/`)}>  
-                  <NavSearchBar />
-                </SearchDiv>
+                <div onClick={()=>props.history.push(`/`)}>  
+                  <NavSearchBar /> 
+                </div>
                 <Icon src={SearchIcon} />&nbsp;&nbsp;&nbsp;
               </Flex>
                 <LinkDiv>
                   <Link to={'/collections'}>
-                      {/* <Link to={`/Profile/${props.auth.user.id}`}> */}
                   <Flex>
                     <div>
                       Collections&nbsp;&nbsp; 
@@ -88,8 +93,19 @@ const NavBar = (props) => {
                     <Icon src={PostIcon} />
                   </Flex>
                 </LinkDiv>
+                <LinkDiv>
+                    <Link to={`/profile/${props.auth.user.id}`}>
+                  <Flex>
+                    <div>
+                      &nbsp;&nbsp;Profile&nbsp;&nbsp; 
+                    </div>
+                    <UserImage image={props.auth.user.image} />&nbsp;&nbsp;&nbsp;
+                  </Flex>
+                  </Link>
+                </LinkDiv>
           </RightLogin>
         }
+        <Hamburger toggle={toggle} user={props.auth.user}/>
       </Wrapper>
             <Modal onClose={toggle} open={open}>
               <PictureForm toggleModal={toggle}/>
@@ -97,7 +113,6 @@ const NavBar = (props) => {
       <ClearFix />
     </>
   )
-  
 }
 
 const PostDiv = styled.div`
@@ -106,31 +121,31 @@ const PostDiv = styled.div`
   }
 `
 const Name = styled.div`
-  @media (max-width: 499px){
-    display: none;
-  }
-`
-const SpaceDivLg = styled.div`
-  width: 15vw;
-  @media only screen and (max-width: 499px) { 
-    display: none;
-  }
-  @media (min-width: 800px){
-    display: none
-  }
-  
-`
-const SpaceDivSm = styled.div`
-  width: 5vw;
-  @media only screen and (min-width: 500px) { 
-    display: none;
-  }
+  // @media (max-width: 499px){
+  //   display: none;
+  // }
 `
 const Icon = styled.img`
   height: 1rem;
+  width: 1rem;
+  margin-top: -0.3rem;
+`
+const UserImage = styled.div`
+  background-image: url(${props => props.image});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 100%;
+
+`
+const SearchImg = styled.img`
+  // margin-bottom: -2rem;
+  height: 1rem;
 `
 const ResetSearch = styled.div`
-
+  cursor: pointer;
 `
 const Wrapper = styled.div`
   position: fixed;
@@ -160,11 +175,10 @@ const Wrapper = styled.div`
     overflow: auto;
   }
   background-color: white;
-  @media (max-width: 549px) {
+  @media (max-width: 649px) {
     padding: 1rem;
   }
 `
-
 const ClearFix = styled.div`
   width: 100%;
   height: 3rem;
@@ -172,41 +186,28 @@ const ClearFix = styled.div`
 const RightLogin = styled.div`
   display: flex;
   align-items: center;
-  width: 300px;
+  width: 450px;
   justify-content: space-between;
-  @media(max-width: 646px){
-    justify-content: flex-end;
-  }
-  @media(max-width: 599px){
-    width: 272px;
 
+  @media(max-width: 749px){
+    display: none
   }
-  @media(max-width: 449px){
-    width: 244px;
-  }
-  // width: 154px;
 `
 const Right = styled.div`
   display: flex;
-  align-items: right;
-  // width: 20vw;
+  align-items: center; 
   justify-content: space-between;
+  width: 274px;
   @media(max-width: 599px){
-    width: 126px;
+    width: 246px;
+  }
+  @media(max-width: 499px){
+    width: 218px;
   }
   @media(max-width: 449px){
-    width: 98px;
+    display: none;
   }
-  width: 154px;
-`
-const RightLogout = styled.div`
-  display: flex;
-  align-items: center;
-  width: 20vw;
-  justify-content: space-between;
-  min-width: 175px;
-`
-const SearchDiv = styled.div`
+ 
 `
 
 const Flex = styled.div `
@@ -232,18 +233,6 @@ const LogoSm = styled.div`
 `
 const AuthDiv = styled.div`
   margin-left: 1vw;
-  // @media only screen and (max-width: 599px) { 
-  //   display: none;
-  // }
-`
-const AuthDivMobile = styled.div`
-  display: flex;
-  justify-content: left;
-  margin-left: 1vw;
-  min-width: 25vw;
-  @media only screen and (min-width: 600px) { 
-    display: none;
-  }
 `
 
 const LinkDiv = styled.div`
