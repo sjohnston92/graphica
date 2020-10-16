@@ -12,6 +12,12 @@ export const ImageProvider = (props) => {
   const [ userImage, setUserImage] = useState();
   const [ pictureJunctions, setPictureJunctions ] = useState(null);
   const [ userCollections, setUserCollections ] = useState([{title: 'there are none'}])
+  const [ direction, setDirection ] = useState(null);
+  //get all image ids for search from feedContext
+
+  useEffect(() => {
+    axios.get(`/api/users`)
+  }, [])
 
   const fetchUser = (userId) => {
     return new Promise((resolve, reject) => {
@@ -48,6 +54,11 @@ export const ImageProvider = (props) => {
         resolve(res)
       })
       .catch((err) => {
+        if (direction === "descending") {
+          setImageId(imageId-1)
+        } else if ( direction === "ascending") {
+          setImageId(imageId + 1)
+        } 
         console.log(err);
         reject(err);
       })
@@ -122,8 +133,16 @@ export const ImageProvider = (props) => {
       .catch(console.log)
   } //Removing from here..
 
+  const chevronDirection = (incomingDirection) => {
+    setDirection(incomingDirection)
+    if (incomingDirection === "ascending") {
+      setImageId(imageId + 1)
+    } else if (incomingDirection === "descending")
+      setImageId(imageId - 1)
+  }
   return(
     <ImageContext.Provider value={{
+      chevronDirection,
       fetchUser,
       user,
       userImage,

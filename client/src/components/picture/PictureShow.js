@@ -7,6 +7,7 @@ import { ImageConsumer } from '../../providers/ImageProvider'
 import EditPicture from './EditPicture'
 import AddCollectionButton from './AddCollectionButton';
 import AddToFavorites from './AddToFavorites';
+import Chevron from './chevron/Chevron';
 
 //Add category search on category click
 
@@ -91,67 +92,71 @@ const PictureShow = (props) => {
   )
 
   return (
-    <Wrapper>
-      <UserInfoDiv>
-        <UserInfoLeft>
-          <div onClick={()=>props.toggle()}>
-            <Link to={`/profile/${user.id}`} >
-                <UserImage image={user.image} />  
-            </Link>
-          </div>
-          <UserLeftContent>
-            <NameDiv>
-              {user.first_name} {user.last_name}
-            </NameDiv>
-            <EmailDiv>
-              {user.email}
-            </EmailDiv>
-          </UserLeftContent>
-        </UserInfoLeft>
-        <UserInfoRight>
-          <div>
-            {image && <AddToFavorites shadow={true} image={image} addToFavorites={addToFavorites}/> }
-          </div>
-          <ViewsDiv>
-            {image.views && <>{(image.views + 1).toLocaleString()} views </>}
-          </ViewsDiv>
-        </UserInfoRight>
-      </UserInfoDiv>
-      <PictureDiv>
-        <StyledImg src={image.url} />
-      </PictureDiv>
-      <PictureInfoDiv>
-        <InfoLeft>{image.title}</InfoLeft>
-        { category && 
-          <EditPicture 
-          userId={user.id} 
-          image={image} 
-          category={category} 
-          deleteImageState={deleteImageState}
-          refreshImageState={refreshImageState}
-          />
-        }
-      </PictureInfoDiv>
-      <PictureCollectionDiv>
-          { props.pictureJunctions && (props.pictureJunctions.length > 0) ? <> {renderCollections()} </> : null }
-      </PictureCollectionDiv>
-      <AddDiv>
-        <AddCollectionButton  pictureJunctions={props.pictureJunctions} userId={user.id} image={image}/>
-      </AddDiv>
-      <PictureDescriptionDiv>
-        <InfoLeft>
-          Description
-        </InfoLeft>
-        <InfoRight>
-        in {category.title} category
-        {/* in <a href="url">{category.title}</a> category */} 
-        </InfoRight>
-      </PictureDescriptionDiv>
-        <Description> {image.description} </Description>
-      <Comments toggle={props.toggle} comments={comments} pictureId={props.imageId} setStatePictureShow={setStatePictureShow} deleteCommentState={deleteCommentState}/>
-    </Wrapper>
+    <>
+      <Chevron />
+      <Wrapper>
+        <UserInfoDiv>
+          <UserInfoLeft>
+            <div onClick={()=>props.toggle()}>
+              <Link to={`/profile/${user.id}`} >
+                  <UserImage image={user.image} />  
+              </Link>
+            </div>
+            <UserLeftContent>
+              <NameDiv>
+                {user.first_name} {user.last_name}
+              </NameDiv>
+              <EmailDiv>
+                {user.email}
+              </EmailDiv>
+            </UserLeftContent>
+          </UserInfoLeft>
+          <UserInfoRight>
+            <div>
+              {image && <AddToFavorites shadow={true} image={image} addToFavorites={addToFavorites}/> }
+            </div>
+            <ViewsDiv>
+              {image.views && <>{(image.views + 1).toLocaleString()} views </>}
+            </ViewsDiv>
+          </UserInfoRight>
+        </UserInfoDiv>
+        <PictureDiv>
+          <StyledImg src={image.url} />
+        </PictureDiv>
+        <PictureInfoDiv>
+          <InfoLeft>{image.title}</InfoLeft>
+          { category && 
+            <EditPicture 
+            userId={user.id} 
+            image={image} 
+            category={category} 
+            deleteImageState={deleteImageState}
+            refreshImageState={refreshImageState}
+            />
+          }
+        </PictureInfoDiv>
+        <PictureCollectionDiv>
+            { props.pictureJunctions && (props.pictureJunctions.length > 0) ? <> {renderCollections()} </> : null }
+        </PictureCollectionDiv>
+        <AddDiv>
+          <AddCollectionButton  pictureJunctions={props.pictureJunctions} userId={user.id} image={image}/>
+        </AddDiv>
+        <PictureDescriptionDiv>
+          <InfoLeft>
+            Description
+          </InfoLeft>
+          <InfoRight>
+          in {category.title} category
+          {/* in <a href="url">{category.title}</a> category */} 
+          </InfoRight>
+        </PictureDescriptionDiv>
+          <Description> {image.description} </Description>
+        <Comments toggle={props.toggle} comments={comments} pictureId={props.imageId} setStatePictureShow={setStatePictureShow} deleteCommentState={deleteCommentState}/>
+      </Wrapper>
+    </>
   )
 }
+
 
 const Wrapper = styled.div`
   min-height: 600px;
