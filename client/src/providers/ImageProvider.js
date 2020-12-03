@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { FeedContext } from './FeedProvider';
 
 export const ImageContext = React.createContext();
 
@@ -13,11 +14,21 @@ export const ImageProvider = (props) => {
   const [ pictureJunctions, setPictureJunctions ] = useState(null);
   const [ userCollections, setUserCollections ] = useState([{title: 'there are none'}])
   const [ direction, setDirection ] = useState(null);
+  const [ imageIds, setImageIds ] = useState([])
+  
+  const feedContext = useContext(FeedContext)
   //get all image ids for search from feedContext
-
+  
+  console.log(imageIds)
   useEffect(() => {
     axios.get(`/api/users`)
+    getImageIds()
   }, [])
+
+  const getImageIds = () => {
+    console.log(feedContext.pictures)
+    setImageIds(feedContext.pictures.map(picture => picture.id))
+  }
 
   const fetchUser = (userId) => {
     return new Promise((resolve, reject) => {
@@ -136,7 +147,7 @@ export const ImageProvider = (props) => {
   const chevronDirection = (incomingDirection) => {
     setDirection(incomingDirection)
     if (incomingDirection === "ascending") {
-      setImageId(imageId + 1)
+      setImageId(imageId + 1) //change these to setImageId(imageIds[imageIds.IndexOf(imageId) +1])
     } else if (incomingDirection === "descending")
       setImageId(imageId - 1)
   }
