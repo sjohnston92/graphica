@@ -61,8 +61,6 @@ class Profile extends React.Component {
     }
   }
 
-
-
   render() { 
     return (
       <Wrapper>
@@ -112,6 +110,5 @@ const ConnectedProfile = (props) => (
     { (auth) => <Profile {...props} auth={auth} /> }
   </AuthConsumer>
 )
-
 
 export default ConnectedProfile;

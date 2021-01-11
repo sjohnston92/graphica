@@ -20,7 +20,7 @@ const App = () => {
   
   const configValue = {
     showCatbar,
-    setShowCatbar,
+    setShowCatbar, 
   }
 
   return(                                          

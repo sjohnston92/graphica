@@ -29,17 +29,21 @@ const CollectionCard = (props) => {
       { props.adding
         ?
           <>
-          Click to Add
-          <CardDiv onClick={addImage}>
-            <StyledImage src={props.picture.url} />
-          </CardDiv>
-        </>
+            <AddDiv>
+              <AddButton onClick={addImage}>+</AddButton>
+            </AddDiv>
+            <CardDiv >
+              <StyledImage src={props.picture.url} />
+            </CardDiv>
+          </>
         :
           <>
             { props.removing 
               ? 
                 <>
-                  Click to Remove
+                  <AddDiv>
+                    <AddButton removing={true} onClick={addImage}>×</AddButton>
+                  </AddDiv>
                   <CardDiv onClick={() => props.removeImage(props.picture.id)}>
                     <StyledImage src={props.picture.url} />
                   </CardDiv>
@@ -54,6 +58,33 @@ const CollectionCard = (props) => {
     </CardBorder>
   )
 }
+
+const AddButton = styled.button`
+  height: 40px;
+  width: 40px;
+  border: 1px solid red;
+  position: relative;
+  top: 30px;
+  left: 10px;
+  z-index: 0;
+  background: #0099BA;
+  box-shadow: 0px 2px 10px rgba(0, 153, 186, 0.5);
+  border-radius: 4px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: ${props => props.removing ? "36px" : "28px"};
+`
+
+const StyledButton = styled.button`
+  width: 148px;
+  height: 38px;
+`
+
+const AddDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`
 
 const StyledImage = styled.img`
   width: 100%;
@@ -75,6 +106,7 @@ const StyledText = styled.div`
   color: white;
 `
 const CardDiv = styled.div`
+  z-index: -1;
   cursor: zoom-in;
   position: relative;
   display: inline-block;

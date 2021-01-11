@@ -84,7 +84,7 @@ const AboutUs = () => {
             <FrontEndDiv>
               <StyledP>Front End:</StyledP>
               {developer.contributionFront} 
-              {developer.link && <a href={developer.link}>GitHub</a> }
+              {/* {developer.link && <a hrefx`={developer.link}>GitHub</a> } */}
             </FrontEndDiv>
             <BackEndDiv>
               <StyledP>Back End:</StyledP>
