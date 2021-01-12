@@ -25,6 +25,7 @@ gem 'devise_token_auth'
 gem 'kaminari'
 gem 'cloudinary'
 gem 'faker'
+gem 'fastimage'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
