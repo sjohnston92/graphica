@@ -8,16 +8,16 @@ const FeedColumns = ({ tag, columnArrays, columnArrays2, input, ...props}) => {
   return (
   <>
     <FeedDiv>
-      {/* { columnArrays.map((column, idx) => ( */}
-        <ColumnContainer>
-          {columnArrays[0].map((listItem, index) => (
+      { columnArrays.map((column, idx) => (
+        <ColumnContainer key={idx}>
+          {column.map((listItem, index) => (
             <div key={index}>
               {tag === Card && <Card key={index} image={listItem} updateFeedState={props.deletePicture}/>}
               {tag === CollectionCard && <CollectionCard key={index} picture={listItem} addPicture={props.addPicture} adding={props.adding} removing={props.removing} removeImage={props.removeImage} updateFeedState={props.updateFeedState}/>}
             </div >
           ))}
         </ColumnContainer>
-      {/* ))} */}
+      ))}
     </FeedDiv>
   </>
 )
