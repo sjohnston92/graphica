@@ -14,6 +14,7 @@ const useRenderColumns = (input = []) => {
 
     const assignColumns = (listItem) => {
       // const shortColumnIndex = column_height.sort((a,b) => a - b)
+      console.log("column_height!!!!!", column_height)
       const shortColumnIndex = column_height.indexOf(Math.min(...column_height));
       console.log("shortColumnIndex: ", shortColumnIndex)
       //this was -1, meaning the indexOf was failing
