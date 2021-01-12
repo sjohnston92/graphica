@@ -17,7 +17,7 @@ const useRenderColumns = (input = []) => {
       const shortColumnIndex = column_height.indexOf(Math.min(...column_height));
       console.log("shortColumnIndex: ", shortColumnIndex)
       //this was -1, meaning the indexOf was failing
-      column_arrays[shortColumnIndex].push(listItem)
+      shortColumnIndex > -1 && column_arrays[shortColumnIndex].push(listItem)
       column_height[shortColumnIndex] += 1/listItem.ratio + offset
       setColumnArrays(column_arrays)
     }
