@@ -5,19 +5,12 @@ const useRenderColumns = (input = []) => {
   const [ columnArrays, setColumnArrays ] = useState([[], [], []]);
  
   const renderColumns = (input, columnCount) => {
-    console.log("columnCount: ", columnCount)
     let column_height = new Array(columnCount).fill(0);
-    console.log("column_height: ", column_height)
     let column_arrays = new Array(columnCount).fill().map(() => []);
-    console.log("column_arrays: ", column_arrays)
     const offset = (columnCount == 3) ? 0.15 : 0.1
 
     const assignColumns = (listItem) => {
-      // const shortColumnIndex = column_height.sort((a,b) => a - b)
-      console.log("column_height!!!!!", column_height)
       const shortColumnIndex = column_height.indexOf(Math.min(...column_height));
-      console.log("shortColumnIndex: ", shortColumnIndex)
-      //this was -1, meaning the indexOf was failing
       shortColumnIndex > -1 && column_arrays[shortColumnIndex].push(listItem)
       column_height[shortColumnIndex] += 1/listItem.ratio + offset
       setColumnArrays(column_arrays)
