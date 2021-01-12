@@ -11,6 +11,7 @@ const useRenderColumns = (input = []) => {
 
     const assignColumns = (listItem) => {
       const shortColumnIndex = column_height.indexOf(Math.min(...column_height));
+      console.log("shortColumnIndex: ", shortColumnIndex)
       column_arrays[shortColumnIndex].push(listItem)
       column_height[shortColumnIndex] += 1/listItem.ratio + offset
       setColumnArrays(column_arrays)
