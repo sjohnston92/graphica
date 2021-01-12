@@ -3,22 +3,25 @@ import styled from 'styled-components';
 import Card from '../home/Card';
 import CollectionCard from '../collection/CollectionCard';
 
-const FeedColumns = ({ tag, columnArrays, columnArrays2, input, ...props}) => (
+const FeedColumns = ({ tag, columnArrays, columnArrays2, input, ...props}) => {
+  // console.log("columnArrays:", columnArrays)
+  return (
   <>
     <FeedDiv>
-      { columnArrays.map( column => (
+      {/* { columnArrays.map((column, idx) => ( */}
         <ColumnContainer>
-          {column.map(listItem => (
-            <>
-              {tag === Card && <Card key={listItem.id} image={listItem} updateFeedState={props.deletePicture}/>}
-              {tag === CollectionCard && <CollectionCard key={listItem.id} picture={listItem} addPicture={props.addPicture} adding={props.adding} removing={props.removing} removeImage={props.removeImage} updateFeedState={props.updateFeedState}/>}
-            </>
+          {columnArrays[0].map((listItem, index) => (
+            <div key={index}>
+              {tag === Card && <Card key={index} image={listItem} updateFeedState={props.deletePicture}/>}
+              {tag === CollectionCard && <CollectionCard key={index} picture={listItem} addPicture={props.addPicture} adding={props.adding} removing={props.removing} removeImage={props.removeImage} updateFeedState={props.updateFeedState}/>}
+            </div >
           ))}
         </ColumnContainer>
-      ))}
+      {/* ))} */}
     </FeedDiv>
   </>
 )
+          }
 
 const FeedDiv = styled.div`
   display: flex;
